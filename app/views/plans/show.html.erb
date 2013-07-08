@@ -1,0 +1,65 @@
+Hello <%= @current_user.name %>
+
+<div id="chart"></div>
+
+<div id="details"></div>
+<h2>Manipulators</h2>
+<% @plan.manipulators.each do |m|  %>
+  <div>
+    <a href="#" class="edit_manipulator" data-id="<%=m.id%>"><%= m.name %></a>  
+  </div>
+<% end %>
+
+<% @plan.unused_templates.each do |t| %>
+  <a href="#" class="add_manipulator" data-template-id="<%=t.id%>">Add <%= t.name %></a>  
+<% end %>
+<div id="manipulator_dialog" title="New Manipulator">  
+</div>
+
+<%= javascript_tag do %>
+  $(function() {
+    plan = new Plan('<%=@plan.name%>');
+    <% @plan.manipulators.each do |m| %>
+      var m = Manipulator.fromJSON(<%= raw m.safe_json.to_json %>);      
+      plan.add(m);
+    <% end %>
+    plan.display();
+    
+    $('.edit_manipulator').click(function() {    
+      var d = $( "#manipulator_dialog" ).dialog({
+        height: 250,
+        modal: true        
+      });
+      $.ajax({
+        url: '/manipulators/'+$(this).attr('data-id'),
+        type: 'GET',
+        dataType: 'html',        
+        success: function(data) {
+          d.html(data);
+        }          
+      });
+    
+      return false;
+    });
+    
+    $('.add_manipulator').click(function() {    
+      var d = $( "#manipulator_dialog" ).dialog({
+        height: 250,
+        modal: true        
+      });
+      $.ajax({
+        url: '/manipulators/new',
+        type: 'GET',
+        dataType: 'html',
+        data: {
+          plan_id: <%= @plan.id %>,
+          manipulator_template_id: $(this).attr('data-template-id')
+        },
+        success: function(data) {
+          d.html(data);
+        }          
+      });      
+      return false;
+    });
+  });
+<% end %>

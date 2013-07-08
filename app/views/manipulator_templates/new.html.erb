@@ -1,0 +1,9 @@
+<%= form_for(@template, :html => {}) do |f| %>
+  <%= f.hidden_field :user_id %>
+
+<div>Name: <%= f.text_field :name, :size => 20 %></div>
+  
+<div>Formula: <%= f.text_area :formula, :size => "60x10" %></div>
+
+  <%= f.submit "Save" %>
+<% end %>

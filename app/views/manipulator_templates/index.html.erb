@@ -1,0 +1,10 @@
+
+<% @templates.each do |t| %>
+  <div>
+    <%= link_to t.name, "/manipulator_templates/#{t.id}" %>
+  </div>
+<% end %>
+
+<br/>
+<br/>
+<%= link_to "New Template", '/manipulator_templates/new' %>
