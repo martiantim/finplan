@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require jquery.jqplot
+ *= require codemirror
  *= require_tree .
  */

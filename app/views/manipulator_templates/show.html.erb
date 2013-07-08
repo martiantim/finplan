@@ -6,3 +6,9 @@
 
   <%= f.submit "Save" %>
 <% end %>
+
+<%= javascript_tag do %>
+  $(function() {
+    var myCodeMirror = CodeMirror.fromTextArea($('#manipulator_template_formula')[0]);
+  });
+<% end %>
