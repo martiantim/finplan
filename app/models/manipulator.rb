@@ -8,7 +8,7 @@ class Manipulator < ActiveRecord::Base
       :start => self.start,
       :end => self.end,
       :params => self.params,
-      :formula => self.manipulator_template.formula
+      :formula => self.manipulator_template.javascript
     }
   end
   

@@ -21,5 +21,5 @@
 //= require jqplot.cursor
 //= require jqplot.highlighter
 //= require codemirror
-//= require codemirror/modes/javascript
+//= require codemirror/modes/coffeescript
 //= require_tree .

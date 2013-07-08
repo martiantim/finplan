@@ -26,8 +26,11 @@ class ManipulatorTemplatesController < ApplicationController
     @template = ManipulatorTemplate.find(params[:id])
     
     @template.update_attributes(params[:manipulator_template])
-    
-    redirect_to '/manipulator_templates'
+    if @template.save    
+      redirect_to '/manipulator_templates'
+    else
+      render :action => 'show'
+    end
   end
   
 end

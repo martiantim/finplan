@@ -1,4 +1,5 @@
 <%= form_for(@template, :html => {}) do |f| %>
+  <%= errors_for(@template, "Opps, unable to save template").html_safe %>
 
 <div>Name: <%= f.text_field :name, :size => 20 %></div>
   

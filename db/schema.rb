@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130630225721) do
+ActiveRecord::Schema.define(:version => 20130708043353) do
 
   create_table "manipulator_templates", :force => true do |t|
-    t.string   "name",                       :null => false
-    t.integer  "user_id",                    :null => false
-    t.string   "formula",    :limit => 4096, :null => false
+    t.string   "name",                           :null => false
+    t.integer  "user_id",                        :null => false
+    t.string   "formula",    :limit => 4096,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "javascript", :limit => 16777215
   end
 
   create_table "manipulators", :force => true do |t|
