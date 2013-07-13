@@ -35,13 +35,9 @@ class Chart
       },
     }
     
-  showDetails: (index, balances) ->
+  showDetails: (index, balances) ->    
     year = @startYear + index
-    html = "Year #{year}"
-    for entry in balances.yearLog(year)
-      html += '<div>'+entry+'</div>'
-    
-    $('#details').html html
+    new DetailsView(year, balances).render()        
 
   display: (manipulators) ->
     that = this

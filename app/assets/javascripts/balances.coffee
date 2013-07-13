@@ -4,16 +4,21 @@ class Balances
     @savings = 0
     @investments = 0
         
-    @log = {}
-    @log[@_currentYear()] = []
+    @logs = {}    
     @year_incomes = {}
+    @year_spends = {}
     @highest_total = 0
-  
+
   _currentYear: ->
     @opts['year']
   
-  yearLog: (year) ->
-    @log[year]
+  logForYear: (year) ->
+    @logs[year]
+
+  curLog: ->
+    yr = @_currentYear()
+    @logs[yr] = new Log(yr) if !@logs[yr]
+    @logs[yr]
   
   getOption: (name) ->
     @opts[name]
@@ -40,23 +45,24 @@ class Balances
     @savings = @savings + amount
     @recalc()
     
-  addCash: (amount, kind) ->
+  addCash: (amount, kind, desc) ->
     if isNaN(amount)
       alert "Invalid earning '#{amount}' for #{kind}"
     @year_incomes[@_currentYear()] = 0 if !@year_incomes[@_currentYear()]
     @year_incomes[@_currentYear()] += amount
     
-    console.log("amount = " + amount)
-    
     @cash += amount
-    @log[@_currentYear()].push "$#{amount} #{kind}"
+    @curLog().log(kind, desc, amount)    
     @recalc()
   
   spendCash: (amount, kind, description) ->    
     if isNaN(amount)
       alert "Invalid spending '#{amount}' for #{kind}:#{description}"
+    @year_spends[@_currentYear()] = 0 if !@year_spends[@_currentYear()]
+    @year_spends[@_currentYear()] += amount      
+      
     @cash -= amount
-    @log[@_currentYear()].push "$#{amount} #{kind}: #{description}"
+    @curLog().log(kind, description, -1 * amount)  
     @recalc()
   
   rebalance: ->
@@ -74,10 +80,10 @@ class Balances
     @opts['year']
   
   addYear: ->
+    @curLog().log('Savings', 'Left Over', @year_incomes[@_currentYear()] - @year_spends[@_currentYear()])
     @opts['age']++
-    @opts['year']++
-    @log[@_currentYear()] = []
-  
+    @opts['year']++    
+    
   recalc: ->
     @highest_total = @getTotal() if @getTotal() > @highest_total
     
