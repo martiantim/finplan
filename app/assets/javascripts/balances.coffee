@@ -59,7 +59,7 @@ class Balances
     if isNaN(amount)
       alert "Invalid spending '#{amount}' for #{kind}:#{description}"
     @year_spends[@_currentYear()] = 0 if !@year_spends[@_currentYear()]
-    @year_spends[@_currentYear()] += amount      
+    @year_spends[@_currentYear()] += amount if kind != 'Capital'   
       
     @cash -= amount
     @curLog().log(kind, description, -1 * amount)  

@@ -12,7 +12,6 @@ class Manipulator
     true
   
   @fromJSON: (json) ->
-    console.log(json)
     m = new Manipulator(json.name, json.start, json.end, json.params);
     
     func = "m.exec = function(balances) { "+json.formula+"}"    

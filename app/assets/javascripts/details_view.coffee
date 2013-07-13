@@ -11,7 +11,7 @@ class DetailsView
     html =  "<div class=\"title\"><h2>Year #{@year}</h2></div>"
     html += "<div class=\"clearit\">"
     html += "  <div class=\"numbers section\">#{@yearChanges()}</div>"       
-    html += "  <div class=\"achievements section\">TODO</div>"       
+    html += "  <div class=\"achievements section\">#{@achievements()}</div>"       
     html += "  <div class=\"people section\">#{@people()}</div>"       
     html += "</div>"
     html
@@ -26,6 +26,11 @@ class DetailsView
     html += "#{@personIMG('woman', 100)}"
     html += "#{@personIMG('cat', 70, 140)}"
     html += "</div>"
+    html
+  
+  achievements: ->
+    log = @balances.logForYear(@year)
+    html = @kindChanges(log, 'Capital')
     html
 
   yearChanges: ->
