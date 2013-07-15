@@ -2,6 +2,13 @@ class Plan
   constructor: (@name) ->
     @chart = new Chart 'chart', this
     @manipulators = [];
+    @_wire()
+    
+  _wire: ->
+    that = this
+    $('#xtype a').click ->
+      $('#xtype').attr('data-value',$(this).attr('data-xtype'))
+      that.display()
 
   display: ->    
     @chart.display(@manipulators)

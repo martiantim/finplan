@@ -1,24 +1,31 @@
 class Chart
   constructor: (@id, @plan) ->
-    @startYear = 2013
-  
-  _getOptions: (balances) ->
-    xAxisOptions = {
-      min: "2013-01-01",
-      tickOptions:{formatString:'%Y', angle: -30},      
-      renderer:$.jqplot.DateAxisRenderer      
-      tickInterval:'2 years'
-      drawMajorGridlines: true
-    }
+    @startYear = 2013    
+      
+  _getOptions: (balances, xtype) ->
+    if xtype == 'year'
+      xAxisOptions = {
+        min: "2013-01-01",
+        max: "2063-01-01",
+        tickOptions:{formatString:'%Y', angle: -30},      
+        renderer:$.jqplot.DateAxisRenderer      
+        tickInterval:'2 years'
+        drawMajorGridlines: true
+      }
+    else
+      xAxisOptions = {        
+        min: 34,
+        max: 85,
+        tickOptions:{formatString:'%d', angle: 0},      
+        drawMajorGridlines: true
+      }
     
     yAxisOptions = {
-      min:-1000,
-      max: balances.highestTotal()*1.25,
+      autoscale: true,      
       tickOptions: {formatString: "$%'d" }
     }
     
-    
-    { 
+    {
       title:'Finances',
       axesDefaults: {
         tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
@@ -40,25 +47,32 @@ class Chart
     new DetailsView(year, balances).render()        
 
   display: (manipulators) ->
+    $('#'+@id).empty()
+  
     that = this
     age = 34    
     endYear = @startYear + (85-age)
+    xtype = $('#xtype').attr('data-value')
     
     total = []
     cash = []
     
     balances = new Balances({age: age, year: @startYear})
-    balances.printState()
     for year in [@startYear..endYear]
       for m in manipulators
         m.exec(balances)      
       balances.rebalance()
       balances.addYear()
-      balances.printState()
-      total.push [year+'-01-01 4:00PM', balances.getTotal()]
-      cash.push [year+'-01-01 4:00PM', balances.getCash()]
+      
+      
+      if xtype == 'year'
+        x = year+'-01-01 4:00PM'
+      else
+        x = age + year - @startYear
+      total.push [x, balances.getTotal()]
+      cash.push [x, balances.getCash()]
     
-    $.jqplot @id, [total, cash], @_getOptions(balances)
+    $.jqplot @id, [total, cash], @_getOptions(balances, xtype)
     $('#'+@id).bind 'jqplotDataClick', (ev, seriesIndex, pointIndex, data) ->
       that.showDetails pointIndex, balances
 

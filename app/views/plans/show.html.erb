@@ -1,12 +1,20 @@
 Hello <%= @current_user.name %>
 
-<div id="chart"></div>
+<div class="clearit">
+  <div id="chart"></div>
+  <div id="chart_controls">
+    <div id="xtype" data-value="year">
+      <a href="#" data-xtype="year">year</a>/<a href="#" data-xtype="age">age</a>
+    </div>
+  </div>
+</div>
 
 <div id="details" style="display:none;"></div>
-<h2>Manipulators</h2>
+<h2>Factors</h2>
 <% @plan.manipulators.each do |m|  %>
-  <div>
-    <a href="#" class="edit_manipulator" data-id="<%=m.id%>"><%= m.name %></a>  
+  <div class="manipulator" data-id="<%=m.id%>">
+    <a href="#" class="edit"><%= m.name %></a>
+    <%= link_to 'x', '#', :class => 'remove' %>
   </div>
 <% end %>
 
@@ -25,13 +33,13 @@ Hello <%= @current_user.name %>
     <% end %>
     plan.display();
     
-    $('.edit_manipulator').click(function() {    
+    $('.manipulator .edit').click(function() {    
       var d = $( "#manipulator_dialog" ).dialog({
         height: 250,
         modal: true        
       });
       $.ajax({
-        url: '/manipulators/'+$(this).attr('data-id'),
+        url: '/manipulators/'+$(this).closest('.manipulator').attr('data-id'),
         type: 'GET',
         dataType: 'html',        
         success: function(data) {
@@ -40,6 +48,18 @@ Hello <%= @current_user.name %>
       });
     
       return false;
+    });
+    
+    $('.manipulator .remove').click(function() {    
+      var div = $(this).closest('.manipulator');
+      $.ajax({
+        url: '/manipulators/'+div.attr('data-id'),
+        type: 'POST',
+        data: {'_method' : 'delete'},
+        success: function(data) {
+          div.remove();
+        }          
+      });
     });
     
     $('.add_manipulator').click(function() {    

@@ -36,4 +36,11 @@ class ManipulatorsController < ApplicationController
     redirect_to('/plans/1')
   end
   
+  def destroy
+    @manipulator = Manipulator.find(params[:id])        
+    @manipulator.destroy    
+    
+    render :text => 'ok'
+  end
+  
 end

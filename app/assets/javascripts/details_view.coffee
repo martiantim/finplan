@@ -31,7 +31,16 @@ class DetailsView
   achievements: ->
     log = @balances.logForYear(@year)
     html = @kindChanges(log, 'Capital')
+    html += @showBalances(@balances.snapshotForYear(@year))
     html
+
+  showBalances: (snap) ->
+    html = @showBalance('Emergency Fund', snap.cash)
+    html += @showBalance('Savings', snap.savings)
+    html
+  
+  showBalance: (name, amount) ->
+    "<div class='entry title'><div class='name'>#{name}</div><div class='amount'>#{FUtils.formatMoney(amount)}</div></div>"            
 
   yearChanges: ->
     log = @balances.logForYear(@year)

@@ -5,15 +5,18 @@ class Balances
     @investments = 0
         
     @logs = {}    
+    @snapshots = {}
     @year_incomes = {}
     @year_spends = {}
-    @highest_total = 0
 
   _currentYear: ->
     @opts['year']
   
   logForYear: (year) ->
     @logs[year]
+    
+  snapshotForYear: (year) ->
+    @snapshots[year]    
 
   curLog: ->
     yr = @_currentYear()
@@ -60,7 +63,10 @@ class Balances
       alert "Invalid spending '#{amount}' for #{kind}:#{description}"
     @year_spends[@_currentYear()] = 0 if !@year_spends[@_currentYear()]
     @year_spends[@_currentYear()] += amount if kind != 'Capital'   
-      
+    
+    if kind == 'Tax'
+      console.log description
+    
     @cash -= amount
     @curLog().log(kind, description, -1 * amount)  
     @recalc()
@@ -74,22 +80,35 @@ class Balances
         @cash = 5000
         @savings -= 5000
       else
-        @cash = @savings      
+        @cash += @savings
+        @savings = 0
   
   currentYear: ->
     @opts['year']
   
   addYear: ->
     @curLog().log('Savings', 'Left Over', @year_incomes[@_currentYear()] - @year_spends[@_currentYear()])
+    @snapshots[@_currentYear()] = new BalanceSnapshot(@_currentYear(), this)
     @opts['age']++
-    @opts['year']++    
+    @opts['year']++
+    
     
   recalc: ->
-    @highest_total = @getTotal() if @getTotal() > @highest_total
     
   highestTotal: ->
-    @highest_total
-  
+    high = 0
+    for year, snap of @snapshots
+      if snap.highestTotal() > high
+        high = snap.highestTotal()
+    high
+
+  lowestTotal: ->
+    low = 0
+    for year, snap of @snapshots
+      if snap.lowestTotal() < low
+        low = snap.lowestTotal()
+    low
+
   printState: ->
     console.log("Year "+@_currentYear())
     console.log("  Cash: "+@cash)
