@@ -52,8 +52,10 @@ class Chart
     that = this
     age = 34    
     endYear = @startYear + (85-age)
-    xtype = $('#xtype').attr('data-value')
-    
+    xtype = $('#xtype').attr('data-value')    
+    for m in manipulators
+      m.reset()
+      
     total = []
     cash = []
     
@@ -69,7 +71,7 @@ class Chart
         x = year+'-01-01 4:00PM'
       else
         x = age + year - @startYear
-      total.push [x, balances.getTotal()]
+      total.push [x, balances.getSavings()]
       cash.push [x, balances.getCash()]
     
     $.jqplot @id, [total, cash], @_getOptions(balances, xtype)

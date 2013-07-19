@@ -35,8 +35,9 @@ class DetailsView
     html
 
   showBalances: (snap) ->
-    html = @showBalance('Emergency Fund', snap.cash)
-    html += @showBalance('Savings', snap.savings)
+    html = ""
+    for name, amnt of snap.accountBalances
+      html += @showBalance(name, amnt)    
     html
   
   showBalance: (name, amount) ->

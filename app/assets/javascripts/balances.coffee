@@ -1,8 +1,9 @@
 class Balances
   constructor: (@opts) ->
-    @cash = 0
-    @savings = 0
-    @investments = 0
+    @accounts = {
+      checking: new CheckingAccount(10000), 
+      savings: new Account('savings', 0)
+    }
         
     @logs = {}    
     @snapshots = {}
@@ -27,13 +28,17 @@ class Balances
     @opts[name]
   
   getTotal: ->
-    @cash + @savings + @investments
+    tot = 0
+    for name, a of @accounts
+      console.log a.balance
+      tot += a.balance
+    tot
     
   getSavings: ->
-    @savings
+    @accounts['savings'].balance
     
   getCash: ->
-    @cash
+    @accounts['checking'].balance
     
   getCurrentYearIncome: ->
     @year_incomes[@_currentYear()] || 0
@@ -44,17 +49,16 @@ class Balances
       arr.push v
     arr
     
-  addSavings: (amount) ->
-    @savings = @savings + amount
-    @recalc()
-    
+  hasSavings: (amount) ->
+    (@getCash() + @getSavings()) >= amount
+  
   addCash: (amount, kind, desc) ->
     if isNaN(amount)
       alert "Invalid earning '#{amount}' for #{kind}"
     @year_incomes[@_currentYear()] = 0 if !@year_incomes[@_currentYear()]
     @year_incomes[@_currentYear()] += amount
     
-    @cash += amount
+    @accounts['checking'].deposit(amount)    
     @curLog().log(kind, desc, amount)    
     @recalc()
   
@@ -64,34 +68,41 @@ class Balances
     @year_spends[@_currentYear()] = 0 if !@year_spends[@_currentYear()]
     @year_spends[@_currentYear()] += amount if kind != 'Capital'   
     
-    if kind == 'Tax'
-      console.log description
+    if amount == 20000
+      console.log "car i think #{description}"
+      
+    if @accounts['checking'].balance + @accounts['savings'].balance < amount      
+      @takeOutLoan(amount, description)
+    else    
+      @accounts['checking'].spend(amount)
     
-    @cash -= amount
     @curLog().log(kind, description, -1 * amount)  
     @recalc()
   
   rebalance: ->
-    if @cash > 5000
-      @savings += (@cash - 5000)
-      @cash = 5000
-    if @cash < 0
-      if @savings > 5000
-        @cash = 5000
-        @savings -= 5000
-      else
-        @cash += @savings
-        @savings = 0
+    @accounts['checking'].rebalance(@accounts['savings'])    
   
   currentYear: ->
     @opts['year']
   
+  takeOutLoan: (amnt, whatfor) ->
+    name = "#{whatfor} #{@_currentYear()}"
+    @accounts[name] = new Loan(amnt, 0.06, 10)
+  
   addYear: ->
+    @payLoans()
     @curLog().log('Savings', 'Left Over', @year_incomes[@_currentYear()] - @year_spends[@_currentYear()])
     @snapshots[@_currentYear()] = new BalanceSnapshot(@_currentYear(), this)
     @opts['age']++
     @opts['year']++
-    
+  
+  payLoans: ->
+    that = this
+    for name, a of @accounts
+      if a.type == 'loan'        
+        a.pay(that)
+        
+      
     
   recalc: ->
     

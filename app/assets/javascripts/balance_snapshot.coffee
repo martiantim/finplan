@@ -1,12 +1,19 @@
 class BalanceSnapshot
   constructor: (@year, balances) ->
-    @cash = balances.getCash()
-    @savings = balances.getSavings()
-    
+    @accountBalances = {}
+    for name, a of balances.accounts      
+      @accountBalances[name] = a.balance
+          
   highestTotal: ->
-    Math.max(@cash, @savings)
+    h = 0
+    for name, amnt of @accountBalances
+      h = Math.max(0, amnt)
+    h
     
   lowestTotal: ->
-    Math.min(@cash, @savings)
+    l = 0
+    for name, amnt of @accountBalances
+      l = Math.min(0, amnt)
+    l
 
 window.BalanceSnapshot = BalanceSnapshot
