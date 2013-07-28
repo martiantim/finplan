@@ -1,8 +1,8 @@
 class Chart
   constructor: (@id, @plan) ->
-    @startYear = 2013    
+    @startYear = 2013 #TODO
       
-  _getOptions: (balances, xtype) ->
+  _getOptions: (balances, xtype, labels) ->
     if xtype == 'year'
       xAxisOptions = {
         min: "2013-01-01",
@@ -35,7 +35,15 @@ class Chart
         }
       },
       axes: {xaxis: xAxisOptions, yaxis: yAxisOptions},
-      series:[{color:'#5FAB78', fill: true}],
+      
+      legend: {
+        renderer: $.jqplot.EnhancedLegendRenderer,
+        labels: labels,
+        show:true,
+        location: 'se', 
+        showSwatches: true,
+        placement: 'insideGrid'
+      },      
       highlighter: {
         show: true,
         sizeAdjust: 7.5
@@ -46,37 +54,20 @@ class Chart
     year = @startYear + index
     new DetailsView(year, balances).render()        
 
-  display: (manipulators) ->
-    $('#'+@id).empty()
-  
+  display: (simulator) ->
     that = this
-    age = 34    
-    endYear = @startYear + (85-age)
-    xtype = $('#xtype').attr('data-value')    
-    for m in manipulators
-      m.reset()
-      
-    total = []
-    cash = []
+    $('#'+@id).empty()
     
-    balances = new Balances({age: age, year: @startYear})
-    for year in [@startYear..endYear]
-      for m in manipulators
-        m.exec(balances)      
-      balances.rebalance()
-      balances.addYear()
-      
-      
-      if xtype == 'year'
-        x = year+'-01-01 4:00PM'
-      else
-        x = age + year - @startYear
-      total.push [x, balances.getSavings()]
-      cash.push [x, balances.getCash()]
+    #display chart
+    labels = []
+    sets = []
+    for name, set of simulator.datasets
+      sets.push set
+      labels.push name
     
-    $.jqplot @id, [total, cash], @_getOptions(balances, xtype)
+    $.jqplot @id, sets, @_getOptions(simulator.balances, simulator.xtype, labels)
     $('#'+@id).bind 'jqplotDataClick', (ev, seriesIndex, pointIndex, data) ->
-      that.showDetails pointIndex, balances
+      that.showDetails pointIndex, simulator.balances
 
 
 window.Chart = Chart

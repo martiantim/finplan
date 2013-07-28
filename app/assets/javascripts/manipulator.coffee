@@ -1,13 +1,22 @@
 class Manipulator
-  constructor: (@name, @startYear, @endYear, prms) ->
+  constructor: (@id, @name, @kind, @template_name, @startYear, @endYear, prms) ->
     @params = {}
     @achieved = false
+    @enabled = true
     
     for k,v of $.parseJSON(prms)
-      @params[k] = parseInt(v)
+      if v.match(/\./)
+        @params[k] = parseFloat(v)
+      else
+        @params[k] = parseInt(v)
   
-  reset: ->
+  setDisabled: ->    
+    @enabled = false
+  
+  reset: (sim) ->
+    @curSim = sim
     @achieved = false
+    @enabled = true
   
   setGoalAchieved: ->
     @achieved = true
@@ -21,10 +30,28 @@ class Manipulator
     
     true
   
+  disable: (name) ->
+    @curSim.disable(name)
+  
+  exec: (balances) ->
+    if @kind == 'goal'
+      if !@goalAchieved()
+        if @canAchieve(balances)
+          @setGoalAchieved()          
+            
+      if @goalAchieved() && @enabled
+        @execOne(balances)
+    else
+      if @enabled
+        @execOne(balances)
+  
   @fromJSON: (json) ->
-    m = new Manipulator(json.name, json.start, json.end, json.params);
+    m = new Manipulator(json.id, json.name, json.kind, json.template_name, json.start, json.end, json.params);
     
-    func = "m.exec = function(balances) { "+json.formula+"}"    
+    func = "m.canAchieve = function(balances) { "+json.can_formula+"}"    
+    eval(func)
+    
+    func = "m.execOne = function(balances) { "+json.formula+"}"
     eval(func)
     m
     

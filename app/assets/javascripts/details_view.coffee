@@ -4,12 +4,11 @@ class DetailsView
   
   render: ->
     $('#details').html @getHTML()
-    $('#details').show()
     @_wire()
   
   getHTML: ->
     html =  "<div class=\"title\"><h2>Year #{@year}</h2></div>"
-    html += "<div class=\"clearit\">"
+    html += "<div class=\"clearit sections\">"
     html += "  <div class=\"numbers section\">#{@yearChanges()}</div>"       
     html += "  <div class=\"achievements section\">#{@achievements()}</div>"       
     html += "  <div class=\"people section\">#{@people()}</div>"       

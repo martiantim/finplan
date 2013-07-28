@@ -4,4 +4,11 @@ class User < ActiveRecord::Base
   has_many :plans
   has_many :manipulators
   
+  def safe_json
+    {
+      :name => self.name,
+      :born => self.born
+    }
+  end
+  
 end

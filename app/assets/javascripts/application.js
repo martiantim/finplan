@@ -20,6 +20,7 @@
 //= require jqplot.categoryAxisRenderer
 //= require jqplot.cursor
 //= require jqplot.highlighter
+//= require jqplot.enhancedLegendRenderer
 //= require codemirror
 //= require codemirror/modes/coffeescript
 //= require_tree .

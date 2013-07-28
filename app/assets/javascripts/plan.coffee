@@ -1,6 +1,6 @@
 class Plan
-  constructor: (@name) ->
-    @chart = new Chart 'chart', this
+  constructor: (@name, @user) ->
+    @chart = new Chart 'chart', this    
     @manipulators = [];
     @_wire()
     
@@ -11,15 +11,11 @@ class Plan
       that.display()
 
   display: ->    
-    @chart.display(@manipulators)
+    @simulator = new Simulator(@user, @manipulators)
+    @simulator.sim()
+    @chart.display(@simulator)
   
   add: (m) ->
     @manipulators.push m
-  
-  each_point: (func) ->    
-    p = @point.dup()    
-    for i in [1..@length]      
-      func(p, @direction)
-      p.incr(@direction)
-      
+        
 window.Plan = Plan

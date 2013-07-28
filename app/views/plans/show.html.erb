@@ -9,46 +9,99 @@ Hello <%= @current_user.name %>
   </div>
 </div>
 
-<div id="details" style="display:none;"></div>
-<h2>Factors</h2>
-<% @plan.manipulators.each do |m|  %>
-  <div class="manipulator" data-id="<%=m.id%>">
-    <a href="#" class="edit"><%= m.name %></a>
-    <%= link_to 'x', '#', :class => 'remove' %>
+<div id="tabs">
+  <ul>
+    <li><a href="#situation">Situation</a></li>
+    <li><a href="#goals">Goals</a></li>
+    <li><a href="#details">Details</a></li>
+  </ul>
+
+  <div id="situation">
+    <div class="clearit sections">
+      <div class="section list">        
+        <h3>Factors</h3>
+        <ul>        
+        <% @plan.factors.each do |m|  %>
+          <li class="manipulator item" data-id="<%=m.id%>">          
+            <div class="picture">
+              <img src="<%= m.manipulator_template.image_url%>">        
+            </div>      
+            <div class="name"><%= m.name %></div>                              
+          </li>
+        <% end %>
+        <% @plan.unused_factors.each do |t| %>
+          <li class="manipulator item disabled" data-id="<%=m.id%>">
+            <div class="picture">
+              <img src="<%= m.manipulator_template.image_url%>">        
+            </div>      
+            <div class="name"><%= m.name %></div>
+          </li>          
+        <% end %>
+        </ul>        
+      </div>
+      <div class="section" id="manipulator_options">
+      </div>
+    </div>
+  </div>  
+
+  <div id="goals">
+    <div class="clearit sections">
+      <div class="section list">
+        <h3>Goals</h3>
+        <ul>
+        <% @plan.goals.each do |g|  %>
+          <li class="goal item" data-id="<%=g.id%>">
+            <div class="picture">
+              <img src="<%= g.manipulator_template.image_url%>">        
+            </div>      
+            <div class="name"><%= g.name %></div>      
+            <div class="achieved">        
+            </div>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+      <div id="goal_options" class="section">
+        <h3>Options</h3>
+        <div>Select a goal</div>  
+      </div>
+    </div>
   </div>
-<% end %>
-
-<% @plan.unused_templates.each do |t| %>
-  <a href="#" class="add_manipulator" data-template-id="<%=t.id%>">Add <%= t.name %></a>  
-<% end %>
-<div id="manipulator_dialog" title="New Manipulator">  
+  
+  <div id="details">
+    Click on a year to see details
+  </div>
 </div>
-
+  
 <%= javascript_tag do %>
   $(function() {
-    plan = new Plan('<%=@plan.name%>');
+    $("#tabs").tabs();
+  
+    plan = new Plan('<%=@plan.name%>', User.fromJSON(<%= raw @current_user.safe_json.to_json%>) );
     <% @plan.manipulators.each do |m| %>
       var m = Manipulator.fromJSON(<%= raw m.safe_json.to_json %>);      
       plan.add(m);
     <% end %>
     plan.display();
     
-    $('.manipulator .edit').click(function() {    
-      var d = $( "#manipulator_dialog" ).dialog({
-        height: 250,
-        modal: true        
-      });
-      $.ajax({
-        url: '/manipulators/'+$(this).closest('.manipulator').attr('data-id'),
-        type: 'GET',
-        dataType: 'html',        
-        success: function(data) {
-          d.html(data);
-        }          
-      });
-    
-      return false;
+    new NiceList($('#situation .list ul'), {
+      click: function(itemID) {
+        $.ajax({
+          url: '/manipulators/'+itemID,
+          type: 'GET',
+          dataType: 'html',        
+          success: function(data) {
+            $( "#manipulator_options" ).html(data);
+          }          
+        });      
+      }
     });
+    
+    new NiceList($('#goals .list ul'), {
+      click: function(itemID) {
+        $('#goal_options > div').load('/manipulators/'+itemID);        
+      }
+    });                
     
     $('.manipulator .remove').click(function() {    
       var div = $(this).closest('.manipulator');

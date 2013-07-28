@@ -2,7 +2,8 @@ class Balances
   constructor: (@opts) ->
     @accounts = {
       checking: new CheckingAccount(10000), 
-      savings: new Account('savings', 0)
+      savings: new Account('savings', 0),
+      retirement: new Account('retirement', 0),
     }
         
     @logs = {}    
@@ -30,7 +31,6 @@ class Balances
   getTotal: ->
     tot = 0
     for name, a of @accounts
-      console.log a.balance
       tot += a.balance
     tot
     
@@ -40,6 +40,9 @@ class Balances
   getCash: ->
     @accounts['checking'].balance
     
+  getRetirement: ->
+    @accounts['retirement'].balance    
+    
   getCurrentYearIncome: ->
     @year_incomes[@_currentYear()] || 0
 
@@ -48,9 +51,18 @@ class Balances
     for k,v of @year_incomes
       arr.push v
     arr
-    
+  
+  getTotalSavings: ->
+    @getCash() + @getSavings()
+  
   hasSavings: (amount) ->
-    (@getCash() + @getSavings()) >= amount
+    @getTotalSavings() >= amount
+  
+  addRetirement: (amount, kind, desc) ->
+    if isNaN(amount)
+      alert "Invalid retirement '#{amount}' for #{kind}"
+    @accounts['retirement'].deposit(amount)    
+    @curLog().log(kind, desc, amount)    
   
   addCash: (amount, kind, desc) ->
     if isNaN(amount)
@@ -85,9 +97,9 @@ class Balances
   currentYear: ->
     @opts['year']
   
-  takeOutLoan: (amnt, whatfor) ->
+  takeOutLoan: (amnt, whatfor, term = 10) ->
     name = "#{whatfor} #{@_currentYear()}"
-    @accounts[name] = new Loan(amnt, 0.06, 10)
+    @accounts[name] = new Loan(amnt, 0.04213, @_currentYear(), term)
   
   addYear: ->
     @payLoans()

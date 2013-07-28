@@ -28,7 +28,8 @@ class ManipulatorsController < ApplicationController
   
   def update
     @manipulator = Manipulator.find(params[:id])
-        
+    
+    params[:manipulator][:when] = -1 if params[:when_type] == 'asap'
     @manipulator.update_attributes(params[:manipulator])
     @manipulator.params = params[:variables].to_json
     @manipulator.save!
