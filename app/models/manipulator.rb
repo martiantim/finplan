@@ -16,6 +16,14 @@ class Manipulator < ActiveRecord::Base
     }
   end
   
+  def start_user_age(user)
+    if !start
+      0
+    else
+      self.start.year - user.born.year
+    end
+  end
+  
   def param_value(key)
     JSON.parse(self.params)[key]
   end

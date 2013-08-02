@@ -1,8 +1,16 @@
 class Manipulator
-  constructor: (@id, @name, @kind, @template_name, @startYear, @endYear, prms) ->
+  constructor: (@id, @name, @kind, @template_name, start, end, prms) ->
     @params = {}
     @achieved = false
-    @enabled = true
+    @enabled = true    
+    if start
+      @startYear = new Date(start).getYear()+1900 
+    else
+      @startYear = null
+    if end
+      @endYear = new Date(end).getYear()+1900 
+    else
+      @endYear = null
     
     for k,v of $.parseJSON(prms)
       if v.match(/\./)
@@ -16,15 +24,22 @@ class Manipulator
   reset: (sim) ->
     @curSim = sim
     @achieved = false
-    @enabled = true
+    @achievedYear = null
+    @enabled = true    
+    @failMessage = null
   
-  setGoalAchieved: ->
+  setGoalAchieved: (year) ->    
+    @achievedYear = year
     @achieved = true
-    
+  
+  setGoalFailureMessage: (msg) ->    
+    @failMessage = msg
+  
   goalAchieved: ->
     @achieved
   
   inRange: (year) ->
+    
     return false if @startYear && year < @startYear
     return false if @endYear && year > @endYear
     
@@ -36,8 +51,9 @@ class Manipulator
   exec: (balances) ->
     if @kind == 'goal'
       if !@goalAchieved()
-        if @canAchieve(balances)
-          @setGoalAchieved()          
+        if @inRange(balances._currentYear())
+          if @canAchieve(balances)
+            @setGoalAchieved(balances._currentYear())
             
       if @goalAchieved() && @enabled
         @execOne(balances)

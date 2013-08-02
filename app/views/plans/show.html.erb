@@ -86,20 +86,21 @@ Hello <%= @current_user.name %>
     
     new NiceList($('#situation .list ul'), {
       click: function(itemID) {
-        $.ajax({
-          url: '/manipulators/'+itemID,
-          type: 'GET',
-          dataType: 'html',        
-          success: function(data) {
-            $( "#manipulator_options" ).html(data);
-          }          
-        });      
+        $( "#manipulator_options" ).load('/manipulators/'+itemID);
       }
     });
     
     new NiceList($('#goals .list ul'), {
       click: function(itemID) {
-        $('#goal_options > div').load('/manipulators/'+itemID);        
+        var view = $('#goal_options > div');
+        view.load('/manipulators/'+itemID, function() {
+          var m = plan.findManipulatorByID(itemID);
+          if (m.achievedYear) {
+            view.find('.goal_status').html('<span class="ui-icon ui-icon-info"></span> Will achieve in '+m.achievedYear);
+          } else if (m.failMessage) {
+            view.find('.goal_status').html('<span class="ui-icon ui-icon-alert"></span> '+m.failMessage);          
+          }
+        });
       }
     });                
     

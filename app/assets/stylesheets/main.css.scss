@@ -84,6 +84,15 @@
   }
 }
 
+.manipulator {
+    .goal_status {
+      span { display: inline-block; text-align: center;}
+      text-align:center;
+      padding:5px;
+      color:green;
+    }
+}
+
 #details {
   .section {    
     .people {

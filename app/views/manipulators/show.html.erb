@@ -1,10 +1,13 @@
+<div class="manipulator">
 <%= form_for(@manipulator, :html => {}) do |f| %>
   <div style="text-align:center;"><%= f.text_field :name, :size => 20 %></div>  
   
+  <div class="goal_status"></div>
+  
   <% if @manipulator.is_goal? %>
     <div>When:</div>  
-    <div style="margin-left:10px"><input type="radio" name="when_type" value="asap" <%= 'checked="checked"' if @manipulator.when == -1%>>As soon as possible</div>
-    <div style="margin-left:10px"><input type="radio" name="when_type" value="age"  <%= 'checked="checked"' if @manipulator.when.to_i > 0%>>At age <%= f.select "when", options_for_select((30..75).to_a.collect { |a| [a,a]}) %></div>
+    <div style="margin-left:10px"><input type="radio" name="when_type" value="asap" <%= 'checked="checked"' if !@manipulator.start %>>As soon as possible</div>
+    <div style="margin-left:10px"><input type="radio" name="when_type" value="age"  <%= 'checked="checked"' if @manipulator.start %>>At age <%= select_tag "when", options_for_select((30..75).to_a.collect { |a| [a,a]}, @manipulator.start_user_age(@current_user)) %></div>
   <% end %>
     
   <h4>Variables</h4>
@@ -16,3 +19,4 @@
     <%= f.submit "Update" %>
   </div>
 <% end %>
+</div>

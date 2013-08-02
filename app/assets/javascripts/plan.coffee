@@ -17,5 +17,11 @@ class Plan
   
   add: (m) ->
     @manipulators.push m
+
+  findManipulatorByID: (id) ->
+    for m in @manipulators
+      if parseInt(m.id) == parseInt(id)
+        return m
+    null
         
 window.Plan = Plan
