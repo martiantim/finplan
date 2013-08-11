@@ -1,0 +1,4 @@
+<h4>Variables</h4>
+<% template.params.each do |var|  %>
+  <div><%= var%>:<input type="text" name="variables[<%=var%>]" value="<%=manipulator.param_value(var)%>"></input></div> 
+<% end %>

@@ -1,13 +1,15 @@
 # -people
+# -professions
 #
 #TODO:
+# -ability to remove people
 # -existing savings
 # -people in js better
 # -existing debts
+# -types for template params
 # 
 # -more coffee in classes
 # -put coffee files in directories
-# -professions
 # -still in school
 # -investments
 # -tables for taxes etc

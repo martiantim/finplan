@@ -64,11 +64,11 @@
           </li>
         <% end %>
         <% @plan.unused_factors.each do |t| %>
-          <li class="manipulator item disabled" data-id="<%=m.id%>">
+          <li class="manipulator item disabled" data-id="<%=t.id%>">
             <div class="picture">
-              <img src="<%= m.manipulator_template.image_url%>">        
+              <img src="<%= t.image_url%>">        
             </div>      
-            <div class="name"><%= m.name %></div>
+            <div class="name"><%= t.name %></div>
           </li>          
         <% end %>
         </ul>        

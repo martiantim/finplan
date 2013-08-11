@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :born
+  attr_accessible :name, :born, :profession_id
   
+  belongs_to :profession
   has_many :plans
   has_many :manipulators
   

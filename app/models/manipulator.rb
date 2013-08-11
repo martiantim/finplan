@@ -1,5 +1,6 @@
 class Manipulator < ActiveRecord::Base
   belongs_to :plan
+  belongs_to :user
   belongs_to :manipulator_template
   
   def safe_json
