@@ -1,5 +1,5 @@
 class Plan
-  constructor: (@name, @user) ->
+  constructor: (@id, @name, @user) ->
     @chart = new Chart 'chart', this    
     @manipulators = [];
     @_wire()

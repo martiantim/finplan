@@ -1,18 +1,20 @@
 <%= form_for(@user, :html => {}) do |f| %>
-  <%= hidden_field :plan_id, @plan.id %>
+  <%= hidden_field_tag :plan_id, @plan.id %>
 
   <div style="text-align:center;"><%= f.text_field :name%></div>  
 
-  <% if @user.is_adult? %>
-    Profession: <%= select_tag "profession_id", options_for_select((30..75).to_a.collect { |a| [a,a]}, 30) %>
+  <% if @user.is_adult? %>  
+    Age: <%= f.select "born", options_for_select(User.ages_for_select(18..75), @user.born) %>
+    
+    Profession:
     
     Savings:
     
     Debts:
   <% elsif @user.born? %>
-    Age: <%= f.select "age", options_for_select(User.ages_for_select(0..18), @user.born) %>
+    Age: <%= f.select "born", options_for_select(User.ages_for_select(0..18), @user.born) %>
   <% else %>
-    Will be born: <%= f.select "age", options_for_select(User.ages_for_select(-20..-1), @user.born) %>
+    Will be born: <%= f.select "born", options_for_select(User.ages_for_select(-20..-1), @user.born) %>
   <% end %>
 
   <div style="float:right">

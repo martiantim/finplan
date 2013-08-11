@@ -1,8 +1,13 @@
-#TODO:
 # -people
-# -professions
+#
+#TODO:
 # -existing savings
+# -people in js better
 # -existing debts
+# 
+# -more coffee in classes
+# -put coffee files in directories
+# -professions
 # -still in school
 # -investments
 # -tables for taxes etc

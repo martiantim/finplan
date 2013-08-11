@@ -122,7 +122,7 @@
   $(function() {
     $("#tabs").tabs();
   
-    plan = new Plan('<%=@plan.name%>', User.fromJSON(<%= raw @current_user.safe_json.to_json%>) );
+    plan = new Plan(<%= @plan.id%>,'<%=@plan.name%>', User.fromJSON(<%= raw @current_user.safe_json.to_json%>) );
     <% @plan.manipulators.each do |m| %>
       var m = Manipulator.fromJSON(<%= raw m.safe_json.to_json %>);      
       plan.add(m);
@@ -135,11 +135,7 @@
       }
     });
     
-    new NiceList($('#situation .people.list ul'), {
-      click: function(itemID) {
-        $( "#manipulator_options" ).load('/plan_users/'+itemID+'?plan_id=<%=@plan.id%>');
-      }
-    });
+    new PeopleList($('#situation .people.list ul'), plan);    
     
     new NiceList($('#goals .list ul'), {
       click: function(itemID) {
