@@ -22,6 +22,22 @@ Finplan::Application.routes.draw do
    end
  end
  
+resources :plan_users do
+   member do
+   end
+
+   collection do
+   end
+ end
+ 
+ resources :users do
+   member do
+   end
+
+   collection do
+   end
+ end
+ 
  resources :manipulator_templates do
    member do
    end

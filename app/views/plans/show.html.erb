@@ -1,5 +1,3 @@
-Hello <%= @current_user.name %>
-
 <div class="clearit">
   <div id="chart"></div>
   <div id="chart_controls">
@@ -18,7 +16,43 @@ Hello <%= @current_user.name %>
 
   <div id="situation">
     <div class="clearit sections">
-      <div class="section list">        
+      <div class="section">
+      <div class="people list">      
+        <h3>
+          People          
+        </h3>
+        <ul>        
+        <% @plan.plan_users.each do |pu|  %>
+          <li class="plan_user item" data-id="<%=pu.id%>">          
+            <div class="picture">
+              FACE              
+            </div>      
+            <div class="name"><%= pu.user.name %></div>                              
+          </li>
+        <% end %>
+        <% if @plan.plan_users.adults.length < 2 %>
+          <li class="plan_user item unused" data-id="spouse">          
+            <div class="picture">
+              FACE              
+            </div>      
+            <div class="name">Add Spouse</div>                              
+          </li>
+        <% end %>
+        <li class="plan_user item unused" data-id="child">          
+          <div class="picture">
+            FACE              
+          </div>      
+          <div class="name">Add Child</div>                              
+        </li>
+        <li class="plan_user item unused" data-id="future_child">          
+          <div class="picture">
+            FACE              
+          </div>      
+          <div class="name">Add Future Child</div>                              
+        </li>
+      </div>
+      
+      <div class="factors list">      
         <h3>Factors</h3>
         <ul>        
         <% @plan.factors.each do |m|  %>
@@ -38,6 +72,7 @@ Hello <%= @current_user.name %>
           </li>          
         <% end %>
         </ul>        
+      </div>
       </div>
       <div class="section" id="manipulator_options">
       </div>
@@ -59,6 +94,16 @@ Hello <%= @current_user.name %>
             </div>
           </li>
         <% end %>
+        <% @plan.unused_goals.each do |gt|  %>
+          <li class="goal item unused" data-template-id="<%=gt.id%>">
+            <div class="picture">
+              <img src="<%= gt.image_url%>">        
+            </div>      
+            <div class="name"><%= gt.name %></div>      
+            
+          </li>
+        <% end %>
+        
         </ul>
       </div>
       <div id="goal_options" class="section">
@@ -84,9 +129,15 @@ Hello <%= @current_user.name %>
     <% end %>
     plan.display();
     
-    new NiceList($('#situation .list ul'), {
+    new NiceList($('#situation .factors.list ul'), {
       click: function(itemID) {
         $( "#manipulator_options" ).load('/manipulators/'+itemID);
+      }
+    });
+    
+    new NiceList($('#situation .people.list ul'), {
+      click: function(itemID) {
+        $( "#manipulator_options" ).load('/plan_users/'+itemID+'?plan_id=<%=@plan.id%>');
       }
     });
     

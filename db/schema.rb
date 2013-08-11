@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727055214) do
+ActiveRecord::Schema.define(:version => 20130811124333) do
 
   create_table "manipulator_templates", :force => true do |t|
     t.string   "name",                                                     :null => false
@@ -36,6 +36,12 @@ ActiveRecord::Schema.define(:version => 20130727055214) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "when"
+  end
+
+  create_table "plan_users", :force => true do |t|
+    t.integer "user_id",       :null => false
+    t.integer "plan_id",       :null => false
+    t.string  "relation_name"
   end
 
   create_table "plans", :force => true do |t|
