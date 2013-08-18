@@ -1,4 +1,11 @@
 class PlanUsersController < ApplicationController
+
+  def index
+    plan = Plan.find(1) #XXX
+    
+    
+    
+  end
   
   def show
     if params[:id] == 'spouse'
@@ -14,6 +21,13 @@ class PlanUsersController < ApplicationController
     @plan = Plan.find(params[:plan_id])
     
     render :layout => false
+  end
+  
+  def destroy
+    pu = PlanUser.find(params[:id])
+    pu.destroy
+    
+    render :text => 'ok'
   end
   
 end

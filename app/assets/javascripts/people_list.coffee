@@ -6,7 +6,32 @@ class PeopleList extends NiceList
         that.showPerson itemID       
     })
 
+  viewer: ->
+    $("#manipulator_options")
+
   showPerson: (itemID) ->
-    $("#manipulator_options").load('/plan_users/'+itemID+'?plan_id='+@plan.id)
+    that = this    
+    @viewer().load "/plan_users/#{itemID}?plan_id=#{@plan.id}", ->
+      that.viewer().find('button.remove').click ->
+        that.removePerson itemID
+        false
+
+  reload: ->
+    el.load "/plan_users", ->
+      @reload()
+
+  removePerson: (itemID) ->
+    that = this
+    $.ajax({
+      url: "/plan_users/#{itemID}",
+      type: 'POST',
+      data: {'_method': 'delete'},
+      success: (data) ->
+        that.viewer().html('')
+        that.reload()
+      ,error: (request) ->      
+        showMessageDialog('error', request.responseText);
+      
+    })
 
 window.PeopleList = PeopleList

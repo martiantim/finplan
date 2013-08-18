@@ -23,6 +23,9 @@
   <% end %>
 
   <div style="float:right">
+    <% if @user != @current_user %>
+      <button class="remove">Remove</button>
+    <% end %>
     <%= f.submit "Update" %>
   </div>
 <% end %>
