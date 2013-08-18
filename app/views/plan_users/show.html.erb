@@ -1,4 +1,4 @@
-<%= form_for(@user, :html => {}) do |f| %>
+<%= form_for(@user, :html => {'data-remote' => "true"}) do |f| %>
   <%= hidden_field_tag :plan_id, @plan.id %>
 
   <div style="text-align:center;"><%= f.text_field :name%></div>  
@@ -20,6 +20,7 @@
     Age: <%= f.select "born", options_for_select(User.ages_for_select(0..18), @user.born) %>
     Gender: <%= f.select "gender", options_for_select(User::GENDERS, @user.gender) %>
   <% else %>
+    <%= f.hidden_field "gender" %>
     Will be born: <%= f.select "born", options_for_select(User.ages_for_select(-20..-1), @user.born) %>
   <% end %>
 

@@ -1,11 +1,12 @@
 #DONE
 # -people
 # -professions
+# -faces
+# -ability to remove people
+# -ajaxforms
 # 
 #
 #TODO:
-# -faces
-# -ability to remove people
 # -existing savings
 # -people in js better
 # -existing debts

@@ -12,7 +12,7 @@ class PlanUsersController < ApplicationController
     elsif params[:id] == 'child'
       @user = User.new(:name => "Child", :born => Date.parse("2010-01-01"))      
     elsif params[:id] == 'future_child'
-      @user = User.new(:name => "Future Child", :born => Date.parse("2015-01-01"))      
+      @user = User.new(:name => "Future Child", :born => Date.parse("2015-01-01", :gender => 'U'))      
     else
       @user = PlanUser.find(params[:id]).user
     end

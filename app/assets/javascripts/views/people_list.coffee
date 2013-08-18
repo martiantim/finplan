@@ -15,6 +15,11 @@ class PeopleList extends NiceList
       that.viewer().find('button.remove').click ->
         that.removePerson itemID
         false
+      
+      that.viewer().find('form').on 'ajax:success', (event, xhr, status) ->  
+        that.reload()
+
+
 
   reload: ->    
     that = this
