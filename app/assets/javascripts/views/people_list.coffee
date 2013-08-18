@@ -1,11 +1,11 @@
 class PeopleList extends NiceList
-  constructor: (el, @plan) ->
+  constructor: (@wrapper, @plan) ->    
     that = this
-    super(el, {
+    super(@wrapper, {
       click: (itemID) ->
         that.showPerson itemID       
-    })
-
+    })    
+    
   viewer: ->
     $("#manipulator_options")
 
@@ -16,10 +16,17 @@ class PeopleList extends NiceList
         that.removePerson itemID
         false
 
-  reload: ->
-    el.load "/plan_users", ->
-      @reload()
-
+  reload: ->    
+    that = this
+    $.ajax({
+      url: "/plan_users",
+      type: 'GET',
+      data: {'plan_id': @plan.id},
+      success: (data) ->
+        that.wrapper.html data
+        that.rewire()
+    })
+    
   removePerson: (itemID) ->
     that = this
     $.ajax({

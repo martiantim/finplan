@@ -1,10 +1,9 @@
 class PlanUsersController < ApplicationController
 
   def index
-    plan = Plan.find(1) #XXX
-    
-    
-    
+    plan = Plan.find(params[:plan_id])
+
+    render :partial => 'list', :object => plan.plan_users
   end
   
   def show

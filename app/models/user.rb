@@ -1,9 +1,15 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :born, :profession_id
+  attr_accessible :name, :born, :profession_id, :gender
   
   belongs_to :profession
   has_many :plans
   has_many :manipulators
+  
+  GENDERS = [
+    ["?", 'U'],
+    ["Male", 'M'],
+    ["Female", 'F']    
+  ]
   
   def safe_json
     {

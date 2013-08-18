@@ -18,14 +18,15 @@
     Debts:
   <% elsif @user.born? %>
     Age: <%= f.select "born", options_for_select(User.ages_for_select(0..18), @user.born) %>
+    Gender: <%= f.select "gender", options_for_select(User::GENDERS, @user.gender) %>
   <% else %>
     Will be born: <%= f.select "born", options_for_select(User.ages_for_select(-20..-1), @user.born) %>
   <% end %>
 
   <div style="float:right">
-    <% if @user != @current_user %>
+    <% if @user != @current_user && !@user.new_record? %>
       <button class="remove">Remove</button>
-    <% end %>
-    <%= f.submit "Update" %>
+    <% end %>      
+    <%= f.submit (@user.new_record? ? "Add" : "Update") %>
   </div>
 <% end %>

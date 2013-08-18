@@ -17,62 +17,31 @@
   <div id="situation">
     <div class="clearit sections">
       <div class="section">
-      <div class="people list">      
-        <h3>
-          People          
-        </h3>
-        <ul>        
-        <% @plan.plan_users.each do |pu|  %>
-          <li class="plan_user item" data-id="<%=pu.id%>">          
-            <div class="picture">
-              FACE              
-            </div>      
-            <div class="name"><%= pu.user.name %></div>                              
-          </li>
-        <% end %>
-        <% if @plan.plan_users.adults.length < 2 %>
-          <li class="plan_user item unused" data-id="spouse">          
-            <div class="picture">
-              FACE              
-            </div>      
-            <div class="name">Add Spouse</div>                              
-          </li>
-        <% end %>
-        <li class="plan_user item unused" data-id="child">          
-          <div class="picture">
-            FACE              
-          </div>      
-          <div class="name">Add Child</div>                              
-        </li>
-        <li class="plan_user item unused" data-id="future_child">          
-          <div class="picture">
-            FACE              
-          </div>      
-          <div class="name">Add Future Child</div>                              
-        </li>
-      </div>
+        <div class="people list">      
+          <%= render :partial => '/plan_users/list', :object => @plan.plan_users %>      
+        </div>
       
-      <div class="factors list">      
-        <h3>Factors</h3>
-        <ul>        
-        <% @plan.factors.each do |m|  %>
-          <li class="manipulator item" data-id="<%=m.id%>">          
-            <div class="picture">
-              <img src="<%= m.manipulator_template.image_url%>">        
-            </div>      
-            <div class="name"><%= m.name %></div>                              
-          </li>
-        <% end %>
-        <% @plan.unused_factors.each do |t| %>
-          <li class="manipulator item disabled" data-id="<%=t.id%>">
-            <div class="picture">
-              <img src="<%= t.image_url%>">        
-            </div>      
-            <div class="name"><%= t.name %></div>
-          </li>          
-        <% end %>
-        </ul>        
-      </div>
+        <div class="factors list">      
+          <h3>Factors</h3>
+          <ul>        
+          <% @plan.factors.each do |m|  %>
+            <li class="manipulator item" data-id="<%=m.id%>">          
+              <div class="picture">
+                <img src="<%= m.manipulator_template.image_url%>">        
+              </div>      
+              <div class="name"><%= m.name %></div>                              
+            </li>
+          <% end %>
+          <% @plan.unused_factors.each do |t| %>
+            <li class="manipulator item disabled" data-id="<%=t.id%>">
+              <div class="picture">
+                <img src="<%= t.image_url%>">        
+              </div>      
+              <div class="name"><%= t.name %></div>
+            </li>          
+          <% end %>
+          </ul>        
+        </div>
       </div>
       <div class="section" id="manipulator_options">
       </div>
@@ -135,7 +104,7 @@
       }
     });
     
-    new PeopleList($('#situation .people.list ul'), plan);    
+    new PeopleList($('#situation .people.list'), plan);    
     
     new NiceList($('#goals .list ul'), {
       click: function(itemID) {

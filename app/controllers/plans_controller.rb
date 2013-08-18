@@ -1,8 +1,10 @@
+#DONE
 # -people
 # -professions
 # 
 #
 #TODO:
+# -faces
 # -ability to remove people
 # -existing savings
 # -people in js better

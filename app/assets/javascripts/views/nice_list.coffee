@@ -1,8 +1,11 @@
 class NiceList
   constructor: (@el, @options) ->
-    @render()
+    @_wire()
   
-  render: ->
+  rewire: ->
+    @_wire()
+  
+  _wire: ->
     that = this
     @el.find('.item').hover ->
       $(this).addClass('hover')

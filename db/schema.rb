@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130811204124) do
+ActiveRecord::Schema.define(:version => 20130818025112) do
 
   create_table "manipulator_templates", :force => true do |t|
     t.string   "name",                                                     :null => false
@@ -58,11 +58,12 @@ ActiveRecord::Schema.define(:version => 20130811204124) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",          :null => false
+    t.string   "name",                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "born"
     t.integer  "profession_id"
+    t.string   "gender",        :limit => 1, :null => false
   end
 
 end
