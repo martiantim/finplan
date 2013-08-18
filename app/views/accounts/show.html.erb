@@ -1,0 +1,14 @@
+<%= form_for(@account, :html => {'data-remote' => "true"}) do |f| %>
+  <%= f.hidden_field :plan_id %>
+
+  Type: <%= f.select "name", options_for_select(Account::KINDS, @account.name) %>
+
+  Balance: <%= f.text_field "balance" %>
+  
+  <div style="float:right">
+    <% if !@account.new_record? %>
+      <button class="remove">Remove</button>
+    <% end %>      
+    <%= f.submit (@account.new_record? ? "Add" : "Update") %>
+  </div>
+<% end %>

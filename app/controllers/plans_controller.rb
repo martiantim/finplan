@@ -4,20 +4,21 @@
 # -faces
 # -ability to remove people
 # -ajaxforms
+# -people in js better
+# -put coffee files in directories
 # 
 #
 #TODO:
 # -existing savings
-# -people in js better
-# -existing debts
+# -show people with object for their profession
+# -investments
 # -types for template params
+# -rework of UI
+# -existing debts
 # 
 # -more coffee in classes
-# -put coffee files in directories
 # -still in school
-# -investments
 # -tables for taxes etc
-# -rework of UI
 #
 
 class PlansController < ApplicationController

@@ -1,0 +1,20 @@
+<h3>
+  Accounts
+</h3>
+<ul>        
+  <% list.each do |acct|  %>
+    <li class="account item" data-id="<%=acct.id%>">          
+      <div class="picture">
+        
+      </div>      
+      <div class="name"><%= acct.name %></div>                              
+    </li>
+  <% end %>
+  
+  <li class="account item unused" data-id="new_account">          
+    <div class="picture">
+      
+    </div>      
+    <div class="name">Add</div>                              
+  </li>
+<ul>

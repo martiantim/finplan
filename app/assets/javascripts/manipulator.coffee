@@ -62,7 +62,7 @@ class Manipulator
         @execOne(balances)
   
   @fromJSON: (json) ->
-    m = new Manipulator(json.id, json.name, json.kind, json.template_name, json.start, json.end, json.params);
+    m = new Manipulator(json.id, json.name, json.kind, json.template_name, json.start, json.end, json.params)
     
     func = "m.canAchieve = function(balances) { "+json.can_formula+"}"    
     eval(func)

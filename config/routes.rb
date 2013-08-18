@@ -30,6 +30,14 @@ resources :plan_users do
    end
  end
  
+ resources :accounts do
+   member do
+   end
+
+   collection do
+   end
+ end
+ 
  resources :users do
    member do
    end

@@ -20,11 +20,16 @@
         <div class="people list">      
           <%= render :partial => '/plan_users/list', :object => @plan.plan_users %>      
         </div>
+        
+        <div class="accounts list">      
+          <%= render :partial => '/accounts/list', :object => @plan.accounts %>      
+        </div>
       
         <div class="factors list">      
-          <h3>Factors</h3>
+          <h3>Expenses</h3>
           <ul>        
           <% @plan.factors.each do |m|  %>
+            <% next if m.manipulator_template.name == 'Salary' %>
             <li class="manipulator item" data-id="<%=m.id%>">          
               <div class="picture">
                 <img src="<%= m.manipulator_template.image_url%>">        
@@ -92,9 +97,13 @@
     $("#tabs").tabs();
   
     plan = new Plan(<%= @plan.id%>,'<%=@plan.name%>', User.fromJSON(<%= raw @current_user.safe_json.to_json%>) );
-    <% @plan.manipulators.each do |m| %>
+    <% @plan.priority_sorted_manipulators.each do |m| %>
       var m = Manipulator.fromJSON(<%= raw m.safe_json.to_json %>);      
       plan.add(m);
+    <% end %>
+    <% @plan.accounts.each do |a| %>
+      var acct = Account.fromJSON(<%= raw a.safe_json.to_json %>);
+      plan.addAccount(acct);
     <% end %>
     plan.display();
     
@@ -105,6 +114,7 @@
     });
     
     new PeopleList($('#situation .people.list'), plan);    
+    new AccountList($('#situation .accounts.list'), plan);    
     
     new NiceList($('#goals .list ul'), {
       click: function(itemID) {

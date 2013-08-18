@@ -1,7 +1,8 @@
 class Plan
   constructor: (@id, @name, @user) ->
     @chart = new Chart 'chart', this    
-    @manipulators = [];
+    @manipulators = []
+    @startAccounts = []
     @_wire()
     
   _wire: ->
@@ -11,12 +12,15 @@ class Plan
       that.display()
 
   display: ->    
-    @simulator = new Simulator(@user, @manipulators)
+    @simulator = new Simulator(@user, @manipulators, @startAccounts)
     @simulator.sim()
     @chart.display(@simulator)
   
   add: (m) ->
     @manipulators.push m
+
+  addAccount: (acct) ->
+    @startAccounts.push acct
 
   findManipulatorByID: (id) ->
     for m in @manipulators

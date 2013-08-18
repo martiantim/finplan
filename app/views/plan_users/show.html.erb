@@ -11,10 +11,7 @@
     <% salary = @plan.manipulator_for_user_or_create('Salary', @user) %>
     <%= hidden_field_tag "salary_manipulator_id", salary.id %>
     <%= render :partial => '/manipulators/params_form', :locals => {:template => ManipulatorTemplate.find_by_name("Salary"), :manipulator => salary} %>
-    
-    
-    Savings:
-    
+        
     Debts:
   <% elsif @user.born? %>
     Age: <%= f.select "born", options_for_select(User.ages_for_select(0..18), @user.born) %>

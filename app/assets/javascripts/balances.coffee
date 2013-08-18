@@ -1,10 +1,16 @@
 class Balances
-  constructor: (@opts) ->
+  constructor: (@startAccounts, @opts) ->      
     @accounts = {
-      checking: new CheckingAccount(10000), 
+      checking: new CheckingAccount(0), 
       savings: new Account('savings', 0),
       retirement: new Account('retirement', 0),
     }
+    for acct in @startAccounts      
+      name = acct.type.toLowerCase()
+      if @accounts[name]
+        @accounts[name].setBalance(acct.balance)
+      else
+        console.log "Can't find account of type #{name}"
         
     @logs = {}    
     @snapshots = {}
@@ -80,9 +86,6 @@ class Balances
     @year_spends[@_currentYear()] = 0 if !@year_spends[@_currentYear()]
     @year_spends[@_currentYear()] += amount if kind != 'Capital'   
     
-    if amount == 20000
-      console.log "car i think #{description}"
-      
     if @accounts['checking'].balance + @accounts['savings'].balance < amount      
       @takeOutLoan(amount, description)
     else    

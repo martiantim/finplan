@@ -1,5 +1,5 @@
 class Simulator
-  constructor: (@user, @manipulators) ->
+  constructor: (@user, @manipulators, @startAccounts) ->
     @startYear = new Date().getYear()+1900
     
   disable: (name) ->    
@@ -23,7 +23,7 @@ class Simulator
       'Total': [],
     }    
     
-    @balances = new Balances({age: age, year: @startYear})
+    @balances = new Balances(@startAccounts, {age: age, year: @startYear})
     for year in [@startYear..endYear]
       for m in @manipulators
         m.exec(@balances)      

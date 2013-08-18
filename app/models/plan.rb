@@ -4,6 +4,7 @@ class Plan < ActiveRecord::Base
   
   has_many :manipulators  
   has_many :plan_users
+  has_many :accounts
   
   def used_template?(id)
     manipulators.detect { |m| m.manipulator_template_id == id }
@@ -27,7 +28,7 @@ class Plan < ActiveRecord::Base
   
   def manipulator_for_user(template_name, suser)
     manipulators.detect do |m| 
-      m.manipulator_template.name == template_name && user && user.id == suser.id
+      m.manipulator_template.name == template_name && m.user && m.user.id == suser.id
     end
   end
   
@@ -38,6 +39,16 @@ class Plan < ActiveRecord::Base
       m = manipulators.create!(:name => template.name, :manipulator_template => template, :user => suser, :params => {}.to_json)
     end
     m
+  end
+  
+  def priority_sorted_manipulators
+    manipulators.sort_by do |m|
+      if m.manipulator_template.name == 'Salary'
+        0
+      else
+        1
+      end
+    end
   end
   
 end
