@@ -1,11 +1,12 @@
 class CheckingAccount extends Account
   constructor: (balance) ->
+    @maxToHold = 3000
     super('checking', balance)
     
   rebalance: (savings) ->
-    if @balance > 5000
-      savings.transfer(this, @balance - 5000)      
-    if @balance < 5000
-      @transfer(savings, Math.min(5000-@balance, savings.balance))
+    if @balance > @maxToHold
+      savings.transfer(this, @balance - @maxToHold)      
+    if @balance < @maxToHold
+      @transfer(savings, Math.min(@maxToHold-@balance, savings.balance))
     
 window.CheckingAccount = CheckingAccount

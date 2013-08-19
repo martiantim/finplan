@@ -6,10 +6,10 @@
 # -ajaxforms
 # -people in js better
 # -put coffee files in directories
+# -existing savings
 # 
 #
 #TODO:
-# -existing savings
 # -show people with object for their profession
 # -investments
 # -types for template params

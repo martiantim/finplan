@@ -20,8 +20,14 @@ class ManipulatorsController < ApplicationController
   end
   
   def show
-    @manipulator = Manipulator.find(params[:id])
-    @template = @manipulator.manipulator_template
+    if params[:id] =~ /template:(\d+)/
+      @template = ManipulatorTemplate.find($1)
+      plan = Plan.find(params[:plan_id])
+      @manipulator = Manipulator.new(:manipulator_template => @template, :plan => plan, :name => @template.name)
+    else
+      @manipulator = Manipulator.find(params[:id])
+      @template = @manipulator.manipulator_template
+    end
     
     render :layout => false
   end
@@ -49,6 +55,12 @@ class ManipulatorsController < ApplicationController
     @manipulator.destroy    
     
     render :text => 'ok'
+  end
+
+  def goals
+    plan = Plan.find(params[:plan_id])
+    
+    render :partial => 'goals', :object => plan.goals, :locals => {:unused_goals => plan.unused_goals}
   end
   
 end

@@ -1,0 +1,22 @@
+<h3>Goals</h3>
+<ul>
+  <% goals.each do |g|  %>
+    <li class="goal item" data-id="<%=g.id%>">
+      <div class="picture">
+        <img src="<%= g.manipulator_template.image_url%>">        
+      </div>      
+      <div class="name"><%= g.name %></div>      
+      <div class="achieved">        
+      </div>
+    </li>
+  <% end %>
+  <% unused_goals.each do |gt|  %>
+    <li class="goal item unused" data-id="template:<%=gt.id%>">
+      <div class="picture">
+        <img src="<%= gt.image_url%>">        
+      </div>      
+      <div class="name"><%= gt.name %></div>      
+
+    </li>
+  <% end %>
+</ul>

@@ -59,6 +59,7 @@ resources :plan_users do
    end
 
    collection do
+     get :goals
    end
  end
 

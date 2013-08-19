@@ -1,5 +1,7 @@
 <div class="manipulator">
-<%= form_for(@manipulator, :html => {}) do |f| %>
+<%= form_for(@manipulator, :html => {'data-remote' => "true"}) do |f| %>
+  <%= f.hidden_field :manipulator_template_id %>
+  <%= f.hidden_field :plan_id %>
   <div style="text-align:center;"><%= f.text_field :name, :size => 20 %></div>  
   
   <div class="goal_status"></div>
@@ -14,9 +16,12 @@
   <% @template.params.each do |var|  %>
     <div><%= var%>:<input type="text" name="variables[<%=var%>]" value="<%=@manipulator.param_value(var)%>"></input></div> 
   <% end %>
-
+    
   <div style="float:right">
-    <%= f.submit "Update" %>
+    <% if !@manipulator.new_record? %>
+      <button class="remove">Remove</button>
+    <% end %>      
+    <%= f.submit (@manipulator.new_record? ? "Add" : "Update") %>
   </div>
 <% end %>
 </div>

@@ -2,6 +2,7 @@ class Balances
   constructor: (@startAccounts, @opts) ->      
     @accounts = {
       checking: new CheckingAccount(0), 
+      emergency: new Account('emergency',0),
       savings: new Account('savings', 0),
       retirement: new Account('retirement', 0),
     }
@@ -16,6 +17,10 @@ class Balances
     @snapshots = {}
     @year_incomes = {}
     @year_spends = {}
+    @year_spends_notax = {}
+
+  getAccount: (name) ->
+    @accounts[name]
 
   _currentYear: ->
     @opts['year']
@@ -85,6 +90,9 @@ class Balances
       alert "Invalid spending '#{amount}' for #{kind}:#{description}"
     @year_spends[@_currentYear()] = 0 if !@year_spends[@_currentYear()]
     @year_spends[@_currentYear()] += amount if kind != 'Capital'   
+    
+    @year_spends_notax[@_currentYear()] = 0 if !@year_spends_notax[@_currentYear()]
+    @year_spends_notax[@_currentYear()] += amount if kind != 'Capital' && kind != 'Taxes'
     
     if @accounts['checking'].balance + @accounts['savings'].balance < amount      
       @takeOutLoan(amount, description)

@@ -17,6 +17,12 @@ class Account
     fromAcct.spend(amnt)
     @deposit(amnt)    
     
+  transferUpTo: (fromAcct, amnt) ->
+    if fromAcct.balance < amnt
+      amnt = fromAcct.balance
+    fromAcct.spend(amnt)
+    @deposit(amnt)        
+    
   @fromJSON: (json) ->
     new Account(json.name, json.balance)    
   

@@ -55,30 +55,11 @@
 
   <div id="goals">
     <div class="clearit sections">
-      <div class="section list">
-        <h3>Goals</h3>
-        <ul>
-        <% @plan.goals.each do |g|  %>
-          <li class="goal item" data-id="<%=g.id%>">
-            <div class="picture">
-              <img src="<%= g.manipulator_template.image_url%>">        
-            </div>      
-            <div class="name"><%= g.name %></div>      
-            <div class="achieved">        
-            </div>
-          </li>
-        <% end %>
-        <% @plan.unused_goals.each do |gt|  %>
-          <li class="goal item unused" data-template-id="<%=gt.id%>">
-            <div class="picture">
-              <img src="<%= gt.image_url%>">        
-            </div>      
-            <div class="name"><%= gt.name %></div>      
-            
-          </li>
-        <% end %>
+      <div class="section">
+        <div class="goals list">
+          <%= render :partial => '/manipulators/goals', :object => @plan.goals, :locals => {:unused_goals => @plan.unused_goals} %>      
+        </div>
         
-        </ul>
       </div>
       <div id="goal_options" class="section">
         <h3>Options</h3>
@@ -116,19 +97,8 @@
     new PeopleList($('#situation .people.list'), plan);    
     new AccountList($('#situation .accounts.list'), plan);    
     
-    new NiceList($('#goals .list ul'), {
-      click: function(itemID) {
-        var view = $('#goal_options > div');
-        view.load('/manipulators/'+itemID, function() {
-          var m = plan.findManipulatorByID(itemID);
-          if (m.achievedYear) {
-            view.find('.goal_status').html('<span class="ui-icon ui-icon-info"></span> Will achieve in '+m.achievedYear);
-          } else if (m.failMessage) {
-            view.find('.goal_status').html('<span class="ui-icon ui-icon-alert"></span> '+m.failMessage);          
-          }
-        });
-      }
-    });                
+    new GoalList($('#goals .list'), plan);
+                    
     
     $('.manipulator .remove').click(function() {    
       var div = $(this).closest('.manipulator');

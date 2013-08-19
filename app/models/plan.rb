@@ -44,9 +44,11 @@ class Plan < ActiveRecord::Base
   def priority_sorted_manipulators
     manipulators.sort_by do |m|
       if m.manipulator_template.name == 'Salary'
-        0
-      else
+        -1
+      elsif m.manipulator_template.kind == 'goal'
         1
+      else
+        0
       end
     end
   end

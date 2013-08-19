@@ -26,11 +26,11 @@ class Manipulator < ActiveRecord::Base
   end
   
   def param_value(key)
-    JSON.parse(self.params)[key]
+    JSON.parse(self.params || "{}")[key]
   end
   
   def is_goal?
     manipulator_template.kind == 'goal'
   end
-  
+    
 end
