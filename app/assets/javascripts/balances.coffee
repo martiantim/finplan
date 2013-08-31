@@ -10,6 +10,7 @@ class Balances
       name = acct.type.toLowerCase()
       if @accounts[name]
         @accounts[name].setBalance(acct.balance)
+        @accounts[name].investmentType = acct.investmentType
       else
         console.log "Can't find account of type #{name}"
         
@@ -113,6 +114,8 @@ class Balances
     @accounts[name] = new Loan(amnt, 0.04213, @_currentYear(), term)
   
   addYear: ->
+    for name, acct of @accounts
+      acct.calculateInvestmentReturns(@opts)
     @payLoans()
     @curLog().log('Savings', 'Left Over', @year_incomes[@_currentYear()] - @year_spends[@_currentYear()])
     @snapshots[@_currentYear()] = new BalanceSnapshot(@_currentYear(), this)

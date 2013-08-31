@@ -1,0 +1,56 @@
+.list {
+  h3 {
+    text-decoration: underline;
+    margin: 5px;
+    a.expander {
+      float:left;
+      margin: 3px 10px;
+    }
+  }
+  
+  ul {
+    margin: 0px;
+    padding: 0px;    
+    .item.selected {
+      background: #CCFFFF;
+    }
+    .item.hover {
+      background: #5CB8E6;
+      border-color: #003366;
+      cursor: pointer;
+    }
+    .item {
+      border: 1px solid transparent;
+      list-style-type: none;
+      padding: 5px 10px;
+
+      .picture {
+        display:inline-block;
+        img { width: 40px; }      
+        vertical-align: middle;
+      }
+      .no_picture {
+        display:inline-block;
+        width: 40px;
+      }
+      .name {      
+        font-size: 14pt;
+        display:inline-block;
+      }
+      .achieved {
+        float: right;
+        border: 1px solid #000;
+        width: 25px;
+        height: 25px;
+        margin-top: 5px;
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+    .item.unused {
+      color: #bbb;
+    }
+  }
+}

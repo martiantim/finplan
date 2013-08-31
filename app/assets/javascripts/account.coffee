@@ -1,8 +1,7 @@
 class Account
-  constructor: (@type, @balance) ->
+  constructor: (@type, @balance, @investmentType) ->
   
   setBalance: (bal) ->
-    console.log("setting balance of #{@type} to #{bal}")
     @balance = bal
   
   deposit: (amnt) ->
@@ -23,7 +22,22 @@ class Account
     fromAcct.spend(amnt)
     @deposit(amnt)        
     
+  calculateInvestmentReturns: (opts) ->
+    if @investmentType == 'Stock'
+      @balance = @balance * 1.06
+    else if @investmentType == 'Target Retirement'
+      mult = 1.0
+      if opts['age'] < 50
+        mult = 1.08
+      else if opts['age'] < 60
+        mult = 1.06
+      else if opts['age'] < 67
+        mult = 1.04      
+      else
+        mult = 1.02
+      @balance = @balance * mult
+    
   @fromJSON: (json) ->
-    new Account(json.name, json.balance)    
+    new Account(json.name, json.balance, json.investment_type)    
   
 window.Account = Account

@@ -6,9 +6,6 @@ class PeopleList extends NiceList
         that.showPerson itemID       
     })    
     
-  viewer: ->
-    $("#manipulator_options")
-
   showPerson: (itemID) ->
     that = this    
     @viewer().load "/plan_users/#{itemID}?plan_id=#{@plan.id}", ->

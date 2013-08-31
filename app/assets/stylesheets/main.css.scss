@@ -43,50 +43,7 @@
     }
   }
 }
-
-.sections {
-  .list ul {
-    margin: 0px;
-    padding: 0px;    
-    .item.selected {
-      background: #CCFFFF;
-    }
-    .item.hover {
-      background: #5CB8E6;
-      border-color: #003366;
-      cursor: pointer;
-    }
-    .item {
-      border: 1px solid transparent;
-      list-style-type: none;
-      padding: 5px 10px;
-
-      .picture {
-        display:inline-block;
-        img { width: 40px; }      
-        vertical-align: middle;
-      }
-      .name {      
-        font-size: 16pt;
-        display:inline-block;
-      }
-      .achieved {
-        float: right;
-        border: 1px solid #000;
-        width: 25px;
-        height: 25px;
-        img {
-          width: 25px;
-          height: 25px;
-        }
-      }
-    }
-    .item.unused {
-      color: #bbb;
-    }
-  }
-}
-
+ 
 .manipulator {
     .goal_status {
       span { display: inline-block; text-align: center;}

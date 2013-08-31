@@ -1,0 +1,22 @@
+$total_width: 1024px;
+
+#main_content {
+  width: $total_width;
+  margin: 0px auto;
+  
+  #header {
+    border: 1px solid red;
+    height: 100px;
+  }
+
+  #left_column {
+    border: 1px solid red;
+    float: left;
+    width: 300px;
+  }
+
+  #main_column {
+    float: left;
+    width: $total_width - 304;
+  }
+}

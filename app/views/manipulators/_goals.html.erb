@@ -1,4 +1,9 @@
-<h3>Goals</h3>
+<h3>
+  <a href="#" class="expander" data-expanded="true">
+    <span class="ui-icon ui-icon-triangle-1-s"></span>
+  </a>
+  Goals
+</h3>
 <ul>
   <% goals.each do |g|  %>
     <li class="goal item" data-id="<%=g.id%>">
@@ -7,6 +12,7 @@
       </div>      
       <div class="name"><%= g.name %></div>      
       <div class="achieved">        
+        <%= image_tag('goal_maybe.png') %>
       </div>
     </li>
   <% end %>

@@ -5,6 +5,9 @@ class NiceList
   rewire: ->
     @_wire()
   
+  viewer: ->
+    $("#main_viewer")
+    
   _wire: ->
     that = this
     @el.find('.item').hover ->
@@ -15,7 +18,18 @@ class NiceList
     @el.find('.item').click ->
       gid = $(this).attr('data-id')
       that.options.click(gid)
-      that.el.find('.item').removeClass('selected')
+      $('#left_column').find('.item').removeClass('selected')
       $(this).addClass('selected')
+    @el.find('a.expander').click ->
+      state = $(this).attr('data-expanded')
+      if state == 'true'
+        $(this).find('span').removeClass('ui-icon-triangle-1-s').addClass('ui-icon-triangle-1-e')
+        $(this).attr('data-expanded', false)
+        that.el.find('ul').hide()
+      else
+        $(this).find('span').removeClass('ui-icon-triangle-1-e').addClass('ui-icon-triangle-1-s')
+        $(this).attr('data-expanded', true)
+        that.el.find('ul').show()
+    
 
 window.NiceList = NiceList

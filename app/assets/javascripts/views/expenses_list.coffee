@@ -1,4 +1,4 @@
-class AccountList extends NiceList
+class ExpensesList extends NiceList
   constructor: (@wrapper, @plan) ->    
     that = this
     super(@wrapper, {
@@ -19,13 +19,12 @@ class AccountList extends NiceList
 
   showAccount: (itemID) ->
     that = this    
-    @viewer().load "/accounts/#{itemID}?plan_id=#{@plan.id}", ->
+    @viewer().load "/manipulators/#{itemID}?plan_id=#{@plan.id}", ->
       that.viewer().find('button.remove').click ->
         that.removeAccount itemID
         false
       
       that.viewer().find('form').on 'ajax:success', (event, xhr, status) ->  
-        window.goalList.markAllUnknown()
         that.reload()
 
   removeAccount: (itemID) ->
@@ -37,11 +36,10 @@ class AccountList extends NiceList
       success: (data) ->
         that.viewer().html('')
         that.reload()
-        window.goalList.markAllUnknown()
       ,error: (request) ->      
         showMessageDialog('error', request.responseText);
       
     })
 
 
-window.AccountList = AccountList
+window.ExpensesList = ExpensesList

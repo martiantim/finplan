@@ -20,7 +20,7 @@ class ManipulatorTemplate < ActiveRecord::Base
   
   def variables
     vars = []
-    (self.formula + self.can_formula).scan(/params\['(\S+)'\]/) do |match|
+    (self.formula + (self.can_formula || '')).scan(/params\['(\S+)'\]/) do |match|
       vars << {:name => $1, :type => :param} if !vars.detect { |a| a[:name] == $1 }
     end
     vars

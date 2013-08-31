@@ -1,0 +1,25 @@
+<h3>
+  <a href="#" class="expander" data-expanded="true">
+    <span class="ui-icon ui-icon-triangle-1-s"></span>
+  </a>
+  Expenses
+</h3>
+<ul>        
+<% expenses.each do |m|  %>
+  <% next if m.manipulator_template.name == 'Salary' %>
+  <li class="manipulator item" data-id="<%=m.id%>">          
+    <div class="picture">
+      <img src="<%= m.manipulator_template.image_url%>">        
+    </div>      
+    <div class="name"><%= m.name %></div>                              
+  </li>
+<% end %>
+<% unused_expenses.each do |t| %>
+  <li class="manipulator item disabled" data-id="<%=t.id%>">
+    <div class="picture">
+      <img src="<%= t.image_url%>">        
+    </div>      
+    <div class="name"><%= t.name %></div>
+  </li>          
+<% end %>
+</ul>        

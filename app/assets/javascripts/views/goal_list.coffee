@@ -5,10 +5,10 @@ class GoalList extends NiceList
       click: (itemID) ->
         that.showGoal itemID       
     })    
-    
-  viewer: ->
-    $('#goal_options > div')    
-
+  
+  markAllUnknown: ->
+    @wrapper.find('ul .item .achieved').html('<img src="'+Icons.GOAL_MAYBE+'">')
+  
   showGoal: (itemID) ->
     that = this    
     @viewer().load "/manipulators/#{itemID}?plan_id=#{@plan.id}", ->

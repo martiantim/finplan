@@ -1,14 +1,60 @@
 <%= form_for(@account, :html => {'data-remote' => "true"}) do |f| %>
   <%= f.hidden_field :plan_id %>
 
-  Type: <%= f.select "name", options_for_select(Account::KINDS, @account.name) %>
+  <div class="line">
+    <label>Type</label>
+    <% if @account.new_record? %>
+      <%= f.select "name", options_for_select(Account::KINDS.collect { |a| a[:name] }, @account.name) %>
+    <% else %>
+      <%= @account.name %>
+    <% end %>
+  </div>
 
-  Balance: <%= f.text_field "balance" %>
+  <div class="line">
+    <label>Balance</label><%= f.text_field "balance" %>
+  </div>
   
-  <div style="float:right">
+  <% if @account.can_invest? %>
+    <div class="line investment">
+      <label>Investment Type</label>
+      <%= f.select "investment_type", options_for_select(Account::INVESTMENT_TYPES, @account.investment_type) %>
+    </div>
+  <% end %>
+
+  <% if @account.is_debt? %>
+    <div class="line debt">
+      <label>Interest Rate</label>
+      <%= f.text_field 'interest_rate' %>
+    </div>
+  <% end %>
+  
+  <div class="line">
     <% if !@account.new_record? %>
       <button class="remove">Remove</button>
     <% end %>      
     <%= f.submit (@account.new_record? ? "Add" : "Update") %>
   </div>
+<% end %>
+
+<%= javascript_tag do  %>
+  $(function() {
+    ACCOUNT_KINDS = <%= raw Account::KINDS.to_json %>;
+    $('.line.investment').hide();
+    $('.line.debt').hide();
+          
+    $('#account_name').change(function() {
+      for (var i = 0; i < ACCOUNT_KINDS.length; i++) {
+        var ak = ACCOUNT_KINDS[i];
+        if ($(this).val() == ak.name) {
+          $('.line.investment').hide();
+          $('.line.debt').hide();
+          if (ak.type == 'debt') {
+            $('.line.debt').show();
+          } else if (ak.type == 'invest') {
+            $('.line.investment').show();
+          }
+        }
+      }
+    });
+  });
 <% end %>

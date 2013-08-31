@@ -1,0 +1,20 @@
+<div class="overview list">
+  <ul>
+    <li class="overview item">
+      <div class="no_picture"></div>
+      <div class="name">Overview</div>
+    </li>
+  </ul>
+</div>
+<div class="goals list">
+  <%= render :partial => '/manipulators/goals', :object => @plan.goals, :locals => {:unused_goals => @plan.unused_goals} %>      
+</div>
+<div class="people list">      
+  <%= render :partial => '/plan_users/list', :object => @plan.plan_users %>      
+</div>
+<div class="accounts list">      
+  <%= render :partial => '/accounts/list', :object => @plan.accounts %>      
+</div>
+<div class="factors list">      
+  <%= render :partial => '/manipulators/expenses', :object => @plan.factors, :locals => {:unused_expenses => @plan.unused_factors} %>
+</div>
