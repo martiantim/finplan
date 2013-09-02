@@ -1,1 +1,14 @@
-LOGO
+<div id="logo">LOGO</div>
+
+<div id="navigation">
+  <ul>
+    <% ['Goals', 'Setup', 'Results'].each do |control| %>
+      <li data-section="<%=control.downcase%>">
+        <%= link_to control, '#', :class => "nav #{'active' if control == 'Setup'}", :"data-section" => control.downcase %>
+        <% if control == 'Results' %>
+          <span style="display:none">*</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -9,7 +9,7 @@ class ExpensesList extends NiceList
   reload: ->    
     that = this
     $.ajax({
-      url: "/accounts",
+      url: "/expenses",
       type: 'GET',
       data: {'plan_id': @plan.id},
       success: (data) ->
@@ -19,18 +19,18 @@ class ExpensesList extends NiceList
 
   showAccount: (itemID) ->
     that = this    
-    @viewer().load "/manipulators/#{itemID}?plan_id=#{@plan.id}", ->
+    @viewer().load "/expenses/#{itemID}?plan_id=#{@plan.id}", ->
       that.viewer().find('button.remove').click ->
-        that.removeAccount itemID
+        that.removeExpense itemID
         false
       
       that.viewer().find('form').on 'ajax:success', (event, xhr, status) ->  
         that.reload()
 
-  removeAccount: (itemID) ->
+  removeExpense: (itemID) ->
     that = this
     $.ajax({
-      url: "/accounts/#{itemID}",
+      url: "/expenses/#{itemID}",
       type: 'POST',
       data: {'_method': 'delete'},
       success: (data) ->

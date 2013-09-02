@@ -58,6 +58,8 @@ class Chart
     that = this
     $('#'+@id).empty()
     
+    console.log('chart display!!')
+    
     #display chart
     labels = []
     sets = []

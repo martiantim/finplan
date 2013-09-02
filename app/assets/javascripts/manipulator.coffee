@@ -1,6 +1,6 @@
 class Manipulator
   constructor: (@id, @name, @kind, @template_name, start, end, prms) ->
-    @params = {}
+    @params = {}    
     @achieved = false
     @enabled = true    
     if start
@@ -12,11 +12,14 @@ class Manipulator
     else
       @endYear = null
     
+    console.log(prms)
     for k,v of $.parseJSON(prms)
       if v.match(/\./)
         @params[k] = parseFloat(v)
-      else
+      else if v.match(/\d/)
         @params[k] = parseInt(v)
+      else
+        @params[k] = v
   
   setDisabled: ->    
     @enabled = false
@@ -27,6 +30,7 @@ class Manipulator
     @achievedYear = null
     @enabled = true    
     @failMessage = null
+    @tempParams = {}
   
   setGoalAchieved: (year) ->    
     @achievedYear = year

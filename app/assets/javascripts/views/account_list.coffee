@@ -24,8 +24,8 @@ class AccountList extends NiceList
         that.removeAccount itemID
         false
       
-      that.viewer().find('form').on 'ajax:success', (event, xhr, status) ->  
-        window.goalList.markAllUnknown()
+      that.viewer().find('form').on 'ajax:success', (event, xhr, status) ->
+        plan.markDirty()        
         that.reload()
 
   removeAccount: (itemID) ->
@@ -36,8 +36,8 @@ class AccountList extends NiceList
       data: {'_method': 'delete'},
       success: (data) ->
         that.viewer().html('')
-        that.reload()
-        window.goalList.markAllUnknown()
+        plan.markDirty()        
+        that.reload()        
       ,error: (request) ->      
         showMessageDialog('error', request.responseText);
       

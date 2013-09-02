@@ -6,7 +6,7 @@ class NiceList
     @_wire()
   
   viewer: ->
-    $("#main_viewer")
+    @el.closest('.content').find('.content_main')
     
   _wire: ->
     that = this
@@ -18,7 +18,7 @@ class NiceList
     @el.find('.item').click ->
       gid = $(this).attr('data-id')
       that.options.click(gid)
-      $('#left_column').find('.item').removeClass('selected')
+      that.el.find('.item').removeClass('selected')
       $(this).addClass('selected')
     @el.find('a.expander').click ->
       state = $(this).attr('data-expanded')

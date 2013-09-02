@@ -7,16 +7,34 @@ $total_width: 1024px;
   #header {
     border: 1px solid red;
     height: 100px;
-  }
-
-  #left_column {
-    border: 1px solid red;
-    float: left;
-    width: 300px;
-  }
+    
+    #logo {
+      display:inline-block;
+      width: 200px;
+      height: 100%;
+    }
+    
+    #navigation {
+      display: inline-block;
+      vertical-align: bottom;
+      ul {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+        li {
+          float: left;
+          margin-right: 20px;
+          a.active {
+            background: yellow;
+          }
+        }
+        
+      }
+    }
+  } 
 
   #main_column {
-    float: left;
-    width: $total_width - 304;
+    width: $total_width;
+    height: 500px;
   }
 }

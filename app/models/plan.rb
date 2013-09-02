@@ -22,7 +22,7 @@ class Plan < ActiveRecord::Base
     ManipulatorTemplate.all.find_all { |t| !used_template?(t.id) && t.kind == 'goal' }
   end
 
-  def factors
+  def expenses
     manipulators.find_all { |m| m.manipulator_template.kind == 'factor' }
   end
   

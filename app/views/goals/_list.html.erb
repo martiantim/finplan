@@ -5,7 +5,7 @@
   Goals
 </h3>
 <ul>
-  <% goals.each do |g|  %>
+  <% list.each do |g|  %>
     <li class="goal item" data-id="<%=g.id%>">
       <div class="picture">
         <img src="<%= g.manipulator_template.image_url%>">        
@@ -16,7 +16,7 @@
       </div>
     </li>
   <% end %>
-  <% unused_goals.each do |gt|  %>
+  <% unused_list.each do |gt|  %>
     <li class="goal item unused" data-id="template:<%=gt.id%>">
       <div class="picture">
         <img src="<%= gt.image_url%>">        

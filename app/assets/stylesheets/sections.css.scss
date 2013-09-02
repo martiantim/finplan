@@ -1,0 +1,26 @@
+.section {
+  #subnav {
+    margin: 30px auto 10px auto;
+    width: 300px;
+    a.active {
+      background: yellow;
+    }
+  }
+  
+  .content {
+    border: 1px solid black;
+    .content_left {
+      float: left;
+      width: 250px;
+      border-right: 1px solid black;
+    }
+    .content_main {
+      float: left;
+      width: 600px;
+    }
+    .content_main.noleft {
+      float: left;
+      width: 800px;
+    }
+  }
+}

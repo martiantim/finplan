@@ -35,7 +35,7 @@ class AccountsController < ApplicationController
     a = Account.find(params[:id])
     a.update_attributes(params[:account])    
         
-    render :text => 'ok'
+    redirect_to('/plans/1')
   end
   
 end

@@ -1,0 +1,41 @@
+<div id="main_content">
+  <div id="header">
+    <%= render :partial => 'header' %>
+  </div>
+  <div id="left_column">
+    <%= render :partial => 'left_col' %>
+  </div>
+  <div id="main_column">
+    <div id="main_viewer"></div>
+    <div id="chart"></div>
+    <div id="chart_controls">
+      <div id="xtype" data-value="year">
+        <a href="#" data-xtype="year">year</a>/<a href="#" data-xtype="age">age</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= javascript_tag do %>
+  $(function() {
+    plan = new Plan(<%= @plan.id%>,'<%=@plan.name%>', User.fromJSON(<%= raw @current_user.safe_json.to_json%>) );
+    <% @plan.priority_sorted_manipulators.each do |m| %>
+      var m = Manipulator.fromJSON(<%= raw m.safe_json.to_json %>);      
+      plan.add(m);
+    <% end %>
+    <% @plan.accounts.each do |a| %>
+      var acct = Account.fromJSON(<%= raw a.safe_json.to_json %>);
+      plan.addAccount(acct);
+    <% end %>
+    plan.display();
+    
+    
+    //setup lists
+    new ExpensesList($('#left_column .factors.list'), plan);
+    new PeopleList($('#left_column .people.list'), plan);    
+    new AccountList($('#left_column .accounts.list'), plan);    
+    window.goalList = new GoalList($('#left_column .goals.list'), plan);
+    
+  });
+<% end %>

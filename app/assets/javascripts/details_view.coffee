@@ -1,10 +1,9 @@
 class DetailsView
   constructor: (@year, @balances) ->
-
   
-  render: ->
-    $('#details').html @getHTML()
-    @_wire()
+  render: (el)->
+    el.html @getHTML()
+    @_wire(el)
   
   getHTML: ->
     html =  "<div class=\"title\"><h2>Year #{@year}</h2></div>"
@@ -58,11 +57,10 @@ class DetailsView
     html += "</div>"
     html
 
-  _wire: ->
-    $('#details .expander').click ->
+  _wire: (el) ->
+    el.find('.expander').click ->
       kind = $(this).attr('data-kind')
-      console.log kind
-      kd = $("#details .kind_details[data-kind=\"#{kind}\"]")
+      kd = el.find(".kind_details[data-kind=\"#{kind}\"]")
       if kd.css('display') == 'block'
         kd.hide()
         $(this).text('+')

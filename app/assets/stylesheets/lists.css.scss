@@ -36,6 +36,11 @@
       .name {      
         font-size: 14pt;
         display:inline-block;
+        width: 155px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
       }
       .achieved {
         float: right;

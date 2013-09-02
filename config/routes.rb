@@ -16,6 +16,7 @@ Finplan::Application.routes.draw do
   # Sample resource route with options:
  resources :plans do
    member do
+     get :reload
    end
 
    collection do
@@ -27,6 +28,18 @@ resources :plan_users do
    end
 
    collection do
+   end
+ end
+ 
+ resources :expenses do
+   member do
+   end
+ end
+ 
+ resources :goals do
+   member do
+   end
+   collection do     
    end
  end
  

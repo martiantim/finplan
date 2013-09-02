@@ -11,7 +11,7 @@ class GoalList extends NiceList
   
   showGoal: (itemID) ->
     that = this    
-    @viewer().load "/manipulators/#{itemID}?plan_id=#{@plan.id}", ->
+    @viewer().load "/goals/#{itemID}?plan_id=#{@plan.id}", ->
       m = that.plan.findManipulatorByID(itemID)
       if m && m.achievedYear
         that.viewer().find('.goal_status').html('<span class="ui-icon ui-icon-info"></span> Will achieve in '+m.achievedYear)
@@ -23,12 +23,13 @@ class GoalList extends NiceList
         false
       
       that.viewer().find('form').on 'ajax:success', (event, xhr, status) ->  
+        plan.markDirty(true)
         that.reload()
 
   reload: ->    
     that = this
     $.ajax({
-      url: "/manipulators/goals",
+      url: "/goals",
       type: 'GET',
       data: {'plan_id': @plan.id},
       success: (data) ->
@@ -39,12 +40,13 @@ class GoalList extends NiceList
   removeGoal: (itemID) ->
     that = this
     $.ajax({
-      url: "/manipulators/#{itemID}",
+      url: "/goals/#{itemID}",
       type: 'POST',
       data: {'_method': 'delete'},
       success: (data) ->
         that.viewer().html('')
         that.reload()
+        plan.markDirty(true)
       ,error: (request) ->      
         showMessageDialog('error', request.responseText);
       
