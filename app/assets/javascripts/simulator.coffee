@@ -41,7 +41,7 @@ class Simulator
       
   _runYear: (onDone) ->
     for m in @manipulators
-      m.exec(@balances)      
+      m.exec(@balances)
     @balances.rebalance()
     @balances.addYear()
 

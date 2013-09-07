@@ -5,9 +5,11 @@ class Balances
       emergency: new Account('emergency',0),
       savings: new Account('savings', 0),
       retirement: new Account('retirement', 0),
+      '401k': new Account('401K', 0)
     }
     for acct in @startAccounts      
       name = acct.type.toLowerCase()
+      console.log("found #{name}")
       if @accounts[name]
         @accounts[name].setBalance(acct.balance)
         @accounts[name].investmentType = acct.investmentType
@@ -53,7 +55,10 @@ class Balances
     @accounts['checking'].balance
     
   getRetirement: ->
-    @accounts['retirement'].balance    
+    @accounts['retirement'].balance + @accounts['401k'].balance
+    
+  hasRetirement: (amount) ->
+    @getRetirement() >= amount
     
   getCurrentYearIncome: ->
     @year_incomes[@_currentYear()] || 0
@@ -68,7 +73,7 @@ class Balances
     @getCash() + @getSavings()
   
   hasSavings: (amount) ->
-    @getTotalSavings() >= amount
+    @getSavings() >= amount
   
   addRetirement: (amount, kind, desc) ->
     if isNaN(amount)
@@ -115,7 +120,10 @@ class Balances
   
   addYear: ->
     for name, acct of @accounts
-      acct.calculateInvestmentReturns(@opts)
+      earnings = acct.calculateInvestmentReturns(@opts)
+      if earnings > 0
+        @curLog().log('Income', "#{acct.type} Investment Return", earnings)
+      
     @payLoans()
     @curLog().log('Savings', 'Left Over', @year_incomes[@_currentYear()] - @year_spends[@_currentYear()])
     @snapshots[@_currentYear()] = new BalanceSnapshot(@_currentYear(), this)

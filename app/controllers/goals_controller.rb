@@ -38,6 +38,13 @@ class GoalsController < ApplicationController
     render :layout => false
   end
   
+  def show_results
+    @manipulator = Manipulator.find(params[:id])
+    @template = @manipulator.manipulator_template
+    
+    render :layout => false
+  end
+
   def update
     @manipulator = Manipulator.find(params[:id])
     

@@ -14,9 +14,8 @@ class PeopleList extends NiceList
         false
       
       that.viewer().find('form').on 'ajax:success', (event, xhr, status) ->  
+        plan.markDirty()        
         that.reload()
-
-
 
   reload: ->    
     that = this
@@ -37,6 +36,7 @@ class PeopleList extends NiceList
       data: {'_method': 'delete'},
       success: (data) ->
         that.viewer().html('')
+        plan.markDirty()
         that.reload()
       ,error: (request) ->      
         showMessageDialog('error', request.responseText);

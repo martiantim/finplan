@@ -9,6 +9,9 @@ class ResultsByYear
         @showYear(ui.value)
     })
 
+  displayDefault: ->
+    @showYear(2013)
+
   showYear: (year) ->
     new DetailsView(year, plan.lastSimulator().balances).render(@el.find('#byyear_data'))
 

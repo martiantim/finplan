@@ -38,6 +38,7 @@ resources :plan_users do
  
  resources :goals do
    member do
+     get :show_results
    end
    collection do     
    end

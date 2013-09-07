@@ -1,8 +1,7 @@
-class Chart
-  constructor: (@id, @plan) ->
-    @startYear = 2013 #TODO
+class YearlyChart
+  constructor: (@id, @labels, @sets) ->
       
-  _getOptions: (balances, xtype, labels) ->
+  _getOptions: (xtype, labels) ->
     if xtype == 'year'
       xAxisOptions = {
         min: "2013-01-01",
@@ -50,26 +49,11 @@ class Chart
       },
     }
     
-  showDetails: (index, balances) ->    
-    year = @startYear + index
-    new DetailsView(year, balances).render()        
-
-  display: (simulator) ->
-    that = this
+  display: ->
     $('#'+@id).empty()
     
-    console.log('chart display!!')
-    
-    #display chart
-    labels = []
-    sets = []
-    for name, set of simulator.datasets
-      sets.push set
-      labels.push name
-    
-    $.jqplot @id, sets, @_getOptions(simulator.balances, simulator.xtype, labels)
+    $.jqplot @id, @sets, @_getOptions('year', @labels)
     $('#'+@id).bind 'jqplotDataClick', (ev, seriesIndex, pointIndex, data) ->
-      that.showDetails pointIndex, simulator.balances
+      console.log("CLICK")
 
-
-window.Chart = Chart
+window.YearlyChart = YearlyChart

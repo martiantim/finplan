@@ -21,6 +21,7 @@
 //= require jqplot.cursor
 //= require jqplot.highlighter
 //= require jqplot.enhancedLegendRenderer
+//= require autoNumeric
 //= require codemirror
 //= require codemirror/modes/coffeescript
 //= require_tree .

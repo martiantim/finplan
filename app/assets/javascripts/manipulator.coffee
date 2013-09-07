@@ -12,7 +12,6 @@ class Manipulator
     else
       @endYear = null
     
-    console.log(prms)
     for k,v of $.parseJSON(prms)
       if v.match(/\./)
         @params[k] = parseFloat(v)
@@ -31,6 +30,10 @@ class Manipulator
     @enabled = true    
     @failMessage = null
     @tempParams = {}
+    @progress = []
+  
+  setGoalProgress: (year, have, need) ->
+    @progress.push [year, {have: have, need: need}]
   
   setGoalAchieved: (year) ->    
     @achievedYear = year

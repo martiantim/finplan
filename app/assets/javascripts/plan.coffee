@@ -1,6 +1,8 @@
 class Plan
   constructor: (@id, @name, @user) ->
-    @chart = new Chart 'chart', this    
+    @resultsChart = new ResultsChart 'chart', this
+    @resultsByYear = new ResultsByYear($('.content[data-name="byyear"]'))
+    @resultsGoals = new GoalListResults($('.section[data-name="results"] .goals.list'), this);        
     @simulator = null
     @manipulators = []
     @startAccounts = []
@@ -41,7 +43,7 @@ class Plan
       @simulate()
       
   onChartDisplay: ->
-    @chart.display(@lastSimulator())
+    @resultsChart.display(@lastSimulator())
   
   simulate: ->
     that = this
@@ -52,7 +54,8 @@ class Plan
     })    
     @simulator = new Simulator(@user, @manipulators, @startAccounts, dialog)
     @simulator.sim ->
-      that.chart.display(that.simulator)
+      that.resultsChart.display(that.simulator)
+      that.resultsByYear.displayDefault()
       window.navigation.showDirty(false)
   
   lastSimulator: ->

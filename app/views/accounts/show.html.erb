@@ -13,7 +13,7 @@
   <div class="line">
     <label>Balance</label><%= f.text_field "balance" %>
   </div>
-  
+    
   <% if @account.can_invest? %>
     <div class="line investment">
       <label>Investment Type</label>
@@ -39,8 +39,10 @@
 <%= javascript_tag do  %>
   $(function() {
     ACCOUNT_KINDS = <%= raw Account::KINDS.to_json %>;
-    $('.line.investment').hide();
-    $('.line.debt').hide();
+    <% if @account.new_record? %>
+      $('.line.investment').hide();
+      $('.line.debt').hide();
+    <% end %>
           
     $('#account_name').change(function() {
       for (var i = 0; i < ACCOUNT_KINDS.length; i++) {

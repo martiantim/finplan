@@ -1,11 +1,27 @@
-#simyear {
-  #current_simulate_year {
-    float: left;
-    border: 2px solid black;
-    margin-right: 10px;
-    font-size: 120%;
-    padding: 2px;
+#simulate_dialog {
+  #simyear {
+    #current_simulate_year {
+      display: inline-block;
+      border: 2px solid black;
+      margin-right: 10px;
+      font-size: 120%;
+      padding: 2px;
+      vertical-align: top;
+    }
+    #simulate_year_progress_wrapper {
+      display:inline-block;
+      width: 350px;
+    }
+
   }
-  #simulate_year_progress_wrapper {
+  
+  #goal_progress {
+    padding: 10px 0px;
+    font-size: 140%;
+    
+  }
+
+  .close {
+    float:right;
   }
 }

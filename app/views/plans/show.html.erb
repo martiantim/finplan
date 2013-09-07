@@ -23,9 +23,7 @@
     new ExpensesList($('.expenses.list'), plan);
     new PeopleList($('.plan_users.list'), plan);    
     new AccountList($('.accounts.list'), plan);    
-    window.goalList = new GoalList($('.section[data-name="goals"] .goals.list'), plan);
-    
-    new ResultsByYear($('.content[data-name="byyear"]'))
+    window.goalList = new GoalListEditable($('.section[data-name="goals"] .goals.list'), plan);        
     
   });
 <% end %>
