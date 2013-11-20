@@ -13,6 +13,6 @@ class ResultsByYear
     @showYear(2013)
 
   showYear: (year) ->
-    new DetailsView(year, plan.lastSimulator().balances, plan.family).render(@el.find('#byyear_data'))
+    new DetailsView(year, plan.lastSimulator().context).render(@el.find('#byyear_data'))
 
 window.ResultsByYear = ResultsByYear

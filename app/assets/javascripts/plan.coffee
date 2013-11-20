@@ -31,10 +31,6 @@ class Plan
     })
     
   _wire: ->
-    that = this
-    $('#xtype a').click ->
-      $('#xtype').attr('data-value',$(this).attr('data-xtype'))
-      that.display()
 
   markDirty: (andData = false) ->
     if andData

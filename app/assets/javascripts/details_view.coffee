@@ -1,5 +1,5 @@
 class DetailsView
-  constructor: (@year, @balances, @family) ->
+  constructor: (@year, @simContext) ->
   
   render: (el)->
     el.html @getHTML()
@@ -21,8 +21,7 @@ class DetailsView
   people: ->
     html =  "<div class='people'>"
     pos = 0
-    @family.membersOfYear(@year, (kind) =>            
-      console.log("kind = #{kind}")
+    @simContext.family.membersOfYear(@year, (kind) =>
       html += "#{@personIMG(kind, pos)}"
       pos += 100
     )
@@ -32,9 +31,9 @@ class DetailsView
     html
   
   achievements: ->
-    log = @balances.logForYear(@year)
+    log = @simContext.balances.logForYear(@year)
     html = @kindChanges(log, 'Capital')
-    html += @showBalances(@balances.snapshotForYear(@year))
+    html += @showBalances(@simContext.balances.snapshotForYear(@year))
     html
 
   showBalances: (snap) ->
@@ -47,7 +46,7 @@ class DetailsView
     "<div class='entry title'><div class='name'>#{name}</div><div class='amount'>#{FUtils.formatMoney(amount)}</div></div>"            
 
   yearChanges: ->
-    log = @balances.logForYear(@year)
+    log = @simContext.balances.logForYear(@year)
     html = @kindChanges(log, 'Income')
     html += @kindChanges(log, 'Taxes')
     html += @kindChanges(log, 'Living')

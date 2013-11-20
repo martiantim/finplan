@@ -58,33 +58,33 @@ class Manipulator
   disable: (name) ->
     @curSim.disable(name)
   
-  exec: (balances) ->
+  exec: (context) ->
     if @kind == 'goal'
       if !@goalAchieved()
-        if @inRange(balances._currentYear())
-          if @checkStatus(balances)
-            @doIt(balances)
-            @setGoalAchieved(balances._currentYear())
+        if @inRange(context.simYear)
+          if @checkStatus(context)
+            @doIt(context)
+            @setGoalAchieved(context.simYear)
         else
-          @checkStatus(balances) #to get progress stats
+          @checkStatus(context) #to get progress stats
 
             
       if @goalAchieved() && @enabled
-        @execOne(balances)
+        @execOne(context)
     else
       if @enabled
-        @execOne(balances)
+        @execOne(context)
   
   @fromJSON: (json) ->
     m = new Manipulator(json.id, json.name, json.kind, json.template_name, json.start, json.end, json.params)
     
-    func = "m.checkStatus = function(balances) { "+json.can_formula+"}"
+    func = "m.checkStatus = function(context) { "+json.can_formula+"}"
     eval(func)
 
-    func = "m.doIt = function(balances) { "+json.do_formula+"}"
+    func = "m.doIt = function(context) { "+json.do_formula+"}"
     eval(func)
     
-    func = "m.execOne = function(balances) { "+json.formula+"}"
+    func = "m.execOne = function(context) { "+json.formula+"}"
     eval(func)
     m
     

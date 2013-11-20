@@ -65,9 +65,9 @@ class ResultsChart
       labels.push name
       sets.push set
     
-    $.jqplot @id, sets, @_getOptions(simulator.balances, simulator.xtype, labels)
+    $.jqplot @id, sets, @_getOptions(simulator.context.balances, simulator.xtype, labels)
     $('#'+@id).bind 'jqplotDataClick', (ev, seriesIndex, pointIndex, data) ->
-      that.showDetails pointIndex, simulator.balances
+      that.showDetails pointIndex, simulator.context.balances
 
 
 window.ResultsChart = ResultsChart

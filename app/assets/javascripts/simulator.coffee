@@ -1,8 +1,7 @@
 class Simulator
-  constructor: (@user, @manipulators, @startAccounts, @dialog) ->
+  constructor: (@family, @manipulators, @startAccounts, @dialog) ->
     @startYear = new Date().getYear()+1900
-    @age = 34  #TODO: use age from user object
-    @endYear = @startYear + (85-@age)
+    @endYear = @family.endYear()
     
     @dialog.find('.close').hide()
     @dialog.find('#simulate_year_progress').progressbar({
@@ -17,9 +16,12 @@ class Simulator
     
   sim: (onDone) ->    
     that = this
-    age = 34  #TODO: use age from user object
-    
-    @xtype = $('#xtype').attr('data-value')    
+
+    #TODO: this is broken
+    @xtype = $('#xtype').attr('data-value')
+    $('#xtype a').click =>
+      $('#xtype').attr('data-value',$(this).attr('data-xtype'))
+      @display()
     
     for m in @manipulators
       m.reset(that)
@@ -30,10 +32,9 @@ class Simulator
       'Retirement': [],
       'Total': [],
     }    
+
+    @context = new SimContext(@startYear, @startAccounts, @family)
     
-    @balances = new Balances(@startAccounts, {age: age, year: @startYear})
-    
-    @simYear = @startYear
     that = this
     setTimeout =>
       @_runYear(onDone)
@@ -43,37 +44,37 @@ class Simulator
     #first income
     for m in @manipulators
       if m.kind == 'income'
-        m.exec(@balances)
-    @balances.earnFromInvestments()
+        m.exec(@context)
+    @context.balances.earnFromInvestments()
     
     #pay expenses        
-    @balances.payLoans()
+    @context.balances.payLoans()
     for m in @manipulators
       if m.kind == 'factor' || m.kind == 'hidden' #TODO: break out more. taxes, etc
-        m.exec(@balances)
+        m.exec(@context)
     
     #goals
     for m in @manipulators
       if m.kind == 'goal'
-        m.exec(@balances)
+        m.exec(@context)
     
-    @balances.rebalance()
-    @balances.addYear()
+    @context.balances.rebalance()
+    @context.balances.addYear()
 
     if @xtype == 'year'
-      x = @simYear+'-01-01 4:00PM'
+      x = @context.simYear+'-01-01 4:00PM'
     else
-      x = @age + @simYear - @startYear
+      x = @context.family.members[0].ageInYear(@context.simYear)
 
     for name,set of @datasets
-      set.push [x, @balances["get#{name}"]()]
+      set.push [x, @context.balances["get#{name}"]()]
 
-    @dialog.find('#simulate_year_progress').progressbar("option", "value", @simYear - @startYear+1)
-    @dialog.find('#current_simulate_year').html(@simYear)
+    @dialog.find('#simulate_year_progress').progressbar("option", "value", @context.simYear - @startYear+1)
+    @dialog.find('#current_simulate_year').html(@context.simYear)
     
-    @simYear++
+    @context.simYear++
     @_markGoalProgress()
-    if @simYear <= @endYear
+    if @context.simYear <= @endYear
       setTimeout =>
         @_runYear(onDone)
       , 1

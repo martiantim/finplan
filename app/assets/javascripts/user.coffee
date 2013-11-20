@@ -15,7 +15,10 @@ class User
   
   isAliveInYear: (year) ->
     year >= @bornYear && year < @projectedDeathYear
-  
+
+  ageInYear: (year) ->
+    year - @bornYear
+
   descriptor: (year) ->
     age = year - @bornYear
     if age >= 18
