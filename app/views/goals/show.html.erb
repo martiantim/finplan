@@ -2,8 +2,9 @@
 <%= form_for(@manipulator, :html => {'data-remote' => "true"}) do |f| %>
   <%= f.hidden_field :manipulator_template_id %>
   <%= f.hidden_field :plan_id %>
-  <div style="text-align:center;"><%= f.text_field :name, :size => 20 %></div>  
-  
+  <div style="text-align:center;"><%= f.text_field :name, :size => 20 %></div>
+
+  <div class="save_status"></div>
   <div class="goal_status"></div>
   
   <% if @manipulator.is_goal? %>
@@ -12,16 +13,16 @@
     <div style="margin-left:10px"><input type="radio" name="when_type" value="age"  <%= 'checked="checked"' if @manipulator.start %>>At age <%= select_tag "when", options_for_select((30..75).to_a.collect { |a| [a,a]}, @manipulator.start_user_age(@current_user)) %></div>
   <% end %>
     
-  <h4>Variables</h4>
-  <% @template.params.each do |var|  %>
-    <div><%= var%>:<input type="text" name="variables[<%=var%>]" value="<%=@manipulator.param_value(var)%>"></input></div> 
-  <% end %>
+<h4>Variables</h4>
+  <%= render :partial => '/manipulators/params_form', :locals => {:template => @template, :manipulator => @manipulator} %>
     
   <div style="float:right">
-    <% if !@manipulator.new_record? %>
+    <% if @manipulator.new_record? %>
+      <%= f.submit "Add" %>
+    <% else %>
       <button class="remove">Remove</button>
-    <% end %>      
-    <%= f.submit (@manipulator.new_record? ? "Add" : "Update") %>
+    <% end %>
   </div>
 <% end %>
 </div>
+

@@ -118,13 +118,13 @@ class Balances
     name = "#{whatfor} #{@_currentYear()}"
     @accounts[name] = new Loan(amnt, 0.04213, @_currentYear(), term)
   
-  addYear: ->
+  earnFromInvestments: ->
     for name, acct of @accounts
       earnings = acct.calculateInvestmentReturns(@opts)
       if earnings > 0
-        @curLog().log('Income', "#{acct.type} Investment Return", earnings)
-      
-    @payLoans()
+        @curLog().log('Investment Income', "#{acct.type} Investment Return", earnings)
+  
+  addYear: ->              
     @curLog().log('Savings', 'Left Over', @year_incomes[@_currentYear()] - @year_spends[@_currentYear()])
     @snapshots[@_currentYear()] = new BalanceSnapshot(@_currentYear(), this)
     @opts['age']++

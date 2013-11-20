@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   def safe_json
     {
       :name => self.name,
-      :born => self.born
+      :born => self.born,
+      :gender => self.gender
     }
   end
   

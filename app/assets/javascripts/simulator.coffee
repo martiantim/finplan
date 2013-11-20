@@ -40,8 +40,23 @@ class Simulator
     , 1          
       
   _runYear: (onDone) ->
+    #first income
     for m in @manipulators
-      m.exec(@balances)
+      if m.kind == 'income'
+        m.exec(@balances)
+    @balances.earnFromInvestments()
+    
+    #pay expenses        
+    @balances.payLoans()
+    for m in @manipulators
+      if m.kind == 'factor' || m.kind == 'hidden' #TODO: break out more. taxes, etc
+        m.exec(@balances)
+    
+    #goals
+    for m in @manipulators
+      if m.kind == 'goal'
+        m.exec(@balances)
+    
     @balances.rebalance()
     @balances.addYear()
 
@@ -61,7 +76,7 @@ class Simulator
     if @simYear <= @endYear
       setTimeout =>
         @_runYear(onDone)
-      , 25
+      , 1
     else
       onDone()
       @_markGoals()

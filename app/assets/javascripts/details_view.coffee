@@ -1,5 +1,5 @@
 class DetailsView
-  constructor: (@year, @balances) ->
+  constructor: (@year, @balances, @family) ->
   
   render: (el)->
     el.html @getHTML()
@@ -20,9 +20,14 @@ class DetailsView
 
   people: ->
     html =  "<div class='people'>"
-    html += "#{@personIMG('man')}"
-    html += "#{@personIMG('woman', 100)}"
-    html += "#{@personIMG('cat', 70, 140)}"
+    pos = 0
+    @family.membersOfYear(@year, (kind) =>            
+      console.log("kind = #{kind}")
+      html += "#{@personIMG(kind, pos)}"
+      pos += 100
+    )
+    #html += "#{@personIMG('woman', 100)}"
+    #html += "#{@personIMG('cat', 70, 140)}"
     html += "</div>"
     html
   
@@ -50,7 +55,7 @@ class DetailsView
     html
   
   kindChanges: (log, kind) ->    
-    html = "<div class='entry title'><div class='name'>[<a href='#' class='expander' data-kind='#{kind}'>+</a>] #{kind}</div><div class='amount'>#{FUtils.formatMoney(log.sumOfKind(kind))}</div></div>"        
+    html = "<div class='entry title'><div class='name'>[<a href='#' class='expander' style='width:15px;display:inline-block;text-align:center;' data-kind='#{kind}'>+</a>] #{kind}</div><div class='amount'>#{FUtils.formatMoney(log.sumOfKind(kind))}</div></div>"
     html += "<div class='kind_details' data-kind=\"#{kind}\" style='display:none'>"
     log.each_entry_of_kind kind, (entry) ->
       html += "<div class='entry detail'><div class='name'>#{entry.description}</div><div class='amount'>#{FUtils.formatMoney(entry.amount)}</div></div>"

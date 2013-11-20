@@ -1,7 +1,9 @@
 <h3>
-  <a href="#" class="expander" data-expanded="true">
-    <span class="ui-icon ui-icon-triangle-1-s"></span>
-  </a>
+  <% if !editable %>
+    <a href="#" class="expander" data-expanded="true">
+      <span class="ui-icon ui-icon-triangle-1-s"></span>
+    </a>
+  <% end %>
   Goals
 </h3>
 <ul>
@@ -10,10 +12,12 @@
       <div class="picture">
         <img src="<%= g.manipulator_template.image_url%>">        
       </div>      
-      <div class="name"><%= g.name %></div>      
-      <div class="achieved">        
-        <%= image_tag('goal_maybe.png') %>
-      </div>
+      <div class="name <%= 'noresult' if editable %>"><%= g.name %></div>
+      <% if !editable %>
+        <div class="achieved">
+          <%= image_tag('goal_maybe.png') %>
+        </div>
+      <% end %>
     </li>
   <% end %>
   <% unused_list.each do |gt|  %>

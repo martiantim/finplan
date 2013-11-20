@@ -2,6 +2,7 @@
 <% @templates.each do |t| %>
   <div>
     <%= link_to t.name, "/manipulator_templates/#{t.id}" %>
+    <%= link_to 'vars', "/variable_properties?template_id=#{t.id}" %>
   </div>
 <% end %>
 

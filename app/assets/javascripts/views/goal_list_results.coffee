@@ -1,5 +1,12 @@
 class GoalListResults extends GoalList
 
+  constructor: (@wrapper, @plan) ->
+    @editable = false
+    super(@wrapper, {
+      click: (itemID) =>
+        @showGoal itemID
+    })
+
   showGoal: (itemID) ->
     @viewer().load "/goals/#{itemID}/show_results?plan_id=#{@plan.id}", =>
       m = @plan.findManipulatorByID(itemID)

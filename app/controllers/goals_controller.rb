@@ -3,7 +3,7 @@ class GoalsController < ApplicationController
   def index
     plan = Plan.find(params[:plan_id])
     
-    render :partial => 'list', :object => plan.goals, :locals => {:unused_list => plan.unused_goals}
+    render :partial => 'list', :object => plan.goals, :locals => {:unused_list => plan.unused_goals, :editable => params[:editable] == 'true'}
   end
   
   def new
@@ -19,7 +19,7 @@ class GoalsController < ApplicationController
     @m.params = params[:variables].to_json
 
     if @m.save
-      redirect_to('/plans/1')
+      render :json => {:id => @m.id}
     else
       render :action => "new"
     end
@@ -59,8 +59,8 @@ class GoalsController < ApplicationController
     @manipulator.update_attributes(params[:manipulator])
     @manipulator.params = params[:variables].to_json
     @manipulator.save!
-    
-    redirect_to('/plans/1')
+
+    render :json => {:id => @manipulator.id}
   end
   
   def destroy

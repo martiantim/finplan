@@ -1,9 +1,7 @@
 class AccountList extends NiceList
-  constructor: (@wrapper, @plan) ->    
-    that = this
+  constructor: (@wrapper, @plan) ->
     super(@wrapper, {
-      click: (itemID) ->
-        that.showAccount itemID       
+      controller: 'accounts'
     })    
 
   reload: ->    
@@ -17,18 +15,9 @@ class AccountList extends NiceList
         that.rewire()
     })
 
-  showAccount: (itemID) ->
-    that = this    
-    @viewer().load "/accounts/#{itemID}?plan_id=#{@plan.id}", ->
-      that.viewer().find('button.remove').click ->
-        that.removeAccount itemID
-        false
-      
-      that.viewer().find('form').on 'ajax:success', (event, xhr, status) ->
-        plan.markDirty()        
-        that.reload()
 
-  removeAccount: (itemID) ->
+
+  removeItem: (itemID) ->
     that = this
     $.ajax({
       url: "/accounts/#{itemID}",

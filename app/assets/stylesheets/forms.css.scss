@@ -1,5 +1,9 @@
 form {
   .line {
-    label { width: 100px;}
+    padding-bottom: 5px;
+    label {
+      width: 100px;
+      display: inline-block;
+    }
   }
 }

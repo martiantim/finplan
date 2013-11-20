@@ -1,5 +1,6 @@
 class Account
   constructor: (@type, @balance, @investmentType) ->
+    @investmentType = 'Money Market' if !@investmentType
   
   setBalance: (bal) ->
     @balance = bal
@@ -23,24 +24,50 @@ class Account
     @deposit(amnt)        
     
   calculateInvestmentReturns: (opts) ->
-    if @investmentType == 'Stock'
-      ret = 0.06
-    else if @investmentType == 'Target Retirement'
+    rate = @returnRate(@investmentType, opts)
+        
+    @earnings = @balance * rate
+    @balance += @earnings
+    @earnings
+
+  #rates from http://www.bogleheads.org/wiki/Historical_and_expected_returns
+  returnRate: (iType, opts) ->
+    if iType == 'Money Market'
+      avg = 0.037
+      stdev = 0.031
+    else if iType == 'Bonds'
+      avg = 0.053
+      stdev = 0.057
+    else if iType == 'Stock'
+      avg = 0.104
+      stdev = 0.202
+    else if iType == 'Target Retirement'
+      avg = 0.05
+      stdev = 0.10
       ret = 0.0
       if opts['age'] < 50
         ret = 0.08
       else if opts['age'] < 60
         ret = 0.06
       else if opts['age'] < 67
-        ret = 0.04      
+        ret = 0.04
       else
         ret = 0.02
-        
-      @earnings = @balance * ret
-      @balance += @earnings
-      @earnings
-    
+    else
+      alert("Unknown innvestment type: #{iType}")
+
+    @stdrnd(avg, stdev)
+
+
+  rnd_snd: ->
+    (Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1)
+
+  stdrnd: (mean, stdev) ->
+    @rnd_snd()*stdev+mean
+
+
   @fromJSON: (json) ->
     new Account(json.name, json.balance, json.investment_type)    
-  
+
+
 window.Account = Account

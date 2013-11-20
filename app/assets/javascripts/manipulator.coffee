@@ -15,6 +15,8 @@ class Manipulator
     for k,v of $.parseJSON(prms)
       if v.match(/\./)
         @params[k] = parseFloat(v)
+      else if v.match(/^\$\d+/)
+        @params[k] = parseInt(v.replace(',','').substring(1))
       else if v.match(/\d/)
         @params[k] = parseInt(v)
       else
@@ -33,6 +35,8 @@ class Manipulator
     @progress = []
   
   setGoalProgress: (year, have, need) ->
+    if !@inRange(@curSim.simYear)
+      need = null
     @progress.push [year, {have: have, need: need}]
   
   setGoalAchieved: (year) ->    
@@ -46,7 +50,6 @@ class Manipulator
     @achieved
   
   inRange: (year) ->
-    
     return false if @startYear && year < @startYear
     return false if @endYear && year > @endYear
     
@@ -59,8 +62,12 @@ class Manipulator
     if @kind == 'goal'
       if !@goalAchieved()
         if @inRange(balances._currentYear())
-          if @canAchieve(balances)
+          if @checkStatus(balances)
+            @doIt(balances)
             @setGoalAchieved(balances._currentYear())
+        else
+          @checkStatus(balances) #to get progress stats
+
             
       if @goalAchieved() && @enabled
         @execOne(balances)
@@ -71,7 +78,10 @@ class Manipulator
   @fromJSON: (json) ->
     m = new Manipulator(json.id, json.name, json.kind, json.template_name, json.start, json.end, json.params)
     
-    func = "m.canAchieve = function(balances) { "+json.can_formula+"}"    
+    func = "m.checkStatus = function(balances) { "+json.can_formula+"}"
+    eval(func)
+
+    func = "m.doIt = function(balances) { "+json.do_formula+"}"
     eval(func)
     
     func = "m.execOne = function(balances) { "+json.formula+"}"

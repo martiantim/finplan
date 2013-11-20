@@ -68,6 +68,14 @@ resources :plan_users do
    end
  end
  
+ resources :variable_properties do
+   member do
+   end
+
+   collection do
+   end
+ end
+ 
  resources :manipulators do
    member do
    end

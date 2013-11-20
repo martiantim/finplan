@@ -8,6 +8,7 @@ class Account < ActiveRecord::Base
     {:name => "Loan",       :type => 'debt'},
     {:name => "HSA",        :type => 'current'},
     {:name => "Investment", :type => 'invest'},
+    {:name => "Traditional IRA", :type => 'invest'},
     {:name => "Roth IRA",   :type => 'invest'},
     {:name => "401K",       :type => 'invest'},
   ]

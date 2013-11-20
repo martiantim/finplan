@@ -11,7 +11,8 @@
   </div>
 
   <div class="line">
-    <label>Balance</label><%= f.text_field "balance" %>
+    <label>Balance</label>
+    <%= f.text_field "balance", :class => "money" %>
   </div>
     
   <% if @account.can_invest? %>
@@ -29,10 +30,13 @@
   <% end %>
   
   <div class="line">
-    <% if !@account.new_record? %>
+    <% if @account.new_record? %>
+      <%= f.submit "Add" %>
+      <%= link_to "Cancel", "#", :class => 'cancel' %>
+    <% else %>
       <button class="remove">Remove</button>
     <% end %>      
-    <%= f.submit (@account.new_record? ? "Add" : "Update") %>
+
   </div>
 <% end %>
 

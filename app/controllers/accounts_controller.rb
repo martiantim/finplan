@@ -28,14 +28,14 @@ class AccountsController < ApplicationController
   def create
     acct = Account.create(params[:account])    
     
-    redirect_to('/plans/1')
+    render :json => {:id => acct.id}
   end
   
   def update
     a = Account.find(params[:id])
-    a.update_attributes(params[:account])    
-        
-    redirect_to('/plans/1')
+    a.update_attributes(params[:account])
+
+    render :json => {:id => a.id}
   end
   
 end

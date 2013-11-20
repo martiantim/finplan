@@ -1,11 +1,12 @@
 class Plan
-  constructor: (@id, @name, @user) ->
+  constructor: (@id, @name) ->
     @resultsChart = new ResultsChart 'chart', this
     @resultsByYear = new ResultsByYear($('.content[data-name="byyear"]'))
     @resultsGoals = new GoalListResults($('.section[data-name="results"] .goals.list'), this);        
     @simulator = null
     @manipulators = []
     @startAccounts = []
+    @family = new Family()
     @_wire()
     
   reloadData: ->
@@ -13,16 +14,20 @@ class Plan
     $.ajax({
       url: "/plans/#{@id}/reload",
       type: 'GET',      
-      success: (data) ->
-        that.manipulators = []
-        that.startAccounts = []
+      success: (data) =>
+        @manipulators = []
+        @startAccounts = []
+        @family = new Family()
         
         for mjson in data.manipulators
           m = Manipulator.fromJSON(mjson)
-          that.add(m)
+          @add(m)
         for ajson in data.accounts
           acct = Account.fromJSON(ajson)
-          that.addAccount(acct)
+          @addAccount(acct)
+        for fjson in data.family_members
+          u = User.fromJSON(fjson)
+          @addFamilyMember(u)          
     })
     
   _wire: ->
@@ -52,7 +57,7 @@ class Plan
       height: 300,
       width: 500
     })    
-    @simulator = new Simulator(@user, @manipulators, @startAccounts, dialog)
+    @simulator = new Simulator(@family, @manipulators, @startAccounts, dialog)
     @simulator.sim ->
       that.resultsChart.display(that.simulator)
       that.resultsByYear.displayDefault()
@@ -66,6 +71,9 @@ class Plan
 
   addAccount: (acct) ->
     @startAccounts.push acct
+
+  addFamilyMember: (u) ->
+    @family.add(u)
 
   findManipulatorByID: (id) ->
     for m in @manipulators

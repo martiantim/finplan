@@ -13,15 +13,22 @@
   <% end %>
     
   <h4>Variables</h4>
-  <% @template.params.each do |var|  %>
-    <div><%= var%>:<input type="text" name="variables[<%=var%>]" value="<%=@manipulator.param_value(var)%>"></input></div> 
+  <% @template.variable_properties.each do |vprop|  %>  
+    <div><%= vprop.name%>:<input type="text" class="<%= vprop.var_type%>_var" name="variables[<%=vprop.name%>]" value="<%=@manipulator.param_value(vprop.name) || vprop.default%>"></input></div> 
+    
   <% end %>
     
   <div style="float:right">
-    <% if !@manipulator.new_record? %>
+    <% if @manipulator.new_record? %>
+      <%= f.submit "Add" %>
+    <% else %>
       <button class="remove">Remove</button>
-    <% end %>      
-    <%= f.submit (@manipulator.new_record? ? "Add" : "Update") %>
+    <% end %>
   </div>
 <% end %>
 </div>
+
+<%= javascript_tag do %>
+  $('.manipulator .money_var').autoNumeric('init',{aSign:'$', mDec: 0});
+  $('.manipulator .percentage_var').autoNumeric('init',{aSign:'$', mDec: 0});
+<% end %>

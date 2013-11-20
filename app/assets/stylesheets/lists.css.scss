@@ -36,11 +36,13 @@
       .name {      
         font-size: 14pt;
         display:inline-block;
-        width: 155px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        
+        width: 155px;
+        &.noresult {
+          width: 175px;
+        }
       }
       .achieved {
         float: right;
@@ -55,7 +57,10 @@
       }
     }
     .item.unused {
-      color: #bbb;
+      color: #bbb;      
+      .picture {
+        opacity:0.5
+      }
     }
   }
 }

@@ -9,9 +9,11 @@
 
 <div>Image URL: <%= f.text_field :image_url, :size => 30 %></div>
 
-<div>Can formula: <%= f.text_area :can_formula, :size => "60x10" %></div>
+<div>Check formula: <%= f.text_area :can_formula, :size => "60x10" %></div>
 
-<div>Formula: <%= f.text_area :formula, :size => "60x10" %></div>
+<div>Do formula: <%= f.text_area :do_formula, :size => "60x10" %></div>
+
+<div>Exec one: <%= f.text_area :formula, :size => "60x10" %></div>
 
   <%= f.submit "Save" %>
 <% end %>
@@ -19,6 +21,7 @@
 <%= javascript_tag do %>
   $(function() {
     CodeMirror.fromTextArea($('#manipulator_template_formula')[0]);
+    CodeMirror.fromTextArea($('#manipulator_template_do_formula')[0]);
     CodeMirror.fromTextArea($('#manipulator_template_can_formula')[0]);
   });
 <% end %>

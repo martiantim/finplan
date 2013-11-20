@@ -7,13 +7,19 @@ class ExpensesController < ApplicationController
     
     render :layout => false
   end
+
+  def index
+    @plan = Plan.find(params[:plan_id])
+
+    render :partial => 'list', :object => @plan.expenses, :locals => {:unused_list => @plan.unused_expenses}
+  end
   
   def create
     @m = Manipulator.new(params[:manipulator])
     @m.params = params[:variables].to_json
 
     if @m.save
-      redirect_to('/plans/1')
+      render :json => {:id => @m.id}
     else
       render :action => "new"
     end
@@ -46,8 +52,8 @@ class ExpensesController < ApplicationController
     @manipulator.update_attributes(params[:manipulator])
     @manipulator.params = params[:variables].to_json
     @manipulator.save!
-    
-    redirect_to('/plans/1')
+
+    render :json => {:id => @manipulator.id}
   end
   
   def destroy

@@ -26,6 +26,7 @@ class Manipulator < ActiveRecord::Base
   end
   
   def param_value(key)
+    p self.params
     JSON.parse(self.params || "{}")[key]
   end
   

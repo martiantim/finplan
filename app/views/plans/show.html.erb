@@ -1,4 +1,5 @@
 <div id="main_content">
+  <div id="global_status"></div>
   <div id="header">
     <%= render :partial => 'header' %>
   </div>  
@@ -12,11 +13,9 @@
 
 <%= javascript_tag do %>
   $(function() {
-    plan = new Plan(<%= @plan.id%>,'<%=@plan.name%>', User.fromJSON(<%= raw @current_user.safe_json.to_json%>) );
+    plan = new Plan(<%= @plan.id%>,'<%=@plan.name%>');
     plan.reloadData()
-    
-    
-    
+
     //setup lists
     window.navigation = new Navigation('setup','plan_users');
     

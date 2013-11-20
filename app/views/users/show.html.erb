@@ -1,18 +1,30 @@
+<div class="picture" style="float:right;width:250px;">
+
+</div>
+
 <%= form_for(@user, :html => {'data-remote' => "true"}) do |f| %>
   <%= hidden_field_tag :plan_id, @plan.id %>
 
-  <div style="text-align:center;"><%= f.text_field :name%></div>  
+  <div class="line">
+    <label>Name:</label>
+    <%= f.text_field :name%>
+  </div>
 
-  <% if @user.is_adult? %>  
-    Age: <%= f.select "born", options_for_select(User.ages_for_select(18..75), @user.born) %>
-    
-    Profession: <%= f.select :profession_id, options_for_select(Profession.all.collect { |p| [p.name, p.id] }, @user.profession_id) %>
-    
+  <% if @user.is_adult? %>
+    <div class="line">
+      <label>Age:</label>
+      <%= f.select "born", options_for_select(User.ages_for_select(18..75), @user.born) %>
+    </div>
+
+    <div class="line">
+      <label>Profession:</label>
+      <%= f.select :profession_id, options_for_select(Profession.all.collect { |p| [p.name, p.id] }, @user.profession_id) %>
+    </div>
+
     <% salary = @plan.manipulator_for_user_or_create('Salary', @user) %>
     <%= hidden_field_tag "salary_manipulator_id", salary.id %>
     <%= render :partial => '/manipulators/params_form', :locals => {:template => ManipulatorTemplate.find_by_name("Salary"), :manipulator => salary} %>
         
-    Debts:
   <% elsif @user.born? %>
     Age: <%= f.select "born", options_for_select(User.ages_for_select(0..18), @user.born) %>
     Gender: <%= f.select "gender", options_for_select(User::GENDERS, @user.gender) %>
@@ -24,7 +36,11 @@
   <div style="float:right">
     <% if @user != @current_user && !@user.new_record? %>
       <button class="remove">Remove</button>
-    <% end %>      
-    <%= f.submit (@user.new_record? ? "Add" : "Update") %>
+    <% end %>
+    <% if @user.new_record? %>
+      <%= f.submit "Add" %>
+      <%= link_to "cancel", '#', :class => 'cancel' %>
+    <% else %>
+    <% end %>
   </div>
 <% end %>

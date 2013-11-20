@@ -5,8 +5,7 @@
   Expenses
 </h3>
 <ul>        
-<% list.each do |m|  %>
-  <% next if m.manipulator_template.name == 'Salary' %>
+<% list.each do |m|  %>  
   <li class="manipulator item" data-id="<%=m.id%>">          
     <div class="picture">
       <img src="<%= m.manipulator_template.image_url%>">        
@@ -14,8 +13,8 @@
     <div class="name"><%= m.name %></div>                              
   </li>
 <% end %>
-<% unused_list.each do |t| %>
-  <li class="manipulator item disabled" data-id="<%=t.id%>">
+<% unused_list.each do |t| %>  
+  <li class="manipulator item unused" data-id="template:<%=t.id%>">
     <div class="picture">
       <img src="<%= t.image_url%>">        
     </div>      

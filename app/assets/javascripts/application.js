@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require jquery.form
 //= require jquery.jqplot
 //= require jqplot.dateAxisRenderer
 //= require jqplot.canvasTextRenderer

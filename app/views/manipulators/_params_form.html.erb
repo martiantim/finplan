@@ -1,4 +1,15 @@
-<h4>Variables</h4>
-<% template.params.each do |var|  %>
-  <div><%= var%>:<input type="text" name="variables[<%=var%>]" value="<%=manipulator.param_value(var)%>"></input></div> 
+<% template.params.each do |var_name, var_options|  %>
+  <div class="line">
+    <label><%= var_name.gsub('_',' ').split.map(&:capitalize).join(' ') %>:</label>
+    <% if var_options.var_type == 'select' %>
+      <select name="variables[<%=var_name%>]">
+        <% var_options.options.split(',').each do |opt| %>
+          <option value="<%=opt%>" <%= 'selected' if manipulator.param_value(var_name) == opt %>><%= opt%></option>
+        <% end %>
+      </select>
+
+    <% else %>
+      <input type="text" class="<%= var_options.var_type %>" name="variables[<%=var_name%>]" value="<%=manipulator.param_value(var_name)%>"></input>
+    <% end %>
+  </div>
 <% end %>

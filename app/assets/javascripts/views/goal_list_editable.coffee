@@ -1,21 +1,17 @@
 class GoalListEditable extends GoalList
 
-  showGoal: (itemID) ->
-    that = this    
-    @viewer().load "/goals/#{itemID}?plan_id=#{@plan.id}", ->
-      m = that.plan.findManipulatorByID(itemID)
-      if m && m.achievedYear
-        that.viewer().find('.goal_status').html('<span class="ui-icon ui-icon-info"></span> Will achieve in '+m.achievedYear)
-      else if m && m.failMessage
-        that.viewer().find('.goal_status').html('<span class="ui-icon ui-icon-alert"></span> '+m.failMessage)
-    
-      that.viewer().find('button.remove').click ->
-        that.removeGoal itemID
-        false
-      
-      that.viewer().find('form').on 'ajax:success', (event, xhr, status) ->  
-        plan.markDirty(true)
-        that.reload()
+  constructor: (@wrapper, @plan) ->
+    @editable = true
+    super(@wrapper, {
+      controller: 'goals'
+    })
+
+  extraWireItem: (itemID) ->
+    m = @plan.findManipulatorByID(itemID)
+    if m && m.achievedYear
+      @viewer().find('.goal_status').html('<span class="ui-icon ui-icon-info"></span> Will achieve in '+m.achievedYear)
+    else if m && m.failMessage
+      @viewer().find('.goal_status').html('<span class="ui-icon ui-icon-alert"></span> '+m.failMessage)
 
   removeGoal: (itemID) ->
     that = this

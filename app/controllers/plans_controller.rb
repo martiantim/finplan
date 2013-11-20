@@ -10,6 +10,8 @@
 # 
 #
 #TODO:
+# -show proper family members for years
+#
 # -show people with object for their profession
 # -investments
 # -types for template params
@@ -31,7 +33,8 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
     render :json => {
       :manipulators => @plan.priority_sorted_manipulators.collect(&:safe_json),
-      :accounts => @plan.accounts.collect(&:safe_json)
+      :accounts => @plan.accounts.collect(&:safe_json),
+      :family_members => @plan.plan_users.collect(&:user).collect(&:safe_json)        
     }
   end
   

@@ -7,6 +7,16 @@
   height: 0;
 }
 
+#global_status {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  color: white;
+  padding: 2px 7px;
+}
+
 .sections {
   .section {
     width: 275px;

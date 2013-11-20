@@ -1,11 +1,7 @@
 class GoalList extends NiceList
-  constructor: (@wrapper, @plan) ->    
-    that = this
-    super(@wrapper, {
-      click: (itemID) ->
-        that.showGoal itemID       
-    })    
-  
+  constructor: (@el, @options) ->
+    super(@el, @options)
+
   markAllUnknown: ->
     @wrapper.find('ul .item .achieved').html('<img src="'+Icons.GOAL_MAYBE+'">')
   
@@ -14,7 +10,7 @@ class GoalList extends NiceList
     $.ajax({
       url: "/goals",
       type: 'GET',
-      data: {'plan_id': @plan.id},
+      data: {'plan_id': @plan.id, editable: @editable},
       success: (data) ->
         that.wrapper.html data
         that.rewire()

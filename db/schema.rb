@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130831073605) do
+ActiveRecord::Schema.define(:version => 20131117002850) do
 
   create_table "accounts", :force => true do |t|
     t.string  "name",                                           :null => false
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20130831073605) do
     t.string   "can_formula",    :limit => 4096
     t.string   "can_javascript", :limit => 40960
     t.boolean  "per_person",                         :default => false
+    t.string   "do_formula",     :limit => 4096
+    t.text     "do_javascript"
   end
 
   create_table "manipulators", :force => true do |t|
@@ -72,6 +74,14 @@ ActiveRecord::Schema.define(:version => 20130831073605) do
     t.date     "born"
     t.integer  "profession_id"
     t.string   "gender",        :limit => 1, :null => false
+  end
+
+  create_table "variable_properties", :force => true do |t|
+    t.integer "manipulator_template_id",                 :null => false
+    t.string  "name",                                    :null => false
+    t.string  "var_type",                                :null => false
+    t.string  "default",                 :default => "", :null => false
+    t.string  "options"
   end
 
 end

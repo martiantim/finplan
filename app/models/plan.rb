@@ -22,10 +22,18 @@ class Plan < ActiveRecord::Base
     ManipulatorTemplate.all.find_all { |t| !used_template?(t.id) && t.kind == 'goal' }
   end
 
+  def incomes
+    manipulators.find_all { |m| m.manipulator_template.kind == 'income' }
+  end
+  
   def expenses
     manipulators.find_all { |m| m.manipulator_template.kind == 'factor' }
   end
   
+  def unused_expenses
+    ManipulatorTemplate.all.find_all { |t| !used_template?(t.id) && t.kind == 'factor' }
+  end
+
   def manipulator_for_user(template_name, suser)
     manipulators.detect do |m| 
       m.manipulator_template.name == template_name && m.user && m.user.id == suser.id
@@ -43,7 +51,7 @@ class Plan < ActiveRecord::Base
   
   def priority_sorted_manipulators
     manipulators.sort_by do |m|
-      if m.manipulator_template.name == 'Salary'
+      if m.manipulator_template.kind == 'income'
         -1
       elsif m.manipulator_template.kind == 'goal'
         1
