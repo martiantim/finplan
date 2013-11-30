@@ -32,24 +32,7 @@ class ManipulatorsController < ApplicationController
     render :layout => false
   end
   
-  def update
-    @manipulator = Manipulator.find(params[:id])
-    
-    if params[:when_type] == 'asap'
-      params[:manipulator][:start] = nil 
-      params[:manipulator][:end] = nil 
-    else
-      params[:manipulator][:start] = @current_user.born + (params[:when].to_i*366)
-      params[:manipulator][:end] = params[:manipulator][:start]
-    end
-    
-    @manipulator.update_attributes(params[:manipulator])
-    @manipulator.params = params[:variables].to_json
-    @manipulator.save!
 
-    render :json => {:id => @manipulator.id}
-  end
-  
   def destroy
     @manipulator = Manipulator.find(params[:id])        
     @manipulator.destroy    

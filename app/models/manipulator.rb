@@ -2,6 +2,7 @@ class Manipulator < ActiveRecord::Base
   belongs_to :plan
   belongs_to :user
   belongs_to :manipulator_template
+  belongs_to :start_user, :class_name => 'User'
   
   def safe_json
     {
@@ -13,21 +14,25 @@ class Manipulator < ActiveRecord::Base
       :params => self.params,
       :kind => self.manipulator_template.kind,
       :can_formula => self.manipulator_template.can_javascript,
-      :formula => self.manipulator_template.javascript
+      :do_formula => self.manipulator_template.do_javascript,
+      :formula => self.manipulator_template.javascript,
+      :user_id => self.user_id
     }
   end
   
-  def start_user_age(user)
-    if !start
+  def start_user_age
+    if !start || !start_user
       0
     else
-      self.start.year - user.born.year
+      self.start.year - self.start_user.born.year
     end
   end
   
   def param_value(key)
-    p self.params
-    JSON.parse(self.params || "{}")[key]
+    parms = self.params
+    parms = "{}" if parms.blank? || parms == "null"
+
+    JSON.parse(parms)[key] || manipulator_template.default_param_value(key)
   end
   
   def is_goal?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131117002850) do
+ActiveRecord::Schema.define(:version => 20131130064951) do
 
   create_table "accounts", :force => true do |t|
     t.string  "name",                                           :null => false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20131117002850) do
     t.boolean  "per_person",                         :default => false
     t.string   "do_formula",     :limit => 4096
     t.text     "do_javascript"
+    t.integer  "priority",                           :default => 5,        :null => false
   end
 
   create_table "manipulators", :force => true do |t|
@@ -48,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20131117002850) do
     t.datetime "updated_at"
     t.integer  "when"
     t.integer  "user_id"
+    t.string   "start_type"
+    t.integer  "start_user_id"
   end
 
   create_table "plan_users", :force => true do |t|
@@ -67,13 +70,24 @@ ActiveRecord::Schema.define(:version => 20131117002850) do
     t.string "name", :null => false
   end
 
+  create_table "tax_brackets", :force => true do |t|
+    t.integer "tax_rate_schedule_id",                               :null => false
+    t.integer "range_top",                                          :null => false
+    t.decimal "rate",                 :precision => 5, :scale => 2, :null => false
+  end
+
+  create_table "tax_rate_schedules", :force => true do |t|
+    t.string "name", :null => false
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "name",                       :null => false
+    t.string   "name",                                            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "born"
     t.integer  "profession_id"
-    t.string   "gender",        :limit => 1, :null => false
+    t.string   "gender",        :limit => 1,                      :null => false
+    t.string   "species",                    :default => "human", :null => false
   end
 
   create_table "variable_properties", :force => true do |t|

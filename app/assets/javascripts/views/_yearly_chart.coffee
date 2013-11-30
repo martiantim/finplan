@@ -18,9 +18,14 @@ class YearlyChart
         tickOptions:{formatString:'%d', angle: 0},      
         drawMajorGridlines: true
       }
-    
+
+    high = 1000
+    for set in @sets
+      for item in set
+        high = item[1] if item[1] > high
     yAxisOptions = {
-      autoscale: true,      
+      min: 0,
+      max: high*1.1,
       tickOptions: {formatString: "$%'d" }
     }
     

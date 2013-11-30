@@ -16,6 +16,7 @@ class NiceList
     
     @el.find('.item').click (event) =>
       target = $(event.delegateTarget)
+      return false if target.hasClass('selected')
       gid = target.attr('data-id')
       if @options.click
         @options.click(gid)
@@ -23,6 +24,8 @@ class NiceList
         @showItem(gid)
       @el.find('.item').removeClass('selected')
       target.addClass('selected')
+      false
+
     @el.find('a.expander').click (event) =>
       target = $(event.delegateTarget)
       state = $(this).attr('data-expanded')
@@ -46,7 +49,7 @@ class NiceList
         itemID = xhr.id
         @viewer().find('form').attr('action', "/#{@options.controller}/#{itemID}")
         finFormat(@viewer())
-        @plan.markDirty()
+        @plan.markDirty(true)
         @reload()
 
       @viewer().find('form').on 'ajax:error', (event, xhr, status) =>
@@ -94,13 +97,16 @@ class NiceList
     })
 
   reload: ->
+    curSelected = @el.find('li.selected').attr('data-id')
     $.ajax({
       url: "/#{@options.controller}",
       type: 'GET',
-      data: {'plan_id': @plan.id},
+      data: {'plan_id': @plan.id, 'editable': @options.editable},
       success: (data) =>
         @el.html data
         @rewire()
+        if curSelected
+          @el.find("li[data-id=\"#{curSelected}\"]").addClass('selected')
     })
 
 

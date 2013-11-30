@@ -41,22 +41,29 @@ class Simulator
     , 1          
       
   _runYear: (onDone) ->
-    #first income
-    for m in @manipulators
-      if m.kind == 'income'
-        m.exec(@context)
+
     @context.balances.earnFromInvestments()
-    
-    #pay expenses        
     @context.balances.payLoans()
     for m in @manipulators
-      if m.kind == 'factor' || m.kind == 'hidden' #TODO: break out more. taxes, etc
-        m.exec(@context)
-    
-    #goals
-    for m in @manipulators
-      if m.kind == 'goal'
-        m.exec(@context)
+      m.adjustForInflation()
+      m.exec(@context)
+
+    #first income
+#    for m in @manipulators
+#      if m.kind == 'income'
+#        m.exec(@context)
+#
+#
+#    #pay expenses
+#    @context.balances.payLoans()
+#    for m in @manipulators
+#      if m.kind == 'factor' || m.kind == 'hidden' #TODO: break out more. taxes, etc
+#        m.exec(@context)
+#
+#    #goals
+#    for m in @manipulators
+#      if m.kind == 'goal'
+#        m.exec(@context)
     
     @context.balances.rebalance()
     @context.balances.addYear()

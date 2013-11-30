@@ -7,7 +7,7 @@
       <div class="picture">
         <%= image_tag("people/faces/#{pu.family_role}.png") %>
       </div>      
-      <div class="name"><%= pu.user.name %></div>                              
+      <div class="name"><%= pu.user.name %></div>
     </li>
   <% end %>
 
@@ -30,5 +30,11 @@
       <%= image_tag("people/faces/baby.png") %>
     </div>      
     <div class="name">Add Future Child</div>                              
+  </li>
+  <li class="plan_user item unused" data-id="pet">
+    <div class="picture">
+      <%= image_tag("people/faces/cat.png") %>
+    </div>
+    <div class="name">Add Pet</div>
   </li>
 <ul>

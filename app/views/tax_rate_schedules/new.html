@@ -1,0 +1,5 @@
+<%= form_for(@schedule, :html => {}) do |f| %>
+  <div>Name: <%= f.text_field :name, :size => 20 %></div>
+
+  <%= f.submit "Save" %>
+<% end %>

@@ -1,0 +1,20 @@
+Name: <%= @schedule.name %>
+
+<table>
+  <thead><tr>
+    <th>Is Over</th>
+    <th>But not Over</th>
+    <th>Rate</th>
+  </tr></thead>
+  <% last_top = 0 %>
+  <% @schedule.tax_brackets.each do |b| %>
+    <tr>
+      <td><%= last_top%></td>
+      <td><%= b.range_top%></td>
+      <td><%= b.rate%></td>
+      <td><%= link_to "Delete", b, :method => :delete %></td>
+    </tr>
+  <% end %>
+
+</table>
+<%= link_to "Add Bracket", "/tax_brackets/new?schedule_id=#{@schedule.id}" %>

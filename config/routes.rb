@@ -85,6 +85,22 @@ resources :plan_users do
    end
  end
 
+ resources :tax_rate_schedules do
+   member do
+   end
+
+   collection do
+   end
+ end
+
+ resources :tax_brackets do
+   member do
+   end
+
+   collection do
+   end
+ end
+
   # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

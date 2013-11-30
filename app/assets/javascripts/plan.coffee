@@ -18,16 +18,16 @@ class Plan
         @manipulators = []
         @startAccounts = []
         @family = new Family()
-        
+
+        for fjson in data.family_members
+          u = User.fromJSON(fjson)
+          @addFamilyMember(u)
         for mjson in data.manipulators
-          m = Manipulator.fromJSON(mjson)
+          m = Manipulator.fromJSON(mjson, @family)
           @add(m)
         for ajson in data.accounts
           acct = Account.fromJSON(ajson)
           @addAccount(acct)
-        for fjson in data.family_members
-          u = User.fromJSON(fjson)
-          @addFamilyMember(u)          
     })
     
   _wire: ->

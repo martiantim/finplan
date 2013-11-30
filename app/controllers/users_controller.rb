@@ -7,6 +7,12 @@ class UsersController < ApplicationController
     
     render :json => {:id => u.id}
   end
+
+  def index
+    @plan = Plan.find(params[:plan_id])
+
+    render :partial => '/plan_users/list', :object => @plan.plan_users, :locals => {}
+  end
   
   def update
     u = User.find(params[:id])
@@ -28,6 +34,8 @@ class UsersController < ApplicationController
       @user = User.new(:name => "Child", :born => Date.parse("2010-01-01"))
     elsif params[:id] == 'future_child'
       @user = User.new(:name => "Future Child", :born => Date.parse("2015-01-01", :gender => 'U'))
+    elsif params[:id] == 'pet'
+      @user = User.new(:name => "Pet", :born => Date.parse("2013-01-01", :gender => 'P'))
     else
       @user = PlanUser.find(params[:id]).user
     end

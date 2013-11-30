@@ -51,7 +51,10 @@ class Navigation
   currentSection: ->
     sectionName = $('#navigation li a.active').attr('data-section')
     @_sectionOfName(sectionName)
-    
+
+  jumpToSection: (name) ->
+    $("a[data-content=\"#{name}\"]").click()
+
   showDirty: (val) ->
     span = $('#navigation li[data-section="results"] span')
     if val == true

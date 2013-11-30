@@ -21,7 +21,7 @@ class ResultsChart
       }
     
     yAxisOptions = {
-      autoscale: true,      
+      autoscale: true,
       tickOptions: {formatString: "$%'d" }
     }
     

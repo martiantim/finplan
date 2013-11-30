@@ -1,4 +1,4 @@
-class GoalsController < ApplicationController
+class GoalsController < BaseManipulatorController
   
   def index
     plan = Plan.find(params[:plan_id])
@@ -24,20 +24,27 @@ class GoalsController < ApplicationController
       render :action => "new"
     end
   end
-  
-  def show
-    if params[:id] =~ /template:(\d+)/
-      @template = ManipulatorTemplate.find($1)
-      plan = Plan.find(params[:plan_id])
-      @manipulator = Manipulator.new(:manipulator_template => @template, :plan => plan, :name => @template.name)
+
+  def update
+    if params[:when_type] == 'asap'
+      params[:manipulator][:start] = nil
+      params[:manipulator][:end] = nil
+    elsif params[:when_type] == 'age'
+      u = Manipulator.find(params[:id]).plan.plan_users.detect { |pu| pu.user_id == params[:when_person].to_i }.user
+      params[:manipulator][:start_user_id] = u.id
+      params[:manipulator][:start] = u.born + (params[:when_age].to_i*366)
+      params[:manipulator][:end] = params[:manipulator][:start]
+    elsif params[:when_type] == 'year'
+      params[:manipulator][:start] = Date.parse("1/1/#{params[:when_year]}")
+      params[:manipulator][:end] = params[:manipulator][:start]
     else
-      @manipulator = Manipulator.find(params[:id])
-      @template = @manipulator.manipulator_template
+      raise StandardError, "Unknown when type #{params[:when_type]}"
     end
-    
-    render :layout => false
+    params[:manipulator][:start_type] = params[:when_type]
+
+    super
   end
-  
+
   def show_results
     @manipulator = Manipulator.find(params[:id])
     @template = @manipulator.manipulator_template
@@ -45,24 +52,6 @@ class GoalsController < ApplicationController
     render :layout => false
   end
 
-  def update
-    @manipulator = Manipulator.find(params[:id])
-    
-    if params[:when_type] == 'asap'
-      params[:manipulator][:start] = nil 
-      params[:manipulator][:end] = nil 
-    else
-      params[:manipulator][:start] = @current_user.born + (params[:when].to_i*366)
-      params[:manipulator][:end] = params[:manipulator][:start]
-    end
-    
-    @manipulator.update_attributes(params[:manipulator])
-    @manipulator.params = params[:variables].to_json
-    @manipulator.save!
-
-    render :json => {:id => @manipulator.id}
-  end
-  
   def destroy
     @manipulator = Manipulator.find(params[:id])        
     @manipulator.destroy    

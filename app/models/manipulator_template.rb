@@ -5,6 +5,8 @@ class ManipulatorTemplate < ActiveRecord::Base
   validate :validate_coffeescript
   before_save :generate_javascript
   after_save :add_missing_vars
+
+  scope :sorted_by_priority, :order => "priority ASC"
   
   def validate_coffeescript
     begin
@@ -35,6 +37,13 @@ class ManipulatorTemplate < ActiveRecord::Base
       if !variable_properties.detect { |vp| vp.name == v[:name] }
         variable_properties.create!(:name => v[:name], :var_type => 'string')
       end
+    end
+  end
+
+  def default_param_value(key)
+    vp = variable_properties.detect { |vp| vp.name == key }
+    if vp
+      vp.default
     end
   end
   

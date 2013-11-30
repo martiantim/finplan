@@ -6,7 +6,15 @@ class PlanUser < ActiveRecord::Base
   scope :adults, :joins => :user, :conditions => "DATE(NOW()) - DATE(born) > #{365*18}"
   
   def family_role
-    if is_adult?
+    if user.is_pet?
+      if user.species == 'cat'
+        "cat"
+      elsif user.species == 'dog'
+        "dog"
+      else
+        "unsure"
+      end
+    elsif is_adult?
       if user.gender == 'M'
         "man"
       elsif user.gender == 'F'

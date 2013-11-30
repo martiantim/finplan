@@ -35,29 +35,32 @@ class Account
     if iType == 'Money Market'
       avg = 0.037
       stdev = 0.031
+      @stdrnd(avg, stdev)
     else if iType == 'Bonds'
       avg = 0.053
       stdev = 0.057
+      @stdrnd(avg, stdev)
     else if iType == 'Stock'
       avg = 0.104
       stdev = 0.202
+      @stdrnd(avg, stdev)
     else if iType == 'Target Retirement'
-      avg = 0.05
-      stdev = 0.10
-      ret = 0.0
       if opts['age'] < 50
-        ret = 0.08
+        stocks = 0.9
+        bonds = 0.1
       else if opts['age'] < 60
-        ret = 0.06
+        stocks = 0.8
+        bonds = 0.2
       else if opts['age'] < 67
-        ret = 0.04
+        stocks = 0.4
+        bonds = 0.6
       else
-        ret = 0.02
+        stocks = 0.1
+        bonds = 0.9
+
+      stocks * @stdrnd(0.104, 0.202) + bonds * @stdrnd(0.053, 0.057)
     else
       alert("Unknown innvestment type: #{iType}")
-
-    @stdrnd(avg, stdev)
-
 
   rnd_snd: ->
     (Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1)

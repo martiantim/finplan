@@ -1,8 +1,8 @@
 class GoalListResults extends GoalList
 
   constructor: (@wrapper, @plan) ->
-    @editable = false
     super(@wrapper, {
+      editable: false,
       click: (itemID) =>
         @showGoal itemID
     })
@@ -32,8 +32,13 @@ class GoalListResults extends GoalList
     tbody = @viewer().find('#progress_table tbody')
     for d in m.progress
       tr = $('<tr></tr>')
-      tr.append("<td>#{d[0]}</td><td class='money'>#{d[1]['have']}</td><td class='money'>#{d[1]['need']}</td>")
+      tr.append("<td><a href='#' class='jump_to_year' data-year='#{d[0]}'>#{d[0]}</a></td><td class='money'>#{d[1]['have']}</td><td class='money'>#{d[1]['need']}</td>")
       tbody.append(tr)
-    tbody.find('.money').autoNumeric('init',{aSign:'$', mDec: 0});
+
+    that = this
+    tbody.find('.jump_to_year').click ->
+      that.plan.resultsByYear.jumpToYear($(this).attr('data-year'))
+      navigation.jumpToSection('byyear')
+    finFormat(tbody)
   
 window.GoalListResults = GoalListResults

@@ -6,7 +6,7 @@ class DetailsView
     @_wire(el)
   
   getHTML: ->
-    html =  "<div class=\"title\"><h2>Year #{@year}</h2></div>"
+    html = ''
     html += "<div class=\"clearit sections\">"
     html += "  <div class=\"numbers section\">#{@yearChanges()}</div>"       
     html += "  <div class=\"achievements section\">#{@achievements()}</div>"       
@@ -14,19 +14,18 @@ class DetailsView
     html += "</div>"
     html
 
-  personIMG: (name, left, top) ->
-    path = image_path('people/'+name+'.png')
-    "<img src=#{path}/ style=\"left: #{left}px;top: #{top}px;\">"
+  personIMG: (kind, left, top) ->
+    path = image_path('people/'+kind+'.png')
+    "<img src=\"#{path}\" style=\"left: #{left}px;top: #{top}px;\">"
 
   people: ->
     html =  "<div class='people'>"
     pos = 0
-    @simContext.family.membersOfYear(@year, (kind) =>
+    @simContext.family.membersOfYear(@year, (person, kind) =>
       html += "#{@personIMG(kind, pos)}"
+      html += "<div style=\"position:absolute; left: #{pos+35}px;top: 205px;\">#{person.name}</div>"
       pos += 100
     )
-    #html += "#{@personIMG('woman', 100)}"
-    #html += "#{@personIMG('cat', 70, 140)}"
     html += "</div>"
     html
   

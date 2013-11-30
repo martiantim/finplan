@@ -1,0 +1,5 @@
+<% @schedules.each do |s| %>
+  <%= link_to s.name, "/tax_rate_schedules/#{s.id}" %>
+<% end %>
+
+<%= link_to "New Schedule", '/tax_rate_schedules/new' %>

@@ -9,7 +9,6 @@ class Balances
     }
     for acct in @startAccounts      
       name = acct.type.toLowerCase()
-      console.log("found #{name}")
       if @accounts[name]
         @accounts[name].setBalance(acct.balance)
         @accounts[name].investmentType = acct.investmentType
@@ -19,7 +18,9 @@ class Balances
     @logs = {}    
     @snapshots = {}
     @year_incomes = {}
+    @year_incomes_byuser = {}
     @year_spends = {}
+    @year_deductions = {}
     @year_spends_notax = {}
 
   getAccount: (name) ->
@@ -63,6 +64,15 @@ class Balances
   getCurrentYearIncome: ->
     @year_incomes[@_currentYear()] || 0
 
+  getCurrentYearPersonIncome: (u) ->
+    if @year_incomes_byuser[u.id]
+      @year_incomes_byuser[u.id][@_currentYear()] || 0
+    else
+      0
+
+  getCurrentYearDeductions: ->
+    @year_deductions[@_currentYear()] || 0
+
   getAllIncomes: ->
     arr = []
     for k,v of @year_incomes
@@ -75,23 +85,27 @@ class Balances
   hasSavings: (amount) ->
     @getSavings() >= amount
   
-  addRetirement: (amount, kind, desc) ->
+  addRetirement: (amount, account, desc) ->
     if isNaN(amount)
       alert "Invalid retirement '#{amount}' for #{kind}"
-    @accounts['retirement'].deposit(amount)    
-    @curLog().log(kind, desc, amount)    
+    @accounts[account].deposit(amount)
+    @curLog().log('Saving', desc, amount)
   
-  addCash: (amount, kind, desc) ->
+  addCash: (amount, user, kind, desc) ->
     if isNaN(amount)
       alert "Invalid earning '#{amount}' for #{kind}"
     @year_incomes[@_currentYear()] = 0 if !@year_incomes[@_currentYear()]
     @year_incomes[@_currentYear()] += amount
+    if user
+      @year_incomes_byuser[user.id] = {} if !@year_incomes_byuser[user.id]
+      @year_incomes_byuser[user.id][@_currentYear()] = 0 if !@year_incomes_byuser[user.id][@_currentYear()]
+      @year_incomes_byuser[user.id][@_currentYear()] += amount
     
     @accounts['checking'].deposit(amount)    
     @curLog().log(kind, desc, amount)    
     @recalc()
   
-  spendCash: (amount, kind, description) ->    
+  spendCash: (amount, kind, description, opts = {}) ->
     if isNaN(amount)
       alert "Invalid spending '#{amount}' for #{kind}:#{description}"
     @year_spends[@_currentYear()] = 0 if !@year_spends[@_currentYear()]
@@ -99,7 +113,11 @@ class Balances
     
     @year_spends_notax[@_currentYear()] = 0 if !@year_spends_notax[@_currentYear()]
     @year_spends_notax[@_currentYear()] += amount if kind != 'Capital' && kind != 'Taxes'
-    
+
+    if opts && opts['deductable']
+      @year_deductions[@_currentYear()] = 0 if !@year_deductions[@_currentYear()]
+      @year_deductions[@_currentYear()] += amount
+
     if @accounts['checking'].balance + @accounts['savings'].balance < amount      
       @takeOutLoan(amount, description)
     else    
@@ -116,7 +134,7 @@ class Balances
   
   takeOutLoan: (amnt, whatfor, term = 10) ->
     name = "#{whatfor} #{@_currentYear()}"
-    @accounts[name] = new Loan(amnt, 0.04213, @_currentYear(), term)
+    @accounts[name] = new Loan(amnt, 0.04213, @_currentYear(), term, whatfor == 'House Mortgage')
   
   earnFromInvestments: ->
     for name, acct of @accounts

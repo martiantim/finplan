@@ -1,6 +1,5 @@
 class Loan extends Account
-  constructor: (amount, @rate, @startYear, @termYears) ->
-    console.log "new loan for #{@termYears}"
+  constructor: (amount, @rate, @startYear, @termYears, @deductable) ->
     @loanAmount = amount
     super('loan', -1 * amount)
     
@@ -24,10 +23,16 @@ class Loan extends Account
   
   pay: (balances) ->
     monthOfPayment = 1 + (balances._currentYear() - @startYear)*12
-    #console.log("Year #{balances._currentYear()} Mortgage payment #{@_monthlyPayment()} principal #{@_principalPayment(monthOfPayment)}")
     if @balance < 0
-      balances.spendCash(@_yearPayment(), 'Living', 'Loan Payment')
+      yearCost = @_yearPayment()
+      interest = yearCost
       for month in [monthOfPayment..(monthOfPayment)+11]
         @deposit(@_principalPayment(month))
+        interest -= @_principalPayment(month)
+      balances.spendCash(interest, 'Living', 'Loan Payment Interest', {deductable: @deductable})
+      balances.spendCash(yearCost - interest, 'Living', 'Loan Payment Principal')
+
+  calculateInvestmentReturns: (opts) ->
+    #do nothing
     
 window.Loan = Loan

@@ -19,7 +19,7 @@ class ManipulatorTemplatesController < ApplicationController
   end
   
   def index
-    @templates = ManipulatorTemplate.all
+    @templates = ManipulatorTemplate.sorted_by_priority.all
   end
   
   def update

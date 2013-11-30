@@ -7,15 +7,15 @@
 # -people in js better
 # -put coffee files in directories
 # -existing savings
-# 
+# -show proper family members for years
+# -types for template params
+# -rework of UI
+#
 #
 #TODO:
-# -show proper family members for years
 #
 # -show people with object for their profession
 # -investments
-# -types for template params
-# -rework of UI
 # -existing debts
 # 
 # -more coffee in classes

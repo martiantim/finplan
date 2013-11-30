@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :born, :profession_id, :gender
+  attr_accessible :name, :born, :profession_id, :gender, :species
   
   belongs_to :profession
   has_many :plans
@@ -8,14 +8,22 @@ class User < ActiveRecord::Base
   GENDERS = [
     ["?", 'U'],
     ["Male", 'M'],
-    ["Female", 'F']    
+    ["Female", 'F'],
+    ["Pet", 'P']
+  ]
+
+  PETS = [
+    "Cat",
+    "Dog"
   ]
   
   def safe_json
     {
+      :id => self.id,
       :name => self.name,
       :born => self.born,
-      :gender => self.gender
+      :gender => self.gender,
+      :species => self.species
     }
   end
   
@@ -25,6 +33,10 @@ class User < ActiveRecord::Base
   
   def is_adult?
     age > 18
+  end
+
+  def is_pet?
+    self.gender == 'P'
   end
   
   def born?

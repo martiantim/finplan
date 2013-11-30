@@ -1,12 +1,21 @@
-
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Type</td>
+      <td>Priority</td>
+      <td></td>
+    </tr>
+  </thead>
 <% @templates.each do |t| %>
-  <div>
-    <%= link_to t.name, "/manipulator_templates/#{t.id}" %>
-    <%= link_to 'vars', "/variable_properties?template_id=#{t.id}" %>
-    <%= t.kind %>
-  </div>
+  <tr>
+    <td><%= link_to t.name, "/manipulator_templates/#{t.id}" %></td>
+    <td><%= t.kind %></td>
+    <td><%= t.priority %></td>
+    <td><%= link_to 'vars', "/variable_properties?template_id=#{t.id}" %></td>
+  </tr>
 <% end %>
-
+</table>
 <br/>
 <br/>
 <%= link_to "New Template", '/manipulator_templates/new' %>

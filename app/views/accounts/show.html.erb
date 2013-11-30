@@ -30,10 +30,7 @@
   <% end %>
   
   <div class="line">
-    <% if @account.new_record? %>
-      <%= f.submit "Add" %>
-      <%= link_to "Cancel", "#", :class => 'cancel' %>
-    <% else %>
+    <% if !@account.new_record? %>
       <button class="remove">Remove</button>
     <% end %>      
 

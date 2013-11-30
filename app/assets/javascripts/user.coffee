@@ -1,17 +1,17 @@
 class User
-  constructor: (@name, @born, @gender) ->    
+  constructor: (@id, @name, @born, @gender, @species) ->
     @bornYear = new Date(@born).getYear() + 1900
     if @gender == 'M'
       @projectedDeathYear = @bornYear + 76
     else if @gender == 'F'
       @projectedDeathYear = @bornYear + 81
+    else if @gender == 'P'
+      @projectedDeathYear = @bornYear + 18
     else
       @projectedDeathYear = @bornYear + 79
-      
-    console.log("#{@name} will live #{@bornYear} to #{@projectedDeathYear}")
-    
+
   @fromJSON: (json) ->
-    new User(json.name, json.born, json.gender);    
+    new User(json.id, json.name, json.born, json.gender, json.species)
   
   isAliveInYear: (year) ->
     year >= @bornYear && year < @projectedDeathYear
@@ -21,7 +21,9 @@ class User
 
   descriptor: (year) ->
     age = year - @bornYear
-    if age >= 18
+    if @gender == 'P'
+      @species
+    else if age >= 18
       if @gender == 'F'
         'woman'
       else

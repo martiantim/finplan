@@ -10,7 +10,16 @@
     <%= f.text_field :name%>
   </div>
 
-  <% if @user.is_adult? %>
+  <% if @user.is_pet? %>
+    <div class="line">
+      <label>Species:</label>
+      <%= f.select "species", options_for_select(User::PETS.collect { |a| [a,a.downcase]}, @user.species) %>
+    </div>
+    <div class="line">
+      <label>Age:</label>
+      <%= f.select "born", options_for_select(User.ages_for_select(0..25), @user.born) %>
+    </div>
+  <% elsif @user.is_adult? %>
     <div class="line">
       <label>Age:</label>
       <%= f.select "born", options_for_select(User.ages_for_select(18..75), @user.born) %>
