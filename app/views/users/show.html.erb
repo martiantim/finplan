@@ -19,6 +19,7 @@
       <label>Age:</label>
       <%= f.select "born", options_for_select(User.ages_for_select(0..25), @user.born) %>
     </div>
+    <%= f.hidden_field :gender %>
   <% elsif @user.is_adult? %>
     <div class="line">
       <label>Age:</label>
@@ -45,11 +46,6 @@
   <div style="float:right">
     <% if @user != @current_user && !@user.new_record? %>
       <button class="remove">Remove</button>
-    <% end %>
-    <% if @user.new_record? %>
-      <%= f.submit "Add" %>
-      <%= link_to "cancel", '#', :class => 'cancel' %>
-    <% else %>
     <% end %>
   </div>
 <% end %>

@@ -91,6 +91,9 @@
       color: #666;
       .name {
         margin-left: 10px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow:hidden;
       }
     }
   }

@@ -37,7 +37,8 @@ class Account < ActiveRecord::Base
       :id => self.id,
       :name => self.name,
       :balance => self.balance,
-      :investment_type => self.investment_type
+      :investment_type => self.investment_type,
+      :interest_rate => self.interest_rate
     }
   end
   

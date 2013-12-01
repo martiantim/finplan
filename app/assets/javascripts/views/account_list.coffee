@@ -4,19 +4,6 @@ class AccountList extends NiceList
       controller: 'accounts'
     })    
 
-  reload: ->    
-    that = this
-    $.ajax({
-      url: "/accounts",
-      type: 'GET',
-      data: {'plan_id': @plan.id},
-      success: (data) ->
-        that.wrapper.html data
-        that.rewire()
-    })
-
-
-
   removeItem: (itemID) ->
     that = this
     $.ajax({

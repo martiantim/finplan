@@ -22,7 +22,7 @@ class Loan extends Account
     A * Math.pow(1+i, month-1) - P0 * i * Math.pow(1+i, month-1)
   
   pay: (balances) ->
-    monthOfPayment = 1 + (balances._currentYear() - @startYear)*12
+    monthOfPayment = 1 + (balances._currentYear() - @startYear - 1)*12
     if @balance < 0
       yearCost = @_yearPayment()
       interest = yearCost
@@ -34,5 +34,8 @@ class Loan extends Account
 
   calculateInvestmentReturns: (opts) ->
     #do nothing
-    
+
+  duplicate: ->
+    new Loan(@loanAmount, @rate, @startYear, @termYears, @deductable)
+
 window.Loan = Loan

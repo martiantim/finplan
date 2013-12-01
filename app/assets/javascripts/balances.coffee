@@ -12,10 +12,12 @@ class Balances
       if @accounts[name]
         @accounts[name].setBalance(acct.balance)
         @accounts[name].investmentType = acct.investmentType
+      else if name == 'loan'
+        @accounts['loan'] = acct.duplicate()
       else
         console.log "Can't find account of type #{name}"
-        
-    @logs = {}    
+
+    @logs = {}
     @snapshots = {}
     @year_incomes = {}
     @year_incomes_byuser = {}
@@ -136,22 +138,21 @@ class Balances
     name = "#{whatfor} #{@_currentYear()}"
     @accounts[name] = new Loan(amnt, 0.04213, @_currentYear(), term, whatfor == 'House Mortgage')
   
-  earnFromInvestments: ->
+  earnFromInvestments: (age) ->
     for name, acct of @accounts
-      earnings = acct.calculateInvestmentReturns(@opts)
+      earnings = acct.calculateInvestmentReturns({'age': age})
       if earnings > 0
         @curLog().log('Investment Income', "#{acct.type} Investment Return", earnings)
   
   addYear: ->              
     @curLog().log('Savings', 'Left Over', @year_incomes[@_currentYear()] - @year_spends[@_currentYear()])
     @snapshots[@_currentYear()] = new BalanceSnapshot(@_currentYear(), this)
-    @opts['age']++
     @opts['year']++
   
   payLoans: ->
     that = this
     for name, a of @accounts
-      if a.type == 'loan'        
+      if a.type == 'loan'
         a.pay(that)
         
       

@@ -28,6 +28,7 @@ class Manipulator
   reset: (sim) ->
     @curSim = sim
     @achieved = false
+    @needAnother = false
     @achievedYear = null
     @enabled = true
     @failMessage = null
@@ -48,8 +49,8 @@ class Manipulator
     @achievedYear = year
     @achieved = true
 
-  setGoalNotAchieved: ->
-    @achieved = false
+  setGoalNeedAnother: ->
+    @needAnother = true
 
   setGoalFailureMessage: (msg) ->
     @failMessage = msg
@@ -68,12 +69,11 @@ class Manipulator
 
   exec: (context) ->
     if @kind == 'goal'
-      if !@goalAchieved()
+      if !@goalAchieved() || @needAnother
         if @inRange(context.simYear)
           if @checkStatus(context)
             @setGoalAchieved(context.simYear)
             @doIt(context)
-
         else
           @checkStatus(context) #to get progress stats
 

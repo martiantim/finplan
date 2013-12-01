@@ -10,17 +10,18 @@
 # -show proper family members for years
 # -types for template params
 # -rework of UI
+# -investments
+# -more coffee in classes
+# -tables for taxes etc
 #
 #
 #TODO:
 #
-# -show people with object for their profession
-# -investments
 # -existing debts
-# 
-# -more coffee in classes
 # -still in school
-# -tables for taxes etc
+# -cool range changing https://groups.google.com/forum/#!topic/jqplot-users/o8haUFPWhds
+# -show people with object for their profession
+#
 #
 
 class PlansController < ApplicationController

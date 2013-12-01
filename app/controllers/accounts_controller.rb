@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
   end
   
   def create
-    acct = Account.create(params[:account])    
+    acct = Account.create!(params[:account])
     
     render :json => {:id => acct.id}
   end

@@ -48,6 +48,8 @@ class NiceList
         finHideStatus()
         itemID = xhr.id
         @viewer().find('form').attr('action', "/#{@options.controller}/#{itemID}")
+        if @viewer().find('form input[name="_method"]').length == 0
+          @viewer().find('form').append('<input type="hidden" name="_method" value="put"></input>')
         finFormat(@viewer())
         @plan.markDirty(true)
         @reload()
@@ -86,7 +88,7 @@ class NiceList
     $.ajax({
       url: "/#{@options.controller}/#{itemID}",
       type: 'POST',
-      data: {'_method': 'delete'},
+      data: {'_method': 'delete', 'plan_id': @plan.id},
       success: (data) =>
         @viewer().html('')
         @plan.markDirty(true)

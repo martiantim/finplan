@@ -25,7 +25,7 @@ class Account
     
   calculateInvestmentReturns: (opts) ->
     rate = @returnRate(@investmentType, opts)
-        
+
     @earnings = @balance * rate
     @balance += @earnings
     @earnings
@@ -70,7 +70,10 @@ class Account
 
 
   @fromJSON: (json) ->
-    new Account(json.name, json.balance, json.investment_type)    
+    if json.interest_rate
+      new Loan(json.balance, json.interest_rate/100.0, 2013, 30, false)
+    else
+      new Account(json.name, json.balance, json.investment_type)
 
 
 window.Account = Account
