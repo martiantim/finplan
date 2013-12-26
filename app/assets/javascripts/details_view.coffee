@@ -3,6 +3,7 @@ class DetailsView
   
   render: (el)->
     el.html @getHTML()
+    @_setup(el)
     @_wire(el)
   
   getHTML: ->
@@ -22,8 +23,10 @@ class DetailsView
     html =  "<div class='people'>"
     pos = 0
     @simContext.family.membersOfYear(@year, (person, kind) =>
-      html += "#{@personIMG(kind, pos)}"
-      html += "<div style=\"position:absolute; left: #{pos+35}px;top: 205px;\">#{person.name}</div>"
+      html += "<div class=\"person_wrapper\" style=\"position: absolute;left: #{pos}px;top: 0px\">"
+      html += "  <div class=\"person_drawing\" data-id=\"#{person.id}\"></div>"
+      html += '</div>'
+      html += "<div style=\"position:relative; left: #{pos+35}px;top: 255px;\">#{person.name}</div>"
       pos += 100
     )
     html += "</div>"
@@ -31,34 +34,50 @@ class DetailsView
   
   achievements: ->
     log = @simContext.balances.logForYear(@year)
-    html = @kindChanges(log, 'Capital')
-    html += @showBalances(@simContext.balances.snapshotForYear(@year))
+    html = ""
+    html += @showBalances(@simContext.balances.snapshotForYear(@year), log)
     html
 
-  showBalances: (snap) ->
+  showBalances: (snap, log) ->
     html = ""
     for name, amnt of snap.accountBalances
-      html += @showBalance(name, amnt)    
+      html += @showBalance(name, amnt, log)
     html
   
-  showBalance: (name, amount) ->
-    "<div class='entry title'><div class='name'>#{name}</div><div class='amount'>#{FUtils.formatMoney(amount)}</div></div>"            
+  showBalance: (name, amount, log) ->
+    html = "<div class='entry title'><div class='name'>[<a href='#' class='expander' style='width:15px;display:inline-block;text-align:center;' data-kind='account:#{name}'>+</a>] #{name}</div><div class='amount'>#{FUtils.formatMoney(amount)}</div></div>"
+    html += "<div class='kind_details' data-kind=\"account:#{name}\" style='display:none'>"
+    log.each_entry_of_kind "account:#{name}", (entry) ->
+      html += "<div class='entry detail'><div class='name'>#{entry.description}</div><div class='amount'>#{FUtils.formatMoney(entry.amount)}</div></div>"
+    html += "</div>"
+    html
 
   yearChanges: ->
     log = @simContext.balances.logForYear(@year)
     html = @kindChanges(log, 'Income')
     html += @kindChanges(log, 'Taxes')
     html += @kindChanges(log, 'Living')
+    html += @kindChanges(log, 'Capital', 'Goal Spending')
     html += @kindChanges(log, 'Savings')
     html
   
-  kindChanges: (log, kind) ->    
-    html = "<div class='entry title'><div class='name'>[<a href='#' class='expander' style='width:15px;display:inline-block;text-align:center;' data-kind='#{kind}'>+</a>] #{kind}</div><div class='amount'>#{FUtils.formatMoney(log.sumOfKind(kind))}</div></div>"
+  kindChanges: (log, kind, title) ->
+    title = kind if !title
+
+    html = "<div class='entry title'><div class='name'>[<a href='#' class='expander' style='width:15px;display:inline-block;text-align:center;' data-kind='#{kind}'>+</a>] #{title}</div><div class='amount'>#{FUtils.formatMoney(log.sumOfKind(kind))}</div></div>"
     html += "<div class='kind_details' data-kind=\"#{kind}\" style='display:none'>"
     log.each_entry_of_kind kind, (entry) ->
       html += "<div class='entry detail'><div class='name'>#{entry.description}</div><div class='amount'>#{FUtils.formatMoney(entry.amount)}</div></div>"
     html += "</div>"
     html
+
+  _setup: (el) ->
+    @simContext.family.membersOfYear(@year, (person, kind) =>
+      drawEl = el.find(".person_drawing[data-id=\"#{person.id}\"]")
+      draw = new PersonDrawing(drawEl, kind)
+      if @simContext.familyStatus[@year][person.id]['working'] == true
+        draw.setProfession(person.profession)
+    )
 
   _wire: (el) ->
     el.find('.expander').click ->

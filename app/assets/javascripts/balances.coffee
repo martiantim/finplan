@@ -91,7 +91,8 @@ class Balances
     if isNaN(amount)
       alert "Invalid retirement '#{amount}' for #{kind}"
     @accounts[account].deposit(amount)
-    @curLog().log('Saving', desc, amount)
+    @curLog().log('Savings', desc, amount)
+    @curLog().log("account:#{account}", "Savings", amount)
   
   addCash: (amount, user, kind, desc) ->
     if isNaN(amount)
@@ -129,7 +130,7 @@ class Balances
     @recalc()
   
   rebalance: ->
-    @accounts['checking'].rebalance(@accounts['savings'])    
+    @accounts['checking'].rebalance(@accounts['savings'], @curLog())
   
   currentYear: ->
     @opts['year']
@@ -141,8 +142,8 @@ class Balances
   earnFromInvestments: (age) ->
     for name, acct of @accounts
       earnings = acct.calculateInvestmentReturns({'age': age})
-      if earnings > 0
-        @curLog().log('Investment Income', "#{acct.type} Investment Return", earnings)
+      if earnings != 0
+        @curLog().log("account:#{name}", "Investment Return", earnings)
   
   addYear: ->              
     @curLog().log('Savings', 'Left Over', @year_incomes[@_currentYear()] - @year_spends[@_currentYear()])
@@ -154,9 +155,7 @@ class Balances
     for name, a of @accounts
       if a.type == 'loan'
         a.pay(that)
-        
-      
-    
+
   recalc: ->
     
   highestTotal: ->

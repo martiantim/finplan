@@ -13,7 +13,12 @@ class Simulator
     for m in @manipulators
       if m.template_name == name        
         m.setDisabled()
-    
+
+  enable: (name) ->
+    for m in @manipulators
+      if m.template_name == name
+        m.setEnabled()
+
   sim: (onDone) ->    
     that = this
 
@@ -79,7 +84,7 @@ class Simulator
     @dialog.find('#simulate_year_progress').progressbar("option", "value", @context.simYear - @startYear+1)
     @dialog.find('#current_simulate_year').html(@context.simYear)
     
-    @context.simYear++
+    @context.nextSimYear(@manipulators)
     @_markGoalProgress()
     if @context.simYear <= @endYear
       setTimeout =>

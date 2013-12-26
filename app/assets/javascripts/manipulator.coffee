@@ -25,6 +25,9 @@ class Manipulator
   setDisabled: ->
     @enabled = false
 
+  setEnabled: ->
+    @enabled = true
+
   reset: (sim) ->
     @curSim = sim
     @achieved = false
@@ -66,6 +69,9 @@ class Manipulator
 
   disable: (name) ->
     @curSim.disable(name)
+
+  enable: (name) ->
+    @curSim.enable(name)
 
   exec: (context) ->
     if @kind == 'goal'

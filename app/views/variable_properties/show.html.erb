@@ -1,0 +1,13 @@
+<%= form_for(@vprop, :html => {}) do |f| %>
+  <%= errors_for(@vprop, "Opps, unable to save template").html_safe %>
+
+<div>Name: <%= @vprop.name%></div>
+
+<div>Type: <%= f.select "var_type", options_for_select(VariableProperty::VAR_TYPES, @vprop.var_type) %>
+
+<div>Default: <%= f.text_field :default %></div>
+
+<div>Options: <%= f.text_field :options %></div>
+
+  <%= f.submit "Save" %>
+<% end %>

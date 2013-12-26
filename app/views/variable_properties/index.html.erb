@@ -1,0 +1,8 @@
+<%= link_to "Back to Templates", "/manipulator_templates" %><br/>
+
+<% @vars.each do |v| %>
+  <div>
+    <%= link_to v.name, "/variable_properties/#{v.id}" %>
+  </div>
+<% end %>
+

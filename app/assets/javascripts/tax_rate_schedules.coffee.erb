@@ -1,0 +1,9 @@
+window.taxSchedules = []
+
+<% TaxRateSchedule.all.each do |ts| %>
+trs = new TaxRateSchedule(<%= ts.name.to_json%>)
+<% ts.tax_brackets.each do |bracket| %>
+trs.addBracket(<%= bracket.range_top %>, <%= bracket.rate%>)
+<% end %>
+window.taxSchedules.push(trs)
+<% end %>

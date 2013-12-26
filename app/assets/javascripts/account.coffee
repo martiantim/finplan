@@ -1,7 +1,7 @@
 class Account
   constructor: (@type, @balance, @investmentType) ->
     @investmentType = 'Money Market' if !@investmentType
-  
+
   setBalance: (bal) ->
     @balance = bal
   
@@ -59,6 +59,8 @@ class Account
         bonds = 0.9
 
       stocks * @stdrnd(0.104, 0.202) + bonds * @stdrnd(0.053, 0.057)
+    else if iType == 'None'
+      0.0
     else
       alert("Unknown innvestment type: #{iType}")
 
@@ -73,7 +75,7 @@ class Account
     if json.interest_rate
       new Loan(json.balance, json.interest_rate/100.0, 2013, 30, false)
     else
-      new Account(json.name, json.balance, json.investment_type)
+      new Account(json.name, json.balance, json.investment_type || 'None')
 
 
 window.Account = Account
