@@ -1,10 +1,17 @@
 class PersonDrawing
-  constructor: (@el, @role) ->
+  constructor: (@el, @role, @name) ->
     @accessories = {}
     if @role
+      body = $('<div class="body"></div>')
       path = image_path('people/'+@role+'.png')
-      @el.append($("<img src=\"#{path}\">"))
-      @el.append($('<div class="accessories"></div>'))
+      body.append($("<img src=\"#{path}\">"))
+      body.append($('<div class="accessories"></div>'))
+
+      details = $('<div class="details"></div>')
+      details.append("<div class=\"name\">#{@name}</div>")
+      details.append("<div class=\"age\"></div>")
+
+      @el.append(body).append(details)
 
     @draw()
 
@@ -21,13 +28,15 @@ class PersonDrawing
 
     @draw()
 
+  setAge: (age) ->
+    @el.find('.details .age').html("(#{age} years old)")
+
   draw: ->
     @el.find('.accessories').html('')
-    console.log(@accessories)
     if @accessories['hand']
-      @el.find('.accessories').append('<img src="/assets/people/accessories/hand_'+@accessories['hand']+'.png" style="position:absolute;left:0px;top:375px"></img>')
+      @el.find('.accessories').append('<img class="hand" src="/assets/people/accessories/hand_'+@accessories['hand']+'.png"></img>')
     if @accessories['hat']
-      @el.find('.accessories').append('<img src="/assets/people/accessories/hat_'+@accessories['hat']+'.png" style="position:absolute;left:0px;top:0px"></img>')
+      @el.find('.accessories').append('<img class="hat" src="/assets/people/accessories/hat_'+@accessories['hat']+'.png"></img>')
 
 
 window.PersonDrawing = PersonDrawing

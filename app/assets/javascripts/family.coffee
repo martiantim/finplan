@@ -29,6 +29,16 @@ class Family
       if u.isAliveInYear(year)
         func(u, u.descriptor(year))
 
+  oldestMember: (year) ->
+    oldest = null
+    oldestAge = 0
+    for u in @members
+      if u.ageInYear(year) > oldestAge
+        oldestAge = u.ageInYear(year)
+        oldest = u
+
+    oldest
+
   #year last adult member dies
   endYear: ->
     end = 2030

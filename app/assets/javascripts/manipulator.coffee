@@ -67,6 +67,9 @@ class Manipulator
 
     true
 
+  findManipulatorByName: (name) ->
+    @curSim.findManipulatorByName(name)
+
   disable: (name) ->
     @curSim.disable(name)
 

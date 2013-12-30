@@ -8,16 +8,28 @@ class Simulator
       max: @endYear - @startYear + 1
     })
     @_markGoalProgress()    
-    
-  disable: (name) ->    
-    for m in @manipulators
-      if m.template_name == name        
-        m.setDisabled()
 
-  enable: (name) ->
+  findManipulatorByName: (name) ->
     for m in @manipulators
       if m.template_name == name
-        m.setEnabled()
+        return m
+
+  findAllManipulatorsByName: (name) ->
+    arr = []
+    for m in @manipulators
+      if m.template_name == name
+        arr.push(m)
+    arr
+
+  disable: (name) ->
+    ms = @findAllManipulatorsByName(name)
+    for m in ms
+      m.setDisabled()
+
+  enable: (name) ->
+    ms = @findAllManipulatorsByName(name)
+    for m in ms
+      m.setEnabled()
 
   sim: (onDone) ->    
     that = this

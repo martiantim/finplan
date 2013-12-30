@@ -21,8 +21,8 @@ class SimContext
       @familyStatus[@simYear][person.id] = {'working': false}
 
       for m in manipulators
-        if m.template_name == 'Salary' && m.user.id == person.id && m.enabled
-          @familyStatus[@simYear][person.id] = {'working': true}
+        if m.template_name == 'Salary' && m.user.id == person.id
+          @familyStatus[@simYear][person.id]['working'] = m.enabled
     )
     @simYear++
 

@@ -26,6 +26,6 @@ class ResultsByYear
     @el.find('#year_slider').slider('value', @curYear)
 
   showYear: (year) ->
-    new DetailsView(year, plan.lastSimulator().context).render(@el.find('#byyear_data'))
+    new ResultsByyearYear(year, plan.lastSimulator().context).render(@el.find('#byyear_data'))
 
 window.ResultsByYear = ResultsByYear

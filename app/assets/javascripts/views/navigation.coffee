@@ -20,7 +20,7 @@ class Navigation
         section.find('#subnav a:first').click()
         
       if name == 'results'
-        plan.onDisplay()
+        plan.onResultsClick()
         
       false
 

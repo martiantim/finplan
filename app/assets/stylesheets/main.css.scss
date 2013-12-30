@@ -17,24 +17,6 @@
   padding: 2px 7px;
 }
 
-.sections {
-  .section {
-    width: 275px;
-    float: left;
-    padding: 5px;    
-    height: 400px;
-    margin: 10px 5px;
-    h3 {
-      text-align: center;
-      text-decoration: underline;
-      margin: 5px;
-    }
-  }
-  .section:not(:last-child) {
-    border-right: 1px solid #000;    
-  }
-}
-
 
 #chart {
   width: 1000px;
@@ -64,13 +46,9 @@
 }
 
 #byyear_data {
-  .section {    
+  .col {
     .people {
-      position: relative;            
-      img {
-        position: absolute;
-        width: 100px;
-      }
+      position: relative;
     }
   }  
   .numbers,.achievements {

@@ -33,12 +33,12 @@ class Account
   #rates from http://www.bogleheads.org/wiki/Historical_and_expected_returns
   returnRate: (iType, opts) ->
     if iType == 'Money Market'
-      avg = 0.037
-      stdev = 0.031
+      avg = 0.015
+      stdev = 0.005
       @stdrnd(avg, stdev)
     else if iType == 'Bonds'
-      avg = 0.053
-      stdev = 0.057
+      avg = 0.04
+      stdev = 0.005
       @stdrnd(avg, stdev)
     else if iType == 'Stock'
       avg = 0.104
@@ -58,7 +58,7 @@ class Account
         stocks = 0.1
         bonds = 0.9
 
-      stocks * @stdrnd(0.104, 0.202) + bonds * @stdrnd(0.053, 0.057)
+      stocks * @stdrnd(0.104, 0.202) + bonds * @stdrnd(0.04, 0.01)
     else if iType == 'None'
       0.0
     else
@@ -70,6 +70,8 @@ class Account
   stdrnd: (mean, stdev) ->
     @rnd_snd()*stdev+mean
 
+  is_retirement: ->
+    false
 
   @fromJSON: (json) ->
     if json.interest_rate

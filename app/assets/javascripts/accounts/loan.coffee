@@ -1,7 +1,7 @@
 class Loan extends Account
   constructor: (amount, @rate, @startYear, @termYears, @deductable) ->
     @loanAmount = amount
-    super('loan', -1 * amount)
+    super('loan', -1 * amount, 'None')
     
   _monthlyPayment: ->
     r = @rate / 12
@@ -31,6 +31,7 @@ class Loan extends Account
         interest -= @_principalPayment(month)
       balances.spendCash(interest, 'Living', 'Loan Payment Interest', {deductable: @deductable})
       balances.spendCash(yearCost - interest, 'Living', 'Loan Payment Principal')
+      return yearCost
 
   calculateInvestmentReturns: (opts) ->
     #do nothing

@@ -5,7 +5,9 @@ class Balances
       emergency: new Account('emergency',0),
       savings: new Account('savings', 0),
       retirement: new Account('retirement', 0),
-      '401k': new Account('401K', 0)
+      '401k': new RetirementAccount('401K', 'pretax', 0),
+      'traditional ira': new RetirementAccount('Traditional IRA', 'pretax', 0),
+      'roth ira': new RetirementAccount('ROTH IRA', 'posttax', 0)
     }
     for acct in @startAccounts      
       name = acct.type.toLowerCase()
@@ -142,7 +144,7 @@ class Balances
   earnFromInvestments: (age) ->
     for name, acct of @accounts
       earnings = acct.calculateInvestmentReturns({'age': age})
-      if earnings != 0
+      if earnings && earnings != 0
         @curLog().log("account:#{name}", "Investment Return", earnings)
   
   addYear: ->              
@@ -154,7 +156,9 @@ class Balances
     that = this
     for name, a of @accounts
       if a.type == 'loan'
-        a.pay(that)
+        amount = a.pay(that)
+        if amount && amount != 0
+          @curLog().log("account:#{name}", "Loan Payments", amount)
 
   recalc: ->
     

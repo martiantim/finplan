@@ -13,14 +13,20 @@
 # -investments
 # -more coffee in classes
 # -tables for taxes etc
-#
+# -show people with object for their profession
+# -show person age
 #
 #TODO:
 #
+# -pay proper taxes on retirement withdraws
+# -move to another state when retire
+# -retire should have lifestyle instead of guess at expenses
+# -show number of years achieve for long-running
+# -paid by hour
 # -existing debts
 # -still in school
+# -goal: more school
 # -cool range changing https://groups.google.com/forum/#!topic/jqplot-users/o8haUFPWhds
-# -show people with object for their profession
 #
 #
 

@@ -39,7 +39,7 @@ class Plan
     @simulator = null
     window.navigation.showDirty(true)
 
-  onDisplay: ->
+  onResultsClick: ->
     if !@simulator
       @simulate()
       

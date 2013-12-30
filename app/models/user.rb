@@ -23,7 +23,8 @@ class User < ActiveRecord::Base
       :name => self.name,
       :born => self.born,
       :gender => self.gender,
-      :species => self.species
+      :species => self.species,
+      :profession => self.profession ? self.profession.name : nil
     }
   end
   
