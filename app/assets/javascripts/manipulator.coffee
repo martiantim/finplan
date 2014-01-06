@@ -97,7 +97,6 @@ class Manipulator
     user = null
     user = family.findByID(json.user_id) if json.user_id
     m = new Manipulator(json.id, json.name, json.kind, json.template_name, user, json.start, json.end, json.params)
-
     func = "m.checkStatus = function(context) { "+json.can_formula+"}"
     eval(func)
 

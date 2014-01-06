@@ -12,6 +12,14 @@ class SimContext
     )
     max
 
+  findAccount: (name) ->
+    @balances.getAccount(name)
+
+  eachAccount: (name, func) ->
+    for acctName, acct of @balances.accounts
+      if acctName == name
+        func(acct)
+
   familySize: (onlyHumans) ->
     @family.numMembersOfYear(@simYear, onlyHumans)
 

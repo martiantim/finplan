@@ -18,6 +18,8 @@
 #
 #TODO:
 #
+# -require minimum withdraws
+# -keep track of basis and only pay taxes on gains
 # -pay proper taxes on retirement withdraws
 # -move to another state when retire
 # -retire should have lifestyle instead of guess at expenses

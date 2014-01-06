@@ -73,6 +73,9 @@ class Account
   is_retirement: ->
     false
 
+  withdraw: (amount) ->
+    @balance -= amount
+
   @fromJSON: (json) ->
     if json.interest_rate
       new Loan(json.balance, json.interest_rate/100.0, 2013, 30, false)
