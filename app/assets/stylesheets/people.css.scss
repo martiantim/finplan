@@ -1,0 +1,42 @@
+.person_drawing {
+  width: 250px;
+  .body {
+    height: 600px;
+    > img {
+      position: absolute;
+      width: 100%;
+    }
+    .accessories {
+      img {
+        position: absolute;
+      }
+    }
+  }
+  .details {
+    margin-top: 10px;
+    height: 50px;
+    text-align: center;
+    .name {
+
+    }
+    .age {
+      font-size: 75%;
+    }
+  }
+
+  &.small {
+    width: 100px;
+    .body {
+      height: 240px;
+    }
+    .accessories {
+      .hat {
+        width: 100%;
+      }
+      .hand {
+        width: 50%;
+        top: 150px
+      }
+    }
+  }
+}
