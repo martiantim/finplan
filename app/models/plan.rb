@@ -4,6 +4,7 @@ class Plan < ActiveRecord::Base
   
   has_many :manipulators  
   has_many :plan_users
+  has_many :users, :through => :plan_users, :order => "born"
   has_many :accounts
   
   def used_template?(id)

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   belongs_to :profession
   has_many :plans
   has_many :manipulators
+
+  scope :adults, :conditions => "DATE(NOW()) - DATE(born) > #{365*18}"
   
   GENDERS = [
     ["?", 'U'],
@@ -43,6 +45,37 @@ class User < ActiveRecord::Base
   def born?
     age > 0
   end
+
+  def family_role
+    if self.is_pet?
+      if self.species == 'cat'
+        "cat"
+      elsif self.species == 'dog'
+        "dog"
+      else
+        "unsure"
+      end
+    elsif is_adult?
+      if self.gender == 'M'
+        "man"
+      elsif self.gender == 'F'
+        "woman"
+      else
+        "unsure"
+      end
+    elsif self.born?
+      if self.gender == 'M'
+        "boy"
+      elsif self.gender == 'F'
+        "girl"
+      else
+        "unsure"
+      end
+    else
+      "baby"
+    end
+
+  end
   
   def self.ages_for_select(range)
     range.to_a.collect do |a|
@@ -52,5 +85,7 @@ class User < ActiveRecord::Base
       [disp, "#{Date.today.year-a}-01-01"]
     end
   end
+
+
   
 end

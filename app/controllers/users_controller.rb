@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     elsif params[:id] == 'pet'
       @user = User.new(:name => "Pet", :born => Date.parse("2013-01-01"), :gender => 'P', :species => 'cat')
     else
-      @user = PlanUser.find(params[:id]).user
+      @user = User.find(params[:id])
     end
 
     @plan = Plan.find(params[:plan_id])

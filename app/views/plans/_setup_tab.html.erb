@@ -1,10 +1,10 @@
 <div class="section setup" data-name='setup' style="display:block;">
   <div id="subnav">
-    <%= link_to 'Family', '#', :"data-content" => 'plan_users' %> |
+    <%= link_to 'Family', '#', :"data-content" => 'users' %> |
     <%= link_to 'Accounts', '#', :"data-content" => 'accounts' %> |
     <%= link_to 'Expenses', '#', :"data-content" => 'expenses' %>
   </div>
-  <%= render :layout => 'content_layout_list', :locals => {:name => 'plan_users'} do %>
+  <%= render :layout => 'content_layout_list', :locals => {:name => 'users'} do %>
   <% end %>
   <%= render :layout => 'content_layout_list', :locals => {:name => 'accounts'} do %>
   <% end %>
