@@ -7,3 +7,7 @@ window.finShowStatus = (msg) ->
 
 window.finHideStatus = () ->
   $('#global_status').hide()
+
+window.finData = {
+  current_year: 2014
+}

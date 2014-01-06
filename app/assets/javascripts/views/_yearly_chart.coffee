@@ -4,7 +4,7 @@ class YearlyChart
   _getOptions: (xtype, labels) ->
     if xtype == 'year'
       xAxisOptions = {
-        min: "2013-01-01",
+        min: "#{finData['current_year']}-01-01",
         max: "2063-01-01",
         tickOptions:{formatString:'%Y', angle: -30},      
         renderer:$.jqplot.DateAxisRenderer      

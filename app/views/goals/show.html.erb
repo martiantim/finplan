@@ -27,7 +27,7 @@
       </div>
       <div style="margin-left:10px">
         <input type="radio" name="when_type" value="year"  <%= 'checked="checked"' if @manipulator.start_type == 'year' %>>
-        In year <%= select_tag "when_year", options_for_select((2013..2100).to_a.collect { |a| [a,a]}, @manipulator.start ? @manipulator.start.year : '') %>
+        In year <%= select_tag "when_year", options_for_select((2014..2100).to_a.collect { |a| [a,a]}, @manipulator.start ? @manipulator.start.year : '') %>
       </div>
   <% end %>
     

@@ -1,9 +1,10 @@
 class ResultsByYear
   constructor: (@el)->
-    @curYear = 2013
+    @curYear = finData['current_year']
+    @maxYear = 2064
     @el.find('#year_slider').slider({
-      min: 2013,
-      max: 2064,
+      min: @curYear,
+      max: @maxYear,
       slide: (event, ui) =>
         @el.find('#cur_year').html(ui.value)
         @curYear = parseInt(ui.value)
@@ -13,13 +14,15 @@ class ResultsByYear
     })
     @el.find('a.year_prev').click =>
       @curYear -= 1
+      @curYear = finData['current_year'] if @curYear < finData['current_year']
       @el.find('#year_slider').slider('value', @curYear)
     @el.find('a.year_next').click =>
       @curYear += 1
+      @curYear = @maxYear if @curYear > @maxYear
       @el.find('#year_slider').slider('value', @curYear)
 
   displayDefault: ->
-    @jumpToYear(2013)
+    @jumpToYear(finData['current_year'])
 
   jumpToYear: (year) ->
     @curYear = year

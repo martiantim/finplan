@@ -21,6 +21,7 @@
 # -require minimum withdraws
 # -keep track of basis and only pay taxes on gains
 # -pay proper taxes on retirement withdraws
+# -redo social security in year retire
 # -move to another state when retire
 # -retire should have lifestyle instead of guess at expenses
 # -show number of years achieve for long-running

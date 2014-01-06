@@ -69,8 +69,14 @@ class Balances
     @year_incomes[@_currentYear()] || 0
 
   getCurrentYearPersonIncome: (u) ->
-    if @year_incomes_byuser[u.id]
-      @year_incomes_byuser[u.id][@_currentYear()] || 0
+    if @year_incomes_byuser[u.id] && @year_incomes_byuser[u.id][@_currentYear()]
+      @year_incomes_byuser[u.id][@_currentYear()]['income']
+    else
+      0
+
+  getCurrentYearPersonFICAIncome: (u) ->
+    if @year_incomes_byuser[u.id] && @year_incomes_byuser[u.id][@_currentYear()]
+      @year_incomes_byuser[u.id][@_currentYear()]['fica']
     else
       0
 
@@ -80,6 +86,12 @@ class Balances
   getAllIncomes: ->
     arr = []
     for k,v of @year_incomes
+      arr.push v
+    arr
+
+  getAllIncomesByUser: (user) ->
+    arr = []
+    for k,v of @year_incomes_byuser[user.id]
       arr.push v
     arr
   
@@ -95,17 +107,23 @@ class Balances
     @accounts[account].deposit(amount)
     @curLog().log('Savings', desc, amount)
     @curLog().log("account:#{account}", "Savings", amount)
-  
-  addCash: (amount, user, kind, desc) ->
-    if isNaN(amount)
-      alert "Invalid earning '#{amount}' for #{kind}"
+
+  _yearIncome: (amount, user, options) ->
     @year_incomes[@_currentYear()] = 0 if !@year_incomes[@_currentYear()]
-    @year_incomes[@_currentYear()] += amount
+    @year_incomes[@_currentYear()] += amount if !options['skip_income']
     if user
       @year_incomes_byuser[user.id] = {} if !@year_incomes_byuser[user.id]
-      @year_incomes_byuser[user.id][@_currentYear()] = 0 if !@year_incomes_byuser[user.id][@_currentYear()]
-      @year_incomes_byuser[user.id][@_currentYear()] += amount
-    
+      @year_incomes_byuser[user.id][@_currentYear()] = {income: 0, fica: 0} if !@year_incomes_byuser[user.id][@_currentYear()]
+      if !options['skip_income']
+        @year_incomes_byuser[user.id][@_currentYear()]['income'] += amount
+      if !options['skip_fica']
+        @year_incomes_byuser[user.id][@_currentYear()]['fica'] += amount
+
+  addCash: (amount, user, kind, desc, options = {}) ->
+    if isNaN(amount)
+      alert "Invalid earning '#{amount}' for #{kind}"
+
+    @_yearIncome(amount, user, options)
     @accounts['checking'].deposit(amount)    
     @curLog().log(kind, desc, amount)    
     @recalc()

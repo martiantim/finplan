@@ -14,7 +14,7 @@ class Family
   numAdults: ->
     num = 0
     for u in @members
-      if u.ageInYear(2013) >= 18
+      if u.ageInYear(finData['current_year']) >= 18
         num += 1
     num
 
@@ -43,7 +43,7 @@ class Family
   endYear: ->
     end = 2030
     for u in @members
-      if u.ageInYear(2013) >= 18
+      if u.ageInYear(finData['current_year']) >= 18
         end = u.projectedDeathYear if u.projectedDeathYear > end
     end
 

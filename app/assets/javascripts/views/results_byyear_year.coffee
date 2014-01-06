@@ -15,10 +15,6 @@ class ResultsByyearYear
     html += "</div>"
     html
 
-  personIMG: (kind, left, top) ->
-    path = image_path('people/'+kind+'.png')
-    "<img src=\"#{path}\" style=\"left: #{left}px;top: #{top}px;\">"
-
   people: ->
     html =  "<div class='people'>"
     pos = 0

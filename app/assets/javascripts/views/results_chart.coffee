@@ -1,11 +1,11 @@
 class ResultsChart
   constructor: (@id, @plan) ->
-    @startYear = 2013 #TODO
+    @startYear = finData['current_year']
       
   _getOptions: (balances, xtype, labels) ->
     if xtype == 'year'
       xAxisOptions = {
-        min: "2013-01-01",
+        min: "#{finData['current_year']}-01-01",
         max: "2063-01-01",
         tickOptions:{formatString:'%Y', angle: -30},      
         renderer:$.jqplot.DateAxisRenderer      
