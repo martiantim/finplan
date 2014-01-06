@@ -2,6 +2,7 @@
 <% @schedules.each do |s| %>
   <li><%= link_to s.name, "/tax_rate_schedules/#{s.id}" %></li>
 <% end %>
+</ul>
 
 <li><%= link_to "New Schedule", '/tax_rate_schedules/new' %></li>
 

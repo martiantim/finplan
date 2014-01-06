@@ -43,7 +43,7 @@ class PlansController < ApplicationController
     render :json => {
       :manipulators => @plan.priority_sorted_manipulators.collect(&:safe_json),
       :accounts => @plan.accounts.collect(&:safe_json),
-      :family_members => @plan.plan_users.collect(&:user).collect(&:safe_json)        
+      :family_members => @plan.plan_users.collect(&:user).collect(&:safe_json)
     }
   end
   

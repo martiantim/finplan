@@ -2,43 +2,19 @@
 <%= form_for(@manipulator, :url => "/expenses/#{@manipulator.id}", :html => {'data-remote' => "true"}) do |f| %>
   <%= f.hidden_field :manipulator_template_id %>
   <%= f.hidden_field :plan_id %>
-  <div style="text-align:center;"><%= f.text_field :name, :size => 20 %></div>  
-  
+  <div class="line">
+    <label>Name</label>
+    <%= f.text_field :name, :size => 20 %>
+  </div>
+
   <div class="goal_status"></div>
-  
-  <% if @manipulator.is_goal? %>
-    <div>When:</div>  
-    <div style="margin-left:10px">
-      <input type="radio" name="when_type" value="asap" <%= 'checked="checked"' if @manipulator.start_type == 'asap' %>>
-      As soon as possible
-    </div>
-    <div style="margin-left:10px">
-      <input type="radio" name="when_type" value="age"  <%= 'checked="checked"' if @manipulator.start_type == 'age' %>>
-      At age <%= select_tag "when", options_for_select((30..75).to_a.collect { |a| [a,a]}, @manipulator.start_user_age(@current_user)) %>
-    </div>
-    <div style="margin-left:10px">
-      <input type="radio" name="when_type" value="year"  <%= 'checked="checked"' if @manipulator.start_type == 'year' %>>
-      In year <%= select_tag "when", options_for_select((2013..2100).to_a.collect { |a| [a,a]}, @manipulator.start.year) %>
-    </div>
-  <% end %>
-    
-  <h4>Variables</h4>
-  <% @template.variable_properties.each do |vprop|  %>  
-    <div><%= vprop.name%>:<input type="text" class="<%= vprop.var_type%>_var" name="variables[<%=vprop.name%>]" value="<%=@manipulator.param_value(vprop.name) || vprop.default%>"></input></div> 
-    
-  <% end %>
-    
+
+  <%= render :partial => '/manipulators/params_form', :locals => {:template => @manipulator.manipulator_template, :manipulator => @manipulator} %>
+
   <div style="float:right">
-    <% if @manipulator.new_record? %>
-      <%= f.submit "Add" %>
-    <% else %>
+    <% if !@manipulator.new_record? %>
       <button class="remove">Remove</button>
     <% end %>
   </div>
 <% end %>
 </div>
-
-<%= javascript_tag do %>
-  $('.manipulator .money_var').autoNumeric('init',{aSign:'$', mDec: 0});
-  $('.manipulator .percentage_var').autoNumeric('init',{aSign:'$', mDec: 0});
-<% end %>

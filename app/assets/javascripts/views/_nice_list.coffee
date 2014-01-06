@@ -60,7 +60,7 @@ class NiceList
         errMsg = "There was an error saving." if !errMsg
         @viewer().find('form .save_status').html(errMsg)
 
-      @viewer().find('form').submit ->
+      @viewer().find('form').submit (e) ->
         finShowStatus('saving...')
         form = $(this);
         form.find('input.money, input.percentage').each (i) ->
@@ -71,7 +71,6 @@ class NiceList
             self.val(v)
           catch err
             console.log("Error converting: " + err)
-
         true
 
       finFormat(@viewer())
