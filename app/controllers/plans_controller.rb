@@ -15,12 +15,15 @@
 # -tables for taxes etc
 # -show people with object for their profession
 # -show person age
+# -require minimum withdraws
+# -pay proper taxes on retirement withdraws
+# -allow invest savings account
 #
 #TODO:
 #
-# -require minimum withdraws
+# -better loans
+# -take out retirement money as needed
 # -keep track of basis and only pay taxes on gains
-# -pay proper taxes on retirement withdraws
 # -redo social security in year retire
 # -move to another state when retire
 # -retire should have lifestyle instead of guess at expenses
@@ -28,7 +31,11 @@
 # -paid by hour
 # -existing debts
 # -still in school
+# -remove pets
 # -goal: more school
+# -goal: investment property
+# -goal: vacation home
+# -goal: leave inheritance
 # -cool range changing https://groups.google.com/forum/#!topic/jqplot-users/o8haUFPWhds
 #
 #

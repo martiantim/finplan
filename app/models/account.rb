@@ -3,7 +3,7 @@ class Account < ActiveRecord::Base
   
   KINDS = [    
     {:name => "Checking",   :type => 'current'},
-    {:name => "Savings",    :type => 'current'},
+    {:name => "Savings",    :type => 'invest'},
     {:name => "Emergency",  :type => 'current'},
     {:name => "Loan",       :type => 'debt'},
     {:name => "HSA",        :type => 'current'},
@@ -38,7 +38,8 @@ class Account < ActiveRecord::Base
       :name => self.name,
       :balance => self.balance,
       :investment_type => self.investment_type,
-      :interest_rate => self.interest_rate
+      :interest_rate => self.interest_rate,
+      :term => self.term
     }
   end
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131130064951) do
+ActiveRecord::Schema.define(:version => 20140111075244) do
 
   create_table "accounts", :force => true do |t|
     t.string  "name",                                           :null => false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20131130064951) do
     t.integer "balance"
     t.string  "investment_type"
     t.decimal "interest_rate",   :precision => 10, :scale => 0
+    t.integer "term"
   end
 
   create_table "manipulator_templates", :force => true do |t|

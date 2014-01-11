@@ -6,7 +6,7 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem 'rake', '0.9.2'
+gem 'rake', '10.1.1'
 
 
 # Gems used only for assets and not required

@@ -1,5 +1,5 @@
 class Loan extends Account
-  constructor: (amount, @rate, @startYear, @termYears, @deductable) ->
+  constructor: (@name, amount, @rate, @startYear, @termYears, @deductable) ->
     @loanAmount = amount
     super('loan', -1 * amount, 'None')
     
@@ -24,11 +24,16 @@ class Loan extends Account
   pay: (balances) ->
     monthOfPayment = 1 + (balances._currentYear() - @startYear - 1)*12
     if @balance < 0
+      console.log(this)
       yearCost = @_yearPayment()
       interest = yearCost
+      yearCost = -1 * @balance if yearCost + @balance > 0
       for month in [monthOfPayment..(monthOfPayment)+11]
-        @deposit(@_principalPayment(month))
-        interest -= @_principalPayment(month)
+        if @balance < 0
+          payment = @_principalPayment(month)
+          payment = -1 * @balance if payment + @balance > 0
+          @deposit(payment)
+          interest -= payment
       balances.spendCash(interest, 'Living', 'Loan Payment Interest', {deductable: @deductable})
       balances.spendCash(yearCost - interest, 'Living', 'Loan Payment Principal')
       return yearCost
@@ -37,6 +42,6 @@ class Loan extends Account
     #do nothing
 
   duplicate: ->
-    new Loan(@loanAmount, @rate, @startYear, @termYears, @deductable)
+    new Loan(@name, @loanAmount, @rate, @startYear, @termYears, @deductable)
 
 window.Loan = Loan

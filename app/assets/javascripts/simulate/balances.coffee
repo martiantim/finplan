@@ -157,7 +157,9 @@ class Balances
   
   takeOutLoan: (amnt, whatfor, term = 10) ->
     name = "#{whatfor} #{@_currentYear()}"
-    @accounts[name] = new Loan(amnt, 0.04213, @_currentYear(), term, whatfor == 'House Mortgage')
+    @accounts[name] = new Loan(name, amnt, 0.04213, @_currentYear(), term, whatfor == 'House Mortgage')
+    #pay 1st year
+    @payLoan(@accounts[name])
   
   earnFromInvestments: (age) ->
     for name, acct of @accounts
@@ -171,12 +173,14 @@ class Balances
     @opts['year']++
   
   payLoans: ->
-    that = this
     for name, a of @accounts
       if a.type == 'loan'
-        amount = a.pay(that)
-        if amount && amount != 0
-          @curLog().log("account:#{name}", "Loan Payments", amount)
+        @payLoan(a)
+
+  payLoan: (acct) ->
+    amount = acct.pay(this)
+    if amount && amount != 0
+      @curLog().log("account:#{acct.name}", "Loan Payments", amount)
 
   recalc: ->
     

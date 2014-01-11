@@ -58,7 +58,6 @@ class Simulator
     , 1          
       
   _runYear: (onDone) ->
-
     @context.balances.earnFromInvestments(@context.oldestAdultAge())
     @context.balances.payLoans()
     for m in @manipulators

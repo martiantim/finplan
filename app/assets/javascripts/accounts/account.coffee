@@ -78,7 +78,7 @@ class Account
 
   @fromJSON: (json) ->
     if json.interest_rate
-      new Loan(json.balance, json.interest_rate/100.0, finData['current_year'], 30, false)
+      new Loan(json.name, json.balance, json.interest_rate/100.0, finData['current_year'], json.term || 30, false)
     else
       new Account(json.name, json.balance, json.investment_type || 'None')
 

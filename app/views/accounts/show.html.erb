@@ -23,9 +23,13 @@
   <% end %>
 
   <% if @account.is_debt? %>
-    <div class="line debt">
+    <div class="line loan_line debt">
       <label>Interest Rate</label>
       <%= f.text_field 'interest_rate', :class => 'percentage' %>
+    </div>
+    <div class="line loan_line term">
+      <label>Term (years left)</label>
+      <%= f.text_field 'term' %>
     </div>
   <% end %>
   
