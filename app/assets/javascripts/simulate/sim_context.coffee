@@ -1,7 +1,7 @@
 class SimContext
   constructor: (@simYear, startAccounts, @family) ->
     age = -1
-    @balances = new Balances(startAccounts, {age: age, year: @simYear})
+    @balances = new Balances(this, startAccounts, {age: age, year: @simYear})
     @stateLivingIn = 'California'
     @familyStatus = {}
 

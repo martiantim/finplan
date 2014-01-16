@@ -1,5 +1,5 @@
 class Balances
-  constructor: (@startAccounts, @opts) ->      
+  constructor: (@simcontext, @startAccounts, @opts) ->
     @accounts = {
       checking: new CheckingAccount(0), 
       emergency: new Account('emergency',0),
@@ -141,16 +141,35 @@ class Balances
       @year_deductions[@_currentYear()] = 0 if !@year_deductions[@_currentYear()]
       @year_deductions[@_currentYear()] += amount
 
-    if @accounts['checking'].balance + @accounts['savings'].balance < amount      
-      @takeOutLoan(amount, description)
+    if !@hasAmountToSpend(amount)
+      if opts['loan']
+        console.log("BANKRUPT!")
+      else
+        @takeOutLoan(amount, description)
     else    
       @accounts['checking'].spend(amount)
     
     @curLog().log(kind, description, -1 * amount)  
     @recalc()
-  
+
+  hasAmountToSpend: (amnt) ->
+    balance = @accounts['checking'].balance + @accounts['savings'].balance
+
+    age = @simcontext.oldestAdultAge()
+    if age >= 55 #TODO
+      balance += @accounts['401k'].balance
+    if age >= 60
+      balance += @accounts['traditional ira'].balance + @accounts['roth ira'].balance
+    balance > amnt
+
   rebalance: ->
     @accounts['checking'].rebalance(@accounts['savings'], @curLog())
+    age = @simcontext.oldestAdultAge()
+    if age >= 55 #TODO
+      @accounts['checking'].rebalance(@accounts['401k'], @curLog())
+    if age >= 60
+      @accounts['checking'].rebalance(@accounts['traditional ira'], @curLog())
+      @accounts['checking'].rebalance(@accounts['roth ira'], @curLog())
   
   currentYear: ->
     @opts['year']

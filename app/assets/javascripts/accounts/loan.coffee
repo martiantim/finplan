@@ -24,7 +24,6 @@ class Loan extends Account
   pay: (balances) ->
     monthOfPayment = 1 + (balances._currentYear() - @startYear - 1)*12
     if @balance < 0
-      console.log(this)
       yearCost = @_yearPayment()
       interest = yearCost
       yearCost = -1 * @balance if yearCost + @balance > 0
@@ -34,8 +33,8 @@ class Loan extends Account
           payment = -1 * @balance if payment + @balance > 0
           @deposit(payment)
           interest -= payment
-      balances.spendCash(interest, 'Living', 'Loan Payment Interest', {deductable: @deductable})
-      balances.spendCash(yearCost - interest, 'Living', 'Loan Payment Principal')
+      balances.spendCash(interest, 'Living', 'Loan Payment Interest', {deductable: @deductable, loan: true})
+      balances.spendCash(yearCost - interest, 'Living', 'Loan Payment Principal', {loan: true})
       return yearCost
 
   calculateInvestmentReturns: (opts) ->
