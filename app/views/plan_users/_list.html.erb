@@ -5,9 +5,9 @@
   <% list.each do |pu|  %>
     <li class="plan_user item" data-id="<%=pu.id%>">
       <div class="picture">
-        <%= image_tag("people/faces/#{pu.user.family_role}.png") %>
+        <%= image_tag("people/faces/#{pu.family_role}.png") %>
       </div>
-      <div class="name"><%= pu.user.name %></div>
+      <div class="name"><%= pu.name %></div>
     </li>
   <% end %>
 

@@ -35,17 +35,17 @@ class Plan < ActiveRecord::Base
     ManipulatorTemplate.all.find_all { |t| !used_template?(t.id) && t.kind == 'factor' }
   end
 
-  def manipulator_for_user(template_name, suser)
+  def manipulator_for_plan_user(template_name, puser)
     manipulators.detect do |m| 
-      m.manipulator_template.name == template_name && m.user && m.user.id == suser.id
+      m.manipulator_template.name == template_name && m.plan_user && m.plan_user.id == puser.id
     end
   end
   
-  def manipulator_for_user_or_create(template_name, suser)
-    m = manipulator_for_user(template_name, suser)
+  def manipulator_for_plan_user_or_create(template_name, puser)
+    m = manipulator_for_plan_user(template_name, puser)
     if !m
       template = ManipulatorTemplate.find_by_name(template_name)
-      m = manipulators.create!(:name => template.name, :manipulator_template => template, :user => suser, :params => {}.to_json)
+      m = manipulators.create!(:name => template.name, :manipulator_template => template, :plan_user => puser, :params => {}.to_json)
     end
     m
   end

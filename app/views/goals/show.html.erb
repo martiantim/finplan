@@ -22,8 +22,8 @@
       </div>
       <div style="margin-left:10px">
         <input type="radio" name="when_type" value="age"  <%= 'checked="checked"' if @manipulator.start_type == 'age' %>>
-        When <%= select_tag 'when_person', options_for_select(@plan.plan_users.collect(&:user).collect { |u| [u.name, u.id]}, @manipulator.start_user_id) %>
-        is <%= select_tag "when_age", options_for_select((1..100).to_a.collect { |a| [a,a]}, @manipulator.start_user_age()) %> years old
+        When <%= select_tag 'when_person', options_for_select(@plan.plan_users.collect { |u| [u.name, u.id]}, @manipulator.start_plan_user_id) %>
+        is <%= select_tag "when_age", options_for_select((1..100).to_a.collect { |a| [a,a]}, @manipulator.start_plan_user_age()) %> years old
       </div>
       <div style="margin-left:10px">
         <input type="radio" name="when_type" value="year"  <%= 'checked="checked"' if @manipulator.start_type == 'year' %>>

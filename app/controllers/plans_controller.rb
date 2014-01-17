@@ -20,24 +20,23 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO:
-#
-# BUG: remove user doesn't update left side
-# -make market performance part of simcontext
-# -take out retirement money as needed
-# -handle bankrupcy well
-# -nice descriptions
-# -allow expenses to grow with income (people can't control spending, show scenarios)
-# -keep track of basis and only pay taxes on gains
-# -redo social security in year retire
-# -move to another state when retire
-# -retire should have lifestyle instead of guess at expenses
-# -show number of years achieve for long-running
-# -paid by hour
-# -existing debts
-# -still in school
-# -research how much less people actually use in retirement (saw in the dummies financial planning book)
-# -remove pets
+#TODO: use plan_users instead of users
+#TODO: remove user doesn't update left side
+#TODO: make market performance part of simcontext
+#TODO: take out retirement money as needed
+#TODO: remove pets
+#TODO: handle bankrupcy well
+#TODO: nice descriptions
+#TODO: allow expenses to grow with income (people can't control spending, show scenarios)
+#TODO: keep track of basis and only pay taxes on gains
+#TODO: redo social security in year retire
+#TODO: move to another state when retire
+#TODO: retire should have lifestyle instead of guess at expenses
+#TODO: show number of years achieve for long-running goals
+#TODO: paid by hour
+#TODO: existing debts
+#TODO: still in school
+#TODO: research how much less people actually use in retirement (saw in the dummies financial planning book)
 # -scenario "SS doesn't exit or lowered payout"
 # -scenario "Different investment returns"
 # -goal: more school
@@ -72,7 +71,7 @@ class PlansController < ApplicationController
     render :json => {
       :manipulators => @plan.priority_sorted_manipulators.collect(&:safe_json),
       :accounts => @plan.accounts.collect(&:safe_json),
-      :family_members => @plan.plan_users.collect(&:user).collect(&:safe_json)
+      :family_members => @plan.plan_users.collect(&:safe_json)
     }
   end
   

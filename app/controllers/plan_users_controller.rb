@@ -3,18 +3,18 @@ class PlanUsersController < ApplicationController
   def index
     plan = Plan.find(params[:plan_id])
 
-    render :partial => 'list', :object => plan.plan_users.collect(&:user)
+    render :partial => 'list', :object => plan.plan_users
   end
   
   def show
     if params[:id] == 'spouse'
-      @user = User.new(:name => "Spouse", :born => Date.parse("1988-01-01"))
+      @plan_user = PlanUser.new(:name => "Spouse", :born => Date.parse("1988-01-01"))
     elsif params[:id] == 'child'
-      @user = User.new(:name => "Child", :born => Date.parse("2010-01-01"))      
+      @plan_user = PlanUser.new(:name => "Child", :born => Date.parse("2010-01-01"))
     elsif params[:id] == 'future_child'
-      @user = User.new(:name => "Future Child", :born => Date.parse("2015-01-01", :gender => 'U'))      
+      @plan_user = PlanUser.new(:name => "Future Child", :born => Date.parse("2015-01-01", :gender => 'U'))
     else
-      @user = PlanUser.find(params[:id]).user
+      @plan_user = PlanUser.find(params[:id])
     end
     
     @plan = Plan.find(params[:plan_id])

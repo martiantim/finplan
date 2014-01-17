@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140111075244) do
+ActiveRecord::Schema.define(:version => 20140117031005) do
 
   create_table "accounts", :force => true do |t|
     t.string  "name",                                           :null => false
@@ -49,15 +49,19 @@ ActiveRecord::Schema.define(:version => 20140111075244) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "when"
-    t.integer  "user_id"
+    t.integer  "plan_user_id"
     t.string   "start_type"
-    t.integer  "start_user_id"
+    t.integer  "start_plan_user_id"
   end
 
   create_table "plan_users", :force => true do |t|
-    t.integer "user_id",       :null => false
-    t.integer "plan_id",       :null => false
+    t.integer "user_id",                    :null => false
+    t.integer "plan_id",                    :null => false
     t.string  "relation_name"
+    t.string  "name",                       :null => false
+    t.date    "born"
+    t.integer "profession_id"
+    t.string  "gender",        :limit => 1, :null => false
   end
 
   create_table "plans", :force => true do |t|
@@ -82,13 +86,9 @@ ActiveRecord::Schema.define(:version => 20140111075244) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                                            :null => false
+    t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "born"
-    t.integer  "profession_id"
-    t.string   "gender",        :limit => 1,                      :null => false
-    t.string   "species",                    :default => "human", :null => false
   end
 
   create_table "variable_properties", :force => true do |t|

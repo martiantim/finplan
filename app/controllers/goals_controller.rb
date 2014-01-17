@@ -30,9 +30,9 @@ class GoalsController < BaseManipulatorController
       params[:manipulator][:start] = nil
       params[:manipulator][:end] = nil
     elsif params[:when_type] == 'age'
-      u = Manipulator.find(params[:id]).plan.plan_users.detect { |pu| pu.user_id == params[:when_person].to_i }.user
-      params[:manipulator][:start_user_id] = u.id
-      params[:manipulator][:start] = u.born + (params[:when_age].to_i*366)
+      pu = Manipulator.find(params[:id]).plan.plan_users.detect { |pu| pu.id == params[:when_person].to_i }
+      params[:manipulator][:start_plan_user_id] = pu.id
+      params[:manipulator][:start] = pu.born + (params[:when_age].to_i*366)
       params[:manipulator][:end] = params[:manipulator][:start]
     elsif params[:when_type] == 'year'
       params[:manipulator][:start] = Date.parse("1/1/#{params[:when_year]}")

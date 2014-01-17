@@ -1,8 +1,8 @@
 class Manipulator < ActiveRecord::Base
   belongs_to :plan
-  belongs_to :user
+  belongs_to :plan_user
   belongs_to :manipulator_template
-  belongs_to :start_user, :class_name => 'User'
+  belongs_to :start_plan_user, :class_name => 'PlanUser'
   
   def safe_json
     {
@@ -16,15 +16,15 @@ class Manipulator < ActiveRecord::Base
       :can_formula => self.manipulator_template.can_javascript,
       :do_formula => self.manipulator_template.do_javascript,
       :formula => self.manipulator_template.javascript,
-      :user_id => self.user_id
+      :user_id => self.plan_user_id
     }
   end
   
-  def start_user_age
-    if !start || !start_user
+  def start_plan_user_age
+    if !start || !start_plan_user
       0
     else
-      self.start.year - self.start_user.born.year
+      self.start.year - self.start_plan_user.born.year
     end
   end
   
