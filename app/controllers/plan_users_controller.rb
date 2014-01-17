@@ -3,7 +3,7 @@ class PlanUsersController < ApplicationController
   def index
     plan = Plan.find(params[:plan_id])
 
-    render :partial => 'list', :object => plan.plan_users
+    render :partial => 'list', :object => plan.plan_users.collect(&:user)
   end
   
   def show

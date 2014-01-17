@@ -22,6 +22,8 @@
 #
 #TODO:
 #
+# BUG: remove user doesn't update left side
+# -make market performance part of simcontext
 # -take out retirement money as needed
 # -handle bankrupcy well
 # -nice descriptions
