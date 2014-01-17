@@ -20,7 +20,6 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: use plan_users instead of users
 #TODO: remove user doesn't update left side
 #TODO: make market performance part of simcontext
 #TODO: take out retirement money as needed
@@ -44,6 +43,7 @@
 # -goal: vacation home
 # -goal: leave inheritance
 # -cool range changing https://groups.google.com/forum/#!topic/jqplot-users/o8haUFPWhds
+#TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
 #
 #
 # Target:

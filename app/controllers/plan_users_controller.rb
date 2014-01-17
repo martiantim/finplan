@@ -5,7 +5,27 @@ class PlanUsersController < ApplicationController
 
     render :partial => 'list', :object => plan.plan_users
   end
-  
+
+  def create
+    plan = Plan.find(params[:plan_id])
+    pu = plan.plan_users.create!(params[:plan_user])
+
+    render :json => {:id => pu.id}
+  end
+
+  def update
+    pu = PlanUser.find(params[:id])
+    pu.update_attributes(params[:plan_user])
+
+    if params[:salary_manipulator_id]
+      salary = Manipulator.find(params[:salary_manipulator_id])
+      salary.params = params[:variables].to_json
+      salary.save!
+    end
+
+    render :json => {:id => pu.id}
+  end
+
   def show
     if params[:id] == 'spouse'
       @plan_user = PlanUser.new(:name => "Spouse", :born => Date.parse("1988-01-01"))

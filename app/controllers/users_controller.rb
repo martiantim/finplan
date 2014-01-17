@@ -1,30 +1,9 @@
 class UsersController < ApplicationController
-  
-  def create
-    u = User.create(params[:user])
-    plan = Plan.find(params[:plan_id])
-    plan.plan_users.create!(:user => u)
-    
-    render :json => {:id => u.id}
-  end
 
   def index
     @plan = Plan.find(params[:plan_id])
 
     render :partial => '/plan_users/list', :object => @plan.plan_users, :locals => {}
-  end
-  
-  def update
-    u = User.find(params[:id])
-    u.update_attributes(params[:user])    
-    
-    if params[:salary_manipulator_id]
-      salary = Manipulator.find(params[:salary_manipulator_id])
-      salary.params = params[:variables].to_json
-      salary.save!
-    end
-
-    render :json => {:id => u.id}
   end
 
   def show

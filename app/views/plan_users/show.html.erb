@@ -33,7 +33,7 @@
     <%= render :partial => '/manipulators/params_form', :locals => {:template => ManipulatorTemplate.find_by_name("Salary"), :manipulator => salary} %>
         
   <% elsif @plan_user.born? %>
-    Age: <%= f.select "born", options_for_select(PlanUser.ages_for_select(0..18), @user.born) %>
+    Age: <%= f.select "born", options_for_select(PlanUser.ages_for_select(0..18), @plan_user.born) %>
     Gender: <%= f.select "gender", options_for_select(PlanUser::GENDERS, @plan_user.gender) %>
   <% else %>
     <%= f.hidden_field "gender" %>
