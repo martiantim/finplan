@@ -2,7 +2,7 @@ class BaseManipulatorController < ApplicationController
   def update
     @manipulator = Manipulator.find(params[:id])
 
-    @manipulator.update_attributes(params[:manipulator])
+    @manipulator.update_attributes(params.require(:manipulator).permit!)
     @manipulator.params = params[:variables].to_json
     @manipulator.save!
 

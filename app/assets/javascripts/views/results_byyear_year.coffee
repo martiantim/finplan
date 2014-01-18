@@ -11,7 +11,7 @@ class ResultsByyearYear
     html = ''
     html += "<div class=\"clearit cols\">"
     html += "  <div class=\"numbers col\">#{@yearChanges()} #{@marketChanges()}</div>"
-    html += "  <div class=\"achievements col\">#{@achievements()}</div>"
+    html += "  <div class=\"achievements col\">#{@showBalances()}</div>"
     html += "  <div class=\"people col\">#{@people()}</div>"
     html += "</div>"
     html
@@ -27,18 +27,16 @@ class ResultsByyearYear
     )
     html += "</div>"
     html
-  
-  achievements: ->
-    log = @simContext.balances.logForYear(@year)
-    html = ""
-    html += @showBalances(@simContext.balances.snapshotForYear(@year), log)
-    html
 
-  showBalances: (snap, log) ->
+  showBalances: () ->
+    snap = @simContext.balances.snapshotForYear(@year)
+    log = @simContext.balances.logForYear(@year)
     html = ""
     for name, amnt of snap.accountBalances
       if amnt != 0
         html += @showBalance(name, amnt, log)
+
+    html += "<div class='entry title total'><div class='name'>Net Worth</div><div class='amount money'>#{snap.netWorth()}</div></div>"
     html
   
   showBalance: (name, amount, log) ->

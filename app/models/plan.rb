@@ -1,7 +1,6 @@
 class Plan < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :name
-  
+
   has_many :manipulators  
   has_many :plan_users
   has_many :users, :through => :plan_users, :order => "born"

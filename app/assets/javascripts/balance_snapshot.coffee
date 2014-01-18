@@ -16,4 +16,11 @@ class BalanceSnapshot
       l = Math.min(0, amnt)
     l
 
+  netWorth: ->
+    net = 0
+    for name, balance of @accountBalances
+      net += balance
+
+    net
+
 window.BalanceSnapshot = BalanceSnapshot

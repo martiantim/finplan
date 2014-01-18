@@ -21,7 +21,6 @@
 # -better loans
 #
 #TODO: nice descriptions
-#TODO: rails 4
 #TODO: show net worth
 #TODO: show market returns on yearly view
 #TODO: take out retirement money as needed
