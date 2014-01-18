@@ -180,9 +180,9 @@ class Balances
     #pay 1st year
     @payLoan(@accounts[name])
   
-  earnFromInvestments: (age) ->
+  earnFromInvestments: (markets) ->
     for name, acct of @accounts
-      earnings = acct.calculateInvestmentReturns({'age': age})
+      earnings = acct.calculateInvestmentReturns(markets)
       if earnings && earnings != 0
         @curLog().log("account:#{name}", "Investment Return", earnings)
   

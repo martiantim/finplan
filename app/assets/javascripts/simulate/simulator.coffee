@@ -58,7 +58,7 @@ class Simulator
     , 1          
       
   _runYear: (onDone) ->
-    @context.balances.earnFromInvestments(@context.oldestAdultAge())
+    @context.balances.earnFromInvestments(@context.markets)
     @context.balances.payLoans()
     for m in @manipulators
       m.adjustForInflation()

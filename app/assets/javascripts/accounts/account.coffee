@@ -23,52 +23,12 @@ class Account
     fromAcct.spend(amnt)
     @deposit(amnt)        
     
-  calculateInvestmentReturns: (opts) ->
-    rate = @returnRate(@investmentType, opts)
+  calculateInvestmentReturns: (markets) ->
+    rate = markets.returnOfType(@investmentType)
 
     @earnings = @balance * rate
     @balance += @earnings
     @earnings
-
-  #rates from http://www.bogleheads.org/wiki/Historical_and_expected_returns
-  returnRate: (iType, opts) ->
-    if iType == 'Money Market'
-      avg = 0.015
-      stdev = 0.005
-      @stdrnd(avg, stdev)
-    else if iType == 'Bonds'
-      avg = 0.04
-      stdev = 0.005
-      @stdrnd(avg, stdev)
-    else if iType == 'Stock'
-      avg = 0.104
-      stdev = 0.202
-      @stdrnd(avg, stdev)
-    else if iType == 'Target Retirement'
-      if opts['age'] < 50
-        stocks = 0.9
-        bonds = 0.1
-      else if opts['age'] < 60
-        stocks = 0.8
-        bonds = 0.2
-      else if opts['age'] < 67
-        stocks = 0.4
-        bonds = 0.6
-      else
-        stocks = 0.1
-        bonds = 0.9
-
-      stocks * @stdrnd(0.104, 0.202) + bonds * @stdrnd(0.04, 0.01)
-    else if iType == 'None'
-      0.0
-    else
-      alert("Unknown innvestment type: #{iType}")
-
-  rnd_snd: ->
-    (Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1)
-
-  stdrnd: (mean, stdev) ->
-    @rnd_snd()*stdev+mean
 
   is_retirement: ->
     false

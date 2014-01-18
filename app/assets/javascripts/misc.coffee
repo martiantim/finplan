@@ -1,6 +1,6 @@
 window.finFormat = (el) ->
-  el.find('.money').autoNumeric('init',{aSign:'$', mDec: 0})
-  el.find('.percentage').autoNumeric('init',{aSign: ' %', pSign:'s'})
+  el.find('.money').autoNumeric('init',{aSign:'$', mDec: 0, vMin: -99999999})
+  el.find('.percentage').autoNumeric('init',{aSign: ' %', pSign:'s', vMin: -100.0})
 
 window.finShowStatus = (msg) ->
   $('#global_status').html(msg).show()

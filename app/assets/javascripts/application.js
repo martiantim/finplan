@@ -25,4 +25,5 @@
 //= require autoNumeric
 //= require codemirror
 //= require codemirror/modes/coffeescript
+//= require seedrandom
 //= require_tree .
