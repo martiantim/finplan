@@ -2,11 +2,7 @@ class Simulator
   constructor: (@family, @manipulators, @startAccounts, @dialog) ->
     @startYear = new Date().getYear()+1900
     @endYear = @family.endYear()
-    
-    @dialog.find('.sim_done').hide()
-    @dialog.find('#simulate_year_progress').progressbar({
-      max: @endYear - @startYear + 1
-    })
+
     @_markGoalProgress()    
 
   findManipulatorByName: (name) ->
@@ -103,7 +99,7 @@ class Simulator
     if @context.simYear <= @endYear
       setTimeout =>
         @_runYear(onDone)
-      , 1
+      , 50
     else
       onDone()
       @_markGoals()
