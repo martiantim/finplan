@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119185822) do
+ActiveRecord::Schema.define(version: 20140120033717) do
 
   create_table "accounts", force: true do |t|
     t.string  "name",                                     null: false
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20140119185822) do
     t.string  "options"
     t.text    "description"
     t.string  "description_more_link"
+    t.string  "depends_on"
   end
 
 end

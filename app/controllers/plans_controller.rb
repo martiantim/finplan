@@ -20,6 +20,10 @@
 # -allow invest savings account
 # -better loans
 #
+#TODO: paid by hour
+#TODO: use glyph check/X for goal completion
+#TODO: fix money display in goal failure
+#TODO: non-constant inflation
 #TODO: redo social security in year retire
 #TODO: take out retirement money as needed
 #TODO: handle bankrupcy well
@@ -28,7 +32,6 @@
 #TODO: move to another state when retire
 #TODO: retire should have lifestyle instead of guess at expenses
 #TODO: show number of years achieve for long-running goals
-#TODO: paid by hour
 #TODO: existing debts
 #TODO: still in school
 #TODO: complete job pictures

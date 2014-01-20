@@ -10,7 +10,7 @@
   <% if @plan_user.is_adult? %>
     <div class="form-group">
       <label for="born">Age</label>
-      <%= f.select "born", options_for_select(PlanUser.ages_for_select(18..75), @plan_user.born), :class => "form-control" %>
+      <%= f.select "born", options_for_select(PlanUser.ages_for_select(18..75), @plan_user.born), {}, {:class => "form-control input-small"} %>
     </div>
 
     <ul class="nav nav-tabs">
@@ -23,7 +23,7 @@
       <div class="tab-pane active" id="working">
         <div class="form-group">
           <label for="profession">Profession</label>
-          <%= f.select :profession_id, options_for_select(Profession.all.collect { |p| [p.name, p.id] }, @plan_user.profession_id), :class => "form-control" %>
+          <%= f.select :profession_id, options_for_select(Profession.all.collect { |p| [p.name, p.id] }, @plan_user.profession_id), {}, {:class => "form-control"} %>
         </div>
 
         <% salary = @plan.manipulator_for_plan_user_or_create('Salary', @plan_user) %>
@@ -53,8 +53,7 @@
     <button class="remove btn btn-danger" <%= "disabled=\"disabled\"" if @plan_user.new_record? %>>Remove Person</button>
   </div>
 
-  <div class="user_drawing" style="position:relative; transform: scale(0.75,0.75);margin: -70px -30px;">
-    <%= image_tag("people/#{@plan_user.family_role}.png", :style => "width: 250px;") %>
-    <div class="accessories"></div>
+  <div class="person_wrapper" style="position: relative;">
+    <div class="person_drawing" data-id="<%= @plan_user.id%>" data-profession="<%= @plan_user.profession ? @plan_user.profession.name : ''%>" data-role="<%= @plan_user.family_role%>"></div>
   </div>
 </div>

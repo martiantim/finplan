@@ -5,6 +5,8 @@
 
 <div>Type: <%= f.select "var_type", options_for_select(VariableProperty::VAR_TYPES, @vprop.var_type) %>
 
+<div>Depends On: <%= f.text_field :depends_on %></div>
+
 <div>Default: <%= f.text_field :default %></div>
 
 <div>Options: <%= f.text_field :options %></div>
