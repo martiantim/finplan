@@ -37,7 +37,7 @@ class Loan extends Account
       balances.spendCash(yearCost - interest, 'Living', 'Loan Payment Principal', {loan: true})
       return yearCost
 
-  calculateInvestmentReturns: (opts) ->
+  calculateInvestmentReturns: (markets, opts) ->
     #do nothing
 
   duplicate: ->

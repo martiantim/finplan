@@ -48,10 +48,13 @@ class Plan
   
   simulate: ->
     that = this
-    dialog = $("#simulate_dialog").dialog({
-      modal: true
-      height: 300,
-      width: 500
+
+    dialog = $("#simulate_dialog")
+    dialog.find('#simyear label').html('Simulating Year <span id="current_simulate_year">2014</span>')
+    dialog.find('.sim_done').hide()
+    dialog.find('#simulate_year_progress').css('width', '0%').removeClass('progress-bar-success').parent().addClass('active')
+    dialog.modal({
+      show: true
     })    
     @simulator = new Simulator(@family, @manipulators, @startAccounts, dialog)
     @simulator.sim ->

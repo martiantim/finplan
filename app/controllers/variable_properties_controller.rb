@@ -12,7 +12,7 @@ class VariablePropertiesController < ApplicationController
   def update
     vprop = VariableProperty.find(params[:id])
     
-    vprop.update_attributes(params[:variable_property])
+    vprop.update_attributes(params.require(:variable_property).permit!)
     if vprop.save    
       redirect_to "/variable_properties?template_id=#{vprop.manipulator_template_id}"
     else

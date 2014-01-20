@@ -5,12 +5,14 @@ class PeopleList extends NiceList
     })
 
   extraWireItem: (itemID) ->
-    @drawing = new PersonDrawing(@viewer().find('.user_drawing'))
-    profession = @viewer().find('#user_profession_id option:selected').text()
-    @drawing.setProfession(profession)
+    @drawing = new PersonDrawing(@viewer().find('.person_drawing'))
 
-    @viewer().find('#user_profession_id').change =>
-      profession = @viewer().find('#user_profession_id option:selected').text()
+    @viewer().find('.nav-tabs').click (e) ->
+      e.preventDefault()
+      $(this).tab('show')
+
+    @viewer().find('#plan_user_profession_id').change =>
+      profession = @viewer().find('#plan_user_profession_id option:selected').text()
       @drawing.setProfession(profession)
 
 

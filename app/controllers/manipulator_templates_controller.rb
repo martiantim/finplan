@@ -5,7 +5,7 @@ class ManipulatorTemplatesController < ApplicationController
   end
   
   def create
-    @template = ManipulatorTemplate.new(params[:manipulator_template])    
+    @template = ManipulatorTemplate.new(params.require(:manipulator_template).permit!)
     
     if @template.save
       redirect_to('/manipulator_templates')
@@ -25,7 +25,7 @@ class ManipulatorTemplatesController < ApplicationController
   def update
     @template = ManipulatorTemplate.find(params[:id])
     
-    @template.update_attributes(params[:manipulator_template])
+    @template.update_attributes(params.require(:manipulator_template).permit!)
     if @template.save    
       redirect_to '/manipulator_templates'
     else

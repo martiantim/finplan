@@ -1,6 +1,10 @@
 class PersonDrawing
   constructor: (@el, @role, @name) ->
     @accessories = {}
+
+    if !@role
+      @role = el.attr('data-role')
+
     if @role
       body = $('<div class="body"></div>')
       path = image_path('people/'+@role+'.png')
@@ -8,11 +12,13 @@ class PersonDrawing
       body.append($('<div class="accessories"></div>'))
 
       details = $('<div class="details"></div>')
-      details.append("<div class=\"name\">#{@name}</div>")
+      details.append("<div class=\"name\">#{@name}</div>") if @name
       details.append("<div class=\"age\"></div>")
 
       @el.append(body).append(details)
 
+    if el.attr('data-profession')
+      @setProfession(el.attr('data-profession'))
     @draw()
 
   clearAccessories: ->

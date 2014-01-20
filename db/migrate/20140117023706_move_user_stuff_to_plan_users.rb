@@ -6,10 +6,11 @@ class MoveUserStuffToPlanUsers < ActiveRecord::Migration
     add_column :plan_users, :gender, :string, :limit => 1, :null => false
 
     PlanUser.all.each do |pu|
-      pu.name = pu.user.name
-      pu.born = pu.user.born
-      pu.profession_id = pu.user.profession_id
-      pu.gender = pu.user.gender
+      u = User.find(pu.user_id)
+      pu.name = u.name
+      pu.born = u.born
+      pu.profession_id = u.profession_id
+      pu.gender = u.gender
 
       pu.save!
     end

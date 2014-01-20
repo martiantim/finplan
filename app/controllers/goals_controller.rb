@@ -15,7 +15,7 @@ class GoalsController < BaseManipulatorController
   end
   
   def create
-    @m = Manipulator.new(params[:manipulator])
+    @m = Manipulator.new(params.require(:manipulator).permit!)
     @m.params = params[:variables].to_json
 
     if @m.save

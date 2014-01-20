@@ -1,7 +1,20 @@
 <% template.params.each do |var_name, var_options|  %>
-  <div class="line">
-    <label><%= var_name.gsub('_',' ').split.map(&:capitalize).join(' ') %>:</label>
-    <% if var_options.var_type == 'select' %>
+  <div class="form-group" style="<%= 'display:none' if !var_options.depends_on.blank? %>"
+      <% if !var_options.depends_on.blank? %>
+        data-depends-type="<%=var_options.depends_on.split(':')[0]%>"
+        data-depends-val="<%=var_options.depends_on.split(':')[1]%>"
+      <% end %>
+      >
+    <label for="param:<%=var_name%>"><%= var_name.gsub('_',' ').split.map(&:capitalize).join(' ') %></label>
+    <% if var_options.var_type == 'selectset' %>
+
+      <div class="btn-group">
+        <input type="hidden" name="variables[<%=var_name%>]" value="<%=manipulator.param_value(var_name)%>"></input>
+        <% var_options.options.split(',').each do |opt| %>
+          <button type="button" class="btn btn-default <%= 'active' if manipulator.param_value(var_name) == opt %>" data-depend-type="<%=var_name%>" data-depend-val="<%=opt%>"><%= opt %></button>
+        <% end %>
+      </div>
+    <% elsif var_options.var_type == 'select' %>
       <select name="variables[<%=var_name%>]">
         <% var_options.options.split(',').each do |opt| %>
           <option value="<%=opt%>" <%= 'selected' if manipulator.param_value(var_name) == opt %>><%= opt%></option>
@@ -9,7 +22,10 @@
       </select>
 
     <% else %>
-      <input type="text" class="<%= var_options.var_type %>" name="variables[<%=var_name%>]" value="<%=manipulator.param_value(var_name)%>"></input>
+      <input type="text" id="param:<%=var_name%>" class="form-control <%= var_options.var_type %>" name="variables[<%=var_name%>]" value="<%=manipulator.param_value(var_name)%>"></input>
+    <% end %>
+    <% if var_options['description'] %>
+      <span class="help-block"><%= var_options['description']%></span>
     <% end %>
   </div>
 <% end %>

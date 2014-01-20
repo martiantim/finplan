@@ -54,6 +54,11 @@
   .numbers,.achievements {
     overflow-y: auto;
     .entry {
+      &.total {
+        border-top:1px solid black;
+        padding-top:5px;
+        margin-top:25px !important;
+      }
       .name {
         width:170px;
         float:left;
@@ -68,7 +73,7 @@
     .entry.detail {
       color: #666;
       .name {
-        margin-left: 10px;
+        margin-left: 20px;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow:hidden;
@@ -84,7 +89,15 @@
   
 }
 
+.more {
+  .glyphicon {
+    color: #ccc;
+    font-size: 90%;
+  }
+}
+
 //JQUERY OVERRIDES
 .ui-tabs .ui-tabs-panel {
   padding: 0px;
 }
+

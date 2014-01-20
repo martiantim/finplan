@@ -73,12 +73,34 @@ class NiceList
             console.log("Error converting: " + err)
         true
 
+      @wireButtonGroups()
+
       finFormat(@viewer())
 
       @viewer().find('input, select').change =>
         @viewer().find('form').submit()
 
       @extraWireItem(itemID)
+
+  wireButtonGroups: ->
+    that = this
+    @viewer().find('.btn-group').each ->
+      btngroup = $(this)
+      that._setDependVars(btngroup.find('button.active'))
+      btngroup.find('button').click (e) ->
+        btngroup.find('input').val($(this).attr('data-depend-val'))
+        btngroup.find('button').removeClass('active')
+        $(this).addClass('active')
+        that._setDependVars($(this))
+        false
+
+  _setDependVars: (el) ->
+    return if el.length == 0
+
+    type = el.attr('data-depend-type')
+    val =  el.attr('data-depend-val')
+    @viewer().find("div[data-depends-type=\"#{type}\"]").hide()
+    @viewer().find("div[data-depends-type=\"#{type}\"][data-depends-val=\"#{val}\"]").show()
 
   extraWireItem: (itemID) ->
     #nada

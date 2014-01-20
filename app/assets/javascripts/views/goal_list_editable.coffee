@@ -9,9 +9,9 @@ class GoalListEditable extends GoalList
   extraWireItem: (itemID) ->
     m = @plan.findManipulatorByID(itemID)
     if m && m.achievedYear
-      @viewer().find('.goal_status').html('<span class="ui-icon ui-icon-info"></span> Will achieve in '+m.achievedYear)
+      @viewer().find('.goal_status').html('<div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> Congradulations! Goal will be achieved in '+m.achievedYear+'</div>')
     else if m && m.failMessage
-      @viewer().find('.goal_status').html('<span class="ui-icon ui-icon-alert"></span> '+m.failMessage)
+      @viewer().find('.goal_status').html('<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> '+m.failMessage + '</div>')
 
   removeGoal: (itemID) ->
     that = this

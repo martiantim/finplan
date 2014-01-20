@@ -5,7 +5,7 @@ class TaxBracketsController < ApplicationController
   end
 
   def create
-    @bracket = TaxBracket.new(params[:tax_bracket])
+    @bracket = TaxBracket.new(params.require(:tax_bracket).permit!)
 
     if @bracket.save
       redirect_to("/tax_rate_schedules/#{@bracket.tax_rate_schedule_id}")

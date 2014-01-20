@@ -8,14 +8,14 @@ class PlanUsersController < ApplicationController
 
   def create
     plan = Plan.find(params[:plan_id])
-    pu = plan.plan_users.create!(params[:plan_user])
+    pu = plan.plan_users.create!(params.require(:plan_user).permit!)
 
     render :json => {:id => pu.id}
   end
 
   def update
     pu = PlanUser.find(params[:id])
-    pu.update_attributes(params[:plan_user])
+    pu.update_attributes(params.require(:plan_user).permit!)
 
     if params[:salary_manipulator_id]
       salary = Manipulator.find(params[:salary_manipulator_id])

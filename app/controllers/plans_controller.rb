@@ -20,21 +20,19 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: remove user doesn't update left side
-#TODO: make market performance part of simcontext
+#TODO: fix money display in goal failure
+#TODO: non-constant inflation
+#TODO: redo social security in year retire
 #TODO: take out retirement money as needed
-#TODO: remove pets
 #TODO: handle bankrupcy well
-#TODO: nice descriptions
 #TODO: allow expenses to grow with income (people can't control spending, show scenarios)
 #TODO: keep track of basis and only pay taxes on gains
-#TODO: redo social security in year retire
 #TODO: move to another state when retire
 #TODO: retire should have lifestyle instead of guess at expenses
 #TODO: show number of years achieve for long-running goals
-#TODO: paid by hour
 #TODO: existing debts
 #TODO: still in school
+#TODO: complete job pictures
 #TODO: research how much less people actually use in retirement (saw in the dummies financial planning book)
 # -scenario "SS doesn't exit or lowered payout"
 # -scenario "Different investment returns"
