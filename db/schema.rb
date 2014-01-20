@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20140117034451) do
     t.integer "balance"
     t.string  "investment_type"
     t.decimal "interest_rate",   :precision => 10, :scale => 0
-    t.integer "term"
   end
 
   create_table "manipulator_templates", :force => true do |t|
