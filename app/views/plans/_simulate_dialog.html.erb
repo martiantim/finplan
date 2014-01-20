@@ -1,18 +1,29 @@
-<div id="simulate_dialog" title="Running Simulation" style="display:none">
-  <h1>Calculating...</h1>
-  
-  <div id="simyear" class="clearit">    
-    <div id="simulate_year_progress_wrapper">
-      <div id="simulate_year_progress"></div>
-    </div>
-    <div id="current_simulate_year">2014</div>
-  </div>  
-  
-  <div id="goal_progress">
-    Goals <span>0 of 5</span>
-  </div>
-  
-  <div class="close" style="display:none">
-    <button>View Results &gt;&gt;</button>
-  </div>
+<div class="modal" id="simulate_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Calculating</h4>
+      </div>
+      <div class="modal-body">
+        <div id="simyear" class="form-group">
+          <label>Simulating Year <span id="current_simulate_year">2014</span></label>
+          <div class="progress progress-striped active">
+            <div id="simulate_year_progress" class="progress-bar"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+              <span class="sr-only">0% Complete</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="goal_progress">
+          Goals <span>0 of 5</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="sim_done" style="display:none">
+          <button class="btn btn-primary">View Results &gt;&gt;</button>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
 </div>

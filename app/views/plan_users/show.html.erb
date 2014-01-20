@@ -1,36 +1,42 @@
-<div class="picture" style="float:right;width:250px;">
-
-</div>
-
+<div class="left-main">
 <%= form_for(@plan_user, :html => {'data-remote' => "true"}) do |f| %>
   <%= hidden_field_tag :plan_id, @plan.id %>
 
-  <div style="float:right;">
-    <div class="user_drawing" style="position:relative; transform: scale(0.75,0.75);margin: -70px -30px;">
-      <%= image_tag("people/#{@plan_user.family_role}.png", :style => "width: 250px;") %>
-      <div class="accessories"></div>
-    </div>
-  </div>
-
-  <div class="line">
-    <label>Name:</label>
-    <%= f.text_field :name, :size => 20 %>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <%= f.text_field :name, :size => 20, :class => "form-control" %>
   </div>
 
   <% if @plan_user.is_adult? %>
-    <div class="line">
-      <label>Age:</label>
-      <%= f.select "born", options_for_select(PlanUser.ages_for_select(18..75), @plan_user.born) %>
+    <div class="form-group">
+      <label for="born">Age</label>
+      <%= f.select "born", options_for_select(PlanUser.ages_for_select(18..75), @plan_user.born), :class => "form-control" %>
     </div>
 
-    <div class="line">
-      <label>Profession:</label>
-      <%= f.select :profession_id, options_for_select(Profession.all.collect { |p| [p.name, p.id] }, @plan_user.profession_id) %>
-    </div>
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#working" data-toggle="tab">Working</a></li>
+      <li><a href="#school" data-toggle="tab">In School</a></li>
+      <li><a href="#retired" data-toggle="tab">Retired</a></li>
+    </ul>
 
-    <% salary = @plan.manipulator_for_plan_user_or_create('Salary', @plan_user) %>
-    <%= hidden_field_tag "salary_manipulator_id", salary.id %>
-    <%= render :partial => '/manipulators/params_form', :locals => {:template => ManipulatorTemplate.find_by_name("Salary"), :manipulator => salary} %>
+    <div class="tab-content">
+      <div class="tab-pane active" id="working">
+        <div class="form-group">
+          <label for="profession">Profession</label>
+          <%= f.select :profession_id, options_for_select(Profession.all.collect { |p| [p.name, p.id] }, @plan_user.profession_id), :class => "form-control" %>
+        </div>
+
+        <% salary = @plan.manipulator_for_plan_user_or_create('Salary', @plan_user) %>
+        <%= hidden_field_tag "salary_manipulator_id", salary.id %>
+        <%= render :partial => '/manipulators/params_form', :locals => {:template => ManipulatorTemplate.find_by_name("Salary"), :manipulator => salary} %>
+      </div>
+      <div class="tab-pane" id="school">
+        School stuff TODO
+      </div>
+      <div class="tab-pane" id="retired">
+        Retired stuff
+      </div>
+    </div>
         
   <% elsif @plan_user.born? %>
     Age: <%= f.select "born", options_for_select(PlanUser.ages_for_select(0..18), @plan_user.born) %>
@@ -39,10 +45,16 @@
     <%= f.hidden_field "gender" %>
     Will be born: <%= f.select "born", options_for_select(PlanUser.ages_for_select(-20..-1), @plan_user.born) %>
   <% end %>
-
-  <div style="float:right">
-    <% if @plan_user != @current_user && !@plan_user.new_record? %>
-      <button class="remove">Remove</button>
-    <% end %>
-  </div>
 <% end %>
+</div>
+
+<div class="right-main">
+  <div class="right-controls">
+    <button class="remove btn btn-danger" <%= "disabled=\"disabled\"" if @plan_user.new_record? %>>Remove Person</button>
+  </div>
+
+  <div class="user_drawing" style="position:relative; transform: scale(0.75,0.75);margin: -70px -30px;">
+    <%= image_tag("people/#{@plan_user.family_role}.png", :style => "width: 250px;") %>
+    <div class="accessories"></div>
+  </div>
+</div>

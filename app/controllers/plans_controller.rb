@@ -20,9 +20,6 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: nice descriptions
-#TODO: show net worth
-#TODO: show market returns on yearly view
 #TODO: take out retirement money as needed
 #TODO: handle bankrupcy well
 #TODO: allow expenses to grow with income (people can't control spending, show scenarios)

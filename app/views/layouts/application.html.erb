@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Finplan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -9,6 +11,8 @@
 <body>
 
 <%= yield %>
+
+<script src="/assets/bootstrap.min.js"></script>
 
 </body>
 </html>

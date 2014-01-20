@@ -89,7 +89,15 @@
   
 }
 
+.more {
+  .glyphicon {
+    color: #ccc;
+    font-size: 90%;
+  }
+}
+
 //JQUERY OVERRIDES
 .ui-tabs .ui-tabs-panel {
   padding: 0px;
 }
+

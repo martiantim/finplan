@@ -3,7 +3,7 @@ class Simulator
     @startYear = new Date().getYear()+1900
     @endYear = @family.endYear()
     
-    @dialog.find('.close').hide()
+    @dialog.find('.sim_done').hide()
     @dialog.find('#simulate_year_progress').progressbar({
       max: @endYear - @startYear + 1
     })
@@ -92,7 +92,10 @@ class Simulator
     for name,set of @datasets
       set.push [x, @context.balances["get#{name}"]()]
 
-    @dialog.find('#simulate_year_progress').progressbar("option", "value", @context.simYear - @startYear+1)
+    #@dialog.find('#simulate_year_progress').progressbar("option", "value", @context.simYear - @startYear+1)
+    percentDone = (@context.simYear - @startYear)/(@endYear - @startYear)*100
+    @dialog.find('#simulate_year_progress').css('width', percentDone+'%')
+
     @dialog.find('#current_simulate_year').html(@context.simYear)
     
     @context.nextSimYear(@manipulators)
@@ -104,9 +107,11 @@ class Simulator
     else
       onDone()
       @_markGoals()
-      @dialog.find('.close').show()
-      @dialog.find('.close button').click =>
-        @dialog.dialog('close')
+      @dialog.find('#simulate_year_progress').addClass('progress-bar-success').parent().removeClass('active')
+      @dialog.find('#simyear label').html('Simulation Finished')
+      @dialog.find('.sim_done').show()
+      @dialog.find('.sim_done button').click =>
+        @dialog.modal('hide')
   
   _markGoalProgress: ->
     num = 0

@@ -9,6 +9,10 @@ class PeopleList extends NiceList
     profession = @viewer().find('#user_profession_id option:selected').text()
     @drawing.setProfession(profession)
 
+    @viewer().find('.nav-tabs').click (e) ->
+      e.preventDefault()
+      $(this).tab('show')
+
     @viewer().find('#user_profession_id').change =>
       profession = @viewer().find('#user_profession_id option:selected').text()
       @drawing.setProfession(profession)

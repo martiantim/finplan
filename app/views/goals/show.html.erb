@@ -1,46 +1,54 @@
 <div class="manipulator">
-<%= form_for(@manipulator, :url => "/goals/#{@manipulator.id}", :html => {'data-remote' => "true"}) do |f| %>
+  <div class="right-main">
+    <div class="right-controls">
+      <button class="remove btn btn-danger" <%= "disabled=\"disabled\"" if @manipulator.new_record? %>>Remove Goal</button>
+    </div>
+
+    <%= image_tag @manipulator.manipulator_template.image_url, :style => "width: 150px;" %>
+  </div>
+<%= form_for(@manipulator, :url => "/goals/#{@manipulator.id}", :html => {'data-remote' => "true",:role => "form", :class => "left-main"}) do |f| %>
   <%= f.hidden_field :manipulator_template_id %>
   <%= f.hidden_field :plan_id %>
-  <div style="float:right">
-    <%= image_tag @manipulator.manipulator_template.image_url, :style => "width: 200px;" %>
-  </div>
 
-  <div class="line">
-    <label>Name</label>
-    <%= f.text_field :name, :size => 20 %>
-  </div>
-
-  <div class="save_status"></div>
-  <div class="goal_status"></div>
-  
-  <% if @manipulator.is_goal? %>
-      <div>When:</div>
-      <div style="margin-left:10px">
-        <input type="radio" name="when_type" value="asap" <%= 'checked="checked"' if @manipulator.start_type == 'asap' %>>
-        As soon as possible
-      </div>
-      <div style="margin-left:10px">
-        <input type="radio" name="when_type" value="age"  <%= 'checked="checked"' if @manipulator.start_type == 'age' %>>
-        When <%= select_tag 'when_person', options_for_select(@plan.plan_users.collect { |u| [u.name, u.id]}, @manipulator.start_plan_user_id) %>
-        is <%= select_tag "when_age", options_for_select((1..100).to_a.collect { |a| [a,a]}, @manipulator.start_plan_user_age()) %> years old
-      </div>
-      <div style="margin-left:10px">
-        <input type="radio" name="when_type" value="year"  <%= 'checked="checked"' if @manipulator.start_type == 'year' %>>
-        In year <%= select_tag "when_year", options_for_select((2014..2100).to_a.collect { |a| [a,a]}, @manipulator.start ? @manipulator.start.year : '') %>
-      </div>
-  <% end %>
-    
-<h4>Options</h4>
-  <%= render :partial => '/manipulators/params_form', :locals => {:template => @template, :manipulator => @manipulator} %>
-    
-  <div style="float:right">
-    <% if @manipulator.new_record? %>
-      <%= f.submit "Add" %>
-    <% else %>
-      <button class="remove">Remove Goal</button>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <%= f.text_field :name, :size => 20, :class => "form-control" %>
+    <% if !@manipulator.manipulator_template.description.blank? %>
+      <span class="help-block">
+        <%= raw @manipulator.manipulator_template.description %>
+        <% if !@manipulator.manipulator_template.description_more_link.blank? %>
+          <span class="more">
+            <%= link_to "more", @manipulator.manipulator_template.description_more_link, :target => "_blank" %>
+            <span class="glyphicon glyphicon-new-window"></span>
+          </span>
+        <% end %>
+      </span>
     <% end %>
   </div>
+
+  <% if @manipulator.is_goal? %>
+    <div class="form-group form-group-when">
+      <label for="when_type">When</label>
+      <div class="radio">
+        <label>
+          <input type="radio" name="when_type" value="asap" <%= 'checked="checked"' if @manipulator.start_type == 'asap' %>>
+          As soon as possible
+        </label>
+      </div>
+      <div class="radio">
+          <input type="radio" name="when_type" value="age"  <%= 'checked="checked"' if @manipulator.start_type == 'age' %>>
+          When <%= select_tag 'when_person', options_for_select(@plan.plan_users.collect { |u| [u.name, u.id]}, @manipulator.start_plan_user_id), :class => "form-control" %>
+          is <%= select_tag "when_age", options_for_select((1..100).to_a.collect { |a| [a,a]}, @manipulator.start_plan_user_age()), :class => "form-control" %> years old
+      </div>
+      <div class="radio">
+          <input type="radio" name="when_type" value="year"  <%= 'checked="checked"' if @manipulator.start_type == 'year' %>>
+          In year <%= select_tag "when_year", options_for_select((2014..2100).to_a.collect { |a| [a,a]}, @manipulator.start ? @manipulator.start.year : ''), :class => "form-control" %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= render :partial => '/manipulators/params_form', :locals => {:template => @template, :manipulator => @manipulator} %>
+    
 <% end %>
 </div>
 

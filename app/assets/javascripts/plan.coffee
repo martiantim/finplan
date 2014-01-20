@@ -48,10 +48,8 @@ class Plan
   
   simulate: ->
     that = this
-    dialog = $("#simulate_dialog").dialog({
-      modal: true
-      height: 300,
-      width: 500
+    dialog = $("#simulate_dialog").modal({
+      show: true
     })    
     @simulator = new Simulator(@family, @manipulators, @startAccounts, dialog)
     @simulator.sim ->

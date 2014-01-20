@@ -1,6 +1,6 @@
 <% template.params.each do |var_name, var_options|  %>
-  <div class="line">
-    <label><%= var_name.gsub('_',' ').split.map(&:capitalize).join(' ') %>:</label>
+  <div class="form-group">
+    <label for="param:<%=var_name%>"><%= var_name.gsub('_',' ').split.map(&:capitalize).join(' ') %></label>
     <% if var_options.var_type == 'select' %>
       <select name="variables[<%=var_name%>]">
         <% var_options.options.split(',').each do |opt| %>
@@ -9,7 +9,10 @@
       </select>
 
     <% else %>
-      <input type="text" class="<%= var_options.var_type %>" name="variables[<%=var_name%>]" value="<%=manipulator.param_value(var_name)%>"></input>
+      <input type="text" id="param:<%=var_name%>" class="form-control <%= var_options.var_type %>" name="variables[<%=var_name%>]" value="<%=manipulator.param_value(var_name)%>"></input>
+    <% end %>
+    <% if var_options['description'] %>
+      <span class="help-block"><%= var_options['description']%></span>
     <% end %>
   </div>
 <% end %>

@@ -17,7 +17,22 @@
     .content_main {
       float: left;
       width: 750px;
-      padding: 20px 10px;
+      padding: 20px 20px;
+
+      .right-main {
+        float:right;
+        width:200px;
+        padding: 0px 0px 0px 15px;
+        .right-controls {
+          margin-bottom: 50px;
+          text-align: right;
+        }
+      }
+      .left-main {
+        width: 500px;
+        float: left;
+      }
+
     }
     .content_main.noleft {
       float: left;
