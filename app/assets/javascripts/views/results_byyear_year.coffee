@@ -52,13 +52,16 @@ class ResultsByyearYear
     html
 
   marketChanges: ->
-    html = '<div class="market_performance"><ul>'
+    html = '<div class="panel panel-info" style="margin-top: 15px;"><div class="panel-heading">'
+    html += "<h3 class=\"panel-title\">#{@year} Market Performance</h3></div>"
+    html += '<div class="panel-body"><table class="table-striped" style="width:100%">'
+    html += "<tr><th>Investment Type</th><th>Return</th></tr>"
     for itype in @simContext.markets.ITYPES
       if itype != 'None'
         rates = @simContext.markets.ratesForYear(@year)
-        html += "<li>#{itype}: <span class=\"percentage\">#{rates[itype]*100}</span></li>"
+        html += "<tr><td>#{itype}</td><td><span class=\"percentage\">#{rates[itype]*100}</span></td></tr>"
 
-    html += "</ul></div>"
+    html += "</table></div></div>"
     html
 
   yearChanges: ->
