@@ -14,6 +14,7 @@ class GoalListResults extends GoalList
         @viewer().find('.goal_status').html('<div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> Congradulations! Goal will be achieved in '+m.achievedYear+'</div>')
       else if m && m.failMessage
         @viewer().find('.goal_status').html('<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> '+m.failMessage + '</div>')
+      finFormat(@viewer().find('.goal_status'))
       
       @showProgressChart(m)
       @showProgressTable(m)

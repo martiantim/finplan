@@ -20,7 +20,6 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: fix money display in goal failure
 #TODO: non-constant inflation
 #TODO: redo social security in year retire
 #TODO: take out retirement money as needed
@@ -34,14 +33,16 @@
 #TODO: still in school
 #TODO: complete job pictures
 #TODO: research how much less people actually use in retirement (saw in the dummies financial planning book)
-# -scenario "SS doesn't exit or lowered payout"
-# -scenario "Different investment returns"
-# -goal: more school
-# -goal: investment property
-# -goal: vacation home
-# -goal: leave inheritance
-# -cool range changing https://groups.google.com/forum/#!topic/jqplot-users/o8haUFPWhds
+#TODO: scenario "SS doesn't exit or lowered payout"
+#TODO: scenario "Different investment returns"
+#TODO: goal: more school
+#TODO: goal: investment property
+#TODO: goal: vacation home
+#TODO: goal: leave inheritance
 #TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
+#2.0
+#TODO: show green/yellow/red in need/have table
+#TODO: cool range changing https://groups.google.com/forum/#!topic/jqplot-users/o8haUFPWhds
 #
 #
 # Target:
