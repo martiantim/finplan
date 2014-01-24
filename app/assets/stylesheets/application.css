@@ -12,5 +12,6 @@
  *= require jquery.jqplot 
  *= require codemirror
  *= require bootstrap
+ *= require slider
  *= require_tree .
  */

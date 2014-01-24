@@ -51,7 +51,7 @@ class Plan
 
     dialog = $("#simulate_dialog")
     dialog.find('#simyear label').html('Simulating Year <span id="current_simulate_year">2014</span>')
-    dialog.find('.sim_done').hide()
+    dialog.find('.sim_done button').addClass('disabled')
     dialog.find('#simulate_year_progress').css('width', '0%').removeClass('progress-bar-success').parent().addClass('active')
     dialog.modal({
       show: true

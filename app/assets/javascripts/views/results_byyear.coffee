@@ -5,28 +5,47 @@ class ResultsByYear
     @el.find('#year_slider').slider({
       min: @curYear,
       max: @maxYear,
-      slide: (event, ui) =>
-        @el.find('#cur_year').html(ui.value)
-        @curYear = parseInt(ui.value)
-      change: (event, ui) =>
-        @el.find('#cur_year').html(ui.value)
-        @showYear(ui.value)
-    })
+    }).on('slideStop', (ev) =>
+      @curYear = parseInt(ev.value)
+      @showYear(ev.value)
+      @_updateYear()
+    )
+
+    @_updateYear(true)
     @el.find('a.year_prev').click =>
       @curYear -= 1
       @curYear = finData['current_year'] if @curYear < finData['current_year']
-      @el.find('#year_slider').slider('value', @curYear)
+      @_updateYear()
+      @showYear(@curYear)
+
     @el.find('a.year_next').click =>
       @curYear += 1
       @curYear = @maxYear if @curYear > @maxYear
-      @el.find('#year_slider').slider('value', @curYear)
+      @_updateYear()
+      @showYear(@curYear)
+
+  _updateYear: (skipSlider = false) ->
+    if !skipSlider
+      @el.find('#year_slider').slider('setValue', @curYear)
+
+    @el.find('#cur_year').html(@curYear)
+    if @curYear == finData['current_year']
+      @el.find('a.year_prev').addClass('disabled')
+    else
+      @el.find('a.year_prev').removeClass('disabled')
+
+    if @curYear == @maxYear
+      @el.find('a.year_next').addClass('disabled')
+    else
+      @el.find('a.year_next').removeClass('disabled')
 
   displayDefault: ->
     @jumpToYear(finData['current_year'])
 
   jumpToYear: (year) ->
     @curYear = year
-    @el.find('#year_slider').slider('value', @curYear)
+    @el.find('#year_slider').slider('setValue', @curYear)
+    @showYear(@curYear)
 
   showYear: (year) ->
     new ResultsByyearYear(year, plan.lastSimulator().context).render(@el.find('#byyear_data'))

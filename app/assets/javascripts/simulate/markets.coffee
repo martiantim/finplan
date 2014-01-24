@@ -1,6 +1,6 @@
 class Markets
   constructor: (@simContext) ->
-    @ITYPES = ['None', 'Money Market', 'Bonds', 'Stock', 'International Stock']
+    @ITYPES = ['None', 'Money Market', 'Bonds', 'Stock', 'International Stock', 'Inflation']
     @myrng = new Math.seedrandom('yay');
     @rates = {}
 
@@ -56,6 +56,10 @@ class Markets
     else if iType == 'International Stock'
       avg = 0.124
       stdev = 0.25
+      @stdrnd(avg, stdev)
+    else if iType == 'Inflation'
+      avg = 0.03
+      stdev = 0.02
       @stdrnd(avg, stdev)
     else if iType == 'None'
       0.0

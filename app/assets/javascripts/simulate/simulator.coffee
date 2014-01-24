@@ -57,7 +57,7 @@ class Simulator
     @context.balances.earnFromInvestments(@context.markets)
     @context.balances.payLoans()
     for m in @manipulators
-      m.adjustForInflation()
+      m.adjustForInflation(@context.markets.rate('Inflation'))
       m.exec(@context)
 
     #first income
@@ -105,7 +105,7 @@ class Simulator
       @_markGoals()
       @dialog.find('#simulate_year_progress').addClass('progress-bar-success').parent().removeClass('active')
       @dialog.find('#simyear label').html('Simulation Finished')
-      @dialog.find('.sim_done').show()
+      @dialog.find('.sim_done button').removeClass('disabled')
       @dialog.find('.sim_done button').click =>
         @dialog.modal('hide')
   

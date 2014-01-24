@@ -39,9 +39,9 @@ class Manipulator
     @cpiAdjustedParams = {}
     @progress = []
 
-  adjustForInflation: ->
+  adjustForInflation: (inflationRate) ->
     for k, v of @cpiAdjustedParams
-      @cpiAdjustedParams[k] = v * 1.03
+      @cpiAdjustedParams[k] = v * (1 + inflationRate)
 
   setGoalProgress: (year, have, need) ->
     if !@inRange(@curSim.simYear)

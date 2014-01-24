@@ -20,15 +20,16 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: non-constant inflation
+#TODO: fix byyear slider
+#TODO: have byyear end when last adult dies
+#TODO: show better stuff in goal graphs
 #TODO: redo social security in year retire
+#TODO: show number of years achieve for long-running goals
 #TODO: take out retirement money as needed
 #TODO: handle bankrupcy well
 #TODO: allow expenses to grow with income (people can't control spending, show scenarios)
 #TODO: keep track of basis and only pay taxes on gains
-#TODO: move to another state when retire
 #TODO: retire should have lifestyle instead of guess at expenses
-#TODO: show number of years achieve for long-running goals
 #TODO: existing debts
 #TODO: still in school
 #TODO: complete job pictures
@@ -36,13 +37,14 @@
 #TODO: scenario "SS doesn't exit or lowered payout"
 #TODO: scenario "Different investment returns"
 #TODO: goal: more school
-#TODO: goal: investment property
 #TODO: goal: vacation home
 #TODO: goal: leave inheritance
 #TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
 #2.0
 #TODO: show green/yellow/red in need/have table
 #TODO: cool range changing https://groups.google.com/forum/#!topic/jqplot-users/o8haUFPWhds
+#TODO: move to another state when retire
+#TODO: goal: investment property
 #
 #
 # Target:

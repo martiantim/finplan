@@ -26,4 +26,6 @@
 //= require codemirror
 //= require codemirror/modes/coffeescript
 //= require seedrandom
+//= require bootstrap.min
+//= require bootstrap-slider
 //= require_tree .

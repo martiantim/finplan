@@ -58,7 +58,7 @@ class ResultsByyearYear
     html = "<div class='entry title'>"
     html += "  <div class='name'>"
     if expandable
-      html += "<a href='#' class='expander' style='width:15px;display:inline-block;text-align:center;color #333;' data-kind='#{kind}'><span class=\"glyphicon glyphicon-chevron-right\"></span></a>"
+      html += "<a href='#' class='expander' style='width:15px;display:inline-block;text-align:center;' data-kind='#{kind}'><span class=\"glyphicon glyphicon-chevron-right\"></span></a>"
     else
       html += "<span class=\"glyphicon glyphicon-chevron-right\"></span>"
     html += " #{name}</div>"
