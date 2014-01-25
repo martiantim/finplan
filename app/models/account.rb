@@ -2,26 +2,41 @@ class Account < ActiveRecord::Base
   belongs_to :plan
   
   KINDS = [    
-    {:name => "Checking",   :type => 'current'},
-    {:name => "Savings",    :type => 'invest'},
-    {:name => "Emergency",  :type => 'current'},
-    {:name => "Loan",       :type => 'debt'},
-    {:name => "HSA",        :type => 'current'},
-    {:name => "Investment", :type => 'invest'},
-    {:name => "Traditional IRA", :type => 'invest'},
-    {:name => "Roth IRA",   :type => 'invest'},
-    {:name => "401K",       :type => 'invest'},
+    {:name => "Checking",   :type => 'current', :removable => false, :description => "Bank account where you keep your money for everyday expenses.", :description_more_link => "http://www.investopedia.com/terms/c/checkingaccount.asp"},
+    {:name => "Emergency",  :type => 'current', :removable => false, :description => "An account that holds money for use in an emergency. Emergencies include losing your job, an unexpected large bill, etc. This may be a savings account at your bank.", :description_more_link => "http://www.investopedia.com/terms/e/emergency_fund.asp"},
+    {:name => "Savings",    :type => 'invest',  :removable => false, :description => ""},
+    {:name => "Loan",       :type => 'debt',    :removable => true,  :description => ""},
+    {:name => "HSA",        :type => 'current', :removable => true,  :description => ""},
+    {:name => "Investment", :type => 'invest',  :removable => true,  :description => ""},
+    {:name => "Traditional IRA", :type => 'invest', :removable => true, :description => ""},
+    {:name => "Roth IRA",   :type => 'invest',  :removable => true, :description => ""},
+    {:name => "401K",       :type => 'invest',  :removable => true, :description => ""},
   ]
   
   INVESTMENT_TYPES = [
     "Money Market",
     "Bonds",
     "Stock",
+    "International Stock",
     "Target Retirement"
   ]
   
   def kind
     KINDS.detect { |a| a[:name] == self.name }
+  end
+
+  def description
+    kind[:description]
+  end
+
+  def description_more_link
+    kind[:description_more_link]
+  end
+
+  def can_remove?
+    return false if new_record?
+
+    kind[:removable]
   end
   
   def can_invest?

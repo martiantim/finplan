@@ -13,17 +13,7 @@
   <div class="form-group">
     <label for="name">Name</label>
     <%= f.text_field :name, :size => 20, :class => "form-control" %>
-    <% if !@manipulator.manipulator_template.description.blank? %>
-      <span class="help-block">
-        <%= raw @manipulator.manipulator_template.description %>
-        <% if !@manipulator.manipulator_template.description_more_link.blank? %>
-          <span class="more">
-            <%= link_to "more", @manipulator.manipulator_template.description_more_link, :target => "_blank" %>
-            <span class="glyphicon glyphicon-new-window"></span>
-          </span>
-        <% end %>
-      </span>
-    <% end %>
+    <%= description_block(@manipulator.manipulator_template.description, @manipulator.manipulator_template.description_more_link) %>
   </div>
 
   <% if @manipulator.is_goal? %>

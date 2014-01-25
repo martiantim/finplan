@@ -1,24 +1,27 @@
+<div class="left-main">
 <%= form_for(@account, :html => {'data-remote' => "true"}) do |f| %>
   <%= f.hidden_field :plan_id %>
 
-  <div class="line">
-    <label>Type</label>
-    <% if @account.new_record? %>
-      <%= f.select "name", options_for_select(Account::KINDS.collect { |a| a[:name] }, @account.name) %>
-    <% else %>
-      <%= @account.name %>
-    <% end %>
-  </div>
 
-  <div class="line">
-    <label>Balance</label>
-    <%= f.text_field "balance", :class => "money" %>
+  <% if @account.new_record? %>
+    <div class="form-group">
+      <label for="name">Type</label>
+      <%= f.select "name", options_for_select(Account::KINDS.collect { |a| a[:name] }, @account.name), {}, {:class => "form-control"} %>
+    </div>
+  <% else %>
+    <h3 style="margin-top:0px;"><%= @account.name %></h3>
+    <%= description_block(@account.description, @account.description_more_link) %>
+  <% end %>
+
+  <div class="form-group">
+    <label for="balance">Balance</label>
+    <%= f.text_field "balance", :class => "money form-control" %>
   </div>
     
   <% if @account.can_invest? %>
-    <div class="line investment">
-      <label>Investment Type</label>
-      <%= f.select "investment_type", options_for_select(Account::INVESTMENT_TYPES, @account.investment_type) %>
+    <div class="form-group investment">
+      <label for="investment_type">Investment Type</label>
+      <%= f.select "investment_type", options_for_select(Account::INVESTMENT_TYPES, @account.investment_type), {}, {:class => "form-control"} %>
     </div>
   <% end %>
 
@@ -32,14 +35,17 @@
       <%= f.text_field 'term' %>
     </div>
   <% end %>
-  
-  <div class="line">
-    <% if !@account.new_record? %>
-      <button class="remove">Remove</button>
-    <% end %>      
 
-  </div>
 <% end %>
+</div>
+
+<div class="right-main">
+  <div class="right-controls">
+    <% if @account.can_remove? %>
+      <button class="remove btn btn-danger">Remove Account</button>
+    <% end %>
+  </div>
+</div>
 
 <%= javascript_tag do  %>
   $(function() {

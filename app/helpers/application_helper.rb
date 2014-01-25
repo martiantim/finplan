@@ -20,5 +20,20 @@ module ApplicationHelper
       html << "\t</div>\n"
     end
     html
-  end  
+  end
+
+
+  def description_block(desc, more_link)
+    return "" if desc.blank?
+
+    html = "<span class=\"help-block\">#{desc}"
+    if more_link
+      html += ' <span class="more">'
+      html += link_to "more", more_link, :target => "_blank"
+      html += ' <span class="glyphicon glyphicon-new-window"></span>'
+      html += '</span>'
+    end
+    html += '</span'
+    raw html
+  end
 end
