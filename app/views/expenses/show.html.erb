@@ -1,20 +1,22 @@
-<div class="manipulator">
-<%= form_for(@manipulator, :url => "/expenses/#{@manipulator.id}", :html => {'data-remote' => "true"}) do |f| %>
-  <%= f.hidden_field :manipulator_template_id %>
-  <%= f.hidden_field :plan_id %>
-  <div class="line">
-    <label>Name</label>
-    <%= f.text_field :name, :size => 20 %>
-  </div>
+<div class="manipulator well notitle clearfix">
+  <div class="left-main">
+    <%= form_for(@manipulator, :url => "/expenses/#{@manipulator.id}", :html => {'data-remote' => "true"}) do |f| %>
+      <%= f.hidden_field :manipulator_template_id %>
+      <%= f.hidden_field :plan_id %>
+      <div class="line">
+        <label>Name</label>
+        <%= f.text_field :name, :size => 20 %>
+      </div>
 
-  <div class="goal_status"></div>
+      <div class="goal_status"></div>
 
-  <%= render :partial => '/manipulators/params_form', :locals => {:template => @manipulator.manipulator_template, :manipulator => @manipulator} %>
+      <%= render :partial => '/manipulators/params_form', :locals => {:template => @manipulator.manipulator_template, :manipulator => @manipulator} %>
 
-  <div style="float:right">
-    <% if !@manipulator.new_record? %>
-      <button class="remove">Remove</button>
     <% end %>
   </div>
-<% end %>
+  <div class="right-main">
+    <div class="right-controls">
+      <button class="remove btn btn-danger">Remove Expense</button>
+    </div>
+  </div>
 </div>
