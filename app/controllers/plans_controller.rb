@@ -20,6 +20,7 @@
 # -allow invest savings account
 # -better loans
 #
+#TODO: goal: leave inheritance
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 #TODO: how to do scenarios
 #TODO: valid ages for goal ages
@@ -38,7 +39,6 @@
 #TODO: scenario "Different investment returns"
 #TODO: goal: more school
 #TODO: goal: vacation home
-#TODO: goal: leave inheritance
 #TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
 #2.0
 #TODO: show green/yellow/red in need/have table
