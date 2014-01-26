@@ -19,7 +19,7 @@ class ResultsByYear
 
   setEndYear: (year) ->
     @maxYear = year
-    @el.find('#year_slider').slider('destroy')
+    @el.find('.slider').slider('destroy')
     @_initSlider()
 
   _initSlider: ->
@@ -35,7 +35,7 @@ class ResultsByYear
 
   _updateYear: (skipSlider = false) ->
     if !skipSlider
-      @el.find('#year_slider').slider('setValue', @curYear)
+      @el.find('.slider').slider('setValue', @curYear)
 
     @el.find('#cur_year').html(@curYear)
     if @curYear == finData['current_year']
@@ -53,7 +53,7 @@ class ResultsByYear
 
   jumpToYear: (year) ->
     @curYear = year
-    @el.find('#year_slider').slider('setValue', @curYear)
+    @el.find('.slider').slider('setValue', @curYear)
     @showYear(@curYear)
 
   showYear: (year) ->

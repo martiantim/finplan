@@ -20,7 +20,9 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: show better stuff in goal graphs
+#TODO: refresh active when refresh lists
+#TODO: fix expenses display
+#TODO: valid ages for goal ages
 #TODO: redo social security in year retire
 #TODO: show number of years achieve for long-running goals
 #TODO: take out retirement money as needed

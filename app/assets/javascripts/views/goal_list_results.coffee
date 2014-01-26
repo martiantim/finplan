@@ -22,12 +22,14 @@ class GoalListResults extends GoalList
   showProgressChart: (m) ->
     labels = ['Have','Need']
     sets = [[],[]]
+    endYear = finData['current_year']
     for d in m.progress
       y = "#{d[0]}-01-01 4:00PM"
+      endYear = d[0] if d[0] > endYear
       sets[0].push [y, d[1]['have']]
       sets[1].push [y, d[1]['need']]
   
-    new YearlyChart('goal_results_chart', labels, sets).display()
+    new YearlyChart('goal_results_chart', labels, sets, endYear+1).display()
     
   showProgressTable: (m) ->
     tbody = @viewer().find('#progress_table tbody')

@@ -42,10 +42,10 @@ class Simulator
       m.reset(that)
     
     @datasets = {
-      'Cash': [],
       'Savings': [],
       'Retirement': [],
-      'Total': [],
+      'Loans': [],
+      'Net Worth': [],
     }    
 
     @context = new SimContext(@startYear, @startAccounts, @family)
@@ -71,7 +71,7 @@ class Simulator
       x = @context.family.members[0].ageInYear(@context.simYear)
 
     for name,set of @datasets
-      set.push [x, @context.balances["get#{name}"]()]
+      set.push [x, @context.balances["get#{name.replace(' ', '_')}"]()]
 
     percentDone = (@context.simYear - @startYear)/(@endYear() - @startYear)*100
     @dialog.find('#simulate_year_progress').css('width', percentDone+'%')

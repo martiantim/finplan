@@ -54,13 +54,27 @@ class Balances
     tot
     
   getSavings: ->
-    @accounts['savings'].balance
-    
-  getCash: ->
-    @accounts['checking'].balance
-    
+    @accounts['savings'].balance + @accounts['checking'].balance + @accounts['emergency'].balance
+
+  getLoans: ->
+    total = 0
+    for name, a of @accounts
+      if a.type == 'loan'
+        total += a.balance
+    total
+
   getRetirement: ->
-    @accounts['retirement'].balance + @accounts['401k'].balance
+    total = 0
+    for name, acct of @accounts
+      if acct.is_retirement()
+        total += acct.balance
+    total
+
+  getNet_Worth: ->
+    total = 0
+    for name, acct of @accounts
+      total += acct.balance
+    total
     
   hasRetirement: (amount) ->
     @getRetirement() >= amount
