@@ -123,7 +123,10 @@ class NiceList
       type: 'GET',
       data: {'plan_id': @plan.id, 'editable': @options.editable},
       success: (data) =>
+        activeID = @el.find('.active').attr('data-id')
         @el.html data
+        if activeID
+          @el.find("li[data-id=\"#{activeID}\"]").addClass('active')
         @rewire()
         if curSelected
           @el.find("li[data-id=\"#{curSelected}\"]").addClass('selected')

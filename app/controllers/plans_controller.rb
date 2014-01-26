@@ -20,7 +20,6 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: refresh active when refresh lists
 #TODO: fix expenses display
 #TODO: valid ages for goal ages
 #TODO: redo social security in year retire
