@@ -7,20 +7,28 @@ class Navigation
     
   _wireNavigation: ->
     that = this
-    $('#navigation li a').click ->
+    $("#navigation li > a:not('.dropdown-toggle')").click ->
+      li = $(this).parent()
       $('.section').hide()      
-      name = $(this).attr('data-section')
+      name = li.attr('data-section')
       section = that._sectionOfName(name)
       section.show()
       
-      $('#navigation li a').removeClass('active')
-      $(this).addClass('active')
+      $('#navigation > ul > li').removeClass('active')
+      if (li.closest('ul').hasClass('dropdown-menu'))
+        li.parents('li').addClass('active')
+      else
+        li.addClass('active')
       
       if section.find('#subnav a.active').length == 0
         section.find('#subnav a:first').click()
         
       if name == 'results'
-        plan.onResultsClick()
+        li.parents('li').removeClass('open')
+        if li.hasClass('simulate')
+          plan.onSimulateClick()
+
+
         
       false
 
@@ -55,9 +63,14 @@ class Navigation
   jumpToSection: (name) ->
     $("a[data-content=\"#{name}\"]").click()
 
+  simulateDone: ->
+    $("#navigation li.simulate").addClass('disabled')
+    $("#navigation li.view_results").removeClass('disabled')
+
   showDirty: (val) ->
     span = $('#navigation li[data-section="results"] span')
     if val == true
+      $("#navigation li.simulate").removeClass('disabled')
       span.show()
     else
       span.hide()

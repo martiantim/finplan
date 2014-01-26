@@ -1,14 +1,24 @@
 <div id="logo">LOGO</div>
 
 <div id="navigation">
-  <ul>
-    <% ['Goals', 'Setup', 'Results'].each do |control| %>
-      <li data-section="<%=control.downcase%>">
-        <%= link_to control, '#', :class => "nav #{'active' if control == 'Setup'}", :"data-section" => control.downcase %>
-        <% if control == 'Results' %>
-          <span style="display:none">*</span>
-        <% end %>
+  <ul class="nav nav-tabs">
+    <% ['Goals', 'Setup'].each do |control| %>
+      <li data-section="<%=control.downcase%>" class="<%= 'active' if control == 'Setup'%>">
+        <%= link_to control, '#', :class => "nav2", :"data-section" => control.downcase %>
       </li>
     <% end %>
+    <li>
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Simulate<span style="display:none">*</span> <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="simulate" role="presentation" data-section="results">
+          <a role="menuitem" tabindex="-1" href="#">Run Simulation</a>
+        </li>
+        <li class="view_results disabled" role="presentation" data-section="results">
+          <a role="menuitem" tabindex="-1" href="#">View Last Results</a>
+        </li>
+      </ul>
+    </li>
   </ul>
 </div>

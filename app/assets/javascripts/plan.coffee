@@ -35,14 +35,13 @@ class Plan
   markDirty: (andData = false) ->
     if andData
       @reloadData()
-    window.goalList.markAllUnknown()
-    @simulator = null
     window.navigation.showDirty(true)
 
-  onResultsClick: ->
-    if !@simulator
-      @simulate()
-      
+  onSimulateClick: ->
+    window.goalList.markAllUnknown()
+    @simulate()
+    window.navigation.simulateDone()
+
   onChartDisplay: ->
     @resultsChart.display(@lastSimulator())
   

@@ -20,7 +20,8 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: bug too many sliders
+#TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
+#TODO: how to do scenarios
 #TODO: valid ages for goal ages
 #TODO: redo social security in year retire
 #TODO: show number of years achieve for long-running goals
