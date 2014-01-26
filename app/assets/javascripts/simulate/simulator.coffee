@@ -1,7 +1,6 @@
 class Simulator
   constructor: (@family, @manipulators, @startAccounts, @dialog) ->
     @startYear = new Date().getYear()+1900
-    @endYear = @family.endYear()
 
     @_markGoalProgress()    
 
@@ -9,6 +8,9 @@ class Simulator
     for m in @manipulators
       if m.template_name == name
         return m
+
+  endYear: ->
+    @family.endYear()
 
   findAllManipulatorsByName: (name) ->
     arr = []
@@ -59,23 +61,6 @@ class Simulator
     for m in @manipulators
       m.adjustForInflation(@context.markets.rate('Inflation'))
       m.exec(@context)
-
-    #first income
-#    for m in @manipulators
-#      if m.kind == 'income'
-#        m.exec(@context)
-#
-#
-#    #pay expenses
-#    @context.balances.payLoans()
-#    for m in @manipulators
-#      if m.kind == 'factor' || m.kind == 'hidden' #TODO: break out more. taxes, etc
-#        m.exec(@context)
-#
-#    #goals
-#    for m in @manipulators
-#      if m.kind == 'goal'
-#        m.exec(@context)
     
     @context.balances.rebalance()
     @context.balances.addYear()
@@ -88,18 +73,17 @@ class Simulator
     for name,set of @datasets
       set.push [x, @context.balances["get#{name}"]()]
 
-    #@dialog.find('#simulate_year_progress').progressbar("option", "value", @context.simYear - @startYear+1)
-    percentDone = (@context.simYear - @startYear)/(@endYear - @startYear)*100
+    percentDone = (@context.simYear - @startYear)/(@endYear() - @startYear)*100
     @dialog.find('#simulate_year_progress').css('width', percentDone+'%')
 
     @dialog.find('#current_simulate_year').html(@context.simYear)
     
     @context.nextSimYear(@manipulators)
     @_markGoalProgress()
-    if @context.simYear <= @endYear
+    if @context.simYear <= @endYear()
       setTimeout =>
         @_runYear(onDone)
-      , 50
+      , 1
     else
       onDone()
       @_markGoals()

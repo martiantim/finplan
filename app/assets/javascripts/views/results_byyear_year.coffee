@@ -67,7 +67,7 @@ class ResultsByyearYear
     html
 
   marketChanges: ->
-    html = '<div class="panel panel-info" style="margin-top: 15px;"><div class="panel-heading">'
+    html = '<div class="panel panel-success" style="margin-top: 15px;"><div class="panel-heading">'
     html += "<h3 class=\"panel-title\">#{@year} Market Performance</h3></div>"
     html += '<div class="panel-body"><table class="table table-striped" style="width:100%">'
     html += "<thead><tr><th>Investment Type</th><th>Return</th></tr></thead>"

@@ -1,5 +1,9 @@
 $total_width: 1024px;
 
+body {
+  background: #ddd;
+}
+
 #main_content {
   width: $total_width;
   margin: 0px auto;
@@ -35,6 +39,5 @@ $total_width: 1024px;
 
   #main_column {
     width: $total_width;
-    height: 500px;
   }
 }

@@ -8,23 +8,25 @@
   <% end %>
   
   <%= render :layout => 'content_layout', :locals => {:name => 'graph'} do %>
-    <div id="chart"></div>
-    <div id="chart_controls">
-      <div id="xtype" data-value="year">
-        <a href="#" data-xtype="year">year</a>/<a href="#" data-xtype="age">age</a>
+    <div class="well" style="height: 500px;">
+      <div id="chart"></div>
+      <div id="chart_controls">
+        <div id="xtype" data-value="year">
+          <a href="#" data-xtype="year">year</a>/<a href="#" data-xtype="age">age</a>
+        </div>
       </div>
     </div>
   <% end %>
     
   <%= render :layout => 'content_layout', :locals => {:name => 'byyear'} do %>
-    <div>
-      <h2 style="text-align: center"><a href="#" class="year_prev">&lt;&lt;</a>Year <span id="cur_year">2014</span><a href="#" class="year_next">&gt;&gt;</a></h2>
-    </div>
-    <div id="year_slider_wrapper">
-      <div id="year_slider" class="slider slider-horizontal" style="width: 900px;">
+    <div class="well">
+      <div>
+        <h2 style="text-align: center"><a href="#" class="year_prev">&lt;&lt;</a>Year <span id="cur_year">2014</span><a href="#" class="year_next">&gt;&gt;</a></h2>
+      </div>
+      <div id="year_slider_wrapper">
 
       </div>
+      <div id="byyear_data"></div>
     </div>
-    <div id="byyear_data"></div>
   <% end %>
 </div>

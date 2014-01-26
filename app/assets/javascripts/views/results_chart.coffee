@@ -1,12 +1,16 @@
 class ResultsChart
   constructor: (@id, @plan) ->
     @startYear = finData['current_year']
-      
+    @endYear = 2063
+
+  setEndYear: (year) ->
+    @endYear = year
+
   _getOptions: (balances, xtype, labels) ->
     if xtype == 'year'
       xAxisOptions = {
         min: "#{finData['current_year']}-01-01",
-        max: "2063-01-01",
+        max: "#{@endYear}-01-01",
         tickOptions:{formatString:'%Y', angle: -30},      
         renderer:$.jqplot.DateAxisRenderer      
         tickInterval:'2 years'
@@ -26,7 +30,7 @@ class ResultsChart
     }
     
     {
-      title:'Finances',
+      title:'Account Balances',
       axesDefaults: {
         tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
         tickOptions: {

@@ -59,6 +59,8 @@ class Plan
     @simulator = new Simulator(@family, @manipulators, @startAccounts, dialog)
     @simulator.sim ->
       that.resultsChart.display(that.simulator)
+      that.resultsByYear.setEndYear(that.simulator.endYear())
+      that.resultsChart.setEndYear(that.simulator.endYear())
       that.resultsByYear.displayDefault()
       window.navigation.showDirty(false)
   

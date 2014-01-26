@@ -1,14 +1,45 @@
 .list {
   h3 {
-    text-decoration: underline;
+    font-weight: bold;
     margin: 5px;
     a.expander {
       float:left;
       margin: 3px 10px;
     }
   }
-  
-  ul {
+
+  .nav_picture {
+    display:inline-block;
+    img { width: 30px; }
+    vertical-align: middle;
+  }
+  .name {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .unused {
+    a {
+      color: #bbb;
+    }
+    .nav_picture {
+      opacity:0.5
+    }
+  }
+  .achieved {
+    float: right;
+    border: 1px solid #000;
+    width: 25px;
+    height: 25px;
+    margin-top: 5px;
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  /*ul {
+    background: #eee;
     margin: 0px;
     padding: 0px;    
     .item.selected {
@@ -47,17 +78,6 @@
           width: 175px;
         }
       }
-      .achieved {
-        float: right;
-        border: 1px solid #000;
-        width: 25px;
-        height: 25px;
-        margin-top: 5px;
-        img {
-          width: 25px;
-          height: 25px;
-        }
-      }
     }
     .item.unused {
       color: #bbb;      
@@ -65,5 +85,5 @@
         opacity:0.5
       }
     }
-  }
+  } */
 }

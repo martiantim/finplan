@@ -9,21 +9,18 @@ class NiceList
     @el.closest('.content').find('.content_main')
     
   _wire: ->
-    @el.find('.item').hover ->
-      $(this).addClass('hover')
-    , ->
-      $(this).removeClass('hover')
-    
-    @el.find('.item').click (event) =>
+    @el.find('li').click (event) =>
       target = $(event.delegateTarget)
-      return false if target.hasClass('selected')
+      return false if target.hasClass('active')
       gid = target.attr('data-id')
+      gname = target.attr('data-name')
+      @el.closest('.content').find('.content_title').html(gname) if gname
       if @options.click
         @options.click(gid)
       else
         @showItem(gid)
-      @el.find('.item').removeClass('selected')
-      target.addClass('selected')
+      @el.find('li').removeClass('active')
+      target.addClass('active')
       false
 
     @el.find('a.expander').click (event) =>

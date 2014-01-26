@@ -20,8 +20,6 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: nicer looking left links
-#TODO: have byyear end when last adult dies
 #TODO: show better stuff in goal graphs
 #TODO: redo social security in year retire
 #TODO: show number of years achieve for long-running goals

@@ -1,3 +1,8 @@
+<% if !@account.new_record? %>
+  <h3><%= @account.name %></h3>
+<% end %>
+
+<div class="well clearfix <%= 'notitle' if @account.new_record? %>">
 <div class="left-main">
 <%= form_for(@account, :html => {'data-remote' => "true"}) do |f| %>
   <%= f.hidden_field :plan_id %>
@@ -9,7 +14,6 @@
       <%= f.select "name", options_for_select(Account::KINDS.collect { |a| a[:name] }, @account.name), {}, {:class => "form-control"} %>
     </div>
   <% else %>
-    <h3 style="margin-top:0px;"><%= @account.name %></h3>
     <%= description_block(@account.description, @account.description_more_link) %>
   <% end %>
 
@@ -46,7 +50,7 @@
     <% end %>
   </div>
 </div>
-
+</div>
 <%= javascript_tag do  %>
   $(function() {
     ACCOUNT_KINDS = <%= raw Account::KINDS.to_json %>;

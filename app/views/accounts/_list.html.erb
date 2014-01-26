@@ -1,23 +1,18 @@
 <h3>
-  <a href="#" class="expander" data-expanded="true">
-    <span class="ui-icon ui-icon-triangle-1-s"></span>
-  </a>
   Accounts
 </h3>
-<ul>        
+<ul class="well well-small nav nav-pills nav-stacked">
   <% list.each do |acct|  %>
-    <li class="account item" data-id="<%=acct.id%>">          
-      <div class="picture">
-        
-      </div>      
-      <div class="name"><%= acct.name %></div>                              
+    <li class="account" data-id="<%=acct.id%>">
+      <a href="#">
+        <div class="name"><%= acct.name %></div>
+      </a>
     </li>
   <% end %>
   
-  <li class="account item unused" data-id="new_account">          
-    <div class="picture">
-      
-    </div>      
-    <div class="name">Add</div>                              
+  <li class="account unused" data-id="new_account">
+    <a href="#">
+      <div class="name">Add Account</div>
+    </a>
   </li>
 <ul>

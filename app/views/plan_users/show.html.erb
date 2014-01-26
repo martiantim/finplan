@@ -1,3 +1,4 @@
+<div class="well clearfix notitle">
 <div class="left-main">
 <%= form_for(@plan_user, :html => {'data-remote' => "true"}) do |f| %>
   <%= hidden_field_tag :plan_id, @plan.id %>
@@ -56,4 +57,5 @@
   <div class="person_wrapper" style="position: relative;">
     <div class="person_drawing" data-id="<%= @plan_user.id%>" data-profession="<%= @plan_user.profession ? @plan_user.profession.name : ''%>" data-role="<%= @plan_user.family_role%>"></div>
   </div>
+</div>
 </div>

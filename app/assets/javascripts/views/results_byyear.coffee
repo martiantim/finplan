@@ -2,14 +2,7 @@ class ResultsByYear
   constructor: (@el)->
     @curYear = finData['current_year']
     @maxYear = 2064
-    @el.find('#year_slider').slider({
-      min: @curYear,
-      max: @maxYear,
-    }).on('slideStop', (ev) =>
-      @curYear = parseInt(ev.value)
-      @showYear(ev.value)
-      @_updateYear()
-    )
+    @_initSlider()
 
     @_updateYear(true)
     @el.find('a.year_prev').click =>
@@ -23,6 +16,22 @@ class ResultsByYear
       @curYear = @maxYear if @curYear > @maxYear
       @_updateYear()
       @showYear(@curYear)
+
+  setEndYear: (year) ->
+    @maxYear = year
+    @el.find('#year_slider').slider('destroy')
+    @_initSlider()
+
+  _initSlider: ->
+    @el.find('#year_slider_wrapper').html('<div id="year_slider" class="slider slider-horizontal" style="width: 900px;"></div>')
+    @el.find('#year_slider').slider({
+      min: @curYear,
+      max: @maxYear,
+    }).on('slideStop', (ev) =>
+      @curYear = parseInt(ev.value)
+      @showYear(ev.value)
+      @_updateYear()
+    )
 
   _updateYear: (skipSlider = false) ->
     if !skipSlider

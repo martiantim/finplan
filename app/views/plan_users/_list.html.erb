@@ -1,34 +1,42 @@
 <h3>
   Family
 </h3>
-<ul>
+<ul class="well well-small nav nav-pills nav-stacked">
   <% list.each do |pu|  %>
-    <li class="plan_user item" data-id="<%=pu.id%>">
-      <div class="picture">
-        <%= image_tag("people/faces/#{pu.family_role}.png") %>
-      </div>
-      <div class="name"><%= pu.name %></div>
+    <li class="plan_user" data-id="<%=pu.id%>">
+      <a href="#">
+        <div class="nav_picture">
+          <%= image_tag("people/faces/#{pu.family_role}.png") %>
+        </div>
+        <div class="name"><%= pu.name %></div>
+      </a>
     </li>
   <% end %>
 
   <% if list.adults.length < 2 %>
-    <li class="plan_user item unused" data-id="spouse">
-      <div class="picture">
-        FACE
-      </div>
-      <div class="name">Add Spouse</div>
+    <li class="plan_user unused" data-id="spouse">
+      <a href="#">
+        <div class="nav_picture">
+          FACE
+        </div>
+        <div class="name">Add Spouse</div>
+      </a>
     </li>
   <% end %>
-  <li class="plan_user item unused" data-id="child">
-    <div class="picture">
-      <%= image_tag("people/faces/girl.png") %>
-    </div>
-    <div class="name">Add Child</div>
+  <li class="plan_user unused" data-id="child">
+    <a href="#">
+      <div class="nav_picture">
+        <%= image_tag("people/faces/girl.png") %>
+      </div>
+      <div class="name">Add Child</div>
+    </a>
   </li>
-  <li class="plan_user item unused" data-id="future_child">
-    <div class="picture">
-      <%= image_tag("people/faces/baby.png") %>
-    </div>
-    <div class="name">Add Future Child</div>
+  <li class="plan_user unused" data-id="future_child">
+    <a href="#">
+      <div class="nav_picture">
+        <%= image_tag("people/faces/baby.png") %>
+      </div>
+      <div class="name">Add Future Child</div>
+    </a>
   </li>
   <ul>
