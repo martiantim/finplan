@@ -20,7 +20,7 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: fix expenses display
+#TODO: bug too many sliders
 #TODO: valid ages for goal ages
 #TODO: redo social security in year retire
 #TODO: show number of years achieve for long-running goals
@@ -33,7 +33,7 @@
 #TODO: still in school
 #TODO: complete job pictures
 #TODO: research how much less people actually use in retirement (saw in the dummies financial planning book)
-#TODO: scenario "SS doesn't exit or lowered payout"
+#TODO: scenario "SS doesn't exist or lowered payout"
 #TODO: scenario "Different investment returns"
 #TODO: goal: more school
 #TODO: goal: vacation home

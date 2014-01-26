@@ -19,12 +19,13 @@ class ResultsByYear
 
   setEndYear: (year) ->
     @maxYear = year
-    @el.find('.slider').slider('destroy')
-    @_initSlider()
+#    @el.find('.slider').slider('destroy')
+#    @_initSlider()
 
   _initSlider: ->
-    @el.find('#year_slider_wrapper').html('<div id="year_slider" class="slider slider-horizontal" style="width: 900px;"></div>')
-    @el.find('#year_slider').slider({
+    @el.find('#year_slider_wrapper').html('<div id="year_slider" class="zzz slider slider-horizontal" style="width: 900px;"></div>')
+    console.log(@el.find('#year_slider'))
+    @slider = @el.find('#year_slider').slider({
       min: @curYear,
       max: @maxYear,
     }).on('slideStop', (ev) =>
@@ -35,7 +36,7 @@ class ResultsByYear
 
   _updateYear: (skipSlider = false) ->
     if !skipSlider
-      @el.find('.slider').slider('setValue', @curYear)
+      @el.find('#year_slider').slider('setValue', @curYear)
 
     @el.find('#cur_year').html(@curYear)
     if @curYear == finData['current_year']
@@ -53,7 +54,7 @@ class ResultsByYear
 
   jumpToYear: (year) ->
     @curYear = year
-    @el.find('.slider').slider('setValue', @curYear)
+    @el.find('#year_slider').slider('setValue', @curYear)
     @showYear(@curYear)
 
   showYear: (year) ->
