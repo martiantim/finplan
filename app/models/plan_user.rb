@@ -61,7 +61,7 @@ class PlanUser < ActiveRecord::Base
       disp = a
       disp = "in #{a*-1} years" if a < 0
 
-      [disp, "#{Date.today.year-a}-01-01"]
+      [disp, "#{Date.today.year-a+1}-01-01"]
     end
   end
 

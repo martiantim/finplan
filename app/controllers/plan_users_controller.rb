@@ -3,7 +3,7 @@ class PlanUsersController < ApplicationController
   def index
     plan = Plan.find(params[:plan_id])
 
-    render :partial => 'list', :object => plan.plan_users
+    render :partial => 'list', :object => plan.plan_users, :locals => {:active => 'none'}
   end
 
   def create
@@ -27,7 +27,11 @@ class PlanUsersController < ApplicationController
   end
 
   def show
-    if params[:id] == 'spouse'
+    @plan = Plan.find(params[:plan_id])
+    if params[:id] == 'all'
+      render :partial => 'index'
+      return
+    elsif params[:id] == 'spouse'
       @plan_user = PlanUser.new(:name => "Spouse", :born => Date.parse("1988-01-01"))
     elsif params[:id] == 'child'
       @plan_user = PlanUser.new(:name => "Child", :born => Date.parse("2010-01-01"))
@@ -37,7 +41,7 @@ class PlanUsersController < ApplicationController
       @plan_user = PlanUser.find(params[:id])
     end
     
-    @plan = Plan.find(params[:plan_id])
+
     
     render :layout => false
   end

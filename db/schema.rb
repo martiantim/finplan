@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140120033717) do
+ActiveRecord::Schema.define(version: 20140127025209) do
 
   create_table "accounts", force: true do |t|
     t.string  "name",                                     null: false
@@ -66,10 +66,11 @@ ActiveRecord::Schema.define(version: 20140120033717) do
   end
 
   create_table "plans", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",                              null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state",      default: "California", null: false
   end
 
   create_table "professions", force: true do |t|

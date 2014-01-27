@@ -37,47 +37,57 @@ class NiceList
 
   showItem: (itemID) ->
     @viewer().load "/#{@options.controller}/#{itemID}?plan_id=#{@plan.id}", =>
-      @viewer().find('button.remove').click =>
-        @removeItem itemID
-        false
+      @wireItem(itemID)
 
-      @viewer().find('form').on 'ajax:success', (event, xhr, status) =>
-        finHideStatus()
-        itemID = xhr.id
-        @viewer().find('form').attr('action', "/#{@options.controller}/#{itemID}")
-        if @viewer().find('form input[name="_method"]').length == 0
-          @viewer().find('form').append('<input type="hidden" name="_method" value="put"></input>')
-        finFormat(@viewer())
-        @plan.markDirty(true)
-        @reload()
+  wireItem: (itemID) ->
+    @viewer().find('button.remove').click =>
+      @removeItem itemID
+      false
 
-      @viewer().find('form').on 'ajax:error', (event, xhr, status) =>
-        finHideStatus()
-        errMsg = xhr.error_message
-        errMsg = "There was an error saving." if !errMsg
-        @viewer().find('form .save_status').html(errMsg)
-
-      @viewer().find('form').submit (e) ->
-        finShowStatus('saving...')
-        form = $(this);
-        form.find('input.money, input.percentage').each (i) ->
-          self = $(this);
-          try
-            v = self.autoNumeric('get')
-            self.autoNumeric('destroy')
-            self.val(v)
-          catch err
-            console.log("Error converting: " + err)
-        true
-
-      @wireButtonGroups()
-
+    @viewer().find('form').on 'ajax:success', (event, xhr, status) =>
+      finHideStatus()
+      itemID = xhr.id
+      controller = @options.controller
+      controller = xhr.controller if xhr.controller
+      @viewer().find('form').attr('action', "/#{controller}/#{itemID}")
+      if @viewer().find('form input[name="_method"]').length == 0
+        @viewer().find('form').append('<input type="hidden" name="_method" value="put"></input>')
       finFormat(@viewer())
+      @plan.markDirty(true)
+      @reload()
 
+    @viewer().find('form').on 'ajax:error', (event, xhr, status) =>
+      finHideStatus()
+      errMsg = xhr.error_message
+      errMsg = "There was an error saving." if !errMsg
+      @viewer().find('form .save_status').html(errMsg)
+
+    @viewer().find('form').submit (e) ->
+      finShowStatus('saving...')
+      form = $(this);
+      form.find('input.money, input.percentage').each (i) ->
+        self = $(this);
+        try
+          v = self.autoNumeric('get')
+          self.autoNumeric('destroy')
+          self.val(v)
+        catch err
+          console.log("Error converting: " + err)
+      true
+
+    @wireButtonGroups()
+
+    finFormat(@viewer())
+
+    if @viewer().find('form').hasClass('autosave')
       @viewer().find('input, select').change =>
         @viewer().find('form').submit()
+    else
 
-      @extraWireItem(itemID)
+      @viewer().find('button.save').click =>
+        @viewer().find('form').submit()
+
+    @extraWireItem(itemID)
 
   wireButtonGroups: ->
     that = this
@@ -117,7 +127,6 @@ class NiceList
     })
 
   reload: ->
-    curSelected = @el.find('li.selected').attr('data-id')
     $.ajax({
       url: "/#{@options.controller}",
       type: 'GET',
@@ -128,8 +137,7 @@ class NiceList
         if activeID
           @el.find("li[data-id=\"#{activeID}\"]").addClass('active')
         @rewire()
-        if curSelected
-          @el.find("li[data-id=\"#{curSelected}\"]").addClass('selected')
+
     })
 
 

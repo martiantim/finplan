@@ -1,0 +1,15 @@
+<h3>Family</h3>
+<div class="well">
+  <div id="family_portrait">
+
+  </div>
+
+  <%= form_for(@plan, :html => {'data-remote' => "true"}) do |f| %>
+    <div class="form-group">
+      <label for="state">State Reside In</label>
+      <%= f.select "state", options_for_select(Plan::SUPPORTED_STATES.collect { |a| [a[0],a[0]] }, @plan.state), {}, {:class => "form-control input-medium"} %>
+    </div>
+
+    <button type="button" class="btn btn-primary save">Update</button>
+  <% end %>
+</div>

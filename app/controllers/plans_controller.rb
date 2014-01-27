@@ -20,11 +20,12 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: goal: leave inheritance
+#TODO: subnav
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 #TODO: how to do scenarios
 #TODO: valid ages for goal ages
 #TODO: redo social security in year retire
+#TODO: leave inheritance shouldn't have target date
 #TODO: show number of years achieve for long-running goals
 #TODO: take out retirement money as needed
 #TODO: handle bankrupcy well
@@ -41,6 +42,7 @@
 #TODO: goal: vacation home
 #TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
 #2.0
+#TODO: contractor
 #TODO: show green/yellow/red in need/have table
 #TODO: cool range changing https://groups.google.com/forum/#!topic/jqplot-users/o8haUFPWhds
 #TODO: move to another state when retire
@@ -70,10 +72,18 @@ class PlansController < ApplicationController
   def reload
     @plan = Plan.find(params[:id])
     render :json => {
+      :state => @plan.state,
       :manipulators => @plan.priority_sorted_manipulators.collect(&:safe_json),
       :accounts => @plan.accounts.collect(&:safe_json),
       :family_members => @plan.plan_users.collect(&:safe_json)
     }
+  end
+
+  def update
+    plan = Plan.find(params[:id])
+    plan.update_attributes(params.require(:plan).permit!)
+
+    render :json => {:id => plan.id, :controller => 'plans'}
   end
   
 end

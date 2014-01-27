@@ -2,6 +2,12 @@
   Family
 </h3>
 <ul class="well well-small nav nav-pills nav-stacked">
+  <li class="plan_user <%= 'active' if active == 'all' %>" data-id="all">
+    <a href="#">
+      <div class="name">Whole Family</div>
+    </a>
+  </li>
+
   <% list.each do |pu|  %>
     <li class="plan_user" data-id="<%=pu.id%>">
       <a href="#">
@@ -39,4 +45,4 @@
       <div class="name">Add Future Child</div>
     </a>
   </li>
-  <ul>
+</ul>

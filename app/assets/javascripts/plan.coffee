@@ -17,7 +17,7 @@ class Plan
       success: (data) =>
         @manipulators = []
         @startAccounts = []
-        @family = new Family()
+        @family = new Family(data.state)
 
         for fjson in data.family_members
           u = User.fromJSON(fjson)
@@ -28,6 +28,7 @@ class Plan
         for ajson in data.accounts
           acct = Account.fromJSON(ajson)
           @addAccount(acct)
+        window.peopleList.wireItem('all')
     })
     
   _wire: ->

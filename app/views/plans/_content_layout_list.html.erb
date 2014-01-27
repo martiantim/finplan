@@ -1,13 +1,14 @@
 <% skip_unused ||= false %>
 <% editable ||= false %>
+<% active ||= 'none' %>
 
 <div class="content clearit" data-name='<%=name%>' style="display:none">
   <div class="content_left">
     <div class="<%= name%>  list">      
-      <%= render :partial => "/#{name}/list", :object => @plan.send(name), :locals => {:unused_list => (@plan.respond_to?("unused_#{name}") && !skip_unused ? @plan.send("unused_#{name}") : []), :editable => editable} %>
+      <%= render :partial => "/#{name}/list", :object => @plan.send(name), :locals => {:unused_list => (@plan.respond_to?("unused_#{name}") && !skip_unused ? @plan.send("unused_#{name}") : []), :editable => editable, :active => active} %>
     </div>
   </div>
   <div class="content_main">
-    
+    <%= yield %>
   </div>
 </div>

@@ -4,7 +4,8 @@
     <%= link_to 'Accounts', '#', :"data-content" => 'accounts' %> |
     <%= link_to 'Expenses', '#', :"data-content" => 'expenses' %>
   </div>
-  <%= render :layout => 'content_layout_list', :locals => {:name => 'plan_users'} do %>
+  <%= render :layout => 'content_layout_list', :locals => {:name => 'plan_users', :active => 'all'} do %>
+    <%= render :partial => '/plan_users/index' %>
   <% end %>
   <%= render :layout => 'content_layout_list', :locals => {:name => 'accounts'} do %>
   <% end %>

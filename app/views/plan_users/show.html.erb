@@ -1,6 +1,6 @@
 <div class="well clearfix notitle">
 <div class="left-main">
-<%= form_for(@plan_user, :html => {'data-remote' => "true"}) do |f| %>
+<%= form_for(@plan_user, :html => {'data-remote' => "true", :class => "autosave"}) do |f| %>
   <%= hidden_field_tag :plan_id, @plan.id %>
 
   <div class="form-group">

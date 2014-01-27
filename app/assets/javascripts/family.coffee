@@ -1,5 +1,5 @@
 class Family
-  constructor: ->
+  constructor: (@stateLivingIn) ->
     @members = []
     
   add: (u) ->
