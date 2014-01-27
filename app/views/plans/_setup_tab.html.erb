@@ -1,9 +1,15 @@
 <div class="section setup" data-name='setup' style="display:block;">
-  <div id="subnav">
-    <%= link_to 'Family', '#', :"data-content" => 'plan_users' %> |
-    <%= link_to 'Accounts', '#', :"data-content" => 'accounts' %> |
-    <%= link_to 'Expenses', '#', :"data-content" => 'expenses' %>
-  </div>
+  <ul id="subnav" class="nav nav-pills">
+    <li>
+      <%= link_to 'Family', '#', :"data-content" => 'plan_users' %>
+    </li>
+    <li>
+      <%= link_to 'Accounts', '#', :"data-content" => 'accounts' %>
+    </li>
+    <li>
+      <%= link_to 'Expenses', '#', :"data-content" => 'expenses' %>
+    </li>
+  </ul>
   <%= render :layout => 'content_layout_list', :locals => {:name => 'plan_users', :active => 'all'} do %>
     <%= render :partial => '/plan_users/index' %>
   <% end %>

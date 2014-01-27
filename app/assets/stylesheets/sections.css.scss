@@ -1,13 +1,23 @@
 .section {
   #subnav {
-    margin: 30px auto 10px auto;
-    width: 300px;
-    a.active {
-      background: yellow;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0px;
+  }
+  &.setup {
+    #subnav {
+      padding-left: 125px;
+    }
+  }
+  &.results {
+    #subnav {
+      padding-left: 200px;
     }
   }
   
   .content {
+    margin-top: 20px;
 
     .content_left {
       float: left;

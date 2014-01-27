@@ -3,7 +3,8 @@ class GoalListEditable extends GoalList
   constructor: (@wrapper, @plan) ->
     super(@wrapper, {
       controller: 'goals',
-      editable: true
+      editable: true,
+      showFirst: true
     })
 
   extraWireItem: (itemID) ->

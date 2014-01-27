@@ -20,7 +20,6 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: subnav
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 #TODO: how to do scenarios
 #TODO: valid ages for goal ages
@@ -33,6 +32,7 @@
 #TODO: keep track of basis and only pay taxes on gains
 #TODO: retire should have lifestyle instead of guess at expenses
 #TODO: existing debts
+#TODO: remaining state income tax schedules
 #TODO: still in school
 #TODO: complete job pictures
 #TODO: research how much less people actually use in retirement (saw in the dummies financial planning book)

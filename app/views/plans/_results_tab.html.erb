@@ -1,9 +1,15 @@
 <div class="section results" data-name='results' style="display:block;">
-  <div id="subnav">
-    <%= link_to 'Summary', '#', :"data-content" => 'goals' %> |
-    <%= link_to 'Accounts', '#', :"data-content" => 'graph' %> |
-    <%= link_to 'By Year', '#', :"data-content" => 'byyear' %>
-  </div>
+  <ul id="subnav" class="nav nav-pills">
+    <li>
+      <%= link_to 'Summary', '#', :"data-content" => 'goals' %>
+    </li>
+    <li>
+      <%= link_to 'Accounts', '#', :"data-content" => 'graph' %>
+    </li>
+    <li>
+      <%= link_to 'By Year', '#', :"data-content" => 'byyear' %>
+    </li>
+  </ul>
   <%= render :layout => 'content_layout_list', :locals => {:name => 'goals', :skip_unused => true, :editable => false} do %>
   <% end %>
   

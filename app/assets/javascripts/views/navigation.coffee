@@ -38,12 +38,13 @@ class Navigation
       section = $(this)
       sectionName = section.attr('data-name')
       section.find('#subnav a').click ->
+        li = $(this).parent()
         section.find('.content').hide()
         contentName = $(this).attr('data-content')
         that._subSectionOfName(sectionName, contentName).show()
             
-        section.find('#subnav a').removeClass('active')
-        $(this).addClass('active')
+        section.find('#subnav li').removeClass('active')
+        li.addClass('active')
         
         if contentName == 'graph'
           plan.onChartDisplay()

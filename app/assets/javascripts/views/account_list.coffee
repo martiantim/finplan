@@ -1,7 +1,8 @@
 class AccountList extends NiceList
   constructor: (@wrapper, @plan) ->
     super(@wrapper, {
-      controller: 'accounts'
+      controller: 'accounts',
+      showFirst: true
     })    
 
   removeItem: (itemID) ->

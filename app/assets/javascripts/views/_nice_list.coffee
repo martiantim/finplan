@@ -1,6 +1,6 @@
 class NiceList
   constructor: (@el, @options) ->
-    @_wire()
+    @_wire(true)
   
   rewire: ->
     @_wire()
@@ -8,7 +8,7 @@ class NiceList
   viewer: ->
     @el.closest('.content').find('.content_main')
     
-  _wire: ->
+  _wire: (firstView = false) ->
     @el.find('li').click (event) =>
       target = $(event.delegateTarget)
       return false if target.hasClass('active')
@@ -22,6 +22,9 @@ class NiceList
       @el.find('li').removeClass('active')
       target.addClass('active')
       false
+
+    if firstView && @options['showFirst']
+      @el.find('li:first').click()
 
     @el.find('a.expander').click (event) =>
       target = $(event.delegateTarget)
