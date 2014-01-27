@@ -43,5 +43,12 @@ class GoalListResults extends GoalList
       that.plan.resultsByYear.jumpToYear($(this).attr('data-year'))
       navigation.jumpToSection('byyear')
     finFormat(tbody)
+
+  showSummary: (ex) ->
+    html = 'hi'
+    console.log(ex.message)
+    if ex
+      html += ex.message
+    @viewer().html(html)
   
 window.GoalListResults = GoalListResults

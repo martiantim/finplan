@@ -20,24 +20,24 @@
 # -allow invest savings account
 # -better loans
 #
+#TODO: valid ages for goal ages
+#TODO: leave inheritance shouldn't have target date
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 #TODO: how to do scenarios
-#TODO: valid ages for goal ages
 #TODO: redo social security in year retire
-#TODO: leave inheritance shouldn't have target date
 #TODO: show number of years achieve for long-running goals
 #TODO: take out retirement money as needed
 #TODO: handle bankrupcy well
 #TODO: allow expenses to grow with income (people can't control spending, show scenarios)
 #TODO: keep track of basis and only pay taxes on gains
 #TODO: retire should have lifestyle instead of guess at expenses
-#TODO: existing debts
 #TODO: remaining state income tax schedules
 #TODO: still in school
 #TODO: complete job pictures
 #TODO: research how much less people actually use in retirement (saw in the dummies financial planning book)
 #TODO: scenario "SS doesn't exist or lowered payout"
 #TODO: scenario "Different investment returns"
+#TODO: taxes rise to european levels
 #TODO: goal: more school
 #TODO: goal: vacation home
 #TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/

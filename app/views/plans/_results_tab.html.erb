@@ -27,7 +27,11 @@
   <%= render :layout => 'content_layout', :locals => {:name => 'byyear'} do %>
     <div class="well">
       <div>
-        <h2 style="text-align: center"><a href="#" class="year_prev">&lt;&lt;</a>Year <span id="cur_year">2014</span><a href="#" class="year_next">&gt;&gt;</a></h2>
+        <h2 style="text-align: center">
+          <a href="#" class="year_prev" style="padding-right: 10px;font-size: 80%;"><span class="glyphicon glyphicon-backward"></span></a>
+          Year <span id="cur_year">2014</span>
+          <a href="#" class="year_next" style="padding-left: 10px; font-size: 80%;"><span class="glyphicon glyphicon-forward"></span></a>
+        </h2>
       </div>
       <div id="year_slider_wrapper">
 

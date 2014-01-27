@@ -56,6 +56,14 @@ class Simulator
     , 1          
       
   _runYear: (onDone) ->
+    try
+      @_runYearCanRaise(onDone)
+    catch e
+      @_onDone(e)
+      onDone(e)
+
+
+  _runYearCanRaise: (onDone) ->
     @context.balances.earnFromInvestments(@context.markets)
     @context.balances.payLoans()
     for m in @manipulators
@@ -85,13 +93,16 @@ class Simulator
         @_runYear(onDone)
       , 1
     else
+      @_onDone()
       onDone()
-      @_markGoals()
-      @dialog.find('#simulate_year_progress').addClass('progress-bar-success').parent().removeClass('active')
-      @dialog.find('#simyear label').html('Simulation Finished')
-      @dialog.find('.sim_done button').removeClass('disabled')
-      @dialog.find('.sim_done button').click =>
-        @dialog.modal('hide')
+
+  _onDone: (ex) ->
+    @_markGoals()
+    @dialog.find('#simulate_year_progress').addClass('progress-bar-success').parent().removeClass('active')
+    @dialog.find('#simyear label').html('Simulation Finished')
+    @dialog.find('.sim_done button').removeClass('disabled')
+    @dialog.find('.sim_done button').click =>
+      @dialog.modal('hide')
   
   _markGoalProgress: ->
     num = 0

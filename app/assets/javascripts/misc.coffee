@@ -11,3 +11,7 @@ window.finHideStatus = () ->
 window.finData = {
   current_year: 2014
 }
+
+window.BankruptcyException = (message) ->
+  this.message = message
+  this.name = "BankruptcyException"

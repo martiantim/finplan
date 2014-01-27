@@ -157,7 +157,7 @@ class Balances
 
     if !@hasAmountToSpend(amount)
       if opts['loan']
-        console.log("BANKRUPT!")
+        throw new BankruptcyException("Unable to pay for #{kind} #{description}")
       else
         @takeOutLoan(amount, description)
     else    
