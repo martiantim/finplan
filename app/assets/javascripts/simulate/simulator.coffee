@@ -58,9 +58,9 @@ class Simulator
   _runYear: (onDone) ->
     try
       @_runYearCanRaise(onDone)
-    catch e
-      @_onDone(e)
-      onDone(e)
+    catch ex
+      @_onDone(ex)
+      onDone(ex)
 
 
   _runYearCanRaise: (onDone) ->
@@ -97,6 +97,7 @@ class Simulator
       onDone()
 
   _onDone: (ex) ->
+    @
     @_markGoals()
     @dialog.find('#simulate_year_progress').addClass('progress-bar-success').parent().removeClass('active')
     @dialog.find('#simyear label').html('Simulation Finished')
@@ -105,6 +106,9 @@ class Simulator
       @dialog.modal('hide')
   
   _markGoalProgress: ->
+    @dialog.find('#goal_progress span').html(@goalProgress())
+
+  goalProgress: ->
     num = 0
     achieved = 0
     for m in @manipulators
@@ -113,7 +117,7 @@ class Simulator
         if m.goalAchieved()
           achieved++
           
-    @dialog.find('#goal_progress span').html("#{achieved} of #{num}")
+    "#{achieved} of #{num}"
   
   _markGoals: ->
     for m in @manipulators

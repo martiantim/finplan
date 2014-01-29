@@ -44,11 +44,32 @@ class GoalListResults extends GoalList
       navigation.jumpToSection('byyear')
     finFormat(tbody)
 
-  showSummary: (ex) ->
-    html = 'hi'
-    console.log(ex.message)
-    if ex
-      html += ex.message
+  showSummary: (simulator) ->
+    html = '<h3>Summary</h3>'
+    html += '<div class="well">'
+    if simulator.bankruptcy
+      html += '<h2>Bankruptcy :(</h2>'
+      html += '<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> ' +simulator.bankruptcy.message + '</div>'
+    else
+      html += @_successSummary(simulator)
+
+    html += '</div>'
     @viewer().html(html)
-  
+
+  _successSummary: (simulator) ->
+    html = "<h2>Goals: #{simulator.goalProgress()}</h2>"
+    html += "<table class=\"table table-striped\">"
+    html += "<thead><tr><th>Goal</th><th>Result</th></tr></thead>"
+    for m in @plan.manipulators
+      if m.kind == 'goal'
+        html += "<tr><td>#{m.name}</td>"
+        if m.achievedYear
+          html += "<td>Goal will be achieved in #{m.achievedYear}</td>"
+        else
+          html += "<td>Unable to achieve</td>"
+        html += "</tr>"
+    html += "</table>"
+    html
+
+
 window.GoalListResults = GoalListResults

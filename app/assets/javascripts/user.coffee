@@ -1,17 +1,19 @@
 class User
   constructor: (@id, @name, @born, @gender, @species, @profession) ->
     @bornYear = new Date(@born).getYear() + 1900
-    if @gender == 'M'
-      @projectedDeathYear = @bornYear + 76
-    else if @gender == 'F'
-      @projectedDeathYear = @bornYear + 81
-    else if @gender == 'P'
-      @projectedDeathYear = @bornYear + 18
-    else
-      @projectedDeathYear = @bornYear + 79
+    @projectedDeathYear = @bornYear + @projectedLongevity()
 
   @fromJSON: (json) ->
     new User(json.id, json.name, json.born, json.gender, json.species, json.profession)
+
+  projectedLongevity: ->
+    if @gender == 'M'
+      76
+    else if @gender == 'F'
+      81
+    else
+      79
+
 
   isHuman: ->
     @gender != 'P'
