@@ -20,6 +20,7 @@ class GoalListEditable extends GoalList
 
   _setValidAges: ->
     person = @plan.family.findByID(parseInt(@viewer().find('#when_person').val()))
+    return if !person
     start_age = person.ageInYear(finData['current_year'])
     start_age = 0 if start_age < 0
     end_age = person.projectedLongevity()

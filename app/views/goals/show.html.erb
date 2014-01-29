@@ -17,24 +17,28 @@
   </div>
 
   <% if @manipulator.is_goal? %>
-    <div class="form-group form-group-when">
-      <label for="when_type">When</label>
-      <div class="radio">
-        <label>
-          <input type="radio" name="when_type" value="asap" <%= 'checked="checked"' if @manipulator.start_type == 'asap' %>>
-          As soon as possible
-        </label>
+    <% if @manipulator.manipulator_template.has_when_date %>
+      <div class="form-group form-group-when">
+        <label for="when_type">When</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="when_type" value="asap" <%= 'checked="checked"' if @manipulator.start_type == 'asap' %>>
+            As soon as possible
+          </label>
+        </div>
+        <div class="radio">
+            <input type="radio" name="when_type" value="age"  <%= 'checked="checked"' if @manipulator.start_type == 'age' %>>
+            When <%= select_tag 'when_person', options_for_select(@plan.plan_users.collect { |u| [u.name, u.id]}, @manipulator.start_plan_user_id), :class => "form-control" %>
+            is <%= select_tag "when_age", options_for_select((1..100).to_a.collect { |a| [a,a]}, @manipulator.start_plan_user_age()), :class => "form-control" %> years old
+        </div>
+        <div class="radio">
+            <input type="radio" name="when_type" value="year"  <%= 'checked="checked"' if @manipulator.start_type == 'year' %>>
+            In year <%= select_tag "when_year", options_for_select((2014..2100).to_a.collect { |a| [a,a]}, @manipulator.start ? @manipulator.start.year : ''), :class => "form-control" %>
+        </div>
       </div>
-      <div class="radio">
-          <input type="radio" name="when_type" value="age"  <%= 'checked="checked"' if @manipulator.start_type == 'age' %>>
-          When <%= select_tag 'when_person', options_for_select(@plan.plan_users.collect { |u| [u.name, u.id]}, @manipulator.start_plan_user_id), :class => "form-control" %>
-          is <%= select_tag "when_age", options_for_select((1..100).to_a.collect { |a| [a,a]}, @manipulator.start_plan_user_age()), :class => "form-control" %> years old
-      </div>
-      <div class="radio">
-          <input type="radio" name="when_type" value="year"  <%= 'checked="checked"' if @manipulator.start_type == 'year' %>>
-          In year <%= select_tag "when_year", options_for_select((2014..2100).to_a.collect { |a| [a,a]}, @manipulator.start ? @manipulator.start.year : ''), :class => "form-control" %>
-      </div>
-    </div>
+    <% else %>
+      <%= f.hidden_field :when_type, :value => 'asap' %>
+    <% end %>
   <% end %>
 
   <%= render :partial => '/manipulators/params_form', :locals => {:template => @template, :manipulator => @manipulator} %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127025209) do
+ActiveRecord::Schema.define(version: 20140129101033) do
 
   create_table "accounts", force: true do |t|
     t.string  "name",                                     null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140127025209) do
     t.integer  "priority",                               default: 5,        null: false
     t.text     "description"
     t.string   "description_more_link"
+    t.boolean  "has_when_date",                          default: true,     null: false
   end
 
   create_table "manipulators", force: true do |t|

@@ -20,7 +20,6 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: valid ages for goal ages
 #TODO: leave inheritance shouldn't have target date
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 #TODO: how to do scenarios
