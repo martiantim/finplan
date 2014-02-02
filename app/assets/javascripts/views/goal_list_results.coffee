@@ -47,6 +47,10 @@ class GoalListResults extends GoalList
   showSummary: (simulator) ->
     html = '<h3>Summary</h3>'
     html += '<div class="well">'
+
+    if simulator.context.scenario
+      html += @_scenarioHTML(simulator.context.scenario)
+
     if simulator.bankruptcy
       html += '<h2>Bankruptcy :(</h2>'
       html += '<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> ' +simulator.bankruptcy.message + '</div>'
@@ -56,6 +60,17 @@ class GoalListResults extends GoalList
     html += '</div>'
     @viewer().html(html)
 
+  _scenarioHTML: (scenario) ->
+    html = ""
+    html += '<div class="panel panel-default">'
+    html += '<table class="table"><tr><td>'
+    html += "<h4>Scenario: #{scenario['name']}</h4>"
+    html += "<span class=\"help-block\">#{scenario['description']}</span>"
+    html += "<td style=\"vertical-align: middle;\"><img src=\"#{scenario['image_url']}\" style=\"width: 120px;\"></td>"
+    html += '</td></tr></table>'
+    html += '</div>'
+    html
+
   _successSummary: (simulator) ->
     html = "<h2>Goals: #{simulator.goalProgress()}</h2>"
     html += "<table class=\"table table-striped\">"
@@ -64,9 +79,9 @@ class GoalListResults extends GoalList
       if m.kind == 'goal'
         html += "<tr><td>#{m.name}</td>"
         if m.achievedYear
-          html += "<td>Goal will be achieved in #{m.achievedYear}</td>"
+          html += "<td><span class=\"glyphicon glyphicon-ok\"></span> Goal will be achieved in #{m.achievedYear}</td>"
         else
-          html += "<td>Unable to achieve</td>"
+          html += "<td><span class=\"glyphicon glyphicon-remove\"></span>Unable to achieve</td>"
         html += "</tr>"
     html += "</table>"
     html

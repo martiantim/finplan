@@ -6,6 +6,20 @@ class Plan < ActiveRecord::Base
   has_many :users, :through => :plan_users, :order => "born"
   has_many :accounts
 
+  SCENARIOS = [
+      {
+        :id => "no_ss",
+        :name => "No Social Security",
+        :description => "Some people believe the Social Security system may not be there for them when they retire. Under this scenario you will continue to pay into social security while you work but will receive no benefits when you are of age.",
+        :image_url => "http://images.sodahead.com/polls/000376827/polls_no_social_security_number_1107_18564_answer_1_xlarge.gif"
+      }, {
+        :id => "bad_market",
+        :name => "Unfriendly Stock Market",
+        :description => "The stock market has had an incredible run. What if it doesn't do as well in the future?",
+        :image_url => "http://1.bp.blogspot.com/_qFiyjwMlP0Y/TCq6UsJqnrI/AAAAAAAABug/wK_u4ygXbRE/s400/stock_market_crash.jpg"
+      }
+  ]
+
   SUPPORTED_STATES = [
     ["Alabama","AL"],
     ["Alaska","AK"],

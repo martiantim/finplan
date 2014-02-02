@@ -1,5 +1,5 @@
 class Simulator
-  constructor: (@family, @manipulators, @startAccounts, @dialog) ->
+  constructor: (@scenario, @family, @manipulators, @startAccounts, @dialog) ->
     @startYear = new Date().getYear()+1900
 
     @_markGoalProgress()    
@@ -48,7 +48,7 @@ class Simulator
       'Net Worth': [],
     }    
 
-    @context = new SimContext(@startYear, @startAccounts, @family)
+    @context = new SimContext(@scenario, @startYear, @startAccounts, @family)
     
     that = this
     setTimeout =>
@@ -97,7 +97,6 @@ class Simulator
       onDone()
 
   _onDone: (ex) ->
-    @
     @_markGoals()
     @dialog.find('#simulate_year_progress').addClass('progress-bar-success').parent().removeClass('active')
     @dialog.find('#simyear label').html('Simulation Finished')

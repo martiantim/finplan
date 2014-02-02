@@ -38,15 +38,18 @@ class Plan
       @reloadData()
     window.navigation.showDirty(true)
 
-  onSimulateClick: ->
+  onSimulateClick: (scenario = null) ->
     window.goalList.markAllUnknown()
-    @simulate()
+    @simulate(scenario)
     window.navigation.simulateDone()
+
+  onScenarioClick: ->
+    new Scenarios().show()
 
   onChartDisplay: ->
     @resultsChart.display(@lastSimulator())
   
-  simulate: ->
+  simulate: (scenario) ->
     that = this
 
     dialog = $("#simulate_dialog")
@@ -56,7 +59,7 @@ class Plan
     dialog.modal({
       show: true
     })    
-    @simulator = new Simulator(@family, @manipulators, @startAccounts, dialog)
+    @simulator = new Simulator(scenario, @family, @manipulators, @startAccounts, dialog)
     @simulator.sim (ex) ->
       that.simulator.bankruptcy = ex
       that.resultsGoals.showSummary(that.simulator)

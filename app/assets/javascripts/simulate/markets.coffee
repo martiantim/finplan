@@ -50,12 +50,20 @@ class Markets
       stdev = 0.005
       @stdrnd(avg, stdev)
     else if iType == 'Stock'
-      avg = 0.104
-      stdev = 0.202
+      if @simContext.isScenario('bad_market')
+        avg = 0.060
+        stdev = 0.10
+      else
+        avg = 0.104
+        stdev = 0.202
       @stdrnd(avg, stdev)
     else if iType == 'International Stock'
-      avg = 0.124
-      stdev = 0.25
+      if @simContext.isScenario('bad_market')
+        avg = 0.070
+        stdev = 0.12
+      else
+        avg = 0.124
+        stdev = 0.25
       @stdrnd(avg, stdev)
     else if iType == 'Inflation'
       avg = 0.03

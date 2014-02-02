@@ -9,6 +9,7 @@ class Navigation
     that = this
     $("#navigation li > a:not('.dropdown-toggle')").click ->
       li = $(this).parent()
+      return false if li.hasClass('disabled')
       $('.section').hide()      
       name = li.attr('data-section')
       section = that._sectionOfName(name)
@@ -25,11 +26,12 @@ class Navigation
         
       if name == 'results'
         li.parents('li').removeClass('open')
+        console.log(li)
         if li.hasClass('simulate')
           plan.onSimulateClick()
+        else if li.hasClass('scenario')
+          plan.onScenarioClick()
 
-
-        
       false
 
   _wireSubNavigation: ->
@@ -66,7 +68,8 @@ class Navigation
 
   simulateDone: ->
     $("#navigation li.simulate").addClass('disabled')
-    $("#navigation li.view_results").removeClass('disabled')
+    $('#navigation li[data-section="results"]').removeClass('disabled')
+    $('#navigation > ul > li[data-section="results"] a').click()
 
   showDirty: (val) ->
     span = $('#navigation li[data-section="results"] span')

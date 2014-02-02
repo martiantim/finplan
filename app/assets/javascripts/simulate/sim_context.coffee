@@ -1,5 +1,5 @@
 class SimContext
-  constructor: (@simYear, startAccounts, @family) ->
+  constructor: (@scenario, @simYear, startAccounts, @family) ->
     age = -1
     @balances = new Balances(this, startAccounts, {age: age, year: @simYear})
     @markets = new Markets(this)
@@ -11,6 +11,9 @@ class SimContext
       max = user.ageInYear(@simYear) if user.ageInYear(@simYear) > max
     )
     max
+
+  isScenario: (id) ->
+    @scenario && id == @scenario['id']
 
   findAccount: (name) ->
     @balances.getAccount(name)

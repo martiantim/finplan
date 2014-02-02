@@ -20,13 +20,13 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: leave inheritance shouldn't have target date
-#TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 #TODO: how to do scenarios
+#TODO: handle bankrupcy well
+#TODO: suggestions when bankruptcy or goal not achieved
+#TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 #TODO: redo social security in year retire
 #TODO: show number of years achieve for long-running goals
 #TODO: take out retirement money as needed
-#TODO: handle bankrupcy well
 #TODO: allow expenses to grow with income (people can't control spending, show scenarios)
 #TODO: keep track of basis and only pay taxes on gains
 #TODO: retire should have lifestyle instead of guess at expenses
