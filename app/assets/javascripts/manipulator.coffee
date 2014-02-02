@@ -17,7 +17,7 @@ class Manipulator
         @params[k] = parseFloat(v)
       else if v.match(/^\$\d+/)
         @params[k] = parseInt(v.replace(',','').substring(1))
-      else if v.match(/\d/)
+      else if v.match(/^\d/)
         @params[k] = parseInt(v)
       else
         @params[k] = v
@@ -33,6 +33,7 @@ class Manipulator
     @achieved = false
     @needAnother = false
     @achievedYear = null
+    @achievedTimes = 0
     @enabled = true
     @failMessage = null
     @tempParams = {}
@@ -49,6 +50,7 @@ class Manipulator
     @progress.push [year, {have: have, need: need}]
 
   setGoalAchieved: (year) ->
+    @achievedTimes += 1
     @achievedYear = year
     @achieved = true
 

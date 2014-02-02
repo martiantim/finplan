@@ -20,12 +20,8 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: how to do scenarios
-#TODO: handle bankrupcy well
 #TODO: suggestions when bankruptcy or goal not achieved
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
-#TODO: redo social security in year retire
-#TODO: show number of years achieve for long-running goals
 #TODO: take out retirement money as needed
 #TODO: allow expenses to grow with income (people can't control spending, show scenarios)
 #TODO: keep track of basis and only pay taxes on gains
@@ -40,8 +36,10 @@
 #TODO: goal: more school
 #TODO: goal: vacation home
 #TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
+#TODO: taxes on social security
 #2.0
 #TODO: contractor
+#TODO: able to control when take social security
 #TODO: show green/yellow/red in need/have table
 #TODO: cool range changing https://groups.google.com/forum/#!topic/jqplot-users/o8haUFPWhds
 #TODO: move to another state when retire

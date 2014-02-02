@@ -79,7 +79,10 @@ class GoalListResults extends GoalList
       if m.kind == 'goal'
         html += "<tr><td>#{m.name}</td>"
         if m.achievedYear
-          html += "<td><span class=\"glyphicon glyphicon-ok\"></span> Goal will be achieved in #{m.achievedYear}</td>"
+          if m.achievedTimes > 1
+            html += "<td><span class=\"glyphicon glyphicon-ok\"></span> Goal will be achieved #{m.achievedTimes} times</td>"
+          else
+            html += "<td><span class=\"glyphicon glyphicon-ok\"></span> Goal will be achieved in #{m.achievedYear}</td>"
         else
           html += "<td><span class=\"glyphicon glyphicon-remove\"></span>Unable to achieve</td>"
         html += "</tr>"
