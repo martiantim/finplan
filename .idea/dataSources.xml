@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1897410001">
+    <data-source source="LOCAL" name="Rails finplan: development" uuid="0ca7e2ff-afff-476e-b9f3-f0f9c440457a">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/finplan_development</jdbc-url>
+      <user-name>pdb</user-name>
+      <user-password>dfc8dfcfdfcbdfdcdfcfdfd8</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
