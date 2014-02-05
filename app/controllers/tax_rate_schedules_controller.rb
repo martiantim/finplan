@@ -1,6 +1,10 @@
 class TaxRateSchedulesController < ApplicationController
   def index
     @schedules = TaxRateSchedule.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @schedules.collect(&:safe_json).to_json }
+    end
   end
 
   def new

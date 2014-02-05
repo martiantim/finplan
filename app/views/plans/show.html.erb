@@ -19,7 +19,9 @@
 
     //setup lists
     window.navigation = new Navigation('setup','plan_users');
-    
+
+    TaxSchedules.load()
+
     new ExpensesList($('.expenses.list'), plan);
     window.peopleList = new PeopleList($('.plan_users.list'), plan);
     new AccountList($('.accounts.list'), plan);    

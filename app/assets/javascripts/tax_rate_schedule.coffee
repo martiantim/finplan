@@ -1,6 +1,8 @@
 class TaxRateSchedule
-  constructor: (@name) ->
+  constructor: (@name, initialBrackets) ->
     @brackets = []
+    for b in initialBrackets
+      @addBracket(b['range_top'], b['rate'])
 
   addBracket: (range_top, rate) ->
     @brackets.push([range_top, rate])
