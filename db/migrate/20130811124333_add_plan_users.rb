@@ -6,9 +6,9 @@ class AddPlanUsers < ActiveRecord::Migration
       t.string :relation_name
     end
     
-    april = User.create!(:name => 'April', :born => Date.parse("1976-01-01"))
-    Plan.find(1).plan_users.create!(:user => User.first)
-    Plan.find(1).plan_users.create!(:user => april)
+    #april = User.create!(:name => 'April', :born => Date.parse("1976-01-01"))
+    #Plan.find(1).plan_users.create!(:user => User.first)
+    #Plan.find(1).plan_users.create!(:user => april)
   end
 
   def down
