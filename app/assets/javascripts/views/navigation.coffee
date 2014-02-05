@@ -26,7 +26,6 @@ class Navigation
         
       if name == 'results'
         li.parents('li').removeClass('open')
-        console.log(li)
         if li.hasClass('simulate')
           plan.onSimulateClick()
         else if li.hasClass('scenario')

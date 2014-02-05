@@ -160,14 +160,22 @@ class Balances
         throw new BankruptcyException("Unable to pay for #{kind} #{description}")
       else
         @takeOutLoan(amount, description)
-    else    
-      @accounts['checking'].spend(amount)
+    else
+      @_cascadingSpend(amount)
     
     @curLog().log(kind, description, -1 * amount)  
     @recalc()
 
+  _cascadingSpend: (amount) ->
+    left = @accounts['checking'].spend(amount)
+    if left > 0
+      left = @accounts['savings'].spend(left)
+      if left > 0
+        left = @accounts['emergency'].spend(left)
+
+
   hasAmountToSpend: (amnt) ->
-    balance = @accounts['checking'].balance + @accounts['savings'].balance
+    balance = @accounts['checking'].balance + @accounts['savings'].balance + @accounts['emergency'].balance
 
     age = @simcontext.oldestAdultAge()
     if age >= 55 #TODO
@@ -199,9 +207,12 @@ class Balances
       earnings = acct.calculateInvestmentReturns(markets)
       if earnings && earnings != 0
         @curLog().log("account:#{name}", "Investment Return", earnings)
-  
+
+  moneyLeftOver: ->
+    @year_incomes[@_currentYear()] - @year_spends[@_currentYear()]
+
   addYear: ->              
-    @curLog().log('Savings', 'Left Over', @year_incomes[@_currentYear()] - @year_spends[@_currentYear()])
+    @curLog().log('Savings', 'Left Over', @moneyLeftOver())
     @snapshots[@_currentYear()] = new BalanceSnapshot(@_currentYear(), this)
     @opts['year']++
   

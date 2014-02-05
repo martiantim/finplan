@@ -9,8 +9,11 @@ class Simulator
       if m.template_name == name
         return m
 
-  endYear: ->
+  goalEndYear: ->
     @family.endYear()
+
+  endYear: ->
+    @context.simYear
 
   findAllManipulatorsByName: (name) ->
     arr = []
@@ -81,14 +84,14 @@ class Simulator
     for name,set of @datasets
       set.push [x, @context.balances["get#{name.replace(' ', '_')}"]()]
 
-    percentDone = (@context.simYear - @startYear)/(@endYear() - @startYear)*100
+    percentDone = (@context.simYear - @startYear)/(@goalEndYear() - @startYear)*100
     @dialog.find('#simulate_year_progress').css('width', percentDone+'%')
 
     @dialog.find('#current_simulate_year').html(@context.simYear)
     
     @context.nextSimYear(@manipulators)
     @_markGoalProgress()
-    if @context.simYear <= @endYear()
+    if @context.simYear <= @goalEndYear()
       setTimeout =>
         @_runYear(onDone)
       , 1

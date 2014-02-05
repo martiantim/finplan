@@ -35,7 +35,7 @@ class ResultsByyearYear
     html += "<h3 class=\"panel-title\">Account Balances</h3></div>"
     html += '<div class="panel-body">'
     for name, amnt of snap.accountBalances
-      if amnt != 0
+      if amnt != 0 || name == 'checking' || name == 'savings' || name == 'emergency'
         html += @showBalance(name, amnt, log)
 
     html += "<div class='entry title total'><div class='name'>Net Worth</div><div class='amount money'>#{snap.netWorth()}</div></div>"

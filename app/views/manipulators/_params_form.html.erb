@@ -15,7 +15,7 @@
         <% end %>
       </div>
     <% elsif var_options.var_type == 'select' %>
-      <select name="variables[<%=var_name%>]">
+      <select name="variables[<%=var_name%>]" class="form-control">
         <% var_options.options.split(',').each do |opt| %>
           <option value="<%=opt%>" <%= 'selected' if manipulator.param_value(var_name) == opt %>><%= opt%></option>
         <% end %>

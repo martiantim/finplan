@@ -17,11 +17,14 @@ body {
     #logo {
       width: 200px;
       height: 50px;
+      img {
+        height: 92px;
+      }
     }
     
     #navigation {
       > ul {
-        padding-left: 100px;
+        padding-left: 225px;
         li {
           padding: 0px 10px;
         }

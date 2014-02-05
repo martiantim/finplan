@@ -8,8 +8,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
 gem 'rake', '10.1.1'
+gem 'pg'
 
 
 # Gems used only for assets and not required
@@ -42,3 +42,5 @@ gem 'codemirror-rails'
 
 # To use debugger
 # gem 'debugger'
+
+ruby "2.0.0"

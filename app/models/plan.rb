@@ -17,6 +17,12 @@ class Plan < ActiveRecord::Base
         :name => "Unfriendly Stock Market",
         :description => "The stock market has had an incredible run. What if it doesn't do as well in the future?",
         :image_url => "http://1.bp.blogspot.com/_qFiyjwMlP0Y/TCq6UsJqnrI/AAAAAAAABug/wK_u4ygXbRE/s400/stock_market_crash.jpg"
+      },
+      {
+        :id => "extra_baby",
+        :name => "Another Bundle of Joy",
+        :description => "Another little one",
+        :image_url => "http://totallyrelatable.com/wp-content/uploads/2014/01/baby-clip-art---clip-art-pictures-vjhboddg.jpg"
       }
   ]
 
@@ -81,7 +87,7 @@ class Plan < ActiveRecord::Base
   def unused_factors
     ManipulatorTemplate.all.find_all { |t| !used_template?(t.id) && t.kind == 'factor' }
   end
-  
+
   def goals
     manipulators.find_all { |m| m.manipulator_template.kind == 'goal' }
   end
@@ -95,7 +101,7 @@ class Plan < ActiveRecord::Base
   end
   
   def expenses
-    manipulators.find_all { |m| m.manipulator_template.kind == 'factor' }
+    manipulators.find_all { |m| m.manipulator_template.kind == 'factor' }.sort_by { |m| m.manipulator_template.priority }
   end
   
   def unused_expenses

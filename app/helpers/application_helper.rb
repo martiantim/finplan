@@ -33,7 +33,7 @@ module ApplicationHelper
       html += ' <span class="glyphicon glyphicon-new-window"></span>'
       html += '</span>'
     end
-    html += '</span'
+    html += '</span>'
     raw html
   end
 end

@@ -8,6 +8,7 @@
   <%= f.hidden_field :plan_id %>
 
 
+
   <% if @account.new_record? %>
     <div class="form-group">
       <label for="name">Type</label>
@@ -21,6 +22,8 @@
     <label for="balance">Balance</label>
     <%= f.text_field "balance", :class => "money form-control" %>
   </div>
+
+
     
   <% if @account.can_invest? %>
     <div class="form-group investment">
@@ -41,6 +44,7 @@
   <% end %>
 
   <button type="button" class="btn btn-primary save">Save</button>
+
 <% end %>
 </div>
 

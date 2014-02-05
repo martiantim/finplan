@@ -47,7 +47,7 @@ class Manipulator
   setGoalProgress: (year, have, need) ->
     if !@inRange(@curSim.simYear)
       need = null
-    @progress.push [year, {have: have, need: need}]
+    @progress.push [year, {have: have, need: need, inRange: @inRange(@curSim.context.simYear)}]
 
   setGoalAchieved: (year) ->
     @achievedTimes += 1

@@ -9,7 +9,13 @@ class Account
     @balance += amnt
   
   spend: (amnt) ->
-    @balance -= amnt
+    if amnt > @balance
+      moreNeeded = amnt - @balance
+      @balance = 0
+      moreNeeded
+    else
+      @balance -= amnt
+      0
   
   transfer: (fromAcct, amnt) ->
     if fromAcct.balance < amnt

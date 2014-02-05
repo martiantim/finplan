@@ -19,12 +19,9 @@ class ResultsByYear
 
   setEndYear: (year) ->
     @maxYear = year
-#    @el.find('.slider').slider('destroy')
-#    @_initSlider()
 
   _initSlider: ->
     @el.find('#year_slider_wrapper').html('<div id="year_slider" class="zzz slider slider-horizontal" style="width: 900px;"></div>')
-    console.log(@el.find('#year_slider'))
     @slider = @el.find('#year_slider').slider({
       min: @curYear,
       max: @maxYear,

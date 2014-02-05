@@ -8,6 +8,10 @@ class GoalListResults extends GoalList
     })
 
   showGoal: (itemID) ->
+    if itemID == 'summary'
+      @showSummary(null)
+      return
+
     @viewer().load "/goals/#{itemID}/show_results?plan_id=#{@plan.id}", =>
       m = @plan.findManipulatorByID(itemID)
       if m && m.achievedYear
@@ -35,6 +39,7 @@ class GoalListResults extends GoalList
     tbody = @viewer().find('#progress_table tbody')
     for d in m.progress
       tr = $('<tr></tr>')
+      tr.addClass('warning') if d[1]['inRange']
       tr.append("<td><a href='#' class='jump_to_year' data-year='#{d[0]}'>#{d[0]}</a></td><td class='money'>#{d[1]['have']}</td><td class='money'>#{d[1]['need']}</td>")
       tbody.append(tr)
 
@@ -45,6 +50,8 @@ class GoalListResults extends GoalList
     finFormat(tbody)
 
   showSummary: (simulator) ->
+    simulator = plan.lastSimulator() if !simulator
+
     html = '<h3>Summary</h3>'
     html += '<div class="well">'
 

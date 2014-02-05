@@ -2,6 +2,13 @@
   Goals
 </h3>
 <ul class="well well-small nav nav-pills nav-stacked">
+  <% if !editable %>
+    <li class="goal" data-id="summary" data-name="summary">
+      <a href="#">
+        <div class="name">Summary</div>
+      </a>
+    </li>
+  <% end %>
   <% list.each do |g|  %>
     <li class="goal" data-id="<%=g.id%>" data-name="<%=g.name%>">
       <a href="#">

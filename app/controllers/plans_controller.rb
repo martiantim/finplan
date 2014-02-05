@@ -20,12 +20,19 @@
 # -allow invest savings account
 # -better loans
 #
-#TODO: suggestions when bankruptcy or goal not achieved
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
-#TODO: take out retirement money as needed
 #TODO: allow expenses to grow with income (people can't control spending, show scenarios)
+
+#TODO: suggestions when bankruptcy or goal not achieved
+#TODO: take out money from more accounts before bankruptcy
+
+#TODO: investigate heroku
+
+#TODO: logo http://bestclipartblog.com/clipart-pics/giraffe-clipart-1.png
+
+#TODO: credit cards
+#TODO: bonuses (tied to stock market?)
 #TODO: keep track of basis and only pay taxes on gains
-#TODO: retire should have lifestyle instead of guess at expenses
 #TODO: remaining state income tax schedules
 #TODO: still in school
 #TODO: complete job pictures
