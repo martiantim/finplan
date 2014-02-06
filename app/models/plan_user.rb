@@ -2,7 +2,7 @@ class PlanUser < ActiveRecord::Base
   belongs_to :plan
   belongs_to :profession
 
-  scope :adults, :conditions => "DATE(NOW()) - DATE(born) > #{365*18}"
+  scope :adults, -> { where("DATE(NOW()) - DATE(born) > #{365*18}") }
 
 
   GENDERS = [

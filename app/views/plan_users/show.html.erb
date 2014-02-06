@@ -1,6 +1,6 @@
 <div class="well clearfix notitle">
 <div class="left-main">
-<%= form_for(@plan_user, :html => {'data-remote' => "true", :class => "autosave"}) do |f| %>
+<%= form_for(@plan_user, :html => {'data-remote' => "true", :class => ""}) do |f| %>
   <%= hidden_field_tag :plan_id, @plan.id %>
 
   <div class="form-group">
@@ -13,6 +13,8 @@
       <label for="born">Age</label>
       <%= f.select "born", options_for_select(PlanUser.ages_for_select(18..75), @plan_user.born), {}, {:class => "form-control input-small"} %>
     </div>
+
+    Gender: <%= f.select "gender", options_for_select(PlanUser::GENDERS, @plan_user.gender) %>
 
     <ul class="nav nav-tabs">
       <li class="active"><a href="#working" data-toggle="tab">Working</a></li>
@@ -46,6 +48,8 @@
     <%= f.hidden_field "gender" %>
     Will be born: <%= f.select "born", options_for_select(PlanUser.ages_for_select(-20..-1), @plan_user.born) %>
   <% end %>
+
+  <button type="button" class="btn btn-primary save">Save</button>
 <% end %>
 </div>
 

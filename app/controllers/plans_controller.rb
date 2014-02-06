@@ -53,19 +53,7 @@ class PlansController < ApplicationController
   before_filter :get_user
   before_filter :login_required
 
-  def get_user
-    if cookies[:auth_token]
-      @current_user = User.find_by_auth_token(cookies[:auth_token])
-      return if @current_user.nil?
-    end
-  end
 
-  def login_required
-    if @current_user.nil?
-      session[:remember_url] = request.url
-      redirect_to '/'
-    end
-  end
   
   def show
     @plan = Plan.find(params[:id])

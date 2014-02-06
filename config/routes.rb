@@ -59,6 +59,8 @@ resources :plan_users do
    collection do
      post :login
      get :logout
+     get :signup
+     post :signup
    end
  end
  

@@ -34,6 +34,26 @@ class UsersController < ApplicationController
     redirect_to :controller => 'welcome', :action => "index"
   end
 
+  def signup
+    if request.post?
+      user = User.new(params.require(:user).permit!)
+      user.password = params[:password]
+      if user.save
+        remember_login(user)
+
+        #create default plan
+        plan = user.plans.create!(:name => "Life", :state => "California")
+        plan.plan_users.create!(:name => user.name, :gender => user.gender, :born => Date.parse("1/1/1980"))
+
+        redirect_to :controller => 'plans', :action => 'show', :id => user.plans.first.id
+      else
+        #show page with errors
+      end
+    else
+      #just show page
+    end
+  end
+
   def show
     if params[:id] == 'spouse'
       @user = User.new(:name => "Spouse", :born => Date.parse("1988-01-01"))

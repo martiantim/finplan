@@ -5,7 +5,7 @@
         <%= f.text_field :email, :class => "form-control", :placeholder => "Email" %>
         <%= password_field_tag :password, '', :class => "form-control", :placeholder => "Password" %>
         <button type="submit" class="btn btn-primary">Login</button>
-        <button type="button" class="signup btn btn-success">Sign up</button>
+        <%= link_to "Sign up", "/users/signup", :class => "btn btn-success" %>
       <% end %>
     </div>
     <div id="logo"><%= image_tag("logo.png") %></div>

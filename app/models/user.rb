@@ -21,4 +21,12 @@ class User < ActiveRecord::Base
     self.auth_token = ""
     35.times { self.auth_token += (Random.rand*26+64).to_i.chr }
   end
+
+  def role
+    if gender == 'F'
+      'woman'
+    else
+      'man'
+    end
+  end
 end
