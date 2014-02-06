@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :get_user
+
   def index
     @plan = Plan.find(params[:plan_id])
 
@@ -23,7 +25,7 @@ class UsersController < ApplicationController
       render :text => "Username or Password incorrect", :status => 500
     else
       remember_login(user)
-      redirect_to :controller => 'plans', :action => 'show', :id => @current_user.plans.first.id
+      redirect_to :controller => 'plans', :action => 'show', :id => user.plans.first.id
     end
   end
 
