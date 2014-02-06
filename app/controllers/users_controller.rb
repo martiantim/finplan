@@ -17,16 +17,21 @@ class UsersController < ApplicationController
       return
     end
     if user
-      p user
-      p params[:password]
       user = nil if !user.password_match?(params[:password])
     end
     if !user
       render :text => "Username or Password incorrect", :status => 500
     else
       remember_login(user)
-      redirect_to :controller => 'plans', :action => 'show', :id => 1
+      redirect_to :controller => 'plans', :action => 'show', :id => @current_user.plans.first.id
     end
+  end
+
+  def logout
+    cookies[:auth_token] = nil
+    @current_user.update_attributes!(:auth_token => nil)
+
+    redirect_to :controller => 'welcome', :action => "index"
   end
 
   def show

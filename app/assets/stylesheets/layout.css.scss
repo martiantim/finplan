@@ -15,7 +15,16 @@ body {
     margin-top:5px;
     padding-bottom: 0px;
     margin-bottom: 0px;
-    
+
+    #account {
+      float: right;
+      padding: 10px;
+      img {
+        width: 20px;
+      }
+      a { margin-left: 5px; }
+    }
+
     #logo {
       width: 200px;
       height: 50px;

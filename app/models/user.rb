@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def set_auth_token
-    self.auth_token = 35.times { self.salt += (Random.rand*26+64).to_i.chr }
+    self.auth_token = ""
+    35.times { self.auth_token += (Random.rand*26+64).to_i.chr }
   end
 end
