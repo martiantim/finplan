@@ -1,34 +1,15 @@
-#DONE
-# -people
-# -professions
-# -faces
-# -ability to remove people
-# -ajaxforms
-# -people in js better
-# -put coffee files in directories
-# -existing savings
-# -show proper family members for years
-# -types for template params
-# -rework of UI
-# -investments
-# -more coffee in classes
-# -tables for taxes etc
-# -show people with object for their profession
-# -show person age
-# -require minimum withdraws
-# -pay proper taxes on retirement withdraws
-# -allow invest savings account
-# -better loans
-#
+#TODO: signup
+
+#TODO: logo outline
+#TODO: tiny icon
+
+#TODO: 30 year mortgage in market performance
+
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 #TODO: allow expenses to grow with income (people can't control spending, show scenarios)
 
 #TODO: suggestions when bankruptcy or goal not achieved
 #TODO: take out money from more accounts before bankruptcy
-
-#TODO: investigate heroku
-
-#TODO: logo http://bestclipartblog.com/clipart-pics/giraffe-clipart-1.png
 
 #TODO: credit cards
 #TODO: bonuses (tied to stock market?)
@@ -68,6 +49,23 @@
 #   -what if SS goes away?
 
 class PlansController < ApplicationController
+
+  before_filter :get_user
+  before_filter :login_required
+
+  def get_user
+    if cookies[:auth_token]
+      @current_user = User.find_by_auth_token(cookies[:auth_token])
+      return if @current_user.nil?
+    end
+  end
+
+  def login_required
+    if @current_user.nil?
+      session[:remember_url] = request.url
+      redirect_to '/'
+    end
+  end
   
   def show
     @plan = Plan.find(params[:id])

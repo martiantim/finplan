@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129101033) do
+ActiveRecord::Schema.define(version: 20140206035638) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "accounts", force: true do |t|
     t.string  "name",                                     null: false
@@ -23,23 +26,23 @@ ActiveRecord::Schema.define(version: 20140129101033) do
   end
 
   create_table "manipulator_templates", force: true do |t|
-    t.string   "name",                                                      null: false
-    t.integer  "user_id",                                                   null: false
-    t.string   "formula",               limit: 4096,                        null: false
+    t.string   "name",                                                   null: false
+    t.integer  "user_id",                                                null: false
+    t.string   "formula",               limit: 4096,                     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "javascript",            limit: 16777215
-    t.string   "kind",                                   default: "factor", null: false
+    t.text     "javascript"
+    t.string   "kind",                                default: "factor", null: false
     t.string   "image_url"
     t.string   "can_formula",           limit: 4096
     t.string   "can_javascript",        limit: 40960
-    t.boolean  "per_person",                             default: false
+    t.boolean  "per_person",                          default: false
     t.string   "do_formula",            limit: 4096
     t.text     "do_javascript"
-    t.integer  "priority",                               default: 5,        null: false
+    t.integer  "priority",                            default: 5,        null: false
     t.text     "description"
     t.string   "description_more_link"
-    t.boolean  "has_when_date",                          default: true,     null: false
+    t.boolean  "has_when_date",                       default: true,     null: false
   end
 
   create_table "manipulators", force: true do |t|
@@ -89,9 +92,13 @@ ActiveRecord::Schema.define(version: 20140129101033) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name",                             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",              default: "a", null: false
+    t.string   "salt"
+    t.string   "password_encrypted", default: "a", null: false
+    t.string   "auth_token"
   end
 
   create_table "variable_properties", force: true do |t|

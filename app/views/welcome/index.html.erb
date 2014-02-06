@@ -1,0 +1,13 @@
+<div id="main_content">
+  <div class="page-header well">
+    <div id="login">
+      <%= form_for(:user, :url => "/users/login") do |f| %>
+        <%= f.text_field :email, :class => "form-control", :placeholder => "Email" %>
+        <%= password_field_tag :password, '', :class => "form-control", :placeholder => "Password" %>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="button" class="signup btn btn-success">Sign up</button>
+      <% end %>
+    </div>
+    <div id="logo"><%= image_tag("logo.png") %></div>
+  </div>
+</div>

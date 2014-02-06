@@ -57,6 +57,7 @@ resources :plan_users do
    end
 
    collection do
+     post :login
    end
  end
  
@@ -101,6 +102,10 @@ resources :plan_users do
    end
  end
 
+ resources :welcome do
+
+ end
+
   # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
@@ -124,7 +129,7 @@ resources :plan_users do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

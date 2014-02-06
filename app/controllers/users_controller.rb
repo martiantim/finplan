@@ -6,6 +6,29 @@ class UsersController < ApplicationController
     render :partial => '/plan_users/list', :object => @plan.plan_users, :locals => {}
   end
 
+  def login
+    if params[:user][:email].blank? || params[:password].blank?
+      render :text => "Enter Username and Password", :status => 500
+      return
+    end
+    user = User.find_by_email(params[:user][:email])
+    if !user
+      render :text => "Can't find user", :status => 500
+      return
+    end
+    if user
+      p user
+      p params[:password]
+      user = nil if !user.password_match?(params[:password])
+    end
+    if !user
+      render :text => "Username or Password incorrect", :status => 500
+    else
+      remember_login(user)
+      redirect_to :controller => 'plans', :action => 'show', :id => 1
+    end
+  end
+
   def show
     if params[:id] == 'spouse'
       @user = User.new(:name => "Spouse", :born => Date.parse("1988-01-01"))
@@ -32,6 +55,15 @@ class UsersController < ApplicationController
     pu.destroy
 
     render :text => 'ok'
+  end
+
+  private
+
+  def remember_login(user)
+    user.set_auth_token
+    user.save!
+    cookies[:auth_token] = user.auth_token # cookie will live till the browser is closed
+    cookies[:user_login] = { :value => user.email, :expires => 365.days.from_now }
   end
   
 end

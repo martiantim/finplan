@@ -2,6 +2,8 @@ $total_width: 1024px;
 
 body {
   background: #ddd;
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
 }
 
 #main_content {

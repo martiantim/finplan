@@ -110,3 +110,14 @@
   padding: 0px;
 }
 
+
+#login {
+  float: right;
+  form {
+    input {
+      margin-right: 10px;
+      width: 175px;
+      float: left;
+    }
+  }
+}
