@@ -38,20 +38,19 @@ class UsersController < ApplicationController
 
   def signup
     if request.post?
-      user = User.new(params.require(:user).permit!)
-      user.password = params[:password]
-      if user.save
-        remember_login(user)
+      @user = User.new(params.require(:user).permit!)
+      @user.password = params[:password]
+      if @user.save
+        remember_login(@user)
 
-        #create default plan
-        plan = user.plans.create!(:name => "Life", :state => "California")
-        plan.plan_users.create!(:name => user.name, :gender => user.gender, :born => Date.parse("1/1/1980"))
+        setup_user(@user)
 
-        redirect_to :controller => 'plans', :action => 'show', :id => user.plans.first.id
+        redirect_to :controller => 'plans', :action => 'show', :id => @user.plans.first.id
       else
         #show page with errors
       end
     else
+      @user = User.new
       #just show page
     end
   end
@@ -91,6 +90,31 @@ class UsersController < ApplicationController
     user.save!
     cookies[:auth_token] = user.auth_token # cookie will live till the browser is closed
     cookies[:user_login] = { :value => user.email, :expires => 365.days.from_now }
+  end
+
+  def setup_user(user)
+    #create default plan
+    plan = user.plans.create!(:name => "Life", :state => "California")
+    pu = plan.plan_users.create!(:name => user.name, :gender => user.gender, :born => Date.parse("1/1/1990"))
+
+    Account::KINDS.find_all { |acct| !acct[:removable] }.each do |acct|
+      plan.accounts.create!(:name => acct[:name], :balance => 0)
+    end
+    plan.accounts.create!(:name => "401K", :balance => 0, :investment_type => "Target Retirement")
+
+    ['Salary', 'Rent', 'Car', 'Healthcare', 'Living Expenses'].each do |name|
+      m = plan.manipulator_for_plan_user_or_create(name, pu)
+      m.save!
+    end
+
+    m = plan.manipulator_for_plan_user_or_create('Retire', nil)
+    m.params = {:retirement_lifestyle => "about the same"}.to_json
+    m.start = pu.born + (65*366)
+    m.end = pu.born + (65*366)
+    m.start_type = 'age'
+    m.start_plan_user = pu
+    m.save!
+
   end
   
 end

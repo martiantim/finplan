@@ -209,7 +209,8 @@ class Balances
         @curLog().log("account:#{name}", "Investment Return", earnings)
 
   moneyLeftOver: ->
-    @year_incomes[@_currentYear()] - @year_spends[@_currentYear()]
+    income = @year_incomes[@_currentYear()] || 0
+    income - @year_spends[@_currentYear()]
 
   addYear: ->              
     @curLog().log('Savings', 'Left Over', @moneyLeftOver())

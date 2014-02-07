@@ -15,7 +15,9 @@ class GoalsController < BaseManipulatorController
   end
   
   def create
-    @m = Manipulator.new(params.require(:manipulator).permit!)
+    @m = Manipulator.new()
+    when_params(@m)
+    m.update_attributes(params.require(:manipulator).permit!)
     @m.params = params[:variables].to_json
 
     if @m.save
@@ -26,11 +28,18 @@ class GoalsController < BaseManipulatorController
   end
 
   def update
+    m = Manipulator.find(params[:id])
+    when_params(m)
+
+    super
+  end
+
+  def when_params(manipulator)
     if params[:when_type] == 'asap'
       params[:manipulator][:start] = nil
       params[:manipulator][:end] = nil
     elsif params[:when_type] == 'age'
-      pu = Manipulator.find(params[:id]).plan.plan_users.detect { |pu| pu.id == params[:when_person].to_i }
+      pu = manipulator.plan.plan_users.detect { |pu| pu.id == params[:when_person].to_i }
       params[:manipulator][:start_plan_user_id] = pu.id
       params[:manipulator][:start] = pu.born + (params[:when_age].to_i*366)
       params[:manipulator][:end] = params[:manipulator][:start]
@@ -41,8 +50,6 @@ class GoalsController < BaseManipulatorController
       raise StandardError, "Unknown when type #{params[:when_type]}"
     end
     params[:manipulator][:start_type] = params[:when_type]
-
-    super
   end
 
   def show_results

@@ -118,7 +118,12 @@ class Plan < ActiveRecord::Base
     m = manipulator_for_plan_user(template_name, puser)
     if !m
       template = ManipulatorTemplate.find_by_name(template_name)
-      m = manipulators.new(:name => template.name, :manipulator_template => template, :plan_user => puser, :params => {}.to_json)
+      params = {}
+      template.variable_properties.each do |var|
+        params[var.name] = var.default if !var.default.blank?
+      end
+
+      m = manipulators.new(:name => template.name, :manipulator_template => template, :plan_user => puser, :params => params.to_json)
     end
     m
   end

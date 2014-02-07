@@ -6,7 +6,21 @@ class User < ActiveRecord::Base
 
   scope :adults, :conditions => "DATE(NOW()) - DATE(born) > #{365*18}"
 
+  validates :email, length: { minimum: 2 }
+  validates :name, length: { minimum: 2 }
+  validate :check_password
+
+  def check_password
+    return if !@new_password
+
+    if @new_password.length < 6
+      errors.add(:password, "Password too short")
+      return
+    end
+  end
+
   def password= (pass)
+    @new_password = pass
     self.salt = ""
     15.times { self.salt += (Random.rand*26+64).to_i.chr }
 

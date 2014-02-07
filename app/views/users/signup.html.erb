@@ -3,7 +3,16 @@
     <%= image_tag("logo.png", :style => "height: 100px;") %>
 
     <h2>Just a few things to get started...</h2>
-    <%= form_for(:user, :url => "/users/signup") do |f| %>
+
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+          <% @user.errors.full_messages.each do |msg| %>
+            <p class="text-danger"><%= msg %></p>
+          <% end %>
+      </div>
+    <% end %>
+
+    <%= form_for(@user, :url => "/users/signup") do |f| %>
       <div class="form-group">
         <label for="name">Email</label>
         <%= f.text_field :email, :size => 20, :class => "form-control" %>
