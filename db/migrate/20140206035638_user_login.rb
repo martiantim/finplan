@@ -7,7 +7,7 @@ class UserLogin < ActiveRecord::Migration
 
     tim = User.find(1)
     tim.email = "timmartin@alumni.cmu.edu"
-    tim.password = "abcd"
+    tim.password = "abcd1234"
     tim.save!
   end
 end
