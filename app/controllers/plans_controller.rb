@@ -1,5 +1,3 @@
-#TODO: signup
-
 #TODO: logo outline
 #TODO: tiny icon
 
@@ -11,6 +9,7 @@
 #TODO: suggestions when bankruptcy or goal not achieved
 #TODO: take out money from more accounts before bankruptcy
 
+#TODO: mortgage one payment
 #TODO: credit cards
 #TODO: bonuses (tied to stock market?)
 #TODO: keep track of basis and only pay taxes on gains

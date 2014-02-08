@@ -21,6 +21,9 @@ class PeopleList extends NiceList
       profession = @viewer().find('#plan_user_profession_id option:selected').text()
       @drawing.setProfession(profession)
 
+    @viewer().find('#plan_user_gender').change =>
+      @drawing.setGender(@viewer().find('#plan_user_gender').val())
+
 
   wireFamily: ->
     portrait = @viewer().find('#family_portrait')

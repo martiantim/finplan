@@ -9,12 +9,20 @@
   </div>
 
   <% if @plan_user.is_adult? %>
-    <div class="form-group">
-      <label for="born">Age</label>
-      <%= f.select "born", options_for_select(PlanUser.ages_for_select(18..75), @plan_user.born), {}, {:class => "form-control input-small"} %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="born">Age</label>
+          <%= f.select "born", options_for_select(PlanUser.ages_for_select(18..75), @plan_user.born), {}, {:class => "form-control input-small"} %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <%= f.select "gender", options_for_select(PlanUser::GENDERS, @plan_user.gender), {}, {:class => "form-control input-small"} %>
+        </div>
+      </div>
     </div>
-
-    Gender: <%= f.select "gender", options_for_select(PlanUser::GENDERS, @plan_user.gender) %>
 
     <ul class="nav nav-tabs">
       <li class="active"><a href="#working" data-toggle="tab">Working</a></li>

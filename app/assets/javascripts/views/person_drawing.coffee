@@ -5,17 +5,16 @@ class PersonDrawing
     if !@role
       @role = el.attr('data-role')
 
-    if @role
-      body = $('<div class="body"></div>')
-      path = image_path('people/'+@role+'.png')
-      body.append($("<img src=\"#{path}\">"))
-      body.append($('<div class="accessories"></div>'))
+    body = $('<div class="body"></div>')
+    path = image_path('people/'+(@role || '')+'.png')
+    body.append($("<img src=\"#{path}\">"))
+    body.append($('<div class="accessories"></div>'))
 
-      details = $('<div class="details"></div>')
-      details.append("<div class=\"name\">#{@name}</div>") if @name
-      details.append("<div class=\"age\"></div>")
+    details = $('<div class="details"></div>')
+    details.append("<div class=\"name\">#{@name}</div>") if @name
+    details.append("<div class=\"age\"></div>")
 
-      @el.append(body).append(details)
+    @el.append(body).append(details)
 
     if el.attr('data-profession')
       @setProfession(el.attr('data-profession'))
@@ -23,6 +22,15 @@ class PersonDrawing
 
   clearAccessories: ->
     @accessories = {}
+
+  setGender: (gender) ->
+    if gender == 'M'
+      @role = 'man'
+    else if gender == 'F'
+      @role = 'woman'
+    else
+      @role = ''
+    @draw()
 
   setProfession: (profession) ->
     @clearAccessories()
@@ -38,6 +46,8 @@ class PersonDrawing
     @el.find('.details .age').html("(#{age} years old)")
 
   draw: ->
+    @el.find('.body > img').attr('src', image_path('people/'+(@role || '')+'.png'))
+
     @el.find('.accessories').html('')
     if @accessories['hand']
       @el.find('.accessories').append('<img class="hand" src="/assets/people/accessories/hand_'+@accessories['hand']+'.png"></img>')

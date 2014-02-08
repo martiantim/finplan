@@ -38,6 +38,9 @@ class NiceList
         target.attr('data-expanded', true)
         @el.find('ul').show()
 
+  selectItem: (item) ->
+    @el.find("li[data-name=\"#{item}\"]").click()
+
   showItem: (itemID) ->
     @viewer().load "/#{@options.controller}/#{itemID}?plan_id=#{@plan.id}", =>
       @wireItem(itemID)
