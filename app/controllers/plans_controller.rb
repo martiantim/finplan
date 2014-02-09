@@ -13,7 +13,7 @@
 #TODO: handle already own home
 #TODO: warning/advice system
 
-#TODO: credit cards
+#TODO: BUG; accounts not being updates (set rate to 9% and reran and using old)
 #TODO: better handling of accounts
 #TODO: do all logging thru simcontext
 #TODO: bonuses (tied to stock market?)

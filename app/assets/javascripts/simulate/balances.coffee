@@ -161,7 +161,7 @@ class Balances
 
     if !@hasAmountToSpend(amount)
       if opts['loan']
-        throw new BankruptcyException("Unable to pay for #{kind} #{description}")
+        throw new BankruptcyException("Unable to pay for #{description} in #{@simcontext.simYear}")
       else
         @takeOutLoan(amount, description)
     else
@@ -186,7 +186,7 @@ class Balances
       balance += @accounts['401k'].balance
     if age >= 60
       balance += @accounts['traditional ira'].balance + @accounts['roth ira'].balance
-    balance > amnt
+    balance >= amnt
 
   rebalance: ->
     @accounts['checking'].rebalance(@accounts['savings'], @curLog())

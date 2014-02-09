@@ -10,7 +10,8 @@ class RevolvingLoan extends Loan
     @setBalance(@getBalance() + newInterest)
 
     #XXX mimum is always interest + 2%
-    @deposit(minimumPayment)
-    balances.spendCash(minimumPayment, 'Living', 'Credit Card Payment', {loan: true})
+    if minimumPayment > 0
+      @deposit(minimumPayment)
+      balances.spendCash(minimumPayment, 'Living', 'Credit Card Payment', {loan: true})
 
 window.RevolvingLoan = RevolvingLoan
