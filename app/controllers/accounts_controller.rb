@@ -33,9 +33,12 @@ class AccountsController < ApplicationController
   
   def update
     a = Account.find(params[:id])
-    a.update_attributes(params.require(:account).permit!)
 
-    render :json => {:id => a.id}
+    if a.update_attributes(params.require(:account).permit!)
+      render :json => {:id => a.id}
+    else
+      render :json => model_errors_hash(a), :status => 500
+    end
   end
   
 end

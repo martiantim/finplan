@@ -65,12 +65,17 @@ class NiceList
     @viewer().find('form').on 'ajax:error', (event, xhr, status) =>
       finHideStatus()
       errMsg = xhr.error_message
+      if xhr.responseJSON && xhr.responseJSON.length > 0
+        for err in xhr.responseJSON
+          errMsg = err.messages
       errMsg = "There was an error saving." if !errMsg
-      @viewer().find('form .save_status').html(errMsg)
+      @viewer().find('form .save_status').removeClass('hide').html(errMsg)
+      finFormat(@viewer())
 
     @viewer().find('form').submit (e) ->
       finShowStatus('saving...')
-      form = $(this);
+      form = $(this)
+      form.find('.save_status').addClass('hide')
       form.find('input.money, input.percentage').each (i) ->
         self = $(this);
         try

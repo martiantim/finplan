@@ -7,7 +7,7 @@
 <%= form_for(@account, :html => {'data-remote' => "true"}) do |f| %>
   <%= f.hidden_field :plan_id %>
 
-
+   <div class="save_status alert alert-danger hide"></div>
 
   <% if @account.new_record? %>
     <div class="form-group">

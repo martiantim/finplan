@@ -21,7 +21,10 @@ class Account < ActiveRecord::Base
     "International Stock",
     "Target Retirement"
   ]
-  
+
+  validates :balance, :numericality => { :if => lambda {|acct| acct.is_debt? }, :only_integer => true, :less_than_or_equal_to => 0, :message => "Debts should be expressed as negative amounts" }
+  #validates :balance, :numericality => { , :only_integer => true, :less_than_or_equal_to => 0,  }
+
   def kind
     KINDS.detect { |a| a[:name] == self.name }
   end
@@ -45,7 +48,7 @@ class Account < ActiveRecord::Base
   end
   
   def is_debt?
-    new_record? || kind[:type] == 'debt'
+    kind[:type] == 'debt'
   end
   
   def safe_json
