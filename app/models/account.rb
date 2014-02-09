@@ -5,6 +5,7 @@ class Account < ActiveRecord::Base
     {:name => "Checking",   :type => 'current', :removable => false, :description => "Bank account where you keep your money for everyday expenses.", :description_more_link => "http://www.investopedia.com/terms/c/checkingaccount.asp"},
     {:name => "Emergency",  :type => 'current', :removable => false, :description => "An account that holds money for use in an emergency. Emergencies include losing your job, an unexpected large bill, etc. This may be a savings account at your bank.", :description_more_link => "http://www.investopedia.com/terms/e/emergency_fund.asp"},
     {:name => "Savings",    :type => 'invest',  :removable => false, :description => ""},
+    {:name => "Credit Cards",:type => 'debt',  :removable => false, :description => ""},
     {:name => "Loan",       :type => 'debt',    :removable => true,  :description => ""},
     {:name => "HSA",        :type => 'current', :removable => true,  :description => ""},
     {:name => "Investment", :type => 'invest',  :removable => true,  :description => ""},
@@ -54,7 +55,8 @@ class Account < ActiveRecord::Base
       :balance => self.balance,
       :investment_type => self.investment_type,
       :interest_rate => self.interest_rate,
-      :term => self.term
+      :term => self.term,
+      :limit => self.limit
     }
   end
   

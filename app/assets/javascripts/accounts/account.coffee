@@ -43,7 +43,9 @@ class Account
     @balance -= amount
 
   @fromJSON: (json) ->
-    if json.interest_rate
+    if json.limit
+      new RevolvingLoan(json.name, json.balance, json.interest_rate/100.0, json.limit)
+    else if json.interest_rate
       new Loan(json.name, json.balance, json.interest_rate/100.0, finData['current_year'], json.term || 30, false)
     else
       new Account(json.name, json.balance, json.investment_type || 'None')

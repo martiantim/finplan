@@ -24,6 +24,9 @@ class Loan extends Account
   getBalance: ->
     @balance
 
+  setBalance: (bal) ->
+    @balance = bal
+
   pay: (balances) ->
     monthOfPayment = 1 + (balances._currentYear() - @startYear - 1)*12
     if @balance < 0

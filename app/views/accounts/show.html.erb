@@ -24,24 +24,24 @@
   </div>
 
 
-    
-  <% if @account.can_invest? %>
-    <div class="form-group investment">
-      <label for="investment_type">Investment Type</label>
-      <%= f.select "investment_type", options_for_select(Account::INVESTMENT_TYPES, @account.investment_type), {}, {:class => "form-control"} %>
-    </div>
-  <% end %>
+  <div class="form-group investment">
+    <label for="investment_type">Investment Type</label>
+    <%= f.select "investment_type", options_for_select(Account::INVESTMENT_TYPES, @account.investment_type), {}, {:class => "form-control"} %>
+  </div>
 
-  <% if @account.is_debt? %>
-    <div class="line loan_line debt">
-      <label>Interest Rate</label>
-      <%= f.text_field 'interest_rate', :class => 'percentage' %>
-    </div>
-    <div class="line loan_line term">
-      <label>Term (years left)</label>
-      <%= f.text_field 'term' %>
-    </div>
-  <% end %>
+  <div class="form-group loan_line debt">
+    <label for="interest_rate">Interest Rate</label>
+    <%= f.text_field 'interest_rate', :class => 'percentage form-control input-small' %>
+  </div>
+  <div class="form-group loan_line term">
+    <label for="term">Term (years left)</label>
+    <%= f.text_field 'term', :class => "number form-control input-small" %>
+  </div>
+  <div class="form-group loan_line term">
+    <label for="limit">Limit</label>
+    <%= f.text_field 'limit', :class => "money form-control input-small" %>
+  </div>
+
 
   <button type="button" class="btn btn-primary save">Save</button>
 
@@ -56,27 +56,3 @@
   </div>
 </div>
 </div>
-<%= javascript_tag do  %>
-  $(function() {
-    ACCOUNT_KINDS = <%= raw Account::KINDS.to_json %>;
-    <% if @account.new_record? %>
-      $('.line.investment').hide();
-      $('.line.debt').hide();
-    <% end %>
-          
-    $('#account_name').change(function() {
-      for (var i = 0; i < ACCOUNT_KINDS.length; i++) {
-        var ak = ACCOUNT_KINDS[i];
-        if ($(this).val() == ak.name) {
-          $('.line.investment').hide();
-          $('.line.debt').hide();
-          if (ak.type == 'debt') {
-            $('.line.debt').show();
-          } else if (ak.type == 'invest') {
-            $('.line.investment').show();
-          }
-        }
-      }
-    });
-  });
-<% end %>

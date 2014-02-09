@@ -1,6 +1,8 @@
 #TODO: logo outline
 #TODO: tiny icon
 
+#TODO: tag line "Reach the higher branches"
+
 #TODO: 30 year mortgage in market performance
 
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
@@ -10,9 +12,7 @@
 
 #TODO: handle already own home
 #TODO: warning/advice system
-#TODO: PMI
-# take the purchase price less the down payment, then add 2.25 % and times that number by .55% and divide it by 12.  that is your monthly pmi
-#  $150,000 purchase price - down payment of 3.5% = $144,750 + 2.25% = $148,006  x .55% = 814 divided by 12 = about $68.00 a month.
+
 #TODO: credit cards
 #TODO: better handling of accounts
 #TODO: do all logging thru simcontext
@@ -29,6 +29,7 @@
 #TODO: goal: vacation home
 #TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
 #TODO: taxes on social security
+#TODO: goal pay off credit cards
 #2.0
 #TODO: contractor
 #TODO: able to control when take social security

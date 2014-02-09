@@ -5,15 +5,19 @@ class Balances
       emergency: new Account('emergency',0),
       savings: new Account('savings', 0),
       retirement: new Account('retirement', 0),
+      'credit cards': new RevolvingLoan('credit cards', 0, 0),
       '401k': new RetirementAccount('401K', 'pretax', 0),
       'traditional ira': new RetirementAccount('Traditional IRA', 'pretax', 0),
       'roth ira': new RetirementAccount('ROTH IRA', 'posttax', 0)
     }
-    for acct in @startAccounts      
+    for acct in @startAccounts
       name = acct.type.toLowerCase()
       if @accounts[name]
         @accounts[name].setBalance(acct.balance)
         @accounts[name].investmentType = acct.investmentType
+        if (acct instanceof RevolvingLoan)
+          @accounts[name].limit = acct.limit
+          @accounts[name].rate = acct.rate
       else if name == 'loan'
         @accounts['loan'] = acct.duplicate()
       else
@@ -226,6 +230,8 @@ class Balances
   payLoans: ->
     for name, a of @accounts
       if a.type == 'loan'
+        @payLoan(a)
+      else if (a instanceof RevolvingLoan)
         @payLoan(a)
 
   payLoan: (acct) ->
