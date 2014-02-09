@@ -67,6 +67,11 @@ class Simulator
 
 
   _runYearCanRaise: (onDone) ->
+    @context.family.membersOfYear(@context.simYear, (u, desc) =>
+      if u.ageInYear(@context.simYear) == 0
+        @context.balances.curLog().log("event", "#{u.name} is born!", 0)
+    )
+
     @context.balances.earnFromInvestments(@context.markets)
     @context.balances.payLoans()
     for m in @manipulators

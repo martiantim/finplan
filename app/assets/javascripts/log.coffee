@@ -9,14 +9,24 @@ class Log
     for e in @arr
       func(e)      
       
-  each_entry_of_kind: (kind, func) ->    
-    for e in @arr
-      if e.kind == kind
-        func(e)            
+  each_entry_of_kind: (kind, mergeSame, func) ->
+    if mergeSame
+      data = {}
+      for e in @arr
+        if e.kind == kind
+          data[e.description] ||= new LogEntry(kind, e.description, 0)
+          data[e.description].amount += e.amount
+
+      for desc, e of data
+        func(e)
+    else
+      for e in @arr
+        if e.kind == kind
+          func(e)
   
   sumOfKind: (kind) ->
     sum = 0
-    @each_entry_of_kind kind, (entry) ->
+    @each_entry_of_kind kind, false, (entry) ->
       sum += entry.amount
     sum
 

@@ -5,6 +5,9 @@ class SimContext
     @markets = new Markets(this)
     @familyStatus = {}
 
+  log: (kind, desc, amount) ->
+    @balances.curLog().log(kind, desc, amount)
+
   oldestAdultAge: ->
     max = 0
     @family.membersOfYear(@simYear, (user, kind) =>

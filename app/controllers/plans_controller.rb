@@ -4,22 +4,27 @@
 #TODO: 30 year mortgage in market performance
 
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
-#TODO: allow expenses to grow with income (people can't control spending, show scenarios)
 
 #TODO: suggestions when bankruptcy or goal not achieved
 #TODO: take out money from more accounts before bankruptcy
 
-#TODO: mortgage one payment
+#TODO: handle already own home
+#TODO: warning/advice system
+#TODO: PMI
+# take the purchase price less the down payment, then add 2.25 % and times that number by .55% and divide it by 12.  that is your monthly pmi
+#  $150,000 purchase price - down payment of 3.5% = $144,750 + 2.25% = $148,006  x .55% = 814 divided by 12 = about $68.00 a month.
 #TODO: credit cards
+#TODO: better handling of accounts
+#TODO: do all logging thru simcontext
 #TODO: bonuses (tied to stock market?)
 #TODO: keep track of basis and only pay taxes on gains
 #TODO: remaining state income tax schedules
 #TODO: still in school
 #TODO: complete job pictures
 #TODO: research how much less people actually use in retirement (saw in the dummies financial planning book)
-#TODO: scenario "SS doesn't exist or lowered payout"
-#TODO: scenario "Different investment returns"
 #TODO: taxes rise to european levels
+#TODO: childcare
+#TODO: fix extra baby scenario
 #TODO: goal: more school
 #TODO: goal: vacation home
 #TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/

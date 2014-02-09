@@ -9,10 +9,15 @@ class ResultsByyearYear
   
   getHTML: ->
     html = ''
-    html += "<div class=\"clearit cols\">"
-    html += "  <div class=\"numbers col\">#{@yearChanges()} #{@marketChanges()}</div>"
-    html += "  <div class=\"achievements col\">#{@showBalances()}</div>"
-    html += "  <div class=\"people col\">#{@people()}</div>"
+    html += "<div class=\"row\">"
+    html += "  <div class=\"numbers col-md-4\">#{@yearChanges()} #{@marketChanges()}</div>"
+    html += "  <div class=\"col-md-8\">"
+    html += "    <div class=\"row\">"
+    html += "      <div class=\"achievements col-md-6\">#{@showBalances()}</div>"
+    html += "      <div class=\"people col-md-6\">#{@people()}</div>"
+    html += "    </div>"
+    html += "    <div>#{@yearEvents()}</div>"
+    html += "  </div>"
     html += "</div>"
     html
 
@@ -44,12 +49,12 @@ class ResultsByyearYear
   
   showBalance: (name, amount, log) ->
     cnt = 0
-    log.each_entry_of_kind "account:#{name}", (entry) ->
+    log.each_entry_of_kind "account:#{name}", false, (entry) ->
       cnt++
 
     html = @_entryTitle(name, "account:#{name}", amount, cnt > 0)
     html += "<div class='kind_details' data-kind=\"account:#{name}\" style='display:none'>"
-    log.each_entry_of_kind "account:#{name}", (entry) ->
+    log.each_entry_of_kind "account:#{name}", true, (entry) ->
       html += "<div class='entry detail'><div class='name'>#{entry.description}</div><div class='amount money'>#{entry.amount}</div></div>"
     html += "</div>"
     html
@@ -80,6 +85,26 @@ class ResultsByyearYear
     html += "</tbody></table></div></div>"
     html
 
+  yearEvents: ->
+    log = @simContext.balances.logForYear(@year)
+
+    html = '<div class="panel panel-warning"><div class="panel-heading">'
+    html += "<h3 class=\"panel-title\">#{@year} Events</h3></div>"
+    html += '  <div class="panel-body">'
+
+    events = ""
+    log.each_entry_of_kind "event", false, (entry) ->
+      events += "<li>#{entry.description}</li>"
+
+    if events.length > 0
+      html += "<ul>#{events}</ul>"
+    else
+      html += "Business as usual"
+
+    html += "  </div>"
+    html += "</div>"
+    html
+
   yearChanges: ->
     log = @simContext.balances.logForYear(@year)
 
@@ -103,7 +128,7 @@ class ResultsByyearYear
     sum = log.sumOfKind(kind)
     html = @_entryTitle(title, kind, sum, sum != 0)
     html += "<div class='kind_details' data-kind=\"#{kind}\" style='display:none'>"
-    log.each_entry_of_kind kind, (entry) ->
+    log.each_entry_of_kind kind, true, (entry) ->
       html += "<div class='entry detail'><div class='name'>#{entry.description}</div><div class='amount money'>#{entry.amount}</div></div>"
     html += "</div>"
     html
