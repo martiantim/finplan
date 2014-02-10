@@ -47,4 +47,15 @@ class Family
         end = u.projectedDeathYear if u.projectedDeathYear > end
     end
 
+  dupe: ->
+    fam = new Family(@stateLivingIn)
+    for u in @members
+      fam.add(u)
+    fam
+
+  addUnexpected: ->
+    h = User.randomPopularNameAndGender()
+    year = 2014 + (Math.random()%5)|0
+    @add(new User(0, h['name'], "1/1/#{year}", h['gender'], 'H', null))
+
 window.Family = Family

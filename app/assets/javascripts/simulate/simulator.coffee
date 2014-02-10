@@ -1,5 +1,6 @@
 class Simulator
-  constructor: (@scenario, @family, @manipulators, @startAccounts, @dialog) ->
+  constructor: (@scenario, familyIn, @manipulators, @startAccounts, @dialog) ->
+    @family = familyIn.dupe()
     @startYear = new Date().getYear()+1900
 
     @_markGoalProgress()    
@@ -49,10 +50,12 @@ class Simulator
       'Retirement': [],
       'Loans': [],
       'Net Worth': [],
-    }    
+    }
 
     @context = new SimContext(@scenario, @startYear, @startAccounts, @family)
-    
+    if @context.isScenario('extra_baby')
+      @family.addUnexpected()
+
     that = this
     setTimeout =>
       @_runYear(onDone)

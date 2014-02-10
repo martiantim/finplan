@@ -2,7 +2,6 @@
 #TODO: tiny icon
 #TODO: tag line "Reach the higher branches"
 
-
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 
 #TODO: suggestions when bankruptcy or goal not achieved
@@ -17,7 +16,6 @@
 #TODO: remaining state income tax schedules
 #TODO: still in school
 #TODO: complete job pictures
-#TODO: research how much less people actually use in retirement (saw in the dummies financial planning book)
 #TODO: scenario: taxes rise to european levels
 #TODO: childcare
 #TODO: fix extra baby scenario

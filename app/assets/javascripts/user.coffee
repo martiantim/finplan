@@ -41,5 +41,19 @@ class User
     else
       'baby'
     
-  
+
+  @randomPopularNameAndGender: ->
+    names = {
+              'M': ['Jacob', 'Mason', 'Ethan', 'Noah', 'William', 'Liam', 'Jayden', 'Michael', 'Alexander', 'Aiden'],
+              'F': ['Sophia', 'Emma', 'Isabella', 'Olivia', 'Ava','Emily', 'Abigail',  'Mia', 'Madison', 'Elizabeth']
+            }
+    gender = 'M'
+    if Math.random() >= 0.5
+      gender = 'F'
+    name = names[gender][Math.random()*10|0]
+    {gender: gender, name: name}
+
+
+
+
 window.User = User
