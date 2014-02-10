@@ -8,6 +8,32 @@
         <%= link_to "Sign up", "/users/signup", :class => "btn btn-success" %>
       <% end %>
     </div>
-    <div id="logo"><%= image_tag("logo.png") %></div>
+    <div id="logo"><%= image_tag("logo.png", :style => "height: 100px;") %></div>
+  </div>
+
+  <div class="well">
+    <h1 style="margin-left: 100px;color: #1CA22D;font-weight: bold;font-size: 50px;">Reach the Higher Branches</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag("giraffe.png") %>
+      </div>
+      <div class="col-md-6">
+        <ol style="padding:30px 40px 30px 10px;font-size: 32px;font-weight:bold;">
+          <li>
+            <h3 style="font-size: 32px;font-weight: normal;">Tell Us Your Goals</h3>
+            <p style="font-size: 14px;font-weight: normal;">Retiring, buying a home, college, traveling the world, and many more</p>
+          </li>
+          <li>
+            <h3 style="font-size: 32px;font-weight: normal;">Simulate the Future</h3>
+            <p style="font-size: 14px;font-weight: normal;">Our simulation system will take your specific situation and goals and simulate your financial future. It will take into account taxes, deductions, potential stock market returns, and you can even simulate alternate scenarios like changes in social security</p>
+          <li>
+            <h3 style="font-size: 32px;font-weight: normal;">Get Advice and Make Adjustments</h3>
+            <p style="font-size: 14px;font-weight: normal;">See your future and make changes now so you can reach those higher branches!</p>
+          </li>
+        </ol>
+
+        <div style="text-align: right;margin-right: 50px; font-size: 24px;">It's free <%= link_to "Sign up Now", "/users/signup", :class => "btn btn-success", :style => "font-size: 24px;" %></div>
+      </div>
+    </div>
   </div>
 </div>

@@ -18,7 +18,6 @@
 #TODO: complete job pictures
 #TODO: scenario: taxes rise to european levels
 #TODO: childcare
-#TODO: fix extra baby scenario
 #TODO: goal: more school
 #TODO: goal: vacation home
 #TODO: taxes on social security
