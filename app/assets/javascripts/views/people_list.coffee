@@ -26,7 +26,7 @@ class PeopleList extends NiceList
 
 
   wireFamily: ->
-    portrait = @viewer().find('#family_portrait')
+    portrait = @viewer().find('#family_portrait > div')
     left = 0
     window.plan.family.membersOfYear(finData['current_year'], (person, kind) =>
       drawEl = $("<div class=\"person_wrapper\" style=\"left: #{left}px;\"><div class=\"person_drawing small\" data-id=\"#{person.id}\"></div></div>")

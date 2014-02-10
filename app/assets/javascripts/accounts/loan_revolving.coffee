@@ -10,7 +10,6 @@ class RevolvingLoan extends Loan
     @setBalance(@getBalance() + newInterest)
 
     #XXX mimum is always interest + 2%
-    console.log("Balance = #{@getBalance()} min = #{minimumPayment}")
     if minimumPayment > 0
       @deposit(minimumPayment)
       balances.spendCash(minimumPayment, 'Living', 'Credit Card Payment', {loan: true})

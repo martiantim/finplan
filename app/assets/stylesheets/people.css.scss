@@ -1,14 +1,34 @@
+.portrait {
+  background-image: url('/assets/people/frame.png');
+  background-size: 100% auto;
+  width: 200px; height: 495px;
+  padding: 83px 17px 17px 17px;
+
+  &#family_portrait {
+    height: 375px;
+    width: 330px;
+    padding: 60px 17px 17px 17px;
+    background-image: url('/assets/people/family_frame.png');
+  }
+
+}
+
 #family_portrait {
-  position: relative;
-  height: 300px;
   .person_wrapper {
     position: absolute;
-    top: 0px
+    top: 0px;
+    height: 300px;
+    background: #fff;
   }
 }
 
+
+
 .person_drawing {
-  width: 250px;
+  position:relative;
+  width: 165px;
+  height: 400px;
+
   .body {
     height: 600px;
     > img {

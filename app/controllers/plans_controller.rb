@@ -1,9 +1,7 @@
 #TODO: logo outline
 #TODO: tiny icon
-
 #TODO: tag line "Reach the higher branches"
 
-#TODO: 30 year mortgage in market performance
 
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 
@@ -13,24 +11,25 @@
 #TODO: handle already own home
 #TODO: warning/advice system
 
-#TODO: BUG; accounts not being updates (set rate to 9% and reran and using old)
-#TODO: better handling of accounts
+#TODO: better handling of accounts in javascript
 #TODO: do all logging thru simcontext
-#TODO: bonuses (tied to stock market?)
 #TODO: keep track of basis and only pay taxes on gains
 #TODO: remaining state income tax schedules
 #TODO: still in school
 #TODO: complete job pictures
 #TODO: research how much less people actually use in retirement (saw in the dummies financial planning book)
-#TODO: taxes rise to european levels
+#TODO: scenario: taxes rise to european levels
 #TODO: childcare
 #TODO: fix extra baby scenario
 #TODO: goal: more school
 #TODO: goal: vacation home
-#TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
 #TODO: taxes on social security
 #TODO: goal pay off credit cards
+
 #2.0
+#TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
+#TODO: 30 year mortgage in market performance
+#TODO: bonuses (tied to stock market?)
 #TODO: contractor
 #TODO: able to control when take social security
 #TODO: show green/yellow/red in need/have table

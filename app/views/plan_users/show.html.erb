@@ -66,8 +66,10 @@
     <button class="remove btn btn-danger" <%= "disabled=\"disabled\"" if @plan_user.new_record? %>>Remove Person</button>
   </div>
 
-  <div class="person_wrapper" style="position: relative;">
-    <div class="person_drawing" data-id="<%= @plan_user.id%>" data-profession="<%= @plan_user.profession ? @plan_user.profession.name : ''%>" data-role="<%= @plan_user.family_role%>"></div>
+  <div class="portrait individual">
+    <div class="person_wrapper">
+      <div class="person_drawing" data-id="<%= @plan_user.id%>" data-profession="<%= @plan_user.profession ? @plan_user.profession.name : ''%>" data-role="<%= @plan_user.family_role%>"></div>
+    </div>
   </div>
 </div>
 </div>

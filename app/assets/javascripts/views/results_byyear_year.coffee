@@ -14,7 +14,7 @@ class ResultsByyearYear
     html += "  <div class=\"col-md-8\">"
     html += "    <div class=\"row\">"
     html += "      <div class=\"achievements col-md-6\">#{@showBalances()}</div>"
-    html += "      <div class=\"people col-md-6\">#{@people()}</div>"
+    html += "      <div class=\"people col-md-6\" style=\"padding-left:0px;margin-bottom: 10px;\">#{@people()}</div>"
     html += "    </div>"
     html += "    <div>#{@yearEvents()}</div>"
     html += "  </div>"
@@ -22,7 +22,9 @@ class ResultsByyearYear
     html
 
   people: ->
-    html =  "<div class='people'>"
+
+    #<div style="position: absolute; background: #fff;width: 560px;height: 300px;">
+    html =  "<div id=\"family_portrait\" class=\"portrait\"><div class='people' style='position:absolute;background: #fff;width:300px;height:300px;'>"
     pos = 0
     @simContext.family.membersOfYear(@year, (person, kind) =>
       html += "<div class=\"person_wrapper\" style=\"position: absolute;left: #{pos}px;top: 0px\">"
@@ -30,7 +32,7 @@ class ResultsByyearYear
       html += '</div>'
       pos += 100
     )
-    html += "</div>"
+    html += "</div></div>"
     html
 
   showBalances: () ->
