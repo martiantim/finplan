@@ -1,6 +1,6 @@
 class RevolvingLoan extends Loan
   constructor: (name, amount, rate, @limit) ->
-    super(name, amount, rate, 2014, 10, false)
+    super(name, -1 * amount, rate, 2014, 10, false)
     @type = 'credit cards'
 
   pay: (balances) ->
@@ -13,5 +13,11 @@ class RevolvingLoan extends Loan
     if minimumPayment > 0
       @deposit(minimumPayment)
       balances.spendCash(minimumPayment, 'Living', 'Credit Card Payment', {loan: true})
+
+  spend: (amnt) ->
+    @balance -= amnt
+
+  amountAvailable: ->
+    @limit + @getBalance()
 
 window.RevolvingLoan = RevolvingLoan

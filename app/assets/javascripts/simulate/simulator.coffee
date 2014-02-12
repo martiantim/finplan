@@ -36,6 +36,10 @@ class Simulator
   sim: (onDone) ->    
     that = this
 
+    progressBar = @dialog.find('#simulate_year_progress')
+    progressBar.removeClass('progress-bar-danger')
+    progressBar.removeClass('progress-bar-success')
+
     #TODO: this is broken
     @xtype = $('#xtype').attr('data-value')
     $('#xtype a').click =>
@@ -109,7 +113,14 @@ class Simulator
 
   _onDone: (ex) ->
     @_markGoals()
-    @dialog.find('#simulate_year_progress').addClass('progress-bar-success').parent().removeClass('active')
+
+    progressBar = @dialog.find('#simulate_year_progress')
+    progressBar.css('width', '100%')
+    if ex
+      progressBar.addClass('progress-bar-danger')
+    else
+      progressBar.addClass('progress-bar-success')
+    progressBar.parent().removeClass('active')
     @dialog.find('#simyear label').html('Simulation Finished')
     @dialog.find('.sim_done button').removeClass('disabled')
     @dialog.find('.sim_done button').click =>

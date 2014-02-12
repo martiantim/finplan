@@ -176,10 +176,12 @@ class Balances
       left = @accounts['savings'].spend(left)
       if left > 0
         left = @accounts['emergency'].spend(left)
+        if left > 0
+          left = @accounts['credit cards'].spend(left)
 
 
   hasAmountToSpend: (amnt) ->
-    balance = @accounts['checking'].balance + @accounts['savings'].balance + @accounts['emergency'].balance
+    balance = @accounts['checking'].balance + @accounts['savings'].balance + @accounts['emergency'].balance + @accounts['credit cards'].amountAvailable()
 
     age = @simcontext.oldestAdultAge()
     if age >= 55 #TODO

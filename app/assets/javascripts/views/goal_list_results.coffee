@@ -61,6 +61,7 @@ class GoalListResults extends GoalList
     if simulator.bankruptcy
       html += '<h2>Bankruptcy :(</h2>'
       html += '<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> ' +simulator.bankruptcy.message + '</div>'
+      html += @_simWarnings(simulator.context)
     else
       html += @_successSummary(simulator)
 
@@ -80,6 +81,7 @@ class GoalListResults extends GoalList
 
   _successSummary: (simulator) ->
     html = "<h2>Goals: #{simulator.goalProgress()}</h2>"
+    html += @_simWarnings(simulator.context)
     html += "<table class=\"table table-striped\">"
     html += "<thead><tr><th>Goal</th><th>Result</th></tr></thead>"
     for m in @plan.manipulators
@@ -96,5 +98,17 @@ class GoalListResults extends GoalList
     html += "</table>"
     html
 
+  _simWarnings: (context) ->
+
+    return "" if context.warnings.length == 0
+
+    html = '<div class="alert alert-warning">'
+    seen = {}
+    for warn in context.warnings
+      if !seen[warn]
+        html += '<div style="margin-bottom: 5px;"><span class="glyphicon glyphicon-warning-sign"></span> ' +warn + '</div>'
+      seen[warn] = true
+    html += '</div>'
+    html
 
 window.GoalListResults = GoalListResults

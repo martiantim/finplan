@@ -62,7 +62,7 @@ class Plan
     @simulator = new Simulator(scenario, @family, @manipulators, @startAccounts, dialog)
     @simulator.sim (ex) ->
       that.simulator.bankruptcy = ex
-      that.resultsGoals.selectItem('summary')
+      that.resultsGoals.selectItem('summary', true)
       that.resultsChart.display(that.simulator)
       that.resultsByYear.setEndYear(that.simulator.endYear())
       that.resultsChart.setEndYear(that.simulator.endYear())

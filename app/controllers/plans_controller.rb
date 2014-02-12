@@ -1,15 +1,15 @@
 #TODO: logo outline
 #TODO: tiny icon
-#TODO: tag line "Reach the higher branches"
 
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 
-#TODO: suggestions when bankruptcy or goal not achieved
-#TODO: take out money from more accounts before bankruptcy
 
 #TODO: handle already own home
-#TODO: warning/advice system
 
+#TODO: warning/advice system
+#TODO: suggestions when bankruptcy or goal not achieved
+
+#TODO: don't allow putting house down payment on credit card
 #TODO: better handling of accounts in javascript
 #TODO: do all logging thru simcontext
 #TODO: keep track of basis and only pay taxes on gains

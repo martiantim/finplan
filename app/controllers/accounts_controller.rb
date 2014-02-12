@@ -26,9 +26,13 @@ class AccountsController < ApplicationController
   end
   
   def create
-    acct = Account.create!(params.require(:account).permit!)
-    
-    render :json => {:id => acct.id}
+    acct = Account.new(params.require(:account).permit!)
+
+    if acct.save
+      render :json => {:id => acct.id}
+    else
+      render :json => model_errors_hash(acct), :status => 500
+    end
   end
   
   def update

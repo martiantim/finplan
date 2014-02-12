@@ -4,6 +4,7 @@ class SimContext
     @balances = new Balances(this, startAccounts, {age: age, year: @simYear})
     @markets = new Markets(this)
     @familyStatus = {}
+    @warnings = []
 
   log: (kind, desc, amount) ->
     @balances.curLog().log(kind, desc, amount)
@@ -28,6 +29,9 @@ class SimContext
 
   familySize: (onlyHumans) ->
     @family.numMembersOfYear(@simYear, onlyHumans)
+
+  addWarning: (msg) ->
+    @warnings.push(msg)
 
   nextSimYear: (manipulators) ->
     @familyStatus[@simYear] = {}
