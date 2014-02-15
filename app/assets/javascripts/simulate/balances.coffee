@@ -57,8 +57,10 @@ class Balances
       tot += a.balance
     tot
     
-  getSavings: ->
-    @accounts['savings'].balance + @accounts['checking'].balance + @accounts['emergency'].balance
+  getSavings: (includeCredit = true) ->
+    total = @accounts['savings'].balance + @accounts['checking'].balance + @accounts['emergency'].balance
+    total += @accounts['credit cards'].balance if includeCredit
+    total
 
   getLoans: ->
     total = 0
@@ -116,8 +118,8 @@ class Balances
   getTotalSavings: ->
     @getCash() + @getSavings()
   
-  hasSavings: (amount) ->
-    @getSavings() >= amount
+  hasSavings: (amount, includeCredit = true) ->
+    @getSavings(includeCredit) >= amount
   
   addRetirement: (amount, account, desc) ->
     if isNaN(amount)
@@ -159,29 +161,33 @@ class Balances
       @year_deductions[@_currentYear()] = 0 if !@year_deductions[@_currentYear()]
       @year_deductions[@_currentYear()] += amount
 
-    if !@hasAmountToSpend(amount)
+    if !@hasAmountToSpend(amount, opts['disallowCredit'])
       if opts['loan']
         throw new BankruptcyException("Unable to pay for #{description} in #{@simcontext.simYear}")
       else
         @takeOutLoan(amount, description)
     else
-      @_cascadingSpend(amount)
+      left = @_cascadingSpend(amount, opts['disallowCredit'])
+      throw new BankruptcyException("Unable to pay for #{description} in #{@simcontext.simYear} during cascading spend") if left > 0
     
     @curLog().log(kind, description, -1 * amount)  
     @recalc()
 
-  _cascadingSpend: (amount) ->
+  _cascadingSpend: (amount, disallowCredit) ->
     left = @accounts['checking'].spend(amount)
     if left > 0
       left = @accounts['savings'].spend(left)
       if left > 0
         left = @accounts['emergency'].spend(left)
-        if left > 0
+        if left > 0 && !disallowCredit
           left = @accounts['credit cards'].spend(left)
+    left
 
 
-  hasAmountToSpend: (amnt) ->
-    balance = @accounts['checking'].balance + @accounts['savings'].balance + @accounts['emergency'].balance + @accounts['credit cards'].amountAvailable()
+  hasAmountToSpend: (amnt, disallowCredit) ->
+    balance = @accounts['checking'].balance + @accounts['savings'].balance + @accounts['emergency'].balance
+    if !disallowCredit
+      balance += @accounts['credit cards'].amountAvailable()
 
     age = @simcontext.oldestAdultAge()
     if age >= 55 #TODO

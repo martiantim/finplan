@@ -3,13 +3,18 @@
 
 #TODO: expenses: Housing, Car(s), and Healthcare. Rest is individual or spend all
 
-
 #TODO: handle already own home
 
 #TODO: warning/advice system
 #TODO: suggestions when bankruptcy or goal not achieved
 
-#TODO: don't allow putting house down payment on credit card
+#TODO: help text for all account types
+#TODO: allow specifying IRA savings in accounts page
+#TODO: better error bad login
+#TODO: allow adding 2nd/3rd car
+#TODO: log credit card payments
+#TODO: April worked into their golden years -> links for improvements "_save more_ in IRA accounts"
+#TODO: say what % of time achieve recurring goals
 #TODO: better handling of accounts in javascript
 #TODO: do all logging thru simcontext
 #TODO: keep track of basis and only pay taxes on gains
