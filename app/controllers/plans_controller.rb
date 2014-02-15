@@ -8,11 +8,11 @@
 #TODO: warning/advice system
 #TODO: suggestions when bankruptcy or goal not achieved
 
+#TODO: log credit card payments
 #TODO: help text for all account types
 #TODO: allow specifying IRA savings in accounts page
 #TODO: better error bad login
 #TODO: allow adding 2nd/3rd car
-#TODO: log credit card payments
 #TODO: April worked into their golden years -> links for improvements "_save more_ in IRA accounts"
 #TODO: say what % of time achieve recurring goals
 #TODO: better handling of accounts in javascript
@@ -23,7 +23,7 @@
 #TODO: complete job pictures
 #TODO: scenario: taxes rise to european levels
 #TODO: childcare
-#TODO: goal: more school
+#TODO: goal: more school [say how much higher/lower will make salary]
 #TODO: goal: vacation home
 #TODO: taxes on social security
 #TODO: goal pay off credit cards

@@ -8,11 +8,14 @@ class RevolvingLoan extends Loan
     newInterest = @getBalance() * @rate
     minimumPayment = @getBalance() * -1.0 * (@rate + 0.02)
     @setBalance(@getBalance() + newInterest)
+    balances.curLog().log("account:#{@type}", "Interest", newInterest)
 
     #XXX mimum is always interest + 2%
     if minimumPayment > 0
       @deposit(minimumPayment)
       balances.spendCash(minimumPayment, 'Living', 'Credit Card Payment', {loan: true})
+
+    minimumPayment
 
   spend: (amnt) ->
     @balance -= amnt
