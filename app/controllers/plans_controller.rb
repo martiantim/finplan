@@ -1,10 +1,7 @@
 #TODO: logo outline
-
 #TODO: handle already own home
-
 #TODO: warning/advice system
 #TODO: suggestions when bankruptcy or goal not achieved
-
 #TODO: better handling of accounts in javascript
 #TODO: fix check/X images for goals
 #TODO: help text for all account types
@@ -23,7 +20,8 @@
 #TODO: goal pay off credit cards
 #TODO: if all goals achieved say "try a scenario"
 #TODO: graduation hat for when finish college
-#TODO: "Goal will be achieved in 2058" for recurring goals
+#TODO: "Goal will be achieved in 2058" should be X% of years for recurring goals
+#TODO: move to another state when retire
 
 #2.0
 #TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
@@ -33,7 +31,6 @@
 #TODO: able to control when take social security
 #TODO: show green/yellow/red in need/have table
 #TODO: cool range changing https://groups.google.com/forum/#!topic/jqplot-users/o8haUFPWhds
-#TODO: move to another state when retire
 #TODO: goal: investment property
 #
 #

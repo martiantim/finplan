@@ -50,11 +50,20 @@
     </div>
         
   <% elsif @plan_user.born? %>
-    Age: <%= f.select "born", options_for_select(PlanUser.ages_for_select(0..18), @plan_user.born) %>
-    Gender: <%= f.select "gender", options_for_select(PlanUser::GENDERS, @plan_user.gender) %>
+    <div class="form-group">
+      <label for="born">Age</label>
+      <%= f.select "born", options_for_select(PlanUser.ages_for_select(0..18), @plan_user.born), {}, {:class => "form-control"} %>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <%= f.select "gender", options_for_select(PlanUser::GENDERS, @plan_user.gender), {}, {:class => "form-control"} %>
+    </div>
   <% else %>
     <%= f.hidden_field "gender" %>
-    Will be born: <%= f.select "born", options_for_select(PlanUser.ages_for_select(-20..-1), @plan_user.born) %>
+    <div class="form-group">
+      <label for="born">Will be born</label>
+      <%= f.select "born", options_for_select(PlanUser.ages_for_select(-20..-1), @plan_user.born), {}, {:class => "form-control"} %>
+    </div>
   <% end %>
 
   <button type="button" class="btn btn-primary save">Save</button>
