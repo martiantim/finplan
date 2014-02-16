@@ -36,9 +36,23 @@ class PersonDrawing
     @clearAccessories()
 
     if profession == 'Software Engineer'
-      @accessories['hand'] = 'keyboard'
+      @accessories = ['keyboard']
     else if profession == 'Chef'
-      @accessories['hat'] = 'chef'
+      @accessories = ['chef_hat']
+    else if profession == 'Waiter'
+      @accessories = ['tie', 'servingtray']
+    else if profession == 'Pirate'
+      @accessories = ['parrot', 'eyepatch']
+    else if profession == 'Nurse'
+      @accessories = ['nurse_hat']
+    else if profession == 'Doctor'
+      @accessories = ['stethoscope', 'doctor_headpiece']
+    else if profession == 'Lawyer'
+      @accessories = ['tie', 'briefcase']
+    else if profession == 'Teacher'
+      @accessories = ['teacher_props']
+    else if profession == 'Acrobat'
+      @accessories = ['juggling_balls']
 
     @draw()
 
@@ -49,10 +63,13 @@ class PersonDrawing
     @el.find('.body > img').attr('src', image_path('people/'+(@role || '')+'.png'))
 
     @el.find('.accessories').html('')
-    if @accessories['hand']
-      @el.find('.accessories').append('<img class="hand" src="/assets/people/accessories/hand_'+@accessories['hand']+'.png"></img>')
-    if @accessories['hat']
-      @el.find('.accessories').append('<img class="hat" src="/assets/people/accessories/hat_'+@accessories['hat']+'.png"></img>')
+    for obj in @accessories
+      console.log("obj = #{obj}")
+      @el.find('.accessories').append('<img src="/assets/people/accessories/'+obj+'.png"></img>')
+#    if @accessories['hand']
+#      @el.find('.accessories').append('<img class="hand" src="/assets/people/accessories/hand_'+@accessories['hand']+'.png"></img>')
+#    if @accessories['hat']
+#      @el.find('.accessories').append('<img class="hat" src="/assets/people/accessories/hat_'+@accessories['hat']+'.png"></img>')
 
 
 window.PersonDrawing = PersonDrawing
