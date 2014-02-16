@@ -11,12 +11,15 @@ class Family
 
     null
 
-  numAdults: ->
-    num = 0
+  adults: ->
+    adults = []
     for u in @members
       if u.ageInYear(finData['current_year']) >= 18
-        num += 1
-    num
+        adults.push(u)
+    adults
+
+  numAdults: ->
+    @adults().length
 
   numMembersOfYear: (year, onlyHumans = false) ->
     num = 0

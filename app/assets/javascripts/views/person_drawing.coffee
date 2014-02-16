@@ -64,12 +64,7 @@ class PersonDrawing
 
     @el.find('.accessories').html('')
     for obj in @accessories
-      console.log("obj = #{obj}")
       @el.find('.accessories').append('<img src="/assets/people/accessories/'+obj+'.png"></img>')
-#    if @accessories['hand']
-#      @el.find('.accessories').append('<img class="hand" src="/assets/people/accessories/hand_'+@accessories['hand']+'.png"></img>')
-#    if @accessories['hat']
-#      @el.find('.accessories').append('<img class="hat" src="/assets/people/accessories/hat_'+@accessories['hat']+'.png"></img>')
 
 
 window.PersonDrawing = PersonDrawing

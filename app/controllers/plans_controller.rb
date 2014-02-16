@@ -6,7 +6,6 @@
 #TODO: suggestions when bankruptcy or goal not achieved
 
 #TODO: better handling of accounts in javascript
-#TODO: event for all goals
 #TODO: fix check/X images for goals
 #TODO: help text for all account types
 #TODO: allow specifying IRA savings in accounts page
@@ -17,7 +16,6 @@
 #TODO: keep track of basis and only pay taxes on gains
 #TODO: remaining state income tax schedules
 #TODO: still in school
-#TODO: complete job pictures http://jobs.aol.com/articles/2010/11/11/americas-most-popular-jobs/
 #TODO: scenario: taxes rise to european levels
 #TODO: childcare
 #TODO: goal: more school [say how much higher/lower will make salary]
@@ -25,6 +23,8 @@
 #TODO: taxes on social security
 #TODO: goal pay off credit cards
 #TODO: if all goals achieved say "try a scenario"
+#TODO: graduation hat for when finish college
+#TODO: "Goal will be achieved in 2058" for recurring goals
 
 #2.0
 #TODO: landing page: http://blog.kissmetrics.com/landing-page-design-infographic/
