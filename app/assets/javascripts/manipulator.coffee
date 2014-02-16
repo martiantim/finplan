@@ -34,6 +34,7 @@ class Manipulator
     @needAnother = false
     @achievedYear = null
     @achievedTimes = 0
+    @failedTimes = 0
     @enabled = true
     @failMessage = null
     @tempParams = {}
@@ -53,6 +54,9 @@ class Manipulator
     @achievedTimes += 1
     @achievedYear = year
     @achieved = true
+
+  addGoalFailed: (year) ->
+    @failedTimes += 1
 
   setGoalNeedAnother: ->
     @needAnother = true

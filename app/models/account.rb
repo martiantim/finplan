@@ -4,9 +4,9 @@ class Account < ActiveRecord::Base
   KINDS = [    
     {:name => "Checking",   :type => 'current', :removable => false, :description => "Bank account where you keep your money for everyday expenses.", :description_more_link => "http://www.investopedia.com/terms/c/checkingaccount.asp"},
     {:name => "Emergency",  :type => 'current', :removable => false, :description => "An account that holds money for use in an emergency. Emergencies include losing your job, an unexpected large bill, etc. This may be a savings account at your bank.", :description_more_link => "http://www.investopedia.com/terms/e/emergency_fund.asp"},
-    {:name => "Savings",    :type => 'invest',  :removable => false, :description => ""},
-    {:name => "Credit Cards",:type => 'debt',  :removable => false, :description => ""},
-    {:name => "Loan",       :type => 'debt',    :removable => true,  :description => ""},
+    {:name => "Savings",    :type => 'invest',  :removable => false, :description => "Savings account at a bank or a taxable account at a brokerage. This is money you are saving up for your goals.", :description_more_link => "http://www.investopedia.com/terms/s/savingsaccount.asp"},
+    {:name => "Credit Cards",:type => 'debt',   :removable => false, :description => "Plastic. You can add up all your credit cards here or add them individually.", :description_more_link => "http://www.investopedia.com/terms/c/creditcard.asp"},
+    {:name => "Loan",       :type => 'debt',    :removable => true,  :description => "Loan. Note that housing loans will be captured by the housing goal. If you have student debt please put it here.", :description_more_link => "http://www.investopedia.com/terms/u/unsecuredloan.asp"},
     {:name => "HSA",        :type => 'current', :removable => true,  :description => ""},
     {:name => "Investment", :type => 'invest',  :removable => true,  :description => ""},
     {:name => "Traditional IRA", :type => 'invest', :removable => true, :description => ""},

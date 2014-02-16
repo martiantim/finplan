@@ -89,7 +89,8 @@ class GoalListResults extends GoalList
         html += "<tr><td>#{m.name}</td>"
         if m.achievedYear
           if m.achievedTimes > 1
-            html += "<td><span class=\"glyphicon glyphicon-ok\"></span> Goal will be achieved #{m.achievedTimes} times</td>"
+            perc = (m.achievedTimes * 100 / (m.achievedTimes + m.failedTimes))|0
+            html += "<td><span class=\"glyphicon glyphicon-ok\"></span> Goal will be achieved #{perc}% of years</td>"
           else
             html += "<td><span class=\"glyphicon glyphicon-ok\"></span> Goal will be achieved in #{m.achievedYear}</td>"
         else
