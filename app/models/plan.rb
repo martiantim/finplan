@@ -23,6 +23,12 @@ class Plan < ActiveRecord::Base
         :name => "Another Bundle of Joy",
         :description => "Another little one",
         :image_url => "http://totallyrelatable.com/wp-content/uploads/2014/01/baby-clip-art---clip-art-pictures-vjhboddg.jpg"
+      },
+      {
+          :id => "higher_taxes",
+          :name => "Taxes Rise",
+          :description => "American taxes are very low. What happens if they gradually rise to European levels?",
+          :image_url => "http://sumnerunited.files.wordpress.com/2013/07/royalty-free-taxes-clipart-illustration-437507.jpg"
       }
   ]
 

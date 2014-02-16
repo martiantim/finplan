@@ -16,7 +16,6 @@
 #TODO: keep track of basis and only pay taxes on gains
 #TODO: remaining state income tax schedules
 #TODO: still in school
-#TODO: scenario: taxes rise to european levels
 #TODO: childcare
 #TODO: goal: more school [say how much higher/lower will make salary]
 #TODO: goal: vacation home
