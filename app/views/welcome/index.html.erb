@@ -1,7 +1,10 @@
 <div id="main_content">
   <div class="page-header well">
     <div id="login">
-      <%= form_for(:user, :url => "/users/login") do |f| %>
+      <% if @error %>
+        <div class="save_status alert alert-danger" style="padding:5px;margin-bottom:5px;"><%= @error %></div>
+      <% end %>
+      <%= form_for(@user, :url => "/users/login") do |f| %>
         <%= f.text_field :email, :class => "form-control", :placeholder => "Email" %>
         <%= password_field_tag :password, '', :class => "form-control", :placeholder => "Password" %>
         <button type="submit" class="btn btn-primary">Login</button>

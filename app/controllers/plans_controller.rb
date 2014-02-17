@@ -1,5 +1,5 @@
-#TODO: logo outline
 #TODO: handle already own home
+#TODO: logo outline
 #TODO: warning/advice system
 #TODO: suggestions when bankruptcy or goal not achieved
 #TODO: better handling of accounts in javascript

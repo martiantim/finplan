@@ -10,19 +10,19 @@ class UsersController < ApplicationController
 
   def login
     if params[:user][:email].blank? || params[:password].blank?
-      render :text => "Enter Username and Password", :status => 500
+      redirect_to :controller => 'welcome', :action => 'index', :email => params[:user][:email], :error => "Enter Username and Password"
       return
     end
     user = User.find_by_email(params[:user][:email])
     if !user
-      render :text => "Can't find user", :status => 500
+      redirect_to :controller => 'welcome', :action => 'index', :email => params[:user][:email], :error => "No user with that email"
       return
     end
     if user
       user = nil if !user.password_match?(params[:password])
     end
     if !user
-      render :text => "Username or Password incorrect", :status => 500
+      redirect_to :controller => 'welcome', :action => 'index', :email => params[:user][:email], :error => "Username or Password incorrect"
     else
       remember_login(user)
       redirect_to :controller => 'plans', :action => 'show', :id => user.plans.first.id
