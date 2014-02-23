@@ -1,8 +1,9 @@
+#TODO: "Goal will be achieved in 2058" should be X% of years for recurring goals
+#TODO: mark results as out of date when make changes
 #TODO: logo outline
 #TODO: warning/advice system
 #TODO: suggestions when bankruptcy or goal not achieved
 #TODO: better handling of accounts in javascript
-#TODO: fix check/X images for goals
 #TODO: help text for all account types
 #TODO: allow specifying IRA savings in accounts page
 #TODO: allow adding 2nd/3rd car
@@ -18,7 +19,6 @@
 #TODO: goal pay off credit cards
 #TODO: if all goals achieved say "try a scenario"
 #TODO: graduation hat for when finish college
-#TODO: "Goal will be achieved in 2058" should be X% of years for recurring goals
 #TODO: move to another state when retire
 
 #2.0
