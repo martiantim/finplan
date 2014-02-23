@@ -32,9 +32,17 @@
     width: 25px;
     height: 25px;
     margin-top: 5px;
-    img {
-      width: 25px;
-      height: 25px;
+    text-align: center;
+    &[data-success="true"] {
+      background-color: green;
+    }
+    &[data-success="false"] {
+      background-color: #A94442;
+    }
+    span {
+      font-size: 18px;
+      color: white;
+      vertical-align:middle;
     }
   }
 

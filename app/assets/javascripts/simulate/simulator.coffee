@@ -29,7 +29,8 @@ class Simulator
       m.setDisabled()
     if name == 'Housing' #special case for owned house
       houseValue = ms[0].cpiAdjustedParams['house_value']
-      @context.balances.addCash(houseValue, null, "Living", "Home Sale", {skip_income: true}) #XXX: really might need to pay some taxes
+      if houseValue
+        @context.balances.addCash(houseValue, null, "Living", "Home Sale", {skip_income: true}) #XXX: really might need to pay some taxes
 
   enable: (name) ->
     ms = @findAllManipulatorsByName(name)
@@ -147,8 +148,8 @@ class Simulator
     for m in @manipulators
       if m.kind == 'goal'
         if m.goalAchieved()
-          $('li.goal[data-id="'+m.id+'"] .achieved').html('<img src="'+Icons.GOAL_YES+'">')
+          $('li.goal[data-id="'+m.id+'"] .achieved').attr('data-success', 'true').html('<span class="glyphicon glyphicon-ok"></span>')
         else
-          $('li.goal[data-id="'+m.id+'"] .achieved').html('<img src="'+Icons.GOAL_NO+'">')
+          $('li.goal[data-id="'+m.id+'"] .achieved').attr('data-success', 'false').html('<span class="glyphicon glyphicon-remove"></span>')
       
 window.Simulator = Simulator

@@ -141,7 +141,7 @@ class Balances
 
   addCash: (amount, user, kind, desc, options = {}) ->
     if isNaN(amount)
-      alert "Invalid earning '#{amount}' for #{kind}"
+      alert "Invalid earning '#{amount}' for #{kind}:#{desc}"
 
     @_yearIncome(amount, user, options)
     @accounts['checking'].deposit(amount)    
