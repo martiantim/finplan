@@ -27,6 +27,9 @@ class Simulator
     ms = @findAllManipulatorsByName(name)
     for m in ms
       m.setDisabled()
+    if name == 'Housing' #special case for owned house
+      houseValue = ms[0].cpiAdjustedParams['house_value']
+      @context.balances.addCash(houseValue, null, "Living", "Home Sale", {skip_income: true}) #XXX: really might need to pay some taxes
 
   enable: (name) ->
     ms = @findAllManipulatorsByName(name)

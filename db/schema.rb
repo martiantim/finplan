@@ -11,19 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140209070704) do
+ActiveRecord::Schema.define(version: 20140217081057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: true do |t|
-    t.string  "name",                                                 null: false
-    t.integer "plan_id",                                              null: false
+    t.string  "name",                                                     null: false
+    t.integer "plan_id",                                                  null: false
     t.integer "balance"
     t.string  "investment_type"
-    t.decimal "interest_rate",   precision: 10, scale: 0
+    t.decimal "interest_rate",       precision: 10, scale: 0
     t.integer "term"
-    t.integer "limit",                                    default: 0
+    t.integer "limit",                                        default: 0
+    t.integer "annual_contribution",                          default: 0, null: false
   end
 
   create_table "manipulator_templates", force: true do |t|

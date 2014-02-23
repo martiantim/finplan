@@ -208,15 +208,16 @@ class Balances
   currentYear: ->
     @opts['year']
 
-  takeOutHomeLoan: (amnt, whatfor, term = 10, houseCost) ->
-    name = "#{whatfor} #{@_currentYear()}"
-    @accounts[name] = new HomeLoan(name, amnt, houseCost, 0.04213, @_currentYear(), term, true)
+  takeOutHomeLoan: (amnt, whatfor, term = 10, houseCost, startYear = null) ->
+    startYear = @_currentYear() if !startYear
+    name = "#{whatfor} #{startYear}"
+    @accounts[name] = new HomeLoan(name, amnt, houseCost, 0.04213, startYear, @_currentYear(), term, true)
     #pay 1st year
     @payLoan(@accounts[name])
 
   takeOutLoan: (amnt, whatfor, term = 10) ->
     name = "#{whatfor} #{@_currentYear()}"
-    @accounts[name] = new Loan(name, amnt, 0.04213, @_currentYear(), term, false)
+    @accounts[name] = new Loan(name, amnt, 0.04213, @_currentYear(), @_currentYear(), term, false)
     #pay 1st year
     @payLoan(@accounts[name])
   

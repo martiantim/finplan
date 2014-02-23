@@ -102,7 +102,7 @@ class UsersController < ApplicationController
     end
     plan.accounts.create!(:name => "401K", :balance => 0, :investment_type => "Target Retirement")
 
-    ['Salary', 'Rent', 'Car', 'Healthcare', 'Living Expenses'].each do |name|
+    ['Salary', 'Housing', 'Car', 'Healthcare', 'Living Expenses'].each do |name|
       m = plan.manipulator_for_plan_user_or_create(name, pu)
       m.save!
     end

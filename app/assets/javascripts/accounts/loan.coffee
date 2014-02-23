@@ -1,8 +1,12 @@
 class Loan extends Account
-  constructor: (@name, amount, @rate, @startYear, @termYears, @deductable) ->
+  constructor: (@name, amount, @rate, @startYear, curYear, @termYears, @deductable) ->
     @loanAmount = amount
     super('loan', -1 * amount, 'None')
-    
+    if curYear > @startYear
+      yrs = curYear - @startYear
+      for month in [1..(yrs*12-1)]
+        @balance += @_principalPayment(month)
+
   _monthlyPayment: ->
     r = @rate / 12
     N = @termYears * 12

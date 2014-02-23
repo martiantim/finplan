@@ -1,4 +1,3 @@
-#TODO: handle already own home
 #TODO: logo outline
 #TODO: warning/advice system
 #TODO: suggestions when bankruptcy or goal not achieved
@@ -6,7 +5,6 @@
 #TODO: fix check/X images for goals
 #TODO: help text for all account types
 #TODO: allow specifying IRA savings in accounts page
-#TODO: better error bad login
 #TODO: allow adding 2nd/3rd car
 #TODO: April worked into their golden years -> links for improvements "_save more_ in IRA accounts"
 #TODO: do all logging thru simcontext
