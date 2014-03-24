@@ -1,0 +1,31 @@
+<div class="row" data-name='goals'>
+  <div class="col-md-3">
+    <div class="goals  list">
+      <h3>
+        Goals
+      </h3>
+      <ul class="well well-small nav nav-pills nav-stacked">
+        <li class="goal" data-id="summary" data-name="summary">
+          <a href="#">
+            <div class="name">Summary</div>
+          </a>
+        </li>
+
+        <li class="goal" data-id="{{ goal.id }}" data-name="{{ goal.name }}" ng-repeat="goal in goals">
+          <a href="#/goals/{{ goal.id }}">
+            <div class="nav_picture">
+              <img ng-src="{{ goal.image_url }}">
+            </div>
+            <div class="name noresult">{{ goal.name }}</div>
+            <div class="achieved">
+              <img src="/images/goal_maybe.png">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9 content_main">
+    <ng-include src="goalViewUrl"></ng-include>
+  </div>
+</div>

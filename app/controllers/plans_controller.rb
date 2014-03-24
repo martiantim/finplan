@@ -1,3 +1,5 @@
+#TODO: angular!
+
 #TODO: "Goal will be achieved in 2058" should be X% of years for recurring goals
 #TODO: mark results as out of date when make changes
 #TODO: logo outline
@@ -51,9 +53,11 @@ class PlansController < ApplicationController
   before_filter :get_user
   before_filter :login_required
 
-
-  
   def show
+    @plan = Plan.find(params[:id])
+  end
+
+  def show2
     @plan = Plan.find(params[:id])
   end
   

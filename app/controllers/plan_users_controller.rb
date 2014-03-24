@@ -4,9 +4,20 @@ class PlanUsersController < ApplicationController
   before_filter :login_required
 
   def index
-    plan = Plan.find(params[:plan_id])
+    if params[:plan_id]
+      plan = Plan.find(params[:plan_id])
+    else
+      plan = @current_user.plans.first
+    end
 
-    render :partial => 'list', :object => plan.plan_users, :locals => {:active => 'none'}
+    respond_to do |format|
+      format.html do
+        render :partial => 'list', :object => plan.plan_users, :locals => {:active => 'none'}
+      end
+      format.json do
+        render :json => plan.plan_users.collect(&:safe_json)
+      end
+    end
   end
 
   def create
@@ -36,7 +47,11 @@ class PlanUsersController < ApplicationController
   end
 
   def show
-    @plan = Plan.find(params[:plan_id])
+    if params[:plan_id]
+      @plan = Plan.find(params[:plan_id])
+    else
+      @plan = @current_user.plans.first
+    end
     if params[:id] == 'all'
       render :partial => 'index'
       return
@@ -50,7 +65,14 @@ class PlanUsersController < ApplicationController
       @plan_user = PlanUser.find(params[:id])
     end
 
-    render :layout => false
+    respond_to do |format|
+      format.html do
+        render :layout => false
+      end
+      format.json do
+        render :json => @plan_user.safe_json_with_job(@plan)
+      end
+    end
   end
   
   def destroy

@@ -14,6 +14,7 @@
       padding-left: 310px;
     }
   }
+}
   
   .content {
     margin-top: 20px;
@@ -25,31 +26,29 @@
     .content_title {
       margin-left: 20px;
     }
-    .content_main {
-      float: left;
-      width: 750px;
-      margin-left: 20px;
 
-      h3 { margin: 5px; }
-
-      .right-main {
-        float:right;
-        width:200px;
-        padding: 0px 0px 0px 15px;
-        .right-controls {
-          margin-bottom: 10px;
-          text-align: right;
-        }
-      }
-      .left-main {
-        width: 500px;
-        float: left;
-      }
-
-    }
     .content_main.noleft {
       float: left;
       width: 1000px;
     }
   }
+
+
+.content_main {
+  h3 { margin: 5px; }
+
+  .right-main {
+    float:right;
+    width:200px;
+    padding: 0px 0px 0px 15px;
+    .right-controls {
+      margin-bottom: 10px;
+      text-align: right;
+    }
+  }
+  .left-main {
+    width: 500px;
+    float: left;
+  }
+
 }

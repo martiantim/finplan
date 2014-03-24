@@ -1,0 +1,28 @@
+<div class="row" data-name='plan_users'>
+  <div class="col-md-3">
+    <div class="plan_users list">
+      <h3>
+        Family
+      </h3>
+      <ul class="well well-small nav nav-pills nav-stacked">
+        <li class="goal" data-id="summary" data-name="summary">
+          <a href="#">
+            <div class="name">Whole Family</div>
+          </a>
+        </li>
+
+        <li class="plan_user" data-id="{{ user.id }}" data-name="{{ user.name }}" ng-repeat="user in family">
+          <a href="#/family/{{ user.id }}">
+            <div class="nav_picture">
+              <img ng-src="/assets/people/faces/{{ user.role }}.png">
+            </div>
+            <div class="name noresult">{{ user.name }}</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9 content_main">
+    <ng-include src="familyViewUrl"></ng-include>
+  </div>
+</div>

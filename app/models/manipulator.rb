@@ -3,12 +3,21 @@ class Manipulator < ActiveRecord::Base
   belongs_to :plan_user
   belongs_to :manipulator_template
   belongs_to :start_plan_user, :class_name => 'PlanUser'
-  
+
+  def short_safe_json
+    {
+      :id => self.id,
+      :name => self.name,
+      :image_url => self.manipulator_template.image_url
+    }
+  end
+
   def safe_json
     {
       :id => self.id,
       :name => self.name,
       :template_name => self.manipulator_template.name,
+      :image_url => self.manipulator_template.image_url,
       :start => self.start,
       :end => self.end,
       :params => self.params,
@@ -16,7 +25,13 @@ class Manipulator < ActiveRecord::Base
       :can_formula => self.manipulator_template.can_javascript,
       :do_formula => self.manipulator_template.do_javascript,
       :formula => self.manipulator_template.javascript,
-      :user_id => self.plan_user_id
+      :user_id => self.plan_user_id,
+      :has_when_date => self.manipulator_template.has_when_date,
+      :start_type => self.start_type,
+      :start_plan_user_id => self.start_plan_user_id,
+      :start_plan_user_age => self.start_plan_user_age,
+
+      :params => self.manipulator_template.params_hash(self)
     }
   end
   

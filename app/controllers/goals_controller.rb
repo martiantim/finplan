@@ -1,9 +1,25 @@
 class GoalsController < BaseManipulatorController
+
+  before_filter :get_user
   
   def index
-    plan = Plan.find(params[:plan_id])
-    
-    render :partial => 'list', :object => plan.goals, :locals => {:unused_list => plan.unused_goals, :editable => params[:editable] == 'true'}
+    if params[:plan_id]
+      plan = Plan.find(params[:plan_id])
+    else
+      plan = @current_user.plans.first
+    end
+    respond_to do |format|
+      format.html do
+        render :partial => 'list', :object => plan.goals, :locals => {:unused_list => plan.unused_goals, :editable => params[:editable] == 'true'}
+      end
+      format.json do
+        render :json => plan.goals.collect(&:short_safe_json)
+      end
+    end
+  end
+
+  def show
+    render :json => Manipulator.find(params[:id]).safe_json
   end
   
   def new

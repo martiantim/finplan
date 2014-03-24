@@ -17,6 +17,7 @@ Finplan::Application.routes.draw do
  resources :plans do
    member do
      get :reload
+     get :show2
    end
 
    collection do
@@ -41,6 +42,11 @@ resources :plan_users do
      get :show_results
    end
    collection do     
+   end
+ end
+
+ resources :professions do
+   collection do
    end
  end
  

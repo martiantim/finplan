@@ -53,5 +53,22 @@ class ManipulatorTemplate < ActiveRecord::Base
       [v[:name], props || {}]
     end
   end
+
+  def params_hash(manipulator)
+    variables.find_all { |v| v[:type] == :param }.collect do |var|
+      props = variable_properties.detect { |vp| vp.name == var[:name] }
+      {
+        :name => props.name,
+        :display => props.name.gsub('_',' ').split.map(&:capitalize).join(' '),
+        :type => props.var_type,
+        :options => (props.options || '').split(','),
+        :description => props.description,
+        :depends_on_variable => props.depends_on ? props.depends_on.split(':')[0] : nil,
+        :depends_on_value => props.depends_on ? props.depends_on.split(':')[1] : nil,
+
+        :value => manipulator.param_value(props.name)
+      }
+    end
+  end
   
 end

@@ -11,18 +11,29 @@ class PlanUser < ActiveRecord::Base
       ["Female", 'F']
   ]
 
+  def safe_json_with_job(plan)
+    salary = plan.manipulator_for_plan_user_or_create('Salary', self)
+    json = self.safe_json
+    if salary
+      json[:salary] = salary.safe_json
+    end
+    json
+  end
+
   def safe_json
     {
         :id => self.id,
         :name => self.name,
         :born => self.born,
         :gender => self.gender,
-        :profession => self.profession ? self.profession.name : nil
+        :age => self.age,
+        :profession_id => self.profession ? self.profession.id : nil,
+        :role => self.family_role
     }
   end
 
   def age
-    (Date.today - self.born)/365
+    (Date.today - self.born).to_i/365 + 1
   end
 
   def is_adult?

@@ -1,0 +1,64 @@
+<div class="well clearfix notitle">
+  <form class="left-main">
+    <input type="hidden" ng-model="curplan.id">
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input name="name" class="form-control" ng-model="planUser.name" required>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="born">Age</label>
+          <select ng-model="planUser.age" ng-options="age for age in ageRange" class="form-control input-small"></select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select ng-model="planUser.gender" ng-options="gender.id as gender.label for gender in genders" class="form-control input-small"></select>
+        </div>
+      </div>
+    </div>
+
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#working" data-toggle="tab">Working</a></li>
+      <li><a href="#school" data-toggle="tab">In School</a></li>
+      <li><a href="#retired" data-toggle="tab">Retired</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="working">
+        <div class="form-group">
+          <label for="profession">Profession</label>
+          <select ng-model="planUser.profession_id" ng-options="prof.id as prof.name for prof in professions" class="form-control"></select>
+        </div>
+
+        <input name="salary_manipulator_id" type="hidden" ng-model="planUser.salary.id">
+
+        <ng-include src="'/templates/form/form_params.html'"></ng-include>
+      </div>
+      <div class="tab-pane" id="school">
+        School stuff TODO
+      </div>
+      <div class="tab-pane" id="retired">
+        Retired stuff
+      </div>
+    </div>
+
+    <button type="button" ng-click="update(planUser)" class="btn btn-primary save">Save</button>
+  </form>
+
+  <div class="right-main">
+    <div class="right-controls">
+      <button class="remove btn btn-danger">Remove Person</button>
+    </div>
+
+    <div class="portrait individual">
+      <div class="person_wrapper">
+        <div class="person_drawing" data-id="<%= @plan_user.id%>" data-profession="<%= @plan_user.profession ? @plan_user.profession.name : ''%>" data-role="<%= @plan_user.family_role%>"></div>
+      </div>
+    </div>
+  </div>
+</div>

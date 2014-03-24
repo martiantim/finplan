@@ -28,4 +28,7 @@
 //= require seedrandom
 //= require bootstrap.min
 //= require bootstrap-slider
+//= require angular
+//= require angular-route
+
 //= require_tree .

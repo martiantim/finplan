@@ -1,0 +1,42 @@
+<div class="manipulator well notitle clearfix" ng-controller="GoalController">
+  <div class="right-main">
+    <div class="right-controls">
+      <button class="remove btn btn-danger">Remove Goal</button>
+    </div>
+
+    <img ng-src="{{ curgoal.image_url }}" style="width: 150px">
+  </div>
+
+  <form class="left-main">
+    <input type="hidden" ng-model="curgoal.manipulator_template_id">
+    <input type="hidden" ng-model="curplan.id">
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input name="name" class="form-control" ng-model="curgoal.name" required>
+    </div>
+
+    <div class="form-group form-group-when" ng-show="curgoal.has_when_date">
+      <label for="when_type">When</label>
+      <div class="radio">
+        <label>
+          <input ng-model="curgoal.start_type" type="radio" name="when_type" value="asap">
+          As soon as possible
+        </label>
+      </div>
+      <div class="radio">
+        <input ng-model="curgoal.start_type" type="radio" name="when_type" value="age">
+        When <select ng-model="curgoal.start_plan_user_id" ng-options="user.id as user.name for user in plan.family_members" class="form-control"></select>
+        is <select ng-model="curgoal.start_plan_user_age" ng-options="age for age in ageRange" class="form-control"></select>
+      </div>
+      <div class="radio">
+        <input ng-model="curgoal.start_type" type="radio" name="when_type" value="year">
+        In year <select ng-model="curgoal.startYear" ng-options="year for year in yearRange" class="form-control"></select>
+      </div>
+    </div>
+
+    <ng-include src="'/templates/form/form_params.html'"></ng-include>
+
+    <button type="button" ng-click="update(curgoal)" class="btn btn-primary save">Save</button>
+  </form>
+</div>
