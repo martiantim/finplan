@@ -1,0 +1,68 @@
+<div class="row" data-name='plan_users'>
+  <div class="col-md-3">
+    <div class="accounts list">
+      <h3>
+        Accounts
+      </h3>
+      <ul class="well well-small nav nav-pills nav-stacked">
+        <li class="account" data-id="{{ account.id }}" data-name="{{ account.name }}" ng-repeat="account in accounts">
+          <a href="#/accounts/{{ account.id }}">
+            <div class="name noresult">{{ account.name }}</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9 content_main">
+
+    <h3 ng-show="account.id > 0">{{ account.name }}</h3>
+
+    <div ng-class="{notitle: !account.id}" class="well clearfix">
+      <form class="left-main">
+        <input type="hidden" ng-model="curplan.id">
+
+        <div class="save_status alert alert-danger hide"></div>
+
+        <div ng-show="!account.id" class="form-group">
+          <label for="name">Type</label>
+          <select ng-model="account.name" ng-options="a.id as a.name for a in accountTypes" class="form-control"></select>
+        </div>
+
+        <div class="form-group">
+          <label for="balance">Balance</label>
+          <input name="balance" class="money form-control" ng-model="account.balance" required>
+        </div>
+
+        <div ng-show="accountTypes[account.name]['type']=='invest'" class="form-group investment">
+          <label for="investment_type">Investment Type</label>
+          <select ng-model="account.investment_type" ng-options="type as type for type in investmentTypes" class="form-control"></select>
+        </div>
+
+        <div ng-show="accountTypes[account.name]['type']=='debt'" class="form-group loan_line debt">
+          <label for="interest_rate">Interest Rate</label>
+          <input name="interest_rate" class="percentage form-control" ng-model="account.interest_rate">
+        </div>
+
+        <div ng-show="accountTypes[account.name]['type']=='debt'" class="form-group loan_line term">
+          <label for="term">Term (years left)</label>
+          <input name="term" class="number form-control" ng-model="account.term">
+        </div>
+        <div ng-show="account.name=='Credit Cards'" class="form-group loan_line term">
+          <label for="limit">Limit</label>
+          <input name="limit" class="money form-control" ng-model="account.limit">
+        </div>
+
+
+        <button type="button" ng-click="update(account)" class="btn btn-primary save">Save</button>
+      </form>
+
+      <div class="right-main">
+        <div ng-show="account.id > 0 && accountTypes[account.name]['removable']" class="right-controls">
+          <button class="remove btn btn-danger">Remove Account</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

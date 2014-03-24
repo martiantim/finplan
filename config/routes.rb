@@ -55,6 +55,8 @@ resources :plan_users do
    end
 
    collection do
+     get :account_types
+     get :investment_types
    end
  end
  

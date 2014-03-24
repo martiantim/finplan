@@ -3,10 +3,3 @@ angular.module('FinPlan.controllers', [])
 
   })
 
-  .controller('GoalsController', function($scope, $http) {
-    $http.get('/goals.json').success(function(data) {
-      $scope.goals = data;
-    });
-    $scope.goalViewUrl = "/templates/goal_summary.html"
-  })
-

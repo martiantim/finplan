@@ -1,4 +1,5 @@
 finplan.controller 'FamilyController', ['$scope', '$routeParams', '$location', '$http', ($scope, $routeParams, $location, $http) ->
+
   $http.get('/plan_users.json').success (data) ->
     $scope.family = data
 

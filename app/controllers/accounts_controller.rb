@@ -1,21 +1,59 @@
 class AccountsController < ApplicationController
-  
-  def index
-    plan = Plan.find(params[:plan_id])
 
-    render :partial => 'list', :object => plan.accounts
+  before_filter :get_user
+  before_filter :login_required
+
+  def index
+    if params[:plan_id]
+      plan = Plan.find(params[:plan_id])
+    else
+      plan = @current_user.plans.first
+    end
+
+    respond_to do |format|
+      format.html do
+        render :partial => 'list', :object => plan.accounts
+      end
+      format.json do
+        render :json => plan.accounts.collect(&:safe_json)
+      end
+    end
   end
   
   def show
+    if params[:plan_id]
+      @plan = Plan.find(params[:plan_id])
+    else
+      @plan = @current_user.plans.first
+    end
+
     if params[:id] == 'new_account'
       @account = Account.new(:name => "", :plan_id => params[:plan_id])    
     else
       @account = Account.find(params[:id])
     end
-    
-    @plan = Plan.find(params[:plan_id])
-    
-    render :layout => false
+
+    respond_to do |format|
+      format.html do
+        render :layout => false
+      end
+      format.json do
+        render :json => @account.safe_json
+      end
+    end
+  end
+
+  def investment_types
+    render :json => Account::INVESTMENT_TYPES
+  end
+
+  def account_types
+    h = {}
+    Account::KINDS.each do |a|
+      h[a[:name]] = a
+    end
+
+    render :json => h
   end
   
   def destroy
