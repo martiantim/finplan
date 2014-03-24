@@ -15,6 +15,9 @@ finplan.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/accounts', {templateUrl: '/templates/accounts.html', controller: 'AccountsController'});
     $routeProvider.when('/accounts/:accountId', {templateUrl: '/templates/accounts.html', controller: 'AccountsController'});
 
+    $routeProvider.when('/expenses', {templateUrl: '/templates/expenses.html', controller: 'ExpensesController'});
+    $routeProvider.when('/expenses/:expenseId', {templateUrl: '/templates/expenses.html', controller: 'ExpensesController'});
+
     $routeProvider.otherwise({redirectTo: '/goals'});
   }]);
 

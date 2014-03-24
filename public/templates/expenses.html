@@ -1,0 +1,42 @@
+<div class="row" data-name='plan_users'>
+  <div class="col-md-3">
+    <div class="expenses list">
+      <h3>
+        Expenses
+      </h3>
+      <ul class="well well-small nav nav-pills nav-stacked">
+        <li class="manipulator" ng-repeat="expense in expenses">
+          <a href="#/expenses/{{ expense.id }}">
+            <div class="name noresult">{{ expense.name }}</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9 content_main">
+
+    <div class="manipulator well notitle clearfix">
+      <form class="left-main">
+        <input type="hidden" ng-model="expense.manipulator_template_id">
+        <input type="hidden" ng-model="curplan.id">
+
+        <div class="line">
+          <label>Name</label>
+          <input name="name" class="form-control" ng-model="expense.name" required>
+        </div>
+
+        <div class="goal_status"></div>
+
+        <ng-include src="'/templates/form/form_params.html'"></ng-include>
+
+        <button type="button" ng-click="update(expense)" class="btn btn-primary save">Save</button>
+      </form>
+      <div class="right-main">
+        <div ng-show="expense.id > 0" class="right-controls">
+          <button class="remove btn btn-danger">Remove Expense</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

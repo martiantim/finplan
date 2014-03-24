@@ -1,5 +1,8 @@
 class ExpensesController < BaseManipulatorController
-  
+
+  before_filter :get_user
+  before_filter :login_required
+
   def new
     @template = ManipulatorTemplate.find(params[:manipulator_template_id])
     plan = Plan.find(params[:plan_id])
@@ -9,9 +12,38 @@ class ExpensesController < BaseManipulatorController
   end
 
   def index
-    @plan = Plan.find(params[:plan_id])
+    if params[:plan_id]
+      @plan = Plan.find(params[:plan_id])
+    else
+      @plan = @current_user.plans.first
+    end
 
-    render :partial => 'list', :object => @plan.expenses, :locals => {:unused_list => @plan.unused_expenses}
+    respond_to do |format|
+      format.html do
+        render :partial => 'list', :object => @plan.expenses, :locals => {:unused_list => @plan.unused_expenses}
+      end
+      format.json do
+        render :json => @plan.expenses.collect(&:safe_json)
+      end
+    end
+  end
+
+  def show
+    if params[:plan_id]
+      @plan = Plan.find(params[:plan_id])
+    else
+      @plan = @current_user.plans.first
+    end
+
+    if params[:id] =~ /template:(\d+)/
+      @template = ManipulatorTemplate.find($1)
+      @manipulator = Manipulator.new(:manipulator_template => @template, :plan => plan, :name => @template.name)
+    else
+      @manipulator = Manipulator.find(params[:id])
+      @template = @manipulator.manipulator_template
+    end
+
+    render :json => @manipulator.safe_json
   end
   
   def create
