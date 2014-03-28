@@ -20,7 +20,7 @@ class Manipulator < ActiveRecord::Base
       :image_url => self.manipulator_template.image_url,
       :start => self.start,
       :end => self.end,
-      :params => self.params,
+      :params_str => self.params,
       :kind => self.manipulator_template.kind,
       :can_formula => self.manipulator_template.can_javascript,
       :do_formula => self.manipulator_template.do_javascript,

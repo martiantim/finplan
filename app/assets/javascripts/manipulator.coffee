@@ -102,7 +102,7 @@ class Manipulator
   @fromJSON: (json, family) ->
     user = null
     user = family.findByID(json.user_id) if json.user_id
-    m = new Manipulator(json.id, json.name, json.kind, json.template_name, user, json.start, json.end, json.params)
+    m = new Manipulator(json.id, json.name, json.kind, json.template_name, user, json.start, json.end, json.params_str)
     func = "m.checkStatus = function(context) { "+json.can_formula+"}"
     eval(func)
 

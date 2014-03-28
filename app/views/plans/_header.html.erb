@@ -16,7 +16,7 @@
       <%= link_to 'Setup', '#/setup', :class => "nav2" %>
     </li>
 
-    <li ng-class="{active: controller=='ResultsController', disabled: true}">
+    <li ng-class="{active: controller=='ResultsGoalsController', disabled: controller!='ResultsGoalsController'}">
       <%= link_to 'Results', '#/results', :class => "nav2" %>
     </li>
 
@@ -26,7 +26,7 @@
       </a>
       <ul class="dropdown-menu">
         <li class="simulate" role="presentation" data-section="results">
-          <a role="menuitem" tabindex="-1" href="#">Run Simulation</a>
+          <a ng-click="simulate()" role="menuitem" tabindex="-1" href="#">Run Simulation</a>
         </li>
         <li class="scenario" role="presentation" data-section="results">
           <a role="menuitem" tabindex="-1" href="#">Scenarios</a>
@@ -44,5 +44,17 @@
   </li>
   <li>
     <%= link_to 'Expenses', '#/expenses', :"data-content" => 'expenses' %>
+  </li>
+</ul>
+
+<ul id="subnav" class="nav nav-pills" ng-show="controller=='ResultsGoalsController'">
+  <li>
+    <%= link_to 'Summary', '#/results/goals', :"data-content" => 'goals' %>
+  </li>
+  <li>
+    <%= link_to 'Accounts', '#/results/accounts', :"data-content" => 'graph' %>
+  </li>
+  <li>
+    <%= link_to 'By Year', '#/results/yearly', :"data-content" => 'byyear' %>
   </li>
 </ul>

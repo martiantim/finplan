@@ -8,3 +8,14 @@
   </div>
 
 </div>
+<%= render :partial => 'simulate_dialog' %>
+<%= render :partial => 'scenarios_dialog' %>
+
+<%= javascript_tag do %>
+  $(function() {
+  plan = new Plan(<%= @plan.id%>,'<%=@plan.name%>');
+  plan.reloadData()
+
+  TaxSchedules.load()
+  });
+<% end %>

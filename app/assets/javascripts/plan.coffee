@@ -1,8 +1,8 @@
 class Plan
   constructor: (@id, @name) ->
-    @resultsChart = new ResultsChart 'chart', this
-    @resultsByYear = new ResultsByYear($('.content[data-name="byyear"]'))
-    @resultsGoals = new GoalListResults($('.section[data-name="results"] .goals.list'), this);        
+#    @resultsChart = new ResultsChart 'chart', this
+#    @resultsByYear = new ResultsByYear($('.content[data-name="byyear"]'))
+#    @resultsGoals = new GoalListResults($('.section[data-name="results"] .goals.list'), this);
     @simulator = null
     @manipulators = []
     @startAccounts = []
@@ -28,7 +28,7 @@ class Plan
         for ajson in data.accounts
           acct = Account.fromJSON(ajson)
           @addAccount(acct)
-        window.peopleList.wireItem('all')
+#        window.peopleList.wireItem('all')
     })
     
   _wire: ->
@@ -58,16 +58,18 @@ class Plan
     dialog.find('#simulate_year_progress').css('width', '0%').removeClass('progress-bar-success').parent().addClass('active')
     dialog.modal({
       show: true
-    })    
+    })
+
     @simulator = new Simulator(scenario, @family, @manipulators, @startAccounts, dialog)
     @simulator.sim (ex) ->
       that.simulator.bankruptcy = ex
-      that.resultsGoals.selectItem('summary', true)
-      that.resultsChart.display(that.simulator)
-      that.resultsByYear.setEndYear(that.simulator.endYear())
-      that.resultsChart.setEndYear(that.simulator.endYear())
-      that.resultsByYear.displayDefault()
-      window.navigation.showDirty(false)
+#      that.resultsGoals.selectItem('summary', true)
+#      that.resultsChart.display(that.simulator)
+#      that.resultsByYear.setEndYear(that.simulator.endYear())
+#      that.resultsChart.setEndYear(that.simulator.endYear())
+#      that.resultsByYear.displayDefault()
+      window.location = '#/results/goals'
+#      window.navigation.showDirty(false)
   
   lastSimulator: ->
     @simulator

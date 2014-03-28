@@ -1,19 +1,25 @@
 finplan.controller 'GoalsController', ['$scope', '$routeParams', '$location', '$http', ($scope, $routeParams, $location, $http) ->
+  $scope.loadGoal = (goalId) ->
+    $scope.selectedGoalId = goalId
+    $http.get('/goals/'+goalId+'.json').success (data) ->
+      $scope.curgoal = data
+      $scope.curgoal.startYear = new Date($scope.curgoal.start).getFullYear()
+      $scope.curParams = data.params
+
+
   $http.get('/plans/1/reload.json').success (data) ->
     $scope.plan = data
 
   $http.get('/goals.json').success (data) ->
     $scope.goals = data
+    $scope.loadGoal($scope.goals[0].id) if !$routeParams.goalId
+
+
 
   if $routeParams.goalId
-    $http.get('/goals/'+$routeParams.goalId+'.json').success (data) ->
-      $scope.curgoal = data
-      $scope.curgoal.startYear = new Date($scope.curgoal.start).getFullYear()
-      $scope.curParams = data.params
+    $scope.loadGoal($routeParams.goalId)
 
-    $scope.goalViewUrl = "/templates/goal.html"
-  else
-    $scope.goalViewUrl = "/templates/goal_summary.html"
+  $scope.goalViewUrl = "/templates/goal.html"
 
   $scope.ageRange = []
   for i in [0..99]
@@ -43,4 +49,6 @@ finplan.controller 'GoalsController', ['$scope', '$routeParams', '$location', '$
       success : (data) ->
         console.log("success!")
     })
+
+
 ]
