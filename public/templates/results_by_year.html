@@ -1,0 +1,13 @@
+<div class="well">
+    <div>
+        <h2 style="text-align: center">
+            <a ng-class="{disabled: viewYear == minYear}" href="#" ng-click="changeYear(-1)" class="year_prev" style="padding-right: 10px;font-size: 80%;"><span class="glyphicon glyphicon-backward"></span></a>
+            Year <span id="cur_year">{{ viewYear }}</span>
+            <a ng-class="{disabled: viewYear == maxYear}" href="#" ng-click="changeYear(1)" class="year_next" style="padding-left: 10px; font-size: 80%;"><span class="glyphicon glyphicon-forward"></span></a>
+        </h2>
+    </div>
+    <div id="year_slider_wrapper">
+
+    </div>
+    <div id="byyear_data"></div>
+</div>

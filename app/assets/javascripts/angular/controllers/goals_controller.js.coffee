@@ -1,5 +1,4 @@
 finplan.controller 'GoalsController', ['$scope', '$routeParams', '$location', '$http', ($scope, $routeParams, $location, $http) ->
-
   $http.get('/plans/1/reload.json').success (data) ->
     $scope.plan = data
 

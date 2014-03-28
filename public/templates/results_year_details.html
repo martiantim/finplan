@@ -1,0 +1,96 @@
+<div class="row">"
+  <div class="numbers col-md-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Earning and Spending</h3>
+      </div>
+      <div class="panel-body">
+        <div ng-repeat="kind for kind in ['Income', 'Taxes', 'Living', 'Capital', 'Savings']">
+
+          <div class='entry title'>
+            <div class='name'>
+              <a href='#' class='expander' style='width:15px;display:inline-block;text-align:center;' data-kind=""{{ kind }}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+              {{ entry.name }}
+            </div>
+            <div class='amount money'>{{ entry.amount }}</div>
+          </div>
+
+          <div ng-repeat=""
+            sum = log.sumOfKind(kind)
+            html = @_entryTitle(title, kind, sum, sum != 0)
+            html += "<div class='kind_details' data-kind=\"#{kind}\" style='display:none'>"
+            log.each_entry_of_kind kind, true, (entry) ->
+            html += "<div class='entry detail'><div class='name'>#{entry.description}</div><div class='amount money'>#{entry.amount}</div></div>"
+            html += "</div>"
+          html
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-success" style="margin-top: 15px;">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ viewYear }} Market Performance</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped" style="width:100%">
+          <thead><tr><th>Investment Type</th><th>Return</th></tr></thead>
+          <tbody>
+            <tr ng-repeat="itype for itype in details.markets.typesAndRates(viewYear)">
+              <td>{{ itype.name }}</td>
+              <td><span class="percentage">{{ itype.rate*100 }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>"
+  <div class="col-md-8">"
+    <div class="row">"
+      <div class="achievements col-md-6">
+
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Account Balances</h3>
+            </div>
+            <div class="panel-body">
+              <div ng-repeat="acct for acct in snap.accountBalances | amount!=0">
+                <div class="kind_details" data-kind="account:{{ acct.name }}" style="display:none">
+                  <div class="entry detail" ng-repeat="entry for entry in log | {account: acct.name} ">
+                    <div class="name">{{ entry.description }}</div>
+                    <div class="amount money">{{ entry.amount }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class='entry title total'>
+                <div class='name'>Net Worth</div>
+                <div class='amount money'>{{ snap.netWorth() }}</div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+      <div class="people col-md-6" style="padding-left:0px;margin-bottom: 10px;">
+        #{@people()}
+      </div>
+    </div>"
+    <div>
+
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ viewYear }} Events</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li ng-repeat="entry for entry in log | {kind: 'event'}">
+              {{ entry.description }}
+            </li>
+          </ul>
+          <div ng-show="no_events">
+            Business as usual
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

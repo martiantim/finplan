@@ -27,6 +27,12 @@ class Markets
   rate: (iType) ->
     @ratesForYear(@simContext.simYear)[iType]
 
+  typesAndRates: (year) ->
+    list = []
+    for itype in ITYPES
+      if itype != 'None'
+        list.push({name: itype, rate: @ratesForYear(year)})
+    list
 
   ratesForYear: (year) ->
     return @rates[year] if @rates[year]
