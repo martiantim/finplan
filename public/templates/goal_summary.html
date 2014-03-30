@@ -1,1 +1,47 @@
-summary
+<h3>Summary</h3>
+<div class="well">
+
+  <div ng-show="context.scenario">
+    scenario TODO
+  </div>
+
+  <div ng-show="simulator.bankruptcy">
+    <h2>Bankruptcy :(</h2>
+    <div class="alert alert-danger">
+      <span class="glyphicon glyphicon-warning-sign"></span>
+      {{ simulator.bankruptcy.message }}
+    </div>
+
+    <div ng-show="context.warnings.length > 0" class="alert alert-warning">
+      <div ng-repeat="warning in context.warnings">
+        <div style="margin-bottom: 5px;">
+          <span class="glyphicon glyphicon-warning-sign"></span>
+          {{ warning }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-show="!simulator.bankruptcy">
+    <h2>Goals: {{ simulator.goalProgress }}</h2>
+
+    <div ng-show="context.warnings.length > 0" class="alert alert-warning">
+      <div ng-repeat="warn in context.warnings">
+        <div style="margin-bottom: 5px;">
+          <span class="glyphicon glyphicon-warning-sign"></span>
+          {{ warn }}
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr><th>Goal</th><th>Result</th></tr>
+      </thead>
+      <tr ng-repeat="m in plan.manipulators | filter: {kind:'goal'}">
+        <td>{{ m.name }}</td>
+        <td>{{ m.achievedYear }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

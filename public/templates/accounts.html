@@ -5,7 +5,7 @@
         Accounts
       </h3>
       <ul class="well well-small nav nav-pills nav-stacked">
-        <li class="account" data-id="{{ account.id }}" data-name="{{ account.name }}" ng-repeat="account in accounts">
+        <li ng-class="{active: selectedAccountId == account.id}" class="account" data-id="{{ account.id }}" data-name="{{ account.name }}" ng-repeat="account in accounts">
           <a href="#/accounts/{{ account.id }}">
             <div class="name noresult">{{ account.name }}</div>
           </a>

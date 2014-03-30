@@ -1,17 +1,20 @@
-finplan.controller 'ResultsGoalsController', ['$scope', '$routeParams', '$location', '$http', ($scope, $routeParams, $location, $http) ->
-  $http.get('/plans/1/reload.json').success (data) ->
+finplan.controller 'ResultsGoalsController', ['$scope', '$routeParams', '$location', '$http', 'goalsCache', 'planCache', ($scope, $routeParams, $location, $http, goalsCache, planCache) ->
+  $http.get('/plans/1/reload.json', {cache: planCache}).success (data) ->
     $scope.plan = data
 
-  $http.get('/goals.json').success (data) ->
+  $http.get('/goals.json', {cache: goalsCache}).success (data) ->
     $scope.goals = data
 
   if $routeParams.goalId
+    $scope.selectedGoalId = $routeParams.goalId
     $http.get('/goals/'+$routeParams.goalId+'.json').success (data) ->
       $scope.curgoal = data
-      $scope.curgoal.startYear = new Date($scope.curgoal.start).getFullYear()
-      $scope.curParams = data.params
-
     $scope.goalViewUrl = "/templates/goal.html"
   else
+    $scope.selectedGoalId = 'summary'
     $scope.goalViewUrl = "/templates/goal_summary.html"
+
+  $scope.plan = window.plan
+  $scope.simulator = window.plan.lastSimulator()
+  $scope.context = $scope.simulator.context
 ]

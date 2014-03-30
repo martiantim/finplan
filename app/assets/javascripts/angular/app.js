@@ -19,6 +19,7 @@ finplan.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/expenses/:expenseId', {templateUrl: '/templates/expenses.html', controller: 'ExpensesController'});
 
     $routeProvider.when('/results/goals', {templateUrl: '/templates/results_goals.html', controller: 'ResultsGoalsController'});
+    $routeProvider.when('/results/goals/:goalId', {templateUrl: '/templates/results_goals.html', controller: 'ResultsGoalsController'});
     $routeProvider.when('/results/accounts', {templateUrl: '/templates/results_accounts.html', controller: 'ResultsAccountsController'});
     $routeProvider.when('/results/yearly_details', {templateUrl: '/templates/results_yearly_details.html', controller: 'ResultsYearlyDetailsController'});
 

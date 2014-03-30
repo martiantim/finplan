@@ -1,7 +1,13 @@
 finplan.controller 'AccountsController', ['$scope', '$routeParams', '$location', '$http', ($scope, $routeParams, $location, $http) ->
+  $scope.loadAccount = (accountId) ->
+    $scope.selectedAccountId = accountId
+    $http.get('/accounts/'+accountId+'.json').success (data) ->
+      $scope.account = data
+      $scope.curParams = data.params
 
   $http.get('/accounts.json').success (data) ->
     $scope.accounts = data
+    $scope.loadAccount(data[0].id) if !$routeParams.accountId
 
   $http.get('/accounts/investment_types.json').success (data) ->
     $scope.investmentTypes = data
@@ -10,9 +16,7 @@ finplan.controller 'AccountsController', ['$scope', '$routeParams', '$location',
     $scope.accountTypes = data
 
   if $routeParams.accountId
-    $http.get('/accounts/'+$routeParams.accountId+'.json').success (data) ->
-      $scope.account = data
-      $scope.curParams = data.params
+    $scope.loadAccount($routeParams.accountId)
 
   $scope.update = (account) ->
     formData = {
