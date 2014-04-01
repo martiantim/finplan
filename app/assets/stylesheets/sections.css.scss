@@ -1,21 +1,15 @@
-.section {
   #subnav {
+    &.setup {
+      padding-left: 235px;
+    }
+    &.results {
+      padding-left: 310px;
+    }
     width: 100%;
     background: #eee;
     padding: 5px 0px;
   }
-  &.setup {
-    #subnav {
-      padding-left: 235px;
-    }
-  }
-  &.results {
-    #subnav {
-      padding-left: 310px;
-    }
-  }
-}
-  
+
   .content {
     margin-top: 20px;
 

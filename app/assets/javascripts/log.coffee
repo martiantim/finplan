@@ -1,10 +1,22 @@
 class Log
   constructor: (@year) ->
     @arr = []
+    @totals = []
+    @rates = {}
 
   log: (kind, desc, amount) ->
-    @arr.push new LogEntry(kind, desc, amount)    
-    
+    entry = new LogEntry(kind, desc, amount)
+    @arr.push entry
+    if !entry.account && kind != 'event'
+      tot = null
+      for t in @totals
+        tot = t if t.kind == kind
+      if !tot
+        tot = {kind: kind, value: 0}
+        @totals.push(tot)
+
+      tot.value += amount
+
   each_entry: (func) ->    
     for e in @arr
       func(e)      

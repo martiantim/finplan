@@ -7,7 +7,16 @@ class ManipulatorTemplate < ActiveRecord::Base
   after_save :add_missing_vars
 
   scope :sorted_by_priority, :order => "priority ASC"
-  
+
+  def short_safe_json
+    {
+      :id => "template:#{self.id}",
+      :manipulator_template_id => self.id,
+      :name => self.name,
+      :image_url => self.image_url
+    }
+  end
+
   def validate_coffeescript
     begin
       CoffeeScript.compile(self.formula)

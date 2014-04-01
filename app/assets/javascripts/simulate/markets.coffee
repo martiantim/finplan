@@ -44,7 +44,12 @@ class Markets
     @rates[year] = yrates
     yrates
 
-
+  ratesForYearAsArray: (year) ->
+    h = @ratesForYear(year)
+    arr = []
+    for itype, rate of h
+      arr.push({name: itype, rate: rate})
+    arr
 
   calcReturnRate: (iType) ->
     if iType == 'Money Market'

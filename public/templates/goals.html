@@ -5,7 +5,7 @@
         Goals
       </h3>
       <ul class="well well-small nav nav-pills nav-stacked">
-        <li ng-class="{active: selectedGoalId == goal.id}" class="goal" data-id="{{ goal.id }}" data-name="{{ goal.name }}" ng-repeat="goal in goals">
+        <li ng-class="{active: selectedGoalId == goal.id, unused:!goal.used}" class="goal" data-id="{{ goal.id }}" data-name="{{ goal.name }}" ng-repeat="goal in goals">
           <a href="#/goals/{{ goal.id }}">
             <div class="nav_picture">
               <img ng-src="{{ goal.image_url }}">

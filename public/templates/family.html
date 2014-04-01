@@ -5,13 +5,13 @@
         Family
       </h3>
       <ul class="well well-small nav nav-pills nav-stacked">
-        <li class="goal" data-id="summary" data-name="summary">
-          <a href="#">
+        <li ng-class="{active: selectedUserId=='summary'}" class="goal" data-id="summary" data-name="summary">
+          <a href="#/family">
             <div class="name">Whole Family</div>
           </a>
         </li>
 
-        <li class="plan_user" data-id="{{ user.id }}" data-name="{{ user.name }}" ng-repeat="user in family">
+        <li ng-class="{active: selectedUserId == user.id}" class="plan_user" data-id="{{ user.id }}" data-name="{{ user.name }}" ng-repeat="user in family">
           <a href="#/family/{{ user.id }}">
             <div class="nav_picture">
               <img ng-src="/assets/people/faces/{{ user.role }}.png">

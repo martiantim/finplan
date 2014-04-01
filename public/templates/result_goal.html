@@ -1,0 +1,43 @@
+<div class="goal_results">
+  <h3>{{ goal.name }}</h3>
+  <div class="well">
+
+    <div class="goal_status">
+      <div ng-show="goal.achievedYear">
+        <div class="alert alert-success">
+          <span class="glyphicon glyphicon-ok"></span> Congradulations! Goal will be achieved in {{ goal.achievedYear }}
+        </div>
+      </div>
+
+      <div ng-show="goal.failMessage">
+        <div class="alert alert-danger">
+          <span class="glyphicon glyphicon-warning-sign"></span> {{ goal.failMessage }}
+        </div>
+      </div>
+    </div>
+
+    <div id="goal_results_chart" ng-init="showChart(goal)"></div>
+
+    <table class="table table-striped" id="progress_table">
+      <thead>
+        <th>Year</th>
+        <th>Have</th>
+        <th>Need</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="d in goal.progress" fin-format-directive>
+          <td>
+            <a ng-click="jumpToYear(d[0])">{{ d[0] }}</a>
+          </td>
+          <td class="money">
+            {{ d[1]['have'] }}
+          </td>
+          <td class='money'>
+            {{ d[1]['need'] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

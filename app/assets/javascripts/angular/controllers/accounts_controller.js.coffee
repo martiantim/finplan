@@ -4,6 +4,7 @@ finplan.controller 'AccountsController', ['$scope', '$routeParams', '$location',
     $http.get('/accounts/'+accountId+'.json').success (data) ->
       $scope.account = data
       $scope.curParams = data.params
+      finFormat($('.content_main'), 100)
 
   $http.get('/accounts.json').success (data) ->
     $scope.accounts = data

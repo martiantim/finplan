@@ -5,7 +5,7 @@
         Expenses
       </h3>
       <ul class="well well-small nav nav-pills nav-stacked">
-        <li class="manipulator" ng-repeat="expense in expenses">
+        <li ng-class="{active: selectedExpenseId == expense.id}" class="manipulator" ng-repeat="expense in expenses">
           <a href="#/expenses/{{ expense.id }}">
             <div class="name noresult">{{ expense.name }}</div>
           </a>

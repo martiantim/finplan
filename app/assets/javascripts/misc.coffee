@@ -1,4 +1,9 @@
-window.finFormat = (el) ->
+window.finFormat = (el, delay = 0) ->
+  setTimeout =>
+    finFormatNow(el)
+  , delay
+
+window.finFormatNow = (el) ->
   el.find('.money').autoNumeric('init',{aSign:'$', mDec: 0, vMin: -99999999})
   el.find('.percentage').autoNumeric('init',{aSign: ' %', pSign:'s', vMin: -100.0})
 

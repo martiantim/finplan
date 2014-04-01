@@ -4,6 +4,7 @@ finplan.controller 'ExpensesController', ['$scope', '$routeParams', '$location',
     $scope.expenses = data
 
   if $routeParams.expenseId
+    $scope.selectedExpenseId = $routeParams.expenseId
     $http.get('/expenses/'+$routeParams.expenseId+'.json').success (data) ->
       $scope.expense = data
       $scope.curParams = data.params

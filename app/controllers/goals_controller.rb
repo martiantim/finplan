@@ -1,7 +1,7 @@
 class GoalsController < BaseManipulatorController
 
   before_filter :get_user
-  
+
   def index
     if params[:plan_id]
       plan = Plan.find(params[:plan_id])
@@ -13,28 +13,44 @@ class GoalsController < BaseManipulatorController
         render :partial => 'list', :object => plan.goals, :locals => {:unused_list => plan.unused_goals, :editable => params[:editable] == 'true'}
       end
       format.json do
-        render :json => plan.goals.collect(&:short_safe_json)
+        list = plan.goals.sort_by { |g| g.id }.collect { |g| g.short_safe_json.merge({:used => true}) }
+        list += plan.unused_goals.sort_by { |g| g.id }.collect { |g| g.short_safe_json.merge({:used => false}) }
+        render :json => list
       end
     end
   end
 
   def show
-    render :json => Manipulator.find(params[:id]).safe_json
+    if params[:id] =~ /template:(\d+)/
+      @template = ManipulatorTemplate.find($1)
+      if params[:plan_id]
+        plan = Plan.find(params[:plan_id])
+      else
+        plan = @current_user.plans.first
+      end
+      @manipulator = Manipulator.new(:manipulator_template => @template, :plan => plan, :name => @template.name)
+    else
+      @manipulator = Manipulator.find(params[:id])
+      @template = @manipulator.manipulator_template
+    end
+
+    render :json => @manipulator.safe_json
   end
-  
+
   def new
     @template = ManipulatorTemplate.find(params[:manipulator_template_id])
     plan = Plan.find(params[:plan_id])
     @manipulator = Manipulator.new(:manipulator_template => @template, :plan => plan, :name => @template.name)
-    
+
     render :layout => false
   end
-  
+
   def create
     @m = Manipulator.new(:params => {}.to_json)
     when_params(@m)
     @m.update_attributes(params.require(:manipulator).permit!)
     @m.params = params[:variables].to_json
+    @m.plan_id = @current_user.plans.first.id
 
     if @m.save
       render :json => {:id => @m.id}
@@ -71,15 +87,15 @@ class GoalsController < BaseManipulatorController
   def show_results
     @manipulator = Manipulator.find(params[:id])
     @template = @manipulator.manipulator_template
-    
+
     render :layout => false
   end
 
   def destroy
-    @manipulator = Manipulator.find(params[:id])        
-    @manipulator.destroy    
-    
+    @manipulator = Manipulator.find(params[:id])
+    @manipulator.destroy
+
     render :text => 'ok'
   end
-  
+
 end

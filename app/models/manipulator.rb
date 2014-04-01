@@ -7,6 +7,7 @@ class Manipulator < ActiveRecord::Base
   def short_safe_json
     {
       :id => self.id,
+      :manipulator_template_id => self.manipulator_template_id,
       :name => self.name,
       :image_url => self.manipulator_template.image_url
     }
@@ -16,6 +17,7 @@ class Manipulator < ActiveRecord::Base
     {
       :id => self.id,
       :name => self.name,
+      :manipulator_template_id => self.manipulator_template_id,
       :template_name => self.manipulator_template.name,
       :image_url => self.manipulator_template.image_url,
       :start => self.start,

@@ -56,7 +56,7 @@ class YearlyChart
     
   display: ->
     $('#'+@id).empty()
-    
+
     $.jqplot @id, @sets, @_getOptions('year', @labels)
     $('#'+@id).bind 'jqplotDataClick', (ev, seriesIndex, pointIndex, data) ->
       console.log("CLICK")

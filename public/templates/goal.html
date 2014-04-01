@@ -1,14 +1,14 @@
-<div class="manipulator well notitle clearfix" ng-controller="GoalsController">
+<div class="manipulator well notitle clearfix">
   <div class="right-main">
     <div class="right-controls">
-      <button class="remove btn btn-danger">Remove Goal</button>
+      <button ng-show="curgoal.id" ng-click="remove(curgoal)" class="remove btn btn-danger">Remove Goal</button>
     </div>
 
     <img ng-src="{{ curgoal.image_url }}" style="width: 150px">
   </div>
 
   <form class="left-main">
-    <input type="hidden" ng-model="curgoal.manipulator_template_id">
+    <input type="hidden" name="manipulator_template_id" ng-model="curgoal.manipulator_template_id">
     <input type="hidden" ng-model="curplan.id">
 
     <div class="form-group">

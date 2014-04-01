@@ -4,12 +4,14 @@ finplan.controller 'FamilyController', ['$scope', '$routeParams', '$location', '
     $scope.family = data
 
   if $routeParams.userId
+    $scope.selectedUserId = $routeParams.userId
     $http.get('/plan_users/'+$routeParams.userId+'.json').success (data) ->
       $scope.planUser = data
       $scope.curParams = data.salary.params
 
     $scope.familyViewUrl = "/templates/family_member.html"
   else
+    $scope.selectedUserId = 'summary'
     $scope.familyViewUrl = "/templates/family_summary.html"
 
   $http.get('/professions.json').success (data) ->

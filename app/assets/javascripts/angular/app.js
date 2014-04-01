@@ -32,3 +32,11 @@ finplan.run(function($rootScope) {
       $rootScope.controller = data.$$route.controller;
   })
 });
+
+
+finplan.directive('finFormatDirective', function() {
+    return function(scope, element, attrs) {
+      console.log("finformat")
+      finFormat($(element));
+    };
+  });

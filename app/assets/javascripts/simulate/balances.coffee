@@ -41,7 +41,7 @@ class Balances
     @logs[year]
     
   snapshotForYear: (year) ->
-    @snapshots[year]    
+    @snapshots[year]
 
   curLog: ->
     yr = @_currentYear()

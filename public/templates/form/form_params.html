@@ -1,5 +1,5 @@
 <div ng-repeat="param in curParams">
-  <div class="form-group" ng-show="!param.depends_on_value || curParams[0]['value'] == param.depends_on_value">
+  <div class="form-group" ng-show="!param.depends_on_value || curParams[0]['value'] == param.depends_on_value" fin-format-directive>
     <label for="param:{{param.name}}">{{param.display}}</label>
 
     <div ng-include="'/templates/form/' + param.type + '.html'"></div>

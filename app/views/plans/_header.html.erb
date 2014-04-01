@@ -16,7 +16,7 @@
       <%= link_to 'Setup', '#/setup', :class => "nav2" %>
     </li>
 
-    <li ng-class="{active: controller=='ResultsGoalsController', disabled: controller!='ResultsGoalsController'}">
+    <li ng-class="{active: controller=='ResultsGoalsController' || controller=='ResultsAccountsController' || controller=='ResultsYearlyDetailsController', disabled: controller!='ResultsGoalsController'}">
       <%= link_to 'Results', '#/results', :class => "nav2" %>
     </li>
 
@@ -35,19 +35,19 @@
     </li>
   </ul>
 </div>
-<ul id="subnav" class="nav nav-pills" ng-show="controller=='FamilyController' || controller=='AccountsController' || controller=='ExpensesController'">
-  <li>
-    <%= link_to 'Family', '#/family', :"data-content" => 'plan_users' %>
+<ul id="subnav" class="setup nav nav-pills" ng-show="controller=='FamilyController' || controller=='AccountsController' || controller=='ExpensesController'">
+  <li ng-class="{active:controller=='FamilyController'}">
+    <a href="#/family">Family</a>
   </li>
-  <li>
+  <li ng-class="{active:controller=='AccountsController'}">
     <%= link_to 'Accounts', '#/accounts', :"data-content" => 'accounts' %>
   </li>
-  <li>
+  <li ng-class="{active:controller=='ExpensesController'}">
     <%= link_to 'Expenses', '#/expenses', :"data-content" => 'expenses' %>
   </li>
 </ul>
 
-<ul id="subnav" class="nav nav-pills" ng-show="controller=='ResultsGoalsController'">
+<ul id="subnav" class="results nav nav-pills" ng-show="controller=='ResultsGoalsController' || controller=='ResultsAccountsController' || controller=='ResultsYearlyDetailsController'">
   <li>
     <%= link_to 'Summary', '#/results/goals', :"data-content" => 'goals' %>
   </li>
@@ -55,6 +55,6 @@
     <%= link_to 'Accounts', '#/results/accounts', :"data-content" => 'graph' %>
   </li>
   <li>
-    <%= link_to 'By Year', '#/results/yearly', :"data-content" => 'byyear' %>
+    <%= link_to 'By Year', '#/results/yearly_details', :"data-content" => 'byyear' %>
   </li>
 </ul>
