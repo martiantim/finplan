@@ -6,13 +6,13 @@ finplan.controller 'GoalsController', ['$scope', '$routeParams', '$location', '$
       $scope.curgoal.startYear = new Date($scope.curgoal.start).getFullYear()
       $scope.curParams = data.params
       finFormat($('.manipulator'), 100)
-      $scope.selectFirst() if !$routeParams.goalId
 
   $http.get('/plans/1/reload.json', {cache: planCache}).success (data) ->
     $scope.plan = data
 
   $http.get('/goals.json', {cache: goalsCache}).success (data) ->
     $scope.goals = data
+    $scope.selectFirst() if !$routeParams.goalId
 
 
   if $routeParams.goalId

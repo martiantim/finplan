@@ -29,6 +29,7 @@ resources :plan_users do
    end
 
    collection do
+     get :states
    end
  end
  

@@ -1,1 +1,17 @@
-family summary
+<h3>Family</h3>
+<div class="well">
+  <div id="family_portrait" class="portrait" style="margin: 0px 20px 20px 20px;">
+    <div style="position: absolute; background: #fff;width: 300px;height: 300px;">
+
+    </div>
+  </div>
+
+  <form>
+    <div class="form-group">
+      <label for="state">State Reside In</label>
+      <select ng-model="plan.state" ng-options="state for state in states" class="form-control input-medium"></select>
+    </div>
+
+    <button ng-click="updatePlan(plan)" type="button" class="btn btn-primary save">Save</button>
+  </form>
+</div>

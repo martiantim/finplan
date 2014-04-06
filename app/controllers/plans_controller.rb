@@ -64,6 +64,7 @@ class PlansController < ApplicationController
   def reload
     @plan = Plan.find(params[:id])
     render :json => {
+      :id => @plan.id,
       :state => @plan.state,
       :manipulators => @plan.priority_sorted_manipulators.collect(&:safe_json),
       :accounts => @plan.accounts.collect(&:safe_json),

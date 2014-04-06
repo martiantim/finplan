@@ -36,7 +36,7 @@ class PlanUsersController < ApplicationController
     pu.update_attributes(params.require(:plan_user).permit!)
 
     if params[:variables]
-      if params[:salary_manipulator_id]
+      if !params[:salary_manipulator_id].blank?
         salary = Manipulator.find(params[:salary_manipulator_id])
         salary.params = params[:variables].to_json
         salary.save!
@@ -81,6 +81,10 @@ class PlanUsersController < ApplicationController
     pu.destroy
     
     render :text => 'ok'
+  end
+
+  def states
+    render :json => Plan::SUPPORTED_STATES.collect { |a| a[0] }
   end
   
 end

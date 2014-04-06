@@ -15,6 +15,8 @@ class PersonDrawing
     details.append("<div class=\"age\"></div>")
 
     @el.append(body).append(details)
+    @gender = 'U'
+    @age = 0
 
     if el.attr('data-profession')
       @setProfession(el.attr('data-profession'))
@@ -24,13 +26,8 @@ class PersonDrawing
     @accessories = {}
 
   setGender: (gender) ->
-    if gender == 'M'
-      @role = 'man'
-    else if gender == 'F'
-      @role = 'woman'
-    else
-      @role = ''
-    @draw()
+    @gender = gender
+    @updateRole()
 
   setProfession: (profession) ->
     @clearAccessories()
@@ -57,7 +54,31 @@ class PersonDrawing
     @draw()
 
   setAge: (age) ->
+    @age = age
     @el.find('.details .age').html("(#{age} years old)")
+    @updateRole()
+
+  updateRole: ->
+    @role = @getRole(@gender, @age)
+    @draw()
+
+  getRole: (gender, age) ->
+    if age >= 18
+      if gender == 'M'
+        "man"
+      else if gender == 'F'
+        "woman"
+      else
+        "unsure"
+    else if age >= 0
+      if gender == 'M'
+        "boy"
+      else if self.gender == 'F'
+        "girl"
+      else
+        "unsure"
+    else
+      "baby"
 
   draw: ->
     @el.find('.body > img').attr('src', image_path('people/'+(@role || '')+'.png'))

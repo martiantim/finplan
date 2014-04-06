@@ -36,7 +36,6 @@ finplan.run(function($rootScope) {
 
 finplan.directive('finFormatDirective', function() {
     return function(scope, element, attrs) {
-      console.log("finformat")
       finFormat($(element));
     };
   });
