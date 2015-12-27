@@ -1,4 +1,4 @@
-finplan.controller 'ResultsAccountsController', ['$scope', '$routeParams', '$location', '$http', ($scope, $routeParams, $location, $http) ->
+finplan.controller 'ResultsAccountsController', ['$scope', '$routeParams', '$location', '$http', 'plan', ($scope, $routeParams, $location, $http, plan) ->
   $scope.showChart = ->
     id = 'chart'
     $('#'+id).empty()
@@ -6,7 +6,7 @@ finplan.controller 'ResultsAccountsController', ['$scope', '$routeParams', '$loc
     #display chart
     labels = []
     sets = []
-    simulator = window.plan.lastSimulator()
+    simulator = plan.lastSimulator()
     for name, set of simulator.datasets
       labels.push name
       sets.push set

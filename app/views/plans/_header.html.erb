@@ -6,7 +6,7 @@
 
 <div id="logo"><%= image_tag("logo.png") %></div>
 
-<div id="navigation" ng-controller="NavController">
+<div id="navigation">
   <ul class="nav nav-tabs">
     <li ng-class="{active: controller=='GoalsController'}">
       <%= link_to 'Goals', '#/goals', :class => "nav2" %>
@@ -16,20 +16,20 @@
       <%= link_to 'Setup', '#/setup', :class => "nav2" %>
     </li>
 
-    <li ng-class="{active: controller=='ResultsGoalsController' || controller=='ResultsAccountsController' || controller=='ResultsYearlyDetailsController', disabled: controller!='ResultsGoalsController'}">
-      <%= link_to 'Results', '#/results', :class => "nav2" %>
+    <li ng-class="{active: controller=='ResultsGoalsController' || controller=='ResultsAccountsController' || controller=='ResultsYearlyDetailsController', disabled: plan.noSimulation}">
+      <button class="nav2" ng-disabled="plan.noSimulation" ng-click="viewResults()" class="nav2">Results</button>
     </li>
 
     <li>
-      <a ng-click="false" class="dropdown-toggle" data-toggle="dropdown">
-        Simulate<span style="display:none">*</span> <span class="caret"></span>
+      <a ng-click="false" class="dropdown-toggle" data-toggle="dropdown" style="cursor:pointer">
+        Simulate<span ng-show="plan.simulateOutOfDate">*</span> <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
         <li class="simulate" role="presentation" data-section="results">
           <a ng-click="simulate()" role="menuitem" tabindex="-1" href="#">Run Simulation</a>
         </li>
         <li class="scenario" role="presentation" data-section="results">
-          <a role="menuitem" tabindex="-1" href="#">Scenarios</a>
+          <a ng-click="scenarios()" role="menuitem" tabindex="-1" href="#">Scenarios</a>
         </li>
       </ul>
     </li>
@@ -48,13 +48,13 @@
 </ul>
 
 <ul id="subnav" class="results nav nav-pills" ng-show="controller=='ResultsGoalsController' || controller=='ResultsAccountsController' || controller=='ResultsYearlyDetailsController'">
-  <li>
+  <li ng-class="{active:controller=='ResultsGoalsController'}">
     <%= link_to 'Summary', '#/results/goals', :"data-content" => 'goals' %>
   </li>
-  <li>
+  <li ng-class="{active:controller=='ResultsAccountsController'}">
     <%= link_to 'Accounts', '#/results/accounts', :"data-content" => 'graph' %>
   </li>
-  <li>
+  <li ng-class="{active:controller=='ResultsYearlyDetailsController'}">
     <%= link_to 'By Year', '#/results/yearly_details', :"data-content" => 'byyear' %>
   </li>
 </ul>

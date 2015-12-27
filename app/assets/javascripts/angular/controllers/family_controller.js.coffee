@@ -1,13 +1,6 @@
-finplan.controller 'FamilyController', ['$scope', '$routeParams', '$location', '$http', 'planCache', ($scope, $routeParams, $location, $http, planCache) ->
+finplan.controller 'FamilyController', ['$scope', '$routeParams', '$location', '$http', 'plan', ($scope, $routeParams, $location, $http, plan) ->
 
-  $http.get('/plan_users.json').success (data) ->
-    $scope.family = data
-
-  $http.get('/plans/1/reload.json', {cache: planCache}).success (data) ->
-    $scope.plan = data
-    setTimeout ->
-      $scope.updateFamilyDrawing()
-    , 100
+  $scope.plan = plan
 
   $http.get('/plan_users/states.json').success (data) ->
     $scope.states = data
@@ -33,9 +26,6 @@ finplan.controller 'FamilyController', ['$scope', '$routeParams', '$location', '
   else
     $scope.selectedUserId = 'summary'
     $scope.familyViewUrl = "/templates/family_summary.html"
-    $scope.$watch('plan', (p, oldValue) ->
-      $scope.updateFamilyDrawing()
-    , true)
 
 
   $http.get('/professions.json').success (data) ->
@@ -53,6 +43,13 @@ finplan.controller 'FamilyController', ['$scope', '$routeParams', '$location', '
   $scope.$watch('planUser', (pu, oldValue) ->
     $scope.updateDrawing()
   , true)
+  $scope.$watch('plan.family', (pu, oldValue) ->
+    $scope.updateFamilyDrawing()
+  , true)
+
+  $scope.familyViewLoaded = ->
+    $scope.updateDrawing()
+    $scope.updateFamilyDrawing()
 
   $scope.updateDrawing = ->
     return if !$scope.planUser
@@ -71,12 +68,13 @@ finplan.controller 'FamilyController', ['$scope', '$routeParams', '$location', '
     $scope.drawing.setProfession(prof)
 
   $scope.updateFamilyDrawing = ->
-    return if !$scope.plan
-    return if $('#family_portrait > div').length == 0
+    if $('#family_portrait > div').length == 0
+      console.log("div not here yet")
+      return
 
     portrait = $('#family_portrait > div')
     left = 0
-    window.plan.family.membersOfYear(finData['current_year'], (person, kind) =>
+    $scope.plan.family.membersOfYear(finData['current_year'], (person, kind) =>
       drawEl = $("<div class=\"person_wrapper\" style=\"left: #{left}px;\"><div class=\"person_drawing small\" data-id=\"#{person.id}\"></div></div>")
       portrait.append(drawEl)
 
@@ -87,43 +85,54 @@ finplan.controller 'FamilyController', ['$scope', '$routeParams', '$location', '
     )
 
   $scope.updatePlan = (plan) ->
+    formSaving()
     formData = {
       '_method': 'patch',
       'plan[id]': plan.id,
       'plan[state]': plan.state
     }
+
     $.ajax({
       type 		: 'POST',
       url 		: '/plans/'+plan.id,
       data 		: formData,
       dataType: 'json',
       success : (data) ->
-        planCache.removeAll()
+        formSuccess()
+        plan.markDirty(true)
     })
 
 
   $scope.update = (planUser) ->
+    formSaving()
     born = (finData['current_year'] - planUser.age + 1) + '-01-01'
 
     formData = {
-      '_method': 'patch',
-      'plan_user[id]': planUser.id,
       'plan_user[name]': planUser.name,
       'plan_user[gender]': planUser.gender,
       'plan_user[born]': born,
+      'plan_user[profession_id]': planUser.profession_id,
 
       'salary_manipulator_id': planUser.salary.id
     }
+    if planUser.id
+      formData['_method'] = 'patch'
+      formData['plan_user[id]'] = planUser.id
+
     for param in $scope.curParams
       formData["variables[#{param.name}]"] = param.value
+
+    id = ''
+    id = planUser.id if planUser.id
 
     #process the form
     $.ajax({
       type 		: 'POST',
-      url 		: '/plan_users/'+planUser.id,
+      url 		: '/plan_users/'+id,
       data 		: formData,
       dataType: 'json',
       success : (data) ->
-        console.log("success!")
+        formSuccess()
+        plan.markDirty(true)
     })
 ]

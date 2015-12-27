@@ -5,7 +5,7 @@
         Expenses
       </h3>
       <ul class="well well-small nav nav-pills nav-stacked">
-        <li ng-class="{active: selectedExpenseId == expense.id}" class="manipulator" ng-repeat="expense in expenses">
+        <li ng-class="{active: selectedExpenseId == expense.id, unused:!expense.used}" class="manipulator" ng-repeat="expense in expenses">
           <a href="#/expenses/{{ expense.id }}">
             <div class="name noresult">{{ expense.name }}</div>
           </a>
@@ -30,10 +30,11 @@
         <ng-include src="'/templates/form/form_params.html'"></ng-include>
 
         <button type="button" ng-click="update(expense)" class="btn btn-primary save">Save</button>
+        <span class="form_status"></span>
       </form>
       <div class="right-main">
-        <div ng-show="expense.id > 0" class="right-controls">
-          <button class="remove btn btn-danger">Remove Expense</button>
+        <div ng-show="expense.id > 0 && expense.removable" class="right-controls">
+          <button ng-click="remove(expense)" class="remove btn btn-danger">Remove Expense</button>
         </div>
       </div>
     </div>

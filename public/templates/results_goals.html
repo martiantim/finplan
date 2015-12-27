@@ -1,6 +1,6 @@
 <div class="row" data-name='goals'>
   <div class="col-md-3">
-    <div class="goals  list">
+    <div class="goals results list">
       <h3>
         Goals
       </h3>
@@ -17,9 +17,8 @@
               <img ng-src="{{ goal.image_url }}">
             </div>
             <div class="name noresult">{{ goal.name }}</div>
-            <div class="achieved">
-              <img src="/images/goal_maybe.png">
-            </div>
+            <div ng-show="simulator.goalStatus[goal.id].status == 'ok'" class="achieved" data-success="true"><span class="glyphicon glyphicon-ok"></span></div>
+            <div ng-show="simulator.goalStatus[goal.id].status == 'fail'" class="achieved" data-success="false"><span class="glyphicon glyphicon-remove"></span></div>
           </a>
         </li>
       </ul>

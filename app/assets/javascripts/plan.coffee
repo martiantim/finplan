@@ -1,45 +1,51 @@
 class Plan
   constructor: (@id, @name) ->
-#    @resultsChart = new ResultsChart 'chart', this
-#    @resultsByYear = new ResultsByYear($('.content[data-name="byyear"]'))
-#    @resultsGoals = new GoalListResults($('.section[data-name="results"] .goals.list'), this);
     @simulator = null
     @manipulators = []
     @startAccounts = []
     @family = new Family()
-    @_wire()
-    
-  reloadData: ->
-    that = this
-    $.ajax({
-      url: "/plans/#{@id}/reload",
-      type: 'GET',      
-      success: (data) =>
-        @manipulators = []
-        @startAccounts = []
-        @family = new Family(data.state)
+    @simulateOutOfDate = false
+    @noSimulation = true
+    @canSimulate = false
+    @todoBeforeSimulate = []
 
-        for fjson in data.family_members
-          u = User.fromJSON(fjson)
-          @addFamilyMember(u)
-        for mjson in data.manipulators
-          m = Manipulator.fromJSON(mjson, @family)
-          @add(m)
-        for ajson in data.accounts
-          acct = Account.fromJSON(ajson)
-          @addAccount(acct)
-#        window.peopleList.wireItem('all')
-    })
-    
-  _wire: ->
+  reloadData: ($http) ->
+    that = this
+
+    if $http
+      $http.get("/plans/#{@id}/reload").success (data) =>
+        @setData(data)
+    else
+      $.ajax({
+        url: "/plans/#{@id}/reload",
+        type: 'GET',
+        success: (data) =>
+          @setData(data)
+      })
+
+  setData: (data) ->
+    @manipulators = []
+    @startAccounts = []
+    @family = new Family(data.state)
+
+    for fjson in data.family_members
+      u = User.fromJSON(fjson)
+      @addFamilyMember(u)
+    for mjson in data.manipulators
+      m = Manipulator.fromJSON(mjson, @family)
+      @add(m)
+    for ajson in data.accounts
+      acct = Account.fromJSON(ajson)
+      @addAccount(acct)
+    @todoBeforeSimulate = data.todos
 
   markDirty: (andData = false) ->
     if andData
       @reloadData()
-    window.navigation.showDirty(true)
+    @simulateOutOfDate = true
 
   onSimulateClick: (scenario = null) ->
-    window.goalList.markAllUnknown()
+    @simulateOutOfDate = false
     @simulate(scenario)
     window.navigation.simulateDone()
 
@@ -68,6 +74,7 @@ class Plan
 #      that.resultsByYear.setEndYear(that.simulator.endYear())
 #      that.resultsChart.setEndYear(that.simulator.endYear())
 #      that.resultsByYear.displayDefault()
+      that.noSimulation = false
       window.location = '#/results/goals'
 #      window.navigation.showDirty(false)
   

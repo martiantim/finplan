@@ -9,9 +9,10 @@
   <form>
     <div class="form-group">
       <label for="state">State Reside In</label>
-      <select ng-model="plan.state" ng-options="state for state in states" class="form-control input-medium"></select>
+      <select ng-model="plan.family.stateLivingIn" ng-options="state for state in states" class="form-control input-medium"></select>
     </div>
 
     <button ng-click="updatePlan(plan)" type="button" class="btn btn-primary save">Save</button>
+    <span class="form_status"></span>
   </form>
 </div>

@@ -9,11 +9,12 @@
 
   <form class="left-main">
     <input type="hidden" name="manipulator_template_id" ng-model="curgoal.manipulator_template_id">
-    <input type="hidden" ng-model="curplan.id">
+    <input type="hidden" ng-model="plan.id">
 
     <div class="form-group">
       <label for="name">Name</label>
       <input name="name" class="form-control" ng-model="curgoal.name" required>
+      <div ng-repeat="description in [curgoal.description]" ng-include="'/templates/shared/description.html'"></div>
     </div>
 
     <div class="form-group form-group-when" ng-show="curgoal.has_when_date">
@@ -26,7 +27,7 @@
       </div>
       <div class="radio">
         <input ng-model="curgoal.start_type" type="radio" name="when_type" value="age">
-        When <select ng-model="curgoal.start_plan_user_id" ng-options="user.id as user.name for user in plan.family_members" class="form-control"></select>
+        When <select ng-model="curgoal.start_plan_user_id" ng-options="user.id as user.name for user in plan.family.members" class="form-control"></select>
         is <select ng-model="curgoal.start_plan_user_age" ng-options="age for age in ageRange" class="form-control"></select>
       </div>
       <div class="radio">
@@ -38,5 +39,6 @@
     <ng-include src="'/templates/form/form_params.html'"></ng-include>
 
     <button type="button" ng-click="update(curgoal)" class="btn btn-primary save">Save</button>
+    <span class="form_status"></span>
   </form>
 </div>

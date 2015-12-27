@@ -31,12 +31,21 @@ class SimContext
     @family.numMembersOfYear(@simYear, onlyHumans)
 
   addWarning: (msg) ->
-    @warnings.push(msg)
+    for w in @warnings
+      return if w.message == msg
+
+    @warnings.push({message: msg})
 
   nextSimYear: (manipulators) ->
     @familyStatus[@simYear] = {}
     @family.membersOfYear(@simYear, (person, kind) =>
-      @familyStatus[@simYear][person.id] = {'working': false}
+      @familyStatus[@simYear][person.id] = {
+        name: person.name,
+        age: person.ageInYear(@simYear),
+        kind: person.descriptor(@simYear),
+        profession: person.profession,
+        working: false
+      }
 
       for m in manipulators
         if m.template_name == 'Salary' && m.user.id == person.id

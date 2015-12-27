@@ -30,5 +30,6 @@
 //= require bootstrap-slider
 //= require angular
 //= require angular-route
+//= require angular-sanitize
 
 //= require_tree .

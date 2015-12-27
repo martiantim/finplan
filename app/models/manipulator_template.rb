@@ -71,7 +71,7 @@ class ManipulatorTemplate < ActiveRecord::Base
         :display => props.name.gsub('_',' ').split.map(&:capitalize).join(' '),
         :type => props.var_type,
         :options => (props.options || '').split(','),
-        :description => props.description,
+        :description => {:text => props.description },
         :depends_on_variable => props.depends_on ? props.depends_on.split(':')[0] : nil,
         :depends_on_value => props.depends_on ? props.depends_on.split(':')[1] : nil,
 

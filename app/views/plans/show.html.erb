@@ -1,31 +1,27 @@
 <div id="main_content">
   <div id="global_status"></div>
-  <div id="header" class="page-header">
-    <%= render :partial => 'header' %>
-  </div>  
-  <div id="main_column">
-    <%= render :partial => 'goals_tab' %>
-    <%= render :partial => 'setup_tab' %>
-    <%= render :partial => 'results_tab' %>    
+  <div ng-controller="NavController">
+    <div id="header" class="page-header">
+      <%= render :partial => 'header' %>
+    </div>
+    <%= render :partial => "todos" %>
   </div>
+  <div id="main_column">
+    <div ng-view></div>
+  </div>
+
+
 </div>
 <%= render :partial => 'simulate_dialog' %>
 <%= render :partial => 'scenarios_dialog' %>
 
 <%= javascript_tag do %>
+  window.plan_id = <%= @plan.id %>;
+  window.plan_name = '<%= @plan.name %>';
+
   $(function() {
-    plan = new Plan(<%= @plan.id%>,'<%=@plan.name%>');
-    plan.reloadData()
 
-    //setup lists
-    window.navigation = new Navigation('setup','plan_users');
 
-    TaxSchedules.load()
-
-    new ExpensesList($('.expenses.list'), plan);
-    window.peopleList = new PeopleList($('.plan_users.list'), plan);
-    new AccountList($('.accounts.list'), plan);    
-    window.goalList = new GoalListEditable($('.section[data-name="goals"] .goals.list'), plan);        
-    
+  TaxSchedules.load()
   });
 <% end %>

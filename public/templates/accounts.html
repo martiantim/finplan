@@ -10,6 +10,7 @@
             <div class="name noresult">{{ account.name }}</div>
           </a>
         </li>
+        <li><a href="#/accounts/new">Add Account</a></li>
       </ul>
     </div>
   </div>
@@ -25,8 +26,10 @@
 
         <div ng-show="!account.id" class="form-group">
           <label for="name">Type</label>
-          <select ng-model="account.name" ng-options="a.id as a.name for a in accountTypes" class="form-control"></select>
+          <select ng-model="account.name" ng-options="a.name as a.name for (name, a) in accountTypes" class="form-control"></select>
         </div>
+        <div ng-repeat="description in [account.description]" ng-include="'/templates/shared/description.html'"></div>
+
 
         <div class="form-group">
           <label for="balance">Balance</label>
@@ -43,7 +46,7 @@
           <input name="interest_rate" class="percentage form-control" ng-model="account.interest_rate">
         </div>
 
-        <div ng-show="accountTypes[account.name]['type']=='debt'" class="form-group loan_line term">
+        <div ng-show="accountTypes[account.name]['type']=='debt' && account.name!='Credit Cards'" class="form-group loan_line term">
           <label for="term">Term (years left)</label>
           <input name="term" class="number form-control" ng-model="account.term">
         </div>
@@ -54,11 +57,12 @@
 
 
         <button type="button" ng-click="update(account)" class="btn btn-primary save">Save</button>
+        <span class="form_status"></span>
       </form>
 
       <div class="right-main">
         <div ng-show="account.id > 0 && accountTypes[account.name]['removable']" class="right-controls">
-          <button class="remove btn btn-danger">Remove Account</button>
+          <button ng-click="remove(account)" class="remove btn btn-danger">Remove Account</button>
         </div>
       </div>
     </div>

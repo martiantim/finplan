@@ -2,7 +2,16 @@
 <div class="well">
 
   <div ng-show="context.scenario">
-    scenario TODO
+    <h2>Scenario:</h2>
+    <table>
+      <td>
+        <h4>{{ context.scenario.name }}</h4>
+        <span class="help-block">{{ context.scenario.description }}</span>
+      </td>
+      <td style="vertical-align: middle;">
+        <img src="{{ context.scenario.image_url }}" style="width: 120px">
+      </td>
+    </table>
   </div>
 
   <div ng-show="simulator.bankruptcy">
@@ -16,20 +25,20 @@
       <div ng-repeat="warning in context.warnings">
         <div style="margin-bottom: 5px;">
           <span class="glyphicon glyphicon-warning-sign"></span>
-          {{ warning }}
+          {{ warning.message }}
         </div>
       </div>
     </div>
   </div>
 
   <div ng-show="!simulator.bankruptcy">
-    <h2>Goals: {{ simulator.goalProgress }}</h2>
+    <h2>Goals: {{ simulator.goalsAchieved }} of {{ simulator.goalsTotal }}</h2>
 
     <div ng-show="context.warnings.length > 0" class="alert alert-warning">
       <div ng-repeat="warn in context.warnings">
         <div style="margin-bottom: 5px;">
           <span class="glyphicon glyphicon-warning-sign"></span>
-          {{ warn }}
+          {{ warn.message }}
         </div>
       </div>
     </div>
@@ -40,7 +49,11 @@
       </thead>
       <tr ng-repeat="m in plan.manipulators | filter: {kind:'goal'}">
         <td>{{ m.name }}</td>
-        <td>{{ m.achievedYear }}</td>
+        <td>
+          <span ng-class="{'glyphicon-ok': simulator.goalStatus[m.id].status == 'ok', 'glyphicon-remove': simulator.goalStatus[m.id].status == 'fail'}" class="glyphicon">
+            {{ simulator.goalStatus[m.id].message }}
+          </span>
+        </td>
       </tr>
     </table>
   </div>

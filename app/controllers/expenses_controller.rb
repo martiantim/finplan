@@ -23,7 +23,10 @@ class ExpensesController < BaseManipulatorController
         render :partial => 'list', :object => @plan.expenses, :locals => {:unused_list => @plan.unused_expenses}
       end
       format.json do
-        render :json => @plan.expenses.collect(&:safe_json)
+        list = @plan.expenses.sort_by { |g| g.id }.collect { |g| g.short_safe_json.merge({:used => true}) }
+        list += @plan.unused_expenses.sort_by { |g| g.id }.collect { |g| g.short_safe_json.merge({:used => false}) }
+
+        render :json => list
       end
     end
   end
@@ -37,13 +40,16 @@ class ExpensesController < BaseManipulatorController
 
     if params[:id] =~ /template:(\d+)/
       @template = ManipulatorTemplate.find($1)
-      @manipulator = Manipulator.new(:manipulator_template => @template, :plan => plan, :name => @template.name)
+      @manipulator = Manipulator.new(:manipulator_template => @template, :plan => @plan, :name => @template.name)
     else
       @manipulator = Manipulator.find(params[:id])
       @template = @manipulator.manipulator_template
     end
 
-    render :json => @manipulator.safe_json
+    h = @manipulator.safe_json
+    h[:removable] = @manipulator.manipulator_template.name != 'Living Expenses'
+
+    render :json => h
   end
   
   def create

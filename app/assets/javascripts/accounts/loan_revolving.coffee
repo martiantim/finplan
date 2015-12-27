@@ -18,9 +18,16 @@ class RevolvingLoan extends Loan
     minimumPayment
 
   spend: (amnt) ->
-    @balance -= amnt
+    avail = @amountAvailable()
+    if avail < amnt
+      @balance -= avail
+      amnt - avail
+    else
+      @balance -= amnt
+      0 #nothing left to pay
 
   amountAvailable: ->
+    return 0 if !@limit
     @limit + @getBalance()
 
 window.RevolvingLoan = RevolvingLoan

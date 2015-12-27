@@ -28,6 +28,7 @@ class PlanUser < ActiveRecord::Base
         :gender => self.gender,
         :age => self.age,
         :profession_id => self.profession ? self.profession.id : nil,
+        :profession => self.profession ? self.profession.name : nil,
         :role => self.family_role
     }
   end

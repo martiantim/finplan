@@ -1,28 +1,45 @@
 class Markets
   constructor: (@simContext) ->
-    @ITYPES = ['None', 'Money Market', 'Bonds', 'Stock', 'International Stock', 'Inflation']
+    @ITYPES = ['None', 'Money Market', 'Bonds', 'Stock', 'International Stock', 'Inflation', 'Mortgage']
     @myrng = new Math.seedrandom('yay');
     @rates = {}
+    @FEE = 0.005
 
   returnOfType: (iType) ->
     age = @simContext.oldestAdultAge()
     if iType == 'Target Retirement'
-      if age < 50
-        stocks = 0.9
-        bonds = 0.1
+      console.log("Target age=#{age}")
+      if age < 40
+        stocks = 0.65
+        international_stock = 0.25
+        bonds = 0.10
+      else if age < 50
+        stocks = 0.53
+        international_stock = 0.22
+        bonds = 0.25
       else if age < 60
-        stocks = 0.8
-        bonds = 0.2
-      else if age < 67
-        stocks = 0.4
-        bonds = 0.6
+        stocks = 0.42
+        international_stock = 0.18
+        bonds = 0.40
+      else if age < 65
+        stocks = 0.35
+        international_stock = 0.15
+        bonds = 0.5
+      else if age < 70
+        stocks = 0.25
+        international_stock = 0.10
+        bonds = 0.65
       else
-        stocks = 0.1
-        bonds = 0.9
+        stocks = 0.21
+        international_stock = 0.09
+        bonds = 0.70
 
-      stocks * @rate('Stock') + bonds * @rate('Bonds')
+      if 1.0 - (stocks + bonds + international_stock) > 0.001
+        alert("Targer retirement bug for age " + age + " (" + (stocks + bonds + international_stock) + ")")
+
+      stocks * @rate('Stock') + bonds * @rate('Bonds') + international_stock * @rate('International Stock') - @FEE
     else
-      @rate(iType)
+      @rate(iType) - @FEE
 
   rate: (iType) ->
     @ratesForYear(@simContext.simYear)[iType]
@@ -39,7 +56,8 @@ class Markets
 
     yrates = {}
     for itype in @ITYPES
-      yrates[itype] = @calcReturnRate(itype)
+      yrates[itype] = HistoricMarkets.rateForYear(year, itype)
+      #yrates[itype] = @calcReturnRate(itype)
 
     @rates[year] = yrates
     yrates
@@ -48,7 +66,7 @@ class Markets
     h = @ratesForYear(year)
     arr = []
     for itype, rate of h
-      arr.push({name: itype, rate: rate})
+      arr.push({name: itype, rate: rate}) if itype != 'None'
     arr
 
   calcReturnRate: (iType) ->

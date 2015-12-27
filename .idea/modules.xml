@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../docx/.idea/docx.iml" filepath="$PROJECT_DIR$/../docx/.idea/docx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../edcaliber/.idea/edcaliber.iml" filepath="$PROJECT_DIR$/../edcaliber/.idea/edcaliber.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/finplan.iml" filepath="$PROJECT_DIR$/.idea/finplan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fullcalendar-tpruvot/.idea/fullcalendar-tpruvot.iml" filepath="$PROJECT_DIR$/../fullcalendar-tpruvot/.idea/fullcalendar-tpruvot.iml" />
+    </modules>
+  </component>
+</project>
+

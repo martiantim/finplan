@@ -163,15 +163,26 @@ class Balances
 
     if !@hasAmountToSpend(amount, opts['disallowCredit'])
       if opts['loan']
-        throw new BankruptcyException("Unable to pay for #{description} in #{@simcontext.simYear}")
+        throw new BankruptcyException("Unable to pay #{FUtils.formatMoney(amount)} for #{description} in #{@simcontext.simYear}")
       else
         @takeOutLoan(amount, description)
     else
       left = @_cascadingSpend(amount, opts['disallowCredit'])
-      throw new BankruptcyException("Unable to pay for #{description} in #{@simcontext.simYear} during cascading spend") if left > 0
+      throw new BankruptcyException("Unable to pay #{amount} for #{description} in #{@simcontext.simYear} during cascading spend") if left > 0
     
     @curLog().log(kind, description, -1 * amount)  
     @recalc()
+
+  _withdrawInRetirement: (amount) ->
+    age = @simcontext.oldestAdultAge()
+    person = @simcontext.family.oldestMember(@simcontext.simYear)
+    if amount > 0 && age >= 55
+      left = @accounts['401k'].withdrawToCheckingUpTo(amount, this, person)
+    if left > 0 && age >= 60
+      left = @accounts['roth ira'].withdrawToCheckingUpTo(left, this, person)
+    if left > 0 && age >= 60
+      left = @accounts['traditional ira'].withdrawToCheckingUpTo(left, this, person)
+
 
   _cascadingSpend: (amount, disallowCredit) ->
     left = @accounts['checking'].spend(amount)
@@ -181,6 +192,10 @@ class Balances
         left = @accounts['emergency'].spend(left)
         if left > 0 && !disallowCredit
           left = @accounts['credit cards'].spend(left)
+        if left > 0
+          console.log("NEED MORE #{left}")
+          @_withdrawInRetirement(left)
+          left = @accounts['checking'].spend(left)
     left
 
 
@@ -208,10 +223,13 @@ class Balances
   currentYear: ->
     @opts['year']
 
-  takeOutHomeLoan: (amnt, whatfor, term = 10, houseCost, startYear = null) ->
-    startYear = @_currentYear() if !startYear
+  takeOutHomeLoan: (amnt, whatfor, term = 10, houseCost, context) ->
+    startYear = context.simYear
+    rate = context.markets.rate('Mortgage')
     name = "#{whatfor} #{startYear}"
-    @accounts[name] = new HomeLoan(name, amnt, houseCost, 0.04213, startYear, @_currentYear(), term, true)
+
+    @accounts[name] = new HomeLoan(name, amnt, houseCost, rate, startYear, @_currentYear(), term, true)
+    @accounts['House'] = new House(houseCost)
     #pay 1st year
     @payLoan(@accounts[name])
 

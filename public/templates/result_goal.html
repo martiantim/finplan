@@ -5,13 +5,13 @@
     <div class="goal_status">
       <div ng-show="goal.achievedYear">
         <div class="alert alert-success">
-          <span class="glyphicon glyphicon-ok"></span> Congradulations! Goal will be achieved in {{ goal.achievedYear }}
+          <span class="glyphicon glyphicon-ok"></span> Congradulations! {{ simulator.goalStatus[goal.id].message }}
         </div>
       </div>
 
-      <div ng-show="goal.failMessage">
-        <div class="alert alert-danger">
-          <span class="glyphicon glyphicon-warning-sign"></span> {{ goal.failMessage }}
+      <div ng-show="!goal.achievedYear">
+        <div class="alert alert-danger" fin-format-directive>
+          <span class="glyphicon glyphicon-warning-sign"></span> <span ng-bind-html="goal.failMessage"></span>
         </div>
       </div>
     </div>

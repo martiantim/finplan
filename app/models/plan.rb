@@ -114,8 +114,14 @@ class Plan < ActiveRecord::Base
     ManipulatorTemplate.all.find_all { |t| !used_template?(t.id) && t.kind == 'factor' }
   end
 
+  def manipulator_by_name(template_name)
+    manipulators.detect do |m|
+      m.manipulator_template.name == template_name
+    end
+  end
+
   def manipulator_for_plan_user(template_name, puser)
-    manipulators.detect do |m| 
+    manipulators.detect do |m|
       m.manipulator_template.name == template_name && m.plan_user && m.plan_user.id == puser.id
     end
   end

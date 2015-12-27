@@ -59,7 +59,11 @@ class Account < ActiveRecord::Base
       :investment_type => self.investment_type,
       :interest_rate => self.interest_rate,
       :term => self.term,
-      :limit => self.limit
+      :limit => self.limit,
+      :description => {
+        :text => kind[:description],
+        :more_link => kind[:description_more_link]
+      }
     }
   end
   

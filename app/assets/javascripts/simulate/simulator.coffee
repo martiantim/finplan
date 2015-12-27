@@ -3,6 +3,7 @@ class Simulator
     @family = familyIn.dupe()
     @startYear = new Date().getYear()+1900
 
+    @goalStatus = {}
     @_markGoalProgress()    
 
   findManipulatorByName: (name) ->
@@ -73,6 +74,7 @@ class Simulator
     try
       @_runYearCanRaise(onDone)
     catch ex
+      console.log(ex.stack)
       @_onDone(ex)
       onDone(ex)
 
@@ -145,9 +147,15 @@ class Simulator
     "#{achieved} of #{num}"
   
   _markGoals: ->
+    @goalsAchieved = 0
+    @goalsTotal = 0
     for m in @manipulators
       if m.kind == 'goal'
+        @goalsTotal += 1
+        @goalStatus[m.id] = m.goalStatus()
+
         if m.goalAchieved()
+          @goalsAchieved++
           $('li.goal[data-id="'+m.id+'"] .achieved').attr('data-success', 'true').html('<span class="glyphicon glyphicon-ok"></span>')
         else
           $('li.goal[data-id="'+m.id+'"] .achieved').attr('data-success', 'false').html('<span class="glyphicon glyphicon-remove"></span>')

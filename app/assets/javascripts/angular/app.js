@@ -1,5 +1,6 @@
 finplan = angular.module('FinPlan', [
     'ngRoute',
+    'ngSanitize',
     'FinPlan.services',
     'FinPlan.controllers'
   ]);

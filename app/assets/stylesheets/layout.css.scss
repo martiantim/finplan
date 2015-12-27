@@ -39,6 +39,35 @@ body {
         li {
           padding: 0px 10px;
         }
+
+        li {
+          button.nav2 {
+            color: #2a6496;
+            &[disabled="disabled"] {
+              color: #aaa;
+            }
+            border-width:0px;background:#fff;
+            padding: 10px 15px;
+            border-radius: 4px 4px 0 0;
+            line-height: 1.42857;
+            margin-right: 2px;
+          }
+        }
+        li.active {
+          button.nav2 {
+            -moz-border-bottom-colors: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            background-color: #ffffff;
+            border-color: #dddddd #dddddd transparent;
+            border-image: none;
+            border-style: solid;
+            border-width: 1px;
+            color: #555555;
+            cursor: default;
+          }
+        }
       }
     }
   } 

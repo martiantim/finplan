@@ -14,7 +14,9 @@ class GoalsController < BaseManipulatorController
       end
       format.json do
         list = plan.goals.sort_by { |g| g.id }.collect { |g| g.short_safe_json.merge({:used => true}) }
-        list += plan.unused_goals.sort_by { |g| g.id }.collect { |g| g.short_safe_json.merge({:used => false}) }
+        if params[:unused] != 'false'
+          list += plan.unused_goals.sort_by { |g| g.id }.collect { |g| g.short_safe_json.merge({:used => false}) }
+        end
         render :json => list
       end
     end

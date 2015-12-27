@@ -20,3 +20,19 @@ window.finData = {
 window.BankruptcyException = (message) ->
   this.message = message
   this.name = "BankruptcyException"
+
+
+window.formSaving = ->
+  $(".form_status").text('Saving...').show()
+  $(".form_status").parents("form").find('input.money, input.percentage').each (i) ->
+    self = $(this)
+    try
+      v = self.autoNumeric('get')
+      self.autoNumeric('destroy')
+      self.val(v)
+    catch err
+      console.log("Error converting: " + err)
+
+window.formSuccess = ->
+  $(".form_status").text('Saved').fadeOut()
+  finFormat($(".form_status").parents('form'))

@@ -1,4 +1,4 @@
-finplan.controller 'GoalsController', ['$scope', '$routeParams', '$location', '$http', 'goalsCache', 'planCache', ($scope, $routeParams, $location, $http, goalsCache, planCache) ->
+finplan.controller 'GoalsController', ['$scope', '$routeParams', '$location', '$http', 'goalsCache', 'plan', ($scope, $routeParams, $location, $http, goalsCache, plan) ->
   $scope.loadGoal = (goalId) ->
     $scope.selectedGoalId = goalId
     $http.get('/goals/'+goalId+'.json').success (data) ->
@@ -7,8 +7,7 @@ finplan.controller 'GoalsController', ['$scope', '$routeParams', '$location', '$
       $scope.curParams = data.params
       finFormat($('.manipulator'), 100)
 
-  $http.get('/plans/1/reload.json', {cache: planCache}).success (data) ->
-    $scope.plan = data
+  $scope.plan = plan
 
   $http.get('/goals.json', {cache: goalsCache}).success (data) ->
     $scope.goals = data
@@ -47,13 +46,19 @@ finplan.controller 'GoalsController', ['$scope', '$routeParams', '$location', '$
         $scope.$apply ->
           $scope.reloadList()
           $scope.selectFirst()
+          plan.markDirty(true)
     })
 
   $scope.update = (goal) ->
+    formSaving()
+
+    start_type = goal.start_type
+    start_type = 'asap' if !goal.start_type
+
     formData = {
       'manipulator[name]': goal.name,
       'manipulator[manipulator_template_id]': goal.manipulator_template_id,
-      'when_type': goal.start_type,
+      'when_type': start_type,
       'when_year': goal.startYear,
       'when_person': goal.start_plan_user_id,
       'when_age': goal.start_plan_user_age
@@ -75,6 +80,8 @@ finplan.controller 'GoalsController', ['$scope', '$routeParams', '$location', '$
       success : (data) ->
         goal.id = data.id
         $scope.reloadList()
+        formSuccess()
+        plan.markDirty(true)
     })
 
 ]

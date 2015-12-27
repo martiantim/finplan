@@ -102,8 +102,13 @@ class UsersController < ApplicationController
     end
     plan.accounts.create!(:name => "401K", :balance => 0, :investment_type => "Target Retirement")
 
-    ['Salary', 'Housing', 'Car', 'Healthcare', 'Living Expenses'].each do |name|
+    ['FICA Taxes', 'Social Security Income', 'Salary', 'Housing', 'Car', 'Healthcare', 'Living Expenses'].each do |name|
       m = plan.manipulator_for_plan_user_or_create(name, pu)
+      m.save!
+    end
+
+    ['Retirement Plan Withdraws', 'Federal Income Tax', 'State Tax'].each do |name|
+      m = plan.manipulator_for_plan_user_or_create(name, nil)
       m.save!
     end
 

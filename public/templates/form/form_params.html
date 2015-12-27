@@ -3,5 +3,6 @@
     <label for="param:{{param.name}}">{{param.display}}</label>
 
     <div ng-include="'/templates/form/' + param.type + '.html'"></div>
+    <div ng-repeat="description in [param.description]" ng-include="'/templates/shared/description.html'"></div>
   </div>
 </div>

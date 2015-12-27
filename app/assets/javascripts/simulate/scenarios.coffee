@@ -1,5 +1,5 @@
 class Scenarios
-  constructor: () ->
+  constructor: (@plan) ->
 
 
   show: ->
@@ -15,7 +15,7 @@ class Scenarios
 
     @dialog.find('.modal-footer button').click =>
       scenario = JSON.parse(table.find('tr.success').attr('data-scenario'))
-      plan.onSimulateClick(scenario)
+      @plan.simulate(scenario)
       @dialog.modal('hide')
 
     @dialog.modal({

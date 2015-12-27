@@ -1,7 +1,8 @@
-#TODO: angular!
+#TODO: [+] next to add account
+#TODO: house value in net worth
+#TODO: show interest rates of loans
+#TODO: dont count college costs as an every year expense for retirement
 
-#TODO: "Goal will be achieved in 2058" should be X% of years for recurring goals
-#TODO: mark results as out of date when make changes
 #TODO: logo outline
 #TODO: warning/advice system
 #TODO: suggestions when bankruptcy or goal not achieved
@@ -68,7 +69,8 @@ class PlansController < ApplicationController
       :state => @plan.state,
       :manipulators => @plan.priority_sorted_manipulators.collect(&:safe_json),
       :accounts => @plan.accounts.collect(&:safe_json),
-      :family_members => @plan.plan_users.collect(&:safe_json)
+      :family_members => @plan.plan_users.collect(&:safe_json),
+      :todos => calc_todos()
     }
   end
 
@@ -77,6 +79,85 @@ class PlansController < ApplicationController
     plan.update_attributes(params.require(:plan).permit!)
 
     render :json => {:id => plan.id, :controller => 'plans'}
+  end
+
+  private
+
+
+  def calc_todos
+    list = []
+    list << todo_retirement
+    list << todo_family
+    list << todo_job
+    list << todo_accounts
+    list << todo_expenses
+
+    list.compact
+  end
+
+  def todo_retirement
+    m = @plan.manipulator_by_name('Retire')
+    return if !m || m.created_at != m.updated_at
+
+    {
+      :id => 'Retirement',
+      :description => "Setup your retirement goals",
+      :link => "#/goals/#{m.id}",
+      :image_url => "http://www.clipartguide.com/_named_clipart_images/0511-1001-2706-2216_Retired_Man_Resting_in_a_Hammock_with_a_Book_clipart_image.jpg"
+    }
+  end
+
+  def todo_family
+    return if @plan.plan_users.length > 1
+    pu = @plan.plan_users.first
+    return if !pu || pu.created_at != pu.updated_at
+
+    {
+      :id => 'Family',
+      :description => "Tell me a little bit about your family",
+      :link => "#/family",
+      :image_url => "http://thumbs.gograph.com/gg55085791.jpg"
+    }
+  end
+
+  def todo_job
+    m = @plan.manipulator_by_name('Salary')
+    return if !m || m.created_at != m.updated_at
+    pu = @plan.plan_users.first
+    return if pu.profession_id
+
+    {
+        :id => 'Job',
+        :description => "What's your profession",
+        :link => "#/family/#{pu.id}",
+        :image_url => "http://bestclipartblog.com/clipart-pics/job-clip-art-1.gif"
+    }
+  end
+
+  def todo_accounts
+    @plan.accounts.each do |acct|
+      return if acct.created_at != acct.updated_at
+    end
+
+    pu = @plan.plan_users.first
+    {
+        :id => 'Accounts',
+        :description => "What are your current account balances?",
+        :link => "#/accounts",
+        :image_url => "http://hibamagazine.com/hibakidz/wp-content/uploads/2013/09/TN_money-_bank_213.jpg"
+    }
+  end
+
+  def todo_expenses
+    m = @plan.manipulator_by_name('Living Expenses')
+    return if !m || m.created_at != m.updated_at
+
+    {
+      :id => 'Expenses',
+      :description => "Setup your basic living expenses",
+      :link => "#/expenses/#{m.id}",
+      :image_url => "http://www.officeclipart.com/office_clipart_images/boss_shocked_by_list_of_expenses_0521-1012-0921-2200_SMU.jpg"
+    }
   end
   
 end

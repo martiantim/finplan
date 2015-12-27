@@ -12,10 +12,10 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        render :partial => 'list', :object => plan.accounts
+        render :partial => 'list', :object => plan.accounts.sort_by { |acct| acct.name }
       end
       format.json do
-        render :json => plan.accounts.collect(&:safe_json)
+        render :json => plan.accounts.sort_by { |acct| acct.name }.collect(&:safe_json)
       end
     end
   end
@@ -54,6 +54,10 @@ class AccountsController < ApplicationController
     end
 
     render :json => h
+  end
+
+  def new
+    render :json => Account.new(:name => "", :plan_id => @current_user.plans.first.id)
   end
   
   def destroy

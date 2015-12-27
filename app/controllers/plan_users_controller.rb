@@ -21,17 +21,32 @@ class PlanUsersController < ApplicationController
   end
 
   def create
-    plan = Plan.find(params[:plan_id])
+    if params[:plan_id]
+      plan = Plan.find(params[:plan_id])
+    else
+      plan = @current_user.plans.first
+    end
     pu = plan.plan_users.create!(params.require(:plan_user).permit!)
 
     salary = plan.manipulators.build(:name => "Salary", :manipulator_template => ManipulatorTemplate.find_by_name("Salary"), :plan_user => pu)
     salary.params = params[:variables].to_json
     salary.save!
 
+    ['Social Security Income', 'FICA Taxes'].each do |name|
+      plan.manipulator_for_plan_user_or_create(name, pu).save!
+    end
+
+
     render :json => {:id => pu.id}
   end
 
   def update
+    if params[:plan_id]
+      plan = Plan.find(params[:plan_id])
+    else
+      plan = @current_user.plans.first
+    end
+
     pu = PlanUser.find(params[:id])
     pu.update_attributes(params.require(:plan_user).permit!)
 
@@ -60,7 +75,7 @@ class PlanUsersController < ApplicationController
     elsif params[:id] == 'child'
       @plan_user = PlanUser.new(:name => "Child", :born => Date.parse("2010-01-01"))
     elsif params[:id] == 'future_child'
-      @plan_user = PlanUser.new(:name => "Future Child", :born => Date.parse("2015-01-01", :gender => 'U'))
+      @plan_user = PlanUser.new(:name => "Future Child", :born => Date.parse("2017-01-01", :gender => 'U'))
     else
       @plan_user = PlanUser.find(params[:id])
     end

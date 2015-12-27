@@ -2,6 +2,7 @@ class User
   constructor: (@id, @name, @born, @gender, @species, @profession) ->
     @bornYear = new Date(@born).getYear() + 1900
     @projectedDeathYear = @bornYear + @projectedLongevity()
+    @defaultRole = @descriptor(finData.current_year)
 
   @fromJSON: (json) ->
     new User(json.id, json.name, json.born, json.gender, json.species, json.profession)
@@ -19,7 +20,7 @@ class User
     @gender != 'P'
 
   isAliveInYear: (year) ->
-    year >= @bornYear && year < @projectedDeathYear
+    year >= @bornYear && year <= @projectedDeathYear
 
   ageInYear: (year) ->
     year - @bornYear

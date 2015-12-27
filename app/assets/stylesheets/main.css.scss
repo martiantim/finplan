@@ -7,6 +7,10 @@
   height: 0;
 }
 
+.form_status {
+  display: none;
+}
+
 #global_status {
   display: none;
   position: absolute;
@@ -68,8 +72,11 @@
             color: #666;
           }
         }
-        width:155px;
+        width:175px;
         float:left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .amount {
         text-align: right;

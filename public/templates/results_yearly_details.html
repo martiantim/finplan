@@ -85,16 +85,25 @@
                 </div>
               </div>
 
-              <div class='entry title total' fin-format-directive>
+              <div class='entry title total'>
                 <div class='name'>Net Worth</div>
-                <div class='amount money'>{{ snap.netWorth() }}</div>
+                <div ng-repeat="newt in nets">
+                  <div class='amount' fin-format-directive>
+                    <div class="amount money">{{ newt.number }}</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
       </div>
       <div class="people col-md-6" style="padding-left:0px;margin-bottom: 10px;">
-        #{@people()}
+        <div id="family_portrait" class="portrait">
+          <div class='people' style='position:absolute;background: #fff;width:300px;height:300px;'>
+
+          </div>
+        </div>
+
       </div>
     </div>
     <div>

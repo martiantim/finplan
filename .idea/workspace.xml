@@ -1,0 +1,1620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="eb815bae-74cd-43c5-a351-1f22e0ac3435" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/assets/javascripts/angular-route.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/assets/javascripts/angular.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/angular/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/angular/controllers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/goals.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/partial1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/angular/services.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/plans/show2.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/goals_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/goals_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/manipulator.rb" afterPath="$PROJECT_DIR$/app/models/manipulator.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/plans_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/plans_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/sections.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/sections.css.scss" />
+    </list>
+    <ignored path="finplan.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="false" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="finplan" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="show.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../edcaliber/public/templates/lessons/show.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="10" selection-start="2509" selection-end="2509" vertical-scroll-proportion="-6.465517" vertical-offset="375" max-vertical-offset="1185">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lesson_builder.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../edcaliber/lib/engage/lesson_builder.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="20" selection-start="1747" selection-end="1747" vertical-scroll-proportion="0.47663552" vertical-offset="225" max-vertical-offset="1185">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resource_builder.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../edcaliber/lib/engage/resource_builder.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="21" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0" vertical-offset="73" max-vertical-offset="1140">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="grade.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../edcaliber/app/models/grade.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="26" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="660">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20140303074607_add_title_to_templates.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../edcaliber/db/migrate/20140303074607_add_title_to_templates.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="61" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20140310064033_add_lesson_estandards.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../edcaliber/db/migrate/20140310064033_add_lesson_estandards.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parse_coordinator.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../edcaliber/lib/engage/parse_coordinator.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="8" selection-start="487" selection-end="487" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4560">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="goals.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/templates/goals.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="32" selection-start="1387" selection-end="1387" vertical-scroll-proportion="-13.625" vertical-offset="303" max-vertical-offset="885">
+              <folding>
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lesson.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../edcaliber/app/models/curriculums/lesson.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="0" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0" vertical-offset="123" max-vertical-offset="1485">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="curriculum.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../edcaliber/app/models/curriculums/curriculum.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="41" selection-start="251" selection-end="251" vertical-scroll-proportion="-2.6470587" vertical-offset="0" max-vertical-offset="690">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../edcaliber" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/../edcaliber/lib/engage/math_middleschool_parser.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/views/notifier/engage_parse_stats.html.erb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/models/notifier.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/views/layouts/email.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/welcome/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/welcome_controller.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20140217081057_account_annual_contribution.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/views/users/_general.html.erb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/assets/javascripts/standards/standard_list.js" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/views/resources/resources/_resource_footer.html.erb" />
+        <option value="$PROJECT_DIR$/../edcaliber/lib/engage/base_parser.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/accounts/loan_home.coffee" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/accounts/loan.coffee" />
+        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/simulate/balances.coffee" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/simulate/simulator.coffee" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/lists.css.scss" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/people.css.scss" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/assets/javascripts/misc/basic_interaction.js" />
+        <option value="$PROJECT_DIR$/../edcaliber/lib/engage/resource_system_generator.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/db/migrate/20140226224158_add_engage_resource_templates.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/controllers/curriculums/curriculums_controller.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/models/resources/curriculum_module.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/models/resources/curriculum_unit.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/models/resources/curriculum_lesson.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/models/resources/resource_folder.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/controllers/curriculums/lessons_controller.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/controllers/curriculums/units_controller.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/controllers/curriculums/modules_controller.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/models/resources/curriculum_resource_system.rb" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/plans_controller.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/angular/services.js" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+        <option value="$PROJECT_DIR$/public/templates/partial1.html" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/angular/app.js" />
+        <option value="$PROJECT_DIR$/app/views/plans/show2.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/goals_controller.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/angular/controllers.js" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/sections.css.scss" />
+        <option value="$PROJECT_DIR$/app/models/manipulator.rb" />
+        <option value="$PROJECT_DIR$/public/templates/goals.html" />
+        <option value="$PROJECT_DIR$/../edcaliber/db/migrate/20140310064033_add_lesson_estandards.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/lib/engage/resource_builder.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/models/curriculums/curriculum.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/models/grade.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/app/models/curriculums/lesson.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/public/templates/lessons/show.html" />
+        <option value="$PROJECT_DIR$/../edcaliber/lib/engage/parse_coordinator.rb" />
+        <option value="$PROJECT_DIR$/../edcaliber/lib/engage/lesson_builder.rb" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="615" />
+    <option name="y" value="1104" />
+    <option name="width" value="1284" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="RailsProjectView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lessons" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="engage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experimental" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="x" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="experimental" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="curriculums" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="finplan" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edcaliber" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../edcaliber" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FullScreen" value="false" />
+    <property name="project.settings.patched" value="true" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="options.lastSelected" value="preferences.sourceCode.HTML" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/plan_users" />
+      <recent name="$PROJECT_DIR$/app/views/users" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Rails.Development: edcaliber">
+    <configuration default="true" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="RailsRunConfigurationType" factoryName="Rails">
+      <predefined_log_file id="RUBY_RAILS_SERVER" enabled="true" />
+      <module name="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="RSpecRunConfigurationType" factoryName="RSpec">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="RubyRunConfigurationType" factoryName="Ruby">
+      <module name="" />
+      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
+      <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
+      <module name="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <method />
+    </configuration>
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Rails.Development: edcaliber" />
+      <item index="1" class="java.lang.String" itemvalue="Rails.Production: edcaliber" />
+      <item index="2" class="java.lang.String" itemvalue="Rails.Production: finplan" />
+      <item index="3" class="java.lang.String" itemvalue="Rails.Development: finplan" />
+      <item index="4" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="5" class="java.lang.String" itemvalue="Rake.spec" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eb815bae-74cd-43c5-a351-1f22e0ac3435" name="Default" comment="" />
+      <created>1381908384017</created>
+      <updated>1381908384017</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Some improvements">
+      <created>1384936893035</created>
+      <updated>1384936893035</updated>
+    </task>
+    <task id="LOCAL-00002" summary="sim context">
+      <created>1384940024450</created>
+      <updated>1384940024450</updated>
+    </task>
+    <task id="LOCAL-00003" summary="many improvemwents">
+      <created>1385799649734</created>
+      <updated>1385799649734</updated>
+    </task>
+    <task id="LOCAL-00004" summary="More more more">
+      <created>1385889995235</created>
+      <updated>1385889995235</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Per user social security">
+      <created>1388987020689</created>
+      <updated>1388987020689</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Better loan paying">
+      <created>1389428648062</created>
+      <updated>1389428648062</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Take from retirement funds">
+      <created>1389864748685</created>
+      <updated>1389864748685</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fix new user bug">
+      <created>1389924871116</created>
+      <updated>1389924871116</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Move user stuff to plan_user">
+      <created>1389930048713</created>
+      <updated>1389930048713</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fix more plan_user problems">
+      <created>1389930498652</created>
+      <updated>1389930498652</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Predictable markets">
+      <created>1390007756527</created>
+      <updated>1390007756527</updated>
+    </task>
+    <task id="LOCAL-00012" summary="rails 4">
+      <created>1390016708499</created>
+      <updated>1390016708499</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fix dialog">
+      <created>1390183713371</created>
+      <updated>1390183713371</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Better redo of simulate">
+      <created>1390184752528</created>
+      <updated>1390184752528</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Nicer market">
+      <created>1390185709872</created>
+      <updated>1390185709872</updated>
+    </task>
+    <task id="LOCAL-00016" summary="person drawing fixes">
+      <created>1390198791230</created>
+      <updated>1390198791230</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fix money issue for goal failures">
+      <created>1390270603784</created>
+      <updated>1390270603784</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fix select box width issue (and upgrade jquery-uniform to newest)">
+      <created>1390338314116</created>
+      <updated>1390338314116</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Start of engage file parsing&#10;">
+      <created>1390355731391</created>
+      <updated>1390355731391</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Update year navigation">
+      <created>1390557447233</created>
+      <updated>1390557447233</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Update fullcalendar and fix month&lt;-&gt;year navigating bug">
+      <created>1390602410595</created>
+      <updated>1390602410595</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Fix year view display bug">
+      <created>1390602981518</created>
+      <updated>1390602981518</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Refactor engage parser names">
+      <created>1390607101094</created>
+      <updated>1390607101094</updated>
+    </task>
+    <task id="LOCAL-00024" summary="More engage parsing">
+      <created>1390633740278</created>
+      <updated>1390633740278</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Nicer account form">
+      <created>1390636938624</created>
+      <updated>1390636938624</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Better year end">
+      <created>1390715330672</created>
+      <updated>1390715330672</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Improve end year">
+      <created>1390719143382</created>
+      <updated>1390719143382</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Keep active when refresh lists">
+      <created>1390719291832</created>
+      <updated>1390719291832</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Better expenses">
+      <created>1390720036379</created>
+      <updated>1390720036379</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fix slider bug">
+      <created>1390720577934</created>
+      <updated>1390720577934</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Simulate dropdown">
+      <created>1390769126004</created>
+      <updated>1390769126004</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Support inheritance goal">
+      <created>1390770054000</created>
+      <updated>1390770054000</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Handle state live in">
+      <created>1390797959609</created>
+      <updated>1390797959609</updated>
+    </task>
+    <task id="LOCAL-00034" summary="subnav">
+      <created>1390809861545</created>
+      <updated>1390809861545</updated>
+    </task>
+    <task id="LOCAL-00035" summary="bankruptcy support">
+      <created>1390815007733</created>
+      <updated>1390815007733</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Ability to parse all K-2 anthology lessons">
+      <created>1390899606175</created>
+      <updated>1390899606175</updated>
+    </task>
+    <task id="LOCAL-00037" summary="parse coordinator">
+      <created>1390935165887</created>
+      <updated>1390935165887</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Parsing for all ELA 0-2 (basic stuff only with some errors)">
+      <created>1390958351772</created>
+      <updated>1390958351772</updated>
+    </task>
+    <task id="LOCAL-00039" summary="age ranges for different people in goals">
+      <created>1390989637710</created>
+      <updated>1390989637710</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Goals without editable year">
+      <created>1390990645182</created>
+      <updated>1390990645182</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Parsing ELA grades up to 7">
+      <created>1391155528008</created>
+      <updated>1391155528008</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Parsing ELA grades up to 8&#10;">
+      <created>1391220606084</created>
+      <updated>1391220606084</updated>
+    </task>
+    <task id="LOCAL-00043" summary="scenario stuff">
+      <created>1391316910842</created>
+      <updated>1391316910842</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fix long running goals and solar">
+      <created>1391319839842</created>
+      <updated>1391319839842</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Turn on calendar and resource notifications for all users">
+      <created>1391455839228</created>
+      <updated>1391455839228</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Add migration to force rebuild of all standard search_text">
+      <created>1391460639940</created>
+      <updated>1391460639940</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Another standard alternate name change">
+      <created>1391568956383</created>
+      <updated>1391568956383</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Force standard search text update">
+      <created>1391568981870</created>
+      <updated>1391568981870</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Lots of parsing changes. Hard for Yoni to look at. Mwah hahaha&#10; &#10; Put created resources in their own directory system.">
+      <created>1391569025206</created>
+      <updated>1391569025206</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Tracker updates">
+      <created>1391569578956</created>
+      <updated>1391569578956</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Oops undo last change">
+      <created>1391570149660</created>
+      <updated>1391570149660</updated>
+    </task>
+    <task id="LOCAL-00052" summary="move to heroku">
+      <created>1391587072712</created>
+      <updated>1391587072712</updated>
+    </task>
+    <task id="LOCAL-00053" summary="add logo">
+      <created>1391587257443</created>
+      <updated>1391587257443</updated>
+    </task>
+    <task id="LOCAL-00054" summary="remove db in coffee">
+      <created>1391587397505</created>
+      <updated>1391587397505</updated>
+    </task>
+    <task id="LOCAL-00055" summary="migration updates">
+      <created>1391588772345</created>
+      <updated>1391588772345</updated>
+    </task>
+    <task id="LOCAL-00056" summary="migration update">
+      <created>1391588960912</created>
+      <updated>1391588960912</updated>
+    </task>
+    <task id="LOCAL-00057" summary="migrate">
+      <created>1391589032529</created>
+      <updated>1391589032529</updated>
+    </task>
+    <task id="LOCAL-00058" summary="production updates">
+      <created>1391589381559</created>
+      <updated>1391589381559</updated>
+    </task>
+    <task id="LOCAL-00059" summary="put back tax rate schedules">
+      <created>1391590884893</created>
+      <updated>1391590884893</updated>
+    </task>
+    <task id="LOCAL-00060" summary="redo tax bracket foo">
+      <created>1391591762559</created>
+      <updated>1391591762559</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Parsing improvements">
+      <created>1391654465445</created>
+      <updated>1391654465445</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Login">
+      <created>1391662421074</created>
+      <updated>1391662421074</updated>
+    </task>
+    <task id="LOCAL-00063" summary="logout">
+      <created>1391666728956</created>
+      <updated>1391666728956</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Work on allowing multiple users">
+      <created>1391670736713</created>
+      <updated>1391670736713</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Fix some login/out problems">
+      <created>1391671287571</created>
+      <updated>1391671287571</updated>
+    </task>
+    <task id="LOCAL-00066" summary="signup">
+      <created>1391757738313</created>
+      <updated>1391757738313</updated>
+    </task>
+    <task id="LOCAL-00067" summary="update password to longer">
+      <created>1391757983142</created>
+      <updated>1391757983142</updated>
+    </task>
+    <task id="LOCAL-00068" summary="handle gender change">
+      <created>1391897030030</created>
+      <updated>1391897030030</updated>
+    </task>
+    <task id="LOCAL-00069" summary="PMI">
+      <created>1391928192453</created>
+      <updated>1391928192453</updated>
+    </task>
+    <task id="LOCAL-00070" summary="credit card stuff">
+      <created>1391932225554</created>
+      <updated>1391932225554</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Fix credit card bug">
+      <created>1391932904268</created>
+      <updated>1391932904268</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Better erros and make sure debts negative">
+      <created>1391978264157</created>
+      <updated>1391978264157</updated>
+    </task>
+    <task id="LOCAL-00073" summary="frame stuff">
+      <created>1391991448429</created>
+      <updated>1391991448429</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Fix unexpected child">
+      <created>1392018958069</created>
+      <updated>1392018958069</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Some welcome page stuff">
+      <created>1392020973179</created>
+      <updated>1392020973179</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Remove CSS messing up tabs in groups (doesn't appear used anymore)">
+      <created>1392058048078</created>
+      <updated>1392058048078</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Fix tags bug from rails upgrade">
+      <created>1392058854580</created>
+      <updated>1392058854580</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Start of vocab and materials parsing">
+      <created>1392059178414</created>
+      <updated>1392059178414</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Fix alternate name standard bug">
+      <created>1392059509859</created>
+      <updated>1392059509859</updated>
+    </task>
+    <task id="LOCAL-00080" summary="No tooltips on mobile">
+      <created>1392062042838</created>
+      <updated>1392062042838</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Delete old user notifications">
+      <created>1392142709177</created>
+      <updated>1392142709178</updated>
+    </task>
+    <task id="LOCAL-00082" summary="improve display of standards in tracker summary in chrome and for standards that are long">
+      <created>1392144067167</created>
+      <updated>1392144067167</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Handle very long codes in tracker summary">
+      <created>1392145392895</created>
+      <updated>1392145392895</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Don't load as much for folder browser json">
+      <created>1392165733784</created>
+      <updated>1392165733784</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Error message when try to embed video from unsupported site">
+      <created>1392170154054</created>
+      <updated>1392170154054</updated>
+    </task>
+    <task id="LOCAL-00086" summary="start of warning system">
+      <created>1392193194885</created>
+      <updated>1392193194885</updated>
+    </task>
+    <task id="LOCAL-00087" summary="typo">
+      <created>1392252239115</created>
+      <updated>1392252239115</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Vocab for ELA">
+      <created>1392259668862</created>
+      <updated>1392259668862</updated>
+    </task>
+    <task id="LOCAL-00089" summary="ELA structure parsing fix">
+      <created>1392339370441</created>
+      <updated>1392339370441</updated>
+    </task>
+    <task id="LOCAL-00090" summary="Some materials parsing work and">
+      <created>1392409531868</created>
+      <updated>1392409531869</updated>
+    </task>
+    <task id="LOCAL-00091" summary="No house down payment on credit">
+      <created>1392434430143</created>
+      <updated>1392434430143</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Better credit card logging">
+      <created>1392434868002</created>
+      <updated>1392434868002</updated>
+    </task>
+    <task id="LOCAL-00093" summary="favicons">
+      <created>1392524112623</created>
+      <updated>1392524112623</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Profession images">
+      <created>1392535774489</created>
+      <updated>1392535774489</updated>
+    </task>
+    <task id="LOCAL-00095" summary="more goal events">
+      <created>1392537501423</created>
+      <updated>1392537501423</updated>
+    </task>
+    <task id="LOCAL-00096" summary="New scenario">
+      <created>1392541438567</created>
+      <updated>1392541438567</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Proper display of ages">
+      <created>1392542832205</created>
+      <updated>1392542832205</updated>
+    </task>
+    <task id="LOCAL-00098" summary="Fix parsing for math middle school">
+      <created>1392602397085</created>
+      <updated>1392602397085</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Email parse results">
+      <created>1392620987576</created>
+      <updated>1392620987576</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Improve bad login">
+      <created>1392624438525</created>
+      <updated>1392624438525</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Longer email text field">
+      <created>1392667808107</created>
+      <updated>1392667808107</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Properly update display of checkbox when select/deselect standard in standard browser">
+      <created>1392668194421</created>
+      <updated>1392668194422</updated>
+    </task>
+    <task id="LOCAL-00103" summary="Custom delay for bob walters tooltips">
+      <created>1392670528121</created>
+      <updated>1392670528121</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Fix not editable for related resources">
+      <created>1392748657417</created>
+      <updated>1392748657417</updated>
+    </task>
+    <task id="LOCAL-00105" summary="Fix for tooltip delay">
+      <created>1392771797311</created>
+      <updated>1392771797311</updated>
+    </task>
+    <task id="LOCAL-00106" summary="Pulling out sub-documents from ELA">
+      <created>1392942885130</created>
+      <updated>1392942885130</updated>
+    </task>
+    <task id="LOCAL-00107" summary="Already own house">
+      <created>1393128195324</created>
+      <updated>1393128195324</updated>
+    </task>
+    <task id="LOCAL-00108" summary="Improved check/X for results">
+      <created>1393129416003</created>
+      <updated>1393129416003</updated>
+    </task>
+    <task id="LOCAL-00109" summary="Fix overflowing problem">
+      <created>1393129975059</created>
+      <updated>1393129975059</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Update lesson titles">
+      <created>1393283728742</created>
+      <updated>1393283728742</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Update tooltip delays">
+      <created>1393351310865</created>
+      <updated>1393351310865</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Redo structure using template in lesson folder and add lesson data">
+      <created>1393373621190</created>
+      <updated>1393373621190</updated>
+    </task>
+    <task id="LOCAL-00113" summary="Wire up module/unit/lessons (very rough)">
+      <created>1393571296440</created>
+      <updated>1393571296440</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Fix bug getting right grade + subject for modules">
+      <created>1393572099064</created>
+      <updated>1393572099064</updated>
+    </task>
+    <task id="LOCAL-00115" summary="convert standards to using estandards">
+      <created>1394434435744</created>
+      <updated>1394434435744</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Combine standards">
+      <created>1394439878558</created>
+      <updated>1394439878558</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="615" y="1104" width="1284" height="1056" extended-state="4" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21508664" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925585" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3282365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26209047" sideWeight="0.67098165" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282365" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925585" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="Better credit card logging" />
+    <MESSAGE value="favicons" />
+    <MESSAGE value="Profession images" />
+    <MESSAGE value="more goal events" />
+    <MESSAGE value="New scenario" />
+    <MESSAGE value="Proper display of ages" />
+    <MESSAGE value="Fix parsing for math middle school" />
+    <MESSAGE value="Email parse results" />
+    <MESSAGE value="Improve bad login" />
+    <MESSAGE value="Longer email text field" />
+    <MESSAGE value="Properly update display of checkbox when select/deselect standard in standard browser" />
+    <MESSAGE value="Custom delay for bob walters tooltips" />
+    <MESSAGE value="Fix not editable for related resources" />
+    <MESSAGE value="Fix for tooltip delay" />
+    <MESSAGE value="Pulling out sub-documents from ELA" />
+    <MESSAGE value="Already own house" />
+    <MESSAGE value="Improved check/X for results" />
+    <MESSAGE value="Fix overflowing problem" />
+    <MESSAGE value="Update lesson titles" />
+    <MESSAGE value="Update tooltip delays" />
+    <MESSAGE value="Redo structure using template in lesson folder and add lesson data" />
+    <MESSAGE value="Wire up module/unit/lessons (very rough)" />
+    <MESSAGE value="Fix bug getting right grade + subject for modules" />
+    <MESSAGE value="convert standards to using estandards" />
+    <MESSAGE value="Combine standards" />
+    <option name="LAST_COMMIT_MESSAGE" value="Combine standards" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../edcaliber/lib/eml.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="459" column="29" selection-start="16538" selection-end="16538" vertical-scroll-proportion="0.0" vertical-offset="6289" max-vertical-offset="7170" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/lib/engage/resource_system_generator.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="25" selection-start="2141" selection-end="2141" vertical-scroll-proportion="0.0" vertical-offset="1065" max-vertical-offset="2520" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/db/migrate/20140226224158_add_engage_resource_templates.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/models/resources/resource_folder.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="279" column="0" selection-start="8629" selection-end="8629" vertical-scroll-proportion="0.0" vertical-offset="4185" max-vertical-offset="4275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/controllers/curriculums/lessons_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="7" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/controllers/curriculums/curriculums_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="21" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/controllers/curriculums/units_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="55" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/controllers/curriculums/modules_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="91" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="15" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2235">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/plans_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="0" selection-start="1755" selection-end="1755" vertical-scroll-proportion="0.0" vertical-offset="212" max-vertical-offset="1335">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="23" selection-start="126" selection-end="126" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/views/experimental/x/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="10" selection-start="5917" selection-end="5946" vertical-scroll-proportion="-30.25" vertical-offset="804" max-vertical-offset="1695">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/assets/javascripts/angular/controllers/CourseSelectorController.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="61" selection-start="646" selection-end="646" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="31" selection-start="47" selection-end="47" vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="25" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="49" selection-start="514" selection-end="514" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/templates/partial1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="15" selection-start="0" selection-end="55" vertical-scroll-proportion="0.33333334" vertical-offset="38" max-vertical-offset="120">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/base_manipulator_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="43" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="6" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="25" selection-start="49" selection-end="72" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1890">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/plan.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="11" selection-start="3029" selection-end="3034" vertical-scroll-proportion="-8.382353" vertical-offset="1155" max-vertical-offset="2220">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/assets/javascripts/angular/controllers/CurriculumBaseController.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/assets/javascripts/angular/controllers/CurriculumShowController.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="904">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/assets/javascripts/angular/controllers/CurriculumIndexController.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="891">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/assets/javascripts/angular/controllers/ModuleShowController.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/assets/javascripts/angular/controllers/PacingGuideShowController.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="30" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/assets/javascripts/angular/services/PacingGuideService.js.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="2" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/goals/_list.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="8" selection-start="281" selection-end="281" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="630">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/goals/show_results.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="8" selection-start="357" selection-end="357" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="300">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/plans/show2.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="23" selection-start="193" selection-end="193" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/plans/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="0" selection-end="172" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="540">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/plans/_content_layout_list.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="6" selection-start="78" selection-end="541" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="285">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/plans/_goals_tab.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="26" selection-start="96" selection-end="96" vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="180">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/goals/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="26" selection-start="0" selection-end="2471" vertical-scroll-proportion="-13.125" vertical-offset="0" max-vertical-offset="825">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/goals_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="24" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1365">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/angular/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="21" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/layout.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/lists.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="6" selection-start="14" selection-end="14" vertical-scroll-proportion="38.875" vertical-offset="948" max-vertical-offset="1530">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/main.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="11" selection-start="187" selection-end="187" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="1920">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/sections.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="0" selection-start="470" selection-end="470" vertical-scroll-proportion="-10.5" vertical-offset="303" max-vertical-offset="885">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/manipulator.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="56" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="840">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/templates/goals.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="32" selection-start="1387" selection-end="1387" vertical-scroll-proportion="-13.625" vertical-offset="303" max-vertical-offset="885">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/db/migrate/20140303074607_add_title_to_templates.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="61" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/lib/engage/resource_builder.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="21" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0" vertical-offset="73" max-vertical-offset="1140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/models/curriculums/curriculum.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="41" selection-start="251" selection-end="251" vertical-scroll-proportion="-2.6470587" vertical-offset="0" max-vertical-offset="690">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/models/grade.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="26" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="660">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/db/migrate/20140310064033_add_lesson_estandards.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/app/models/curriculums/lesson.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="0" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0" vertical-offset="123" max-vertical-offset="1485">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/public/templates/lessons/show.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="10" selection-start="2509" selection-end="2509" vertical-scroll-proportion="-6.465517" vertical-offset="375" max-vertical-offset="1185">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/lib/engage/parse_coordinator.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="8" selection-start="487" selection-end="487" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4560">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../edcaliber/lib/engage/lesson_builder.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="20" selection-start="1747" selection-end="1747" vertical-scroll-proportion="0.47663552" vertical-offset="225" max-vertical-offset="1185">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

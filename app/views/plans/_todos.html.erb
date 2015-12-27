@@ -1,0 +1,20 @@
+<div class="alert alert-warning" ng-show="plan.todoBeforeSimulate.length > 0" style="margin: 10px 20px 0px 20px">
+  <p>
+    <%= image_tag("giraffe.png", :style => "width: 25px;") %>
+    <span style="margin-left: 5px;padding: 7px 10px;border-radius: 10px;background:#fff">Let me help you get set up. You still need to do these steps:</span>
+  </p>
+
+  <div style="width: 100%; padding: 20px 20px 0px 20px;color: #000;overflow-x: auto;">
+  <div class="clearfix todolist" style="">
+    <div ng-click="visit(todo.link)" class="todo" ng-repeat="todo in plan.todoBeforeSimulate" >
+      <img ng-src="{{ todo.image_url}}" style="height: 75px;float:right;">
+      <div style="font-size: 32px;float:left;padding: 10px;">#{{ $index+1 }}</div>
+      <div style="width: 120px;float:left;">
+        <a ng-href="{{todo.link}}">{{ todo.id }}</a>
+        <p>{{ todo.description }}</p>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</div>

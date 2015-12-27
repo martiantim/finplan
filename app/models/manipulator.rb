@@ -32,6 +32,11 @@ class Manipulator < ActiveRecord::Base
       :start_type => self.start_type,
       :start_plan_user_id => self.start_plan_user_id,
       :start_plan_user_age => self.start_plan_user_age,
+      :plan_id => self.plan_id,
+      :description => {
+        :text => manipulator_template.description,
+        :more_link => manipulator_template.description_more_link
+      },
 
       :params => self.manipulator_template.params_hash(self)
     }

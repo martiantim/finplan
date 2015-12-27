@@ -46,8 +46,6 @@ class Manipulator
       @cpiAdjustedParams[k] = v * (1 + inflationRate)
 
   setGoalProgress: (year, have, need) ->
-    if !@inRange(@curSim.simYear)
-      need = null
     @progress.push [year, {have: have, need: need, inRange: @inRange(@curSim.context.simYear)}]
 
   setGoalAchieved: (year) ->
@@ -71,6 +69,10 @@ class Manipulator
     return false if @startYear && year < @startYear
     return false if @endYear && year > @endYear
 
+    if @name == 'Retire'
+      console.log(this)
+      console.log("end = #{@endYear} year=#{year}")
+      console.log("retire in range")
     true
 
   findManipulatorByName: (name) ->
@@ -98,6 +100,21 @@ class Manipulator
     else
       if @enabled
         @execOne(context)
+
+  goalStatus: ->
+    status = {status: '?', message: ''}
+    if @achievedYear
+      status['status'] = 'ok'
+      if @achievedTimes > 1
+        perc = (@achievedTimes * 100 / (@achievedTimes + @failedTimes))|0
+        status['message'] = "Goal will be achieved #{perc}% of years"
+      else
+        status['message'] = "Goal will be achieved in #{@achievedYear}"
+    else
+      status['status'] = 'fail'
+      status['message'] = 'Unable to achieve'
+    status
+
 
   @fromJSON: (json, family) ->
     user = null
